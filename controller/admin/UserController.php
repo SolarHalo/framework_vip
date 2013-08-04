@@ -60,4 +60,8 @@ class UserController  extends  Controller{
 		$this->smarty->display("admin/user_add.tpl"); 
 	}
 	
+	function test($username,$password){
+		echo 'this is method test :the param values is username:'.$username.',password:'.$password;
+	}
+	
 }

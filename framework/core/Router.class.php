@@ -39,8 +39,23 @@
 	function getMethodName(){ 
 		  return $this->uriarray['method'];
 	}
+	
 	function getParam(){
 		return $this->uriarray['param'];
+	}
+	
+	function paramToArray($paramStr){
+		$values = array();
+		if(!empty($paramStr)){
+			$paramValuePairs = explode("&", $paramStr);
+			print_r($paramValuePairs);
+			foreach($paramValuePairs as $paramValuePair ){
+				$pv = explode("=", $paramValuePair);
+				array_push($values, $pv[1]);
+			}
+		}
+		print_r($values);
+		return $values;
 	}
    function urlToArray(){
 			global  $CONFIG;
@@ -52,11 +67,14 @@
 			$urlArray = explode('/' , $this->url);
 			//drop the first element,because of it's ''
 			array_shift($urlArray);
-			if($urlArray[0] == "admin"){
-				$this->adminRouter($urlArray);
-			}else{
-				$this->frontRouter($urlArray);
-			}
+			
+// 			if($urlArray[0] == "admin"){
+// 				$this->adminRouter($urlArray);
+// 			}else{
+// 				$this->frontRouter($urlArray);
+// 			}
+			
+			$this->frontRouter($urlArray);
 			
    }
    function frontRouter($urlArray){
@@ -89,12 +107,13 @@
 					    "dir"               => $urlArray[0],
 					    "controler"         => $urlArray[1],
 					    "method"            => $urlArray[2],
-					    "param"             => $urlArray[3]
+					    "param"             => $this->paramToArray($urlArray[3])
 					);
 					return $this->uriarray;
 			} 
    }
    function adminRouter($urlArray){
+   	print_r($urlArray);
    	   if(count($urlArray) == 1){
 				  $this->uriarray = array(
 					    "dir"               => "admin",
@@ -124,7 +143,7 @@
 					    "dir"               => "admin/"+$urlArray[0],
 					    "controler"         => $urlArray[1],
 					    "method"            => $urlArray[2],
-					    "param"             => $urlArray[3]
+				 		"param"             => $this->paramToArray($urlArray[3])
 					);
 					return $this->uriarray;
 			} 

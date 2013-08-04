@@ -1,5 +1,4 @@
 <?php 
-
 define('SMARTY_DIR', PROJECT.'/framework/lib/Smarty-3.1.13/libs/');
 define('ADMIN_TITLE', "后台管理中心");
 define('PROJECT_NAME', "通用封装框架");
