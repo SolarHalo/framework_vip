@@ -48,9 +48,7 @@
 		$values = array();
 		if(!empty($paramStr)){
 			$paramValuePairs = explode("&", $paramStr);
-			print_r($paramValuePairs);
 			foreach($paramValuePairs as $paramValuePair ){
-				echo ';;;'.$paramValuePair.'<br>';
 				$pv = explode("=", $paramValuePair);
 				array_push($values, $pv[1]);
 			}
@@ -59,6 +57,7 @@
 		}
 		return $values;
 	}
+	
    function urlToArray(){
 			global  $CONFIG;
 			 
@@ -77,7 +76,6 @@
 			
    }
    function frontRouter($urlArray){
-   	print_r($urlArray);
    	   if(count($urlArray) == 1){
 				  $this->uriarray = array(
 					    "dir"               => "",
@@ -87,7 +85,6 @@
 					);
 					return $this->uriarray;
 			}else if(count($urlArray) == 2){
-				print_r($urlArray);
 				  $this->uriarray = array(
 					    "dir"               => "",
 					    "controler"         => $urlArray[0],
@@ -114,7 +111,6 @@
 			} 
    }
    function adminRouter($urlArray){
-   	print_r($urlArray);
    	   if(count($urlArray) == 1){
 				  $this->uriarray = array(
 					    "dir"               => "admin",

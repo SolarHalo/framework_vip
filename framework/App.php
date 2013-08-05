@@ -30,7 +30,6 @@ class App{
 		if(empty($params)){
 			$controller = new $class;
 			$controller->$method();
-			
 		}else{
 			call_user_func_array(array($class,$method), $params);
 		}
