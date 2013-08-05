@@ -1,5 +1,5 @@
 <?php  
-define('PROJECT',ROOT.DS.'framework');
+define('PROJECT',ROOT.DS.'framework_vip');
 define('CORE',PROJECT.DS.'framework'.DS.'core');
 define('CONTROLLER',PROJECT.DS.'controller');
 define('COMMON',PROJECT.DS.'common');
@@ -26,8 +26,13 @@ class App{
         require_once  $filePath;
 		$class = $route->getControllerClassName();
 		$method = $route->getMethodName();
-		$controller = new $class;
-		$controller->$method();
+		$params = $route->getParam();
+		if(empty($params)){
+			$controller = new $class;
+			$controller->$method();
+		}else{
+			call_user_func_array(array($class,$method), $params);
+		}
 	}
 }
  
