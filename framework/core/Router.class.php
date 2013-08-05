@@ -97,7 +97,7 @@
 					    "dir"               => "",
 					    "controler"         => $urlArray[0],
 					    "method"            => $urlArray[1],
-					    "param"             => $urlArray[2]
+					    "param"             => $this->paramToArray($urlArray[2])
 					);
 					return $this->uriarray;
 			}else{
@@ -116,7 +116,7 @@
 					    "dir"               => "admin",
 					    "controler"         => "index",
 					    "method"            => "index",
-					    "param"             => ""
+					    "param"             => array()
 					);
 					return $this->uriarray;
 			}else if(count($urlArray) == 2){
