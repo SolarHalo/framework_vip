@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-03 10:32:21
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-04 13:08:23
          compiled from "G:/phpserver/framework/templates/admin/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2956151fcdbacaa88c4-20379665%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '03b90b046e6c8f7c6b220908ec2c10d1e8b8f7f5' => 
     array (
       0 => 'G:/phpserver/framework/templates/admin/index.tpl',
-      1 => 1375525937,
+      1 => 1375544845,
       2 => 'file',
     ),
   ),
@@ -19,8 +19,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_51fcdbacbdc7b2_53578331',
   'variables' => 
   array (
-    'osadmin_action_alert' => 0,
-    'osadmin_quick_note' => 0,
+    'admin_action_alert' => 0,
+    'admin_quick_note' => 0,
     'user_info' => 0,
   ),
   'has_nocache_code' => false,
@@ -31,12 +31,42 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <?php echo $_smarty_tpl->getSubTemplate ("admin/sidebar.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
+ <!--- 以上为左侧菜单栏 sidebar --->
+	 
+<div class="content">
+        
+        <div class="header">
+            <div class="stats">
+			<p class="stat"><!--span class="number"></span--></p>
+			</div>
 
+            <h1 class="page-title">test</h1>
+        </div>
+        
+		<ul class="breadcrumb">
+            <li><a href="<{$smarty.const.ADMIN_URL}><{$content_header.module_url}>"> qk tqi  </a> <span class="divider">/</span></li>
+            
+			<li><a href="<{$smarty.const.ADMIN_URL}><{$content_header.father_menu_url}>">dddd</a> <span class="divider">/</span></li>
+		 
+			
+			<li class="active">aaa</li>
+			 
+					<a title= "移除快捷菜单" href="#"><li class="active"><i class="icon-minus" method="del" url="<{$smarty.const.ADMIN_URL}>/ajax/shortcut.php?menu_id=<{$content_header.menu_id}>"></i></li></a>
+	 
+					<a title= "加入快捷菜单" href="#"><li class="active"><i class="icon-plus" method="add" url="<{$smarty.const.ADMIN_URL}>/ajax/shortcut.php?menu_id=<{$content_header.menu_id}>"></i></li></a>
+			 
+			
+        </ul>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="bb-alert alert alert-info" style="display: none;">
+			<span>操作成功</span>
+		</div>
 <!--- START 以上内容不需更改，保证该TPL页内的标签匹配即可 --->
 
-<?php echo $_smarty_tpl->tpl_vars['osadmin_action_alert']->value;?>
+<?php echo $_smarty_tpl->tpl_vars['admin_action_alert']->value;?>
 
-<?php echo $_smarty_tpl->tpl_vars['osadmin_quick_note']->value;?>
+<?php echo $_smarty_tpl->tpl_vars['admin_quick_note']->value;?>
 
 
 	<div class="block">

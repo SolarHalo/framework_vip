@@ -30,3 +30,10 @@
 .icon {
 	color:#333333;
 }
+.show {
+  display: block;
+}
+.hidden {
+  display: none;
+  visibility: hidden;
+}
