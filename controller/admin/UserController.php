@@ -61,7 +61,7 @@ class UserController  extends  Controller{
 	}
 	
 	function test($username,$password){
-		echo 'this is method test :the param values is username:'.$username.',password:'.$password;
+		echo 'username:'.$username.',password:'.$password;
 	}
 	
 }

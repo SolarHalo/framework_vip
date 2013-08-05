@@ -27,9 +27,13 @@ class App{
 		$class = $route->getControllerClassName();
 		$method = $route->getMethodName();
 		$params = $route->getParam();
-		//$controller = new $class;
-// 		$controller->$method();
-		call_user_func_array(array($class,$method), $params);
+		if(empty($params)){
+			$controller = new $class;
+			$controller->$method();
+			
+		}else{
+			call_user_func_array(array($class,$method), $params);
+		}
 	}
 }
  

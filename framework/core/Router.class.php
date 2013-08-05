@@ -50,11 +50,13 @@
 			$paramValuePairs = explode("&", $paramStr);
 			print_r($paramValuePairs);
 			foreach($paramValuePairs as $paramValuePair ){
+				echo ';;;'.$paramValuePair.'<br>';
 				$pv = explode("=", $paramValuePair);
 				array_push($values, $pv[1]);
 			}
+		}else{
+			$values = null;
 		}
-		print_r($values);
 		return $values;
 	}
    function urlToArray(){
@@ -67,31 +69,30 @@
 			$urlArray = explode('/' , $this->url);
 			//drop the first element,because of it's ''
 			array_shift($urlArray);
-			
-// 			if($urlArray[0] == "admin"){
-// 				$this->adminRouter($urlArray);
-// 			}else{
-// 				$this->frontRouter($urlArray);
-// 			}
-			
-			$this->frontRouter($urlArray);
+			if($urlArray[0] == "admin"){
+				$this->adminRouter($urlArray);
+			}else{
+				$this->frontRouter($urlArray);
+			}
 			
    }
    function frontRouter($urlArray){
+   	print_r($urlArray);
    	   if(count($urlArray) == 1){
 				  $this->uriarray = array(
 					    "dir"               => "",
 					    "controler"         => $urlArray[0],
 					    "method"            => "index",
-					    "param"             => ""
+					    "param"             => array()
 					);
 					return $this->uriarray;
 			}else if(count($urlArray) == 2){
+				print_r($urlArray);
 				  $this->uriarray = array(
 					    "dir"               => "",
 					    "controler"         => $urlArray[0],
 					    "method"            => $urlArray[1],
-					    "param"             => ""
+					    "param"             => array()
 					);
 					return $this->uriarray;
 			}else if(count($urlArray) == 3){
@@ -127,7 +128,7 @@
 					    "dir"               => "admin",
 					    "controler"         => $urlArray[1],
 					    "method"            => "index",
-					    "param"             => ""
+					    "param"             => array()
 					);
 					return $this->uriarray;
 			}else if(count($urlArray) == 3){
@@ -135,14 +136,16 @@
 					    "dir"               => "admin",
 					    "controler"         => $urlArray[1],
 					    "method"            => $urlArray[2],
-					    "param"             => ""
+					    "param"             => array()
 					);
 					return $this->uriarray;
 			}else{
 				 $this->uriarray = array(
-					    "dir"               => "admin/"+$urlArray[0],
+					   // "dir"               => "admin/"+$urlArray[0],
+				 		"dir"               => "admin",
 					    "controler"         => $urlArray[1],
 					    "method"            => $urlArray[2],
+					    //"param"             => $urlArray[3]
 				 		"param"             => $this->paramToArray($urlArray[3])
 					);
 					return $this->uriarray;
