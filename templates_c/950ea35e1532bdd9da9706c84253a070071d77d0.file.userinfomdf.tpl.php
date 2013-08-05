@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-05 06:47:37
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-05 16:37:56
          compiled from "G:/phpserver/framework/templates/userinfomdf.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1677051ff37a46a9068-75349776%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '950ea35e1532bdd9da9706c84253a070071d77d0' => 
     array (
       0 => 'G:/phpserver/framework/templates/userinfomdf.tpl',
-      1 => 1375685213,
+      1 => 1375720517,
       2 => 'file',
     ),
   ),
@@ -108,7 +108,7 @@ public/img/';
                <li class="nav1"><a href="<?php echo @constant('WEBSITE_URL');?>
 rights">会员权益</a></li>
                 <li class="nav2"><a href="<?php echo @constant('WEBSITE_URL');?>
-activities" class="current">会员专享活动</a></li>
+activities" >会员专享活动</a></li>
                 <li class="nav3"><a href="<?php echo @constant('WEBSITE_URL');?>
 faq">常见问题</a></li>
             </ul>
@@ -144,10 +144,10 @@ usermanager/checkinfos"><!--消费记录-->
                                 <li class="nshow5"><a href="#">澳门+853</a></li> 
                                 <li class="nshow5"><a href="#">台湾+886</a></li>  
                             </ul>
-                        </div>-<font class="en"><input type="text" class="input_style3"></font>
+                        </div>-<font class="en"><input type="text" class="input_style3" style="width:120px;"></font>
                     </li>
                     <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font>1974年05月24日</font></li>
-                    <li class="w50">电子邮箱:<font><input type="text" class="input_style3" style="margin-left:7px;"></font></li>
+                    <li class="w50">电子邮箱:<font><input type="text" class="input_style3"  style=" width:187px;"></font></li>
                     <li class="w100"><img src="<?php echo @constant('WEBSITE_URL');?>
 public/img/n-iocn.gif" onclick="changeImg(this);"/><font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
                 </ul>

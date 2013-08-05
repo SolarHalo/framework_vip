@@ -77,7 +77,7 @@ function changeImg(target){
         <div class="nav">
             <ul class="clearfix">
                <li class="nav1"><a href="{{$smarty.const.WEBSITE_URL}}rights">会员权益</a></li>
-                <li class="nav2"><a href="{{$smarty.const.WEBSITE_URL}}activities" class="current">会员专享活动</a></li>
+                <li class="nav2"><a href="{{$smarty.const.WEBSITE_URL}}activities" >会员专享活动</a></li>
                 <li class="nav3"><a href="{{$smarty.const.WEBSITE_URL}}faq">常见问题</a></li>
             </ul>
         </div>
@@ -107,10 +107,10 @@ function changeImg(target){
                                 <li class="nshow5"><a href="#">澳门+853</a></li> 
                                 <li class="nshow5"><a href="#">台湾+886</a></li>  
                             </ul>
-                        </div>-<font class="en"><input type="text" class="input_style3"></font>
+                        </div>-<font class="en"><input type="text" class="input_style3" style="width:120px;"></font>
                     </li>
                     <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font>1974年05月24日</font></li>
-                    <li class="w50">电子邮箱:<font><input type="text" class="input_style3" style="margin-left:7px;"></font></li>
+                    <li class="w50">电子邮箱:<font><input type="text" class="input_style3"  style=" width:187px;"></font></li>
                     <li class="w100"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif" onclick="changeImg(this);"/><font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
                 </ul>
                 <span class="zh"><font color="#56280f">*为必填项，如需修改其它信息请在工作时间内致电赫基客服热线800-830-8348。</font></span>

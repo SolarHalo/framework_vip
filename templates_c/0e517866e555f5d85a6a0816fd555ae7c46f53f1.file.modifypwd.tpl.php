@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-05 06:47:34
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-05 16:26:51
          compiled from "G:/phpserver/framework/templates/modifypwd.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1155451ff35df035e00-91968683%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0e517866e555f5d85a6a0816fd555ae7c46f53f1' => 
     array (
       0 => 'G:/phpserver/framework/templates/modifypwd.tpl',
-      1 => 1375685198,
+      1 => 1375720001,
       2 => 'file',
     ),
   ),
@@ -125,7 +125,7 @@ public/img/resetpassword-ts2.gif"></td>
                         </tr>
                         <tr>
                         	<td width="70"></td>
-                        	<td><input type="button" class="Submit"></td>
+                        	<td><input type="button" class="Submit" style="margin-left:32px;"></td>
                         </tr>
                     </table>
                  </div>

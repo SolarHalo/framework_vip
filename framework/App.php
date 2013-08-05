@@ -1,5 +1,5 @@
 <?php  
-define('PROJECT',ROOT.DS.'framework_vip');
+define('PROJECT',ROOT.DS.'framework');
 define('CORE',PROJECT.DS.'framework'.DS.'core');
 define('CONTROLLER',PROJECT.DS.'controller');
 define('COMMON',PROJECT.DS.'common');

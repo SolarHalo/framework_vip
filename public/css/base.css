@@ -40,7 +40,8 @@ body {background:#340d03;}
 .pagecontent {padding:10px 50px 0 0; height:242px; overflow:hidden;}
 .pagetitle {font-size:38px;color:#bca14a; line-height:40px; margin:40px 0; height:43px; overflow:hidden;}
 .pagecontent h2 {font-size:18px; font-weight:bold; line-height:28px; height:28px; color:#bca14e;}
-.pagecontent p {font-size:14px;color:#FFF; padding-bottom:16px;}
+.pagecontent p {font-size:14px;color:#FFF; padding:0 0 16px 8px;}
+.pagecontent p.p-bg-ioc{ background:url(../img/p-bg-ioc.gif) left 2px no-repeat;}
 .pagecontent a {color:#bca14a;}
 .pagecontent a {color:#FFF; text-decoration:underline;}
 h2 img {display:block;}
@@ -95,13 +96,14 @@ h2 img {display:block;}
 
 .input_style{
 	height:40px;
-	padding:0 10px 0 20px;
-	line-height:40px;
+	padding:0 15px 0 15px; 
 	color:#bca14e;
 	background-image:url(../img/input_bg.gif);
 	background-repeat:no-repeat;
 	border:0; 
-	font-size:12px; 
+	font-size:12px;
+	line-height:40px;
+	vertical-align:middle; 
 	}
 .input-w1{
 	width:195px; 
@@ -113,8 +115,7 @@ h2 img {display:block;}
 	}
 .linkstyle01{
 	color:#56280f;
-	font-size:14px;
-	text-decoration:underline;
+	font-size:14px; 
 	}
 .pagecontent a.linkstyle01{
 	color:#BCA14E;
@@ -179,7 +180,9 @@ li.w100{
 li.w50{
 	width:279px;
 	}
-
+.userinfolist li font{
+	padding-left:8px;
+	}
 #pagecontent{
 	height:345px;
 	font-size:14px;
@@ -219,6 +222,7 @@ li.w50{
 	height:25px;
 	border:none;
 	color:#bca14e;
+	line-height:25px;
 	}
 .input_style3{
 	width:94px;
@@ -229,6 +233,7 @@ li.w50{
 	color:#bca14e;
 	font-size:14px;
 	vertical-align:middle;
+	line-height:23px;
 	}
 .Resetpassword{
 	background: url(../img/resetpassword-ts.gif) right 55px no-repeat;
@@ -344,7 +349,7 @@ li.w50{
     height: auto; 
     position: absolute;
     top:109px;
-    width:154px;
+    width:188px;
     z-index:888;
 	background:#340d03;
 	border:1px solid #b5994a;
@@ -414,14 +419,14 @@ li.w50{
 	z-index:15;
 	padding:15px 20px;
 	}	
-.btts,.inquire-ts1,.eorrpassword2,.vipiderror,.forgotpassword,.newpassword-reset,.Dataerror,.errorpassword,.alterpassword-y,.firstlogin-y,.login-y{
+.validationerror,.btts,.inquire-ts1,.eorrpassword2,.vipiderror,.forgotpassword,.newpassword-reset,.Dataerror,.errorpassword,.alterpassword-y,.firstlogin-y,.login-y{
 	float:left;
 	width:100%;
 	text-align:center;
 	}	
 .vipidtitle,.recordlistpagewind{
 	padding:70px 30px;
-	font-size:17px;
+	font-size:15px;
 	color:#bca14e;
 	display:block;
 	line-height:35px;
@@ -446,7 +451,9 @@ li.w50{
 	margin-left:25px;
 	}	
 	
-	
+#pagecontent .recordsearch span a.linkstyle01,#pagecontent .recordtext span a.linkstyle01{
+	text-decoration:none;
+	}	
 	
 	
 	

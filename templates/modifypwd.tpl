@@ -54,7 +54,7 @@ $(function(){
         <div class="nav">
             <ul class="clearfix">
                <li class="nav1"><a href="{{$smarty.const.WEBSITE_URL}}rights">会员权益</a></li>
-                <li class="nav2"><a href="{{$smarty.const.WEBSITE_URL}}activities" class="current">会员专享活动</a></li>
+                <li class="nav2"><a href="{{$smarty.const.WEBSITE_URL}}activities" >会员专享活动</a></li>
                 <li class="nav3"><a href="{{$smarty.const.WEBSITE_URL}}faq">常见问题</a></li>
             </ul>
         </div>
@@ -89,7 +89,7 @@ $(function(){
                         </tr>
                         <tr>
                         	<td width="70"></td>
-                        	<td><input type="button" class="Submit"></td>
+                        	<td><input type="button" class="Submit" style="margin-left:32px;"></td>
                         </tr>
                     </table>
                  </div>

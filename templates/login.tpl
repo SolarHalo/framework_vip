@@ -82,7 +82,7 @@ function changeCode(){
                 </tr>
                 <tr>
                     <td width="85"><img src="{{$smarty.const.WEBSITE_URL}}public/img/logintextiocn-posw.gif" style=" position:relative; top:-16px;"/></td>
-                    <td  colspan="2"><input type="password" name="passwd" value="{{$_POST.passwd}}" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="linkstyle01">忘记密码?</a><br/>
+                    <td  colspan="2"><input type="password" name="passwd" value="{{$_POST.passwd}}" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom:1px solid #56280f;"><a href="#" class="linkstyle01">忘记密码?</a></span><br/>
                     	您在开卡时所填写的手机号码后6位为初始密码
                     </td>
                 </tr>  
@@ -93,7 +93,7 @@ function changeCode(){
                     </td> 
                 </tr>
             </table>
-            <input type="button" class="input_style_but" onclick="javascript:document.loginForm.submit()"> 
+            <input type="button" class="input_style_but" style="margin-left:27px;" onclick="javascript:document.loginForm.submit()"> 
             </form>
         </div>
     </div>

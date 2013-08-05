@@ -110,7 +110,7 @@ $(function(){
         <div class="nav">
             <ul class="clearfix">
                <li class="nav1"><a href="{{$smarty.const.WEBSITE_URL}}rights">会员权益</a></li>
-                <li class="nav2"><a href="{{$smarty.const.WEBSITE_URL}}activities" class="current">会员专享活动</a></li>
+                <li class="nav2"><a href="{{$smarty.const.WEBSITE_URL}}activities">会员专享活动</a></li>
                 <li class="nav3"><a href="{{$smarty.const.WEBSITE_URL}}faq">常见问题</a></li>
             </ul>
         </div>
@@ -200,12 +200,12 @@ $(function(){
                         </ul>
                     </div>
                     月
-                    <a href="#" class="linkstyle01">说明</a>
+                   <span style="border-bottom:1px solid #BCA14E;"> <a href="#" class="linkstyle01">说明</a></span>
                 </div>
                 <div class="recordtext mb25">
-                	卡号：<font>0000000000</font>,姓名：<font>张三</font>,开卡店铺：<font>ochirly深圳海岸城南山店</font><br>
+                	卡号：<font>0000000000</font>,姓名：<font>张三</font>,开卡店铺：<font>ochirly深圳海岸城南山店</font>,<br>
                     开卡日期：<font>2011</font>年<font>9</font>月<font>1</font>日,有效期：<font>2011</font>年<font>9</font>月<font>1</font>日,
-                    续卡尚需有效金额<font>xxx</font>元。<a href="#" class="linkstyle01">说明</a>
+                    续卡尚需有效金额<font>xxx</font>元。<span style="border-bottom:1px solid #BCA14E;"><a href="#" class="linkstyle01">说明</a></span>
                 </div>
                 <div class="recordlist">
                 	<ol>
@@ -264,7 +264,7 @@ $(function(){
                         <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
                         <li class="je">599.00</li>
                     </ul>
-                    <a href="#" class="linkstyle01 fr" style="display:block; width:100%; text-align:right;">查看更多</a>
+                    <a href="#" class="linkstyle01 fr" style="display:block; width:100%; margin-top:20px;  text-align:right;">查看更多</a>
                 </div>
 			</div>
         </div>

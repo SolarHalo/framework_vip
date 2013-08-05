@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-05 06:47:39
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-05 16:42:01
          compiled from "G:/phpserver/framework/templates/checkinfos.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2887351ff420800ca32-42156740%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd4b0a9f1997685387406d3805cf9bb1f8328b45a' => 
     array (
       0 => 'G:/phpserver/framework/templates/checkinfos.tpl',
-      1 => 1375685191,
+      1 => 1375720919,
       2 => 'file',
     ),
   ),
@@ -236,12 +236,12 @@ usermanager/checkinfos"><!--消费记录-->
                         </ul>
                     </div>
                     月
-                    <a href="#" class="linkstyle01">说明</a>
+                   <span style="border-bottom:1px solid #BCA14E;"> <a href="#" class="linkstyle01">说明</a></span>
                 </div>
                 <div class="recordtext mb25">
-                	卡号：<font>0000000000</font>,姓名：<font>张三</font>,开卡店铺：<font>ochirly深圳海岸城南山店</font><br>
+                	卡号：<font>0000000000</font>,姓名：<font>张三</font>,开卡店铺：<font>ochirly深圳海岸城南山店</font>,<br>
                     开卡日期：<font>2011</font>年<font>9</font>月<font>1</font>日,有效期：<font>2011</font>年<font>9</font>月<font>1</font>日,
-                    续卡尚需有效金额<font>xxx</font>元。<a href="#" class="linkstyle01">说明</a>
+                    续卡尚需有效金额<font>xxx</font>元。<span style="border-bottom:1px solid #BCA14E;"><a href="#" class="linkstyle01">说明</a></span>
                 </div>
                 <div class="recordlist">
                 	<ol>
@@ -300,7 +300,7 @@ usermanager/checkinfos"><!--消费记录-->
                         <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
                         <li class="je">599.00</li>
                     </ul>
-                    <a href="#" class="linkstyle01 fr" style="display:block; width:100%; text-align:right;">查看更多</a>
+                    <a href="#" class="linkstyle01 fr" style="display:block; width:100%; margin-top:20px;  text-align:right;">查看更多</a>
                 </div>
 			</div>
         </div>

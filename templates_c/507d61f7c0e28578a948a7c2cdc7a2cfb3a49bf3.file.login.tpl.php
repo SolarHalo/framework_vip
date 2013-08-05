@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-05 06:43:21
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-05 16:21:47
          compiled from "G:/phpserver/framework/templates/login.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:616051fe5ab6948312-81008134%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '507d61f7c0e28578a948a7c2cdc7a2cfb3a49bf3' => 
     array (
       0 => 'G:/phpserver/framework/templates/login.tpl',
-      1 => 1375679614,
+      1 => 1375719012,
       2 => 'file',
     ),
   ),
@@ -120,7 +120,7 @@ public/img/logintextiocn-id.gif"/></td>
                     <td width="85"><img src="<?php echo @constant('WEBSITE_URL');?>
 public/img/logintextiocn-posw.gif" style=" position:relative; top:-16px;"/></td>
                     <td  colspan="2"><input type="password" name="passwd" value="<?php echo $_smarty_tpl->tpl_vars['_POST']->value['passwd'];?>
-" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="linkstyle01">忘记密码?</a><br/>
+" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom:1px solid #56280f;"><a href="#" class="linkstyle01">忘记密码?</a></span><br/>
                     	您在开卡时所填写的手机号码后6位为初始密码
                     </td>
                 </tr>  
@@ -134,7 +134,7 @@ public/img/logintextiocn-yzm.gif"/></td>
                     </td> 
                 </tr>
             </table>
-            <input type="button" class="input_style_but" onclick="javascript:document.loginForm.submit()"> 
+            <input type="button" class="input_style_but" style="margin-left:27px;" onclick="javascript:document.loginForm.submit()"> 
             </form>
         </div>
     </div>
