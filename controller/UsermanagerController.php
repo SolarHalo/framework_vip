@@ -42,4 +42,9 @@ class UsermanagerController extends  Controller{
 		 } 
 		 $this->smarty->display("morecheckinfo.tpl"); 
 	} 
+	
+	public function savepwd(){
+		$arr = array ('success'=>true,'oldpwdvar'=>true);
+		echo json_encode($arr);
+	}
 }
