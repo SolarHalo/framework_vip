@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -52,9 +52,8 @@ $(function(){
 		}
 		
 		if(submitData.oldpwd != null && submitData.newpwd != null){
-			$.post(
+			$.post(submitData,
 				'{{$smarty.const.WEBSITE_URL}}usermanager/savepwd',
-				,
 				function(obj){
 					alert(obj);
 				},
