@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-05 16:42:01
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-06 16:23:41
          compiled from "G:/phpserver/framework/templates/checkinfos.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2887351ff420800ca32-42156740%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd4b0a9f1997685387406d3805cf9bb1f8328b45a' => 
     array (
       0 => 'G:/phpserver/framework/templates/checkinfos.tpl',
-      1 => 1375720919,
+      1 => 1375806218,
       2 => 'file',
     ),
   ),
@@ -140,7 +140,7 @@ $(function(){
                <li class="nav1"><a href="<?php echo @constant('WEBSITE_URL');?>
 rights">会员权益</a></li>
                 <li class="nav2"><a href="<?php echo @constant('WEBSITE_URL');?>
-activities" class="current">会员专享活动</a></li>
+activities">会员专享活动</a></li>
                 <li class="nav3"><a href="<?php echo @constant('WEBSITE_URL');?>
 faq">常见问题</a></li>
             </ul>
@@ -162,7 +162,7 @@ usermanager/checkinfos"><!--消费记录-->
             </div> 
             <div class="pagecontent scroll-pane" id="pagecontent">
             	<div class="recordsearch">
-                	查询日期:
+                	查询日期：
                     <div class="head">
                     	<a href="#" class="xiaoguo">2013</a>
                        	<ul class="wrapper">

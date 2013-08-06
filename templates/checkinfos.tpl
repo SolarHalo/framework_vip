@@ -126,7 +126,7 @@ $(function(){
             </div> 
             <div class="pagecontent scroll-pane" id="pagecontent">
             	<div class="recordsearch">
-                	查询日期:
+                	查询日期：
                     <div class="head">
                     	<a href="#" class="xiaoguo">2013</a>
                        	<ul class="wrapper">

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-05 16:21:47
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-06 16:50:57
          compiled from "G:/phpserver/framework/templates/login.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:616051fe5ab6948312-81008134%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '507d61f7c0e28578a948a7c2cdc7a2cfb3a49bf3' => 
     array (
       0 => 'G:/phpserver/framework/templates/login.tpl',
-      1 => 1375719012,
+      1 => 1375807853,
       2 => 'file',
     ),
   ),
@@ -38,7 +38,7 @@ public/font/font.css" rel="stylesheet" />
 <link type="text/css" href="<?php echo @constant('WEBSITE_URL');?>
 public/css/base.css" rel="stylesheet" />
 <link type="text/css" href="<?php echo @constant('WEBSITE_URL');?>
-public/css/other.css" rel="stylesheet" />
+public/css/assets/other.css" rel="stylesheet" />
 <script type="text/javascript" src="<?php echo @constant('WEBSITE_URL');?>
 public/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
@@ -50,22 +50,39 @@ $(function(){
 		paddingT = 10;
 	}
 	$("body").css({paddingTop:paddingT});
-	
+	$("#forgetpassword").hide();
 	 $("input[name='username']").bind('focus',function (){
 		 var username = $("input[name='username']").val();
 		 if(username == '请输入会员卡号或手机号码任意一项'){
 			 $("input[name='username']").val('');
+			 $("input[name='username']").removeClass('inputtextcolor');
+			 
 		 }
 	 }); 
+	 if($("input[name='username']").val() ==  '请输入会员卡号或手机号码任意一项'){
+		   $("input[name='username']").addClass('inputtextcolor');
+		 }
 	 $("input[name='username']").bind('blur',function (){
 		 var username = $("input[name='username']").val();
 		 if(username == ''){
 			 $("input[name='username']").val('请输入会员卡号或手机号码任意一项');
+			 $("input[name='username']").addClass('inputtextcolor');
+		 }else{
+			 $("input[name='username']").removeClass('inputtextcolor');
+			 
 		 }
 	 }); 
+	  
+	
 });
 function closeWin(){
 	$("#windbox").hide();
+}
+function closeWinF(){
+	$("#forgetpassword").hide();
+}
+function showWinF(){
+	$("#forgetpassword").show();
 }
 function closeWinJump(url){
 	$("#windbox").hide();
@@ -94,6 +111,17 @@ function changeCode(){
 <body>
 <?php echo $_smarty_tpl->tpl_vars['loginErrorWin']->value;?>
  
+<div class="windbox hidden" id="forgetpassword">
+	<div class="wind">
+    	<a href="#" class="fr" onclick="javascript:closeWinF();"><img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/Close-ioc.gif"/></a>
+    	<span class="newpassword-reset">
+        	<img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/newpassword-reset.gif" border="0"/> 
+        </span>
+  </div>
+	<div class="windbg"></div>
+</div>
 <div id="warp" class="container">
     <div class="content login">
         <h1 class="pagetitle tc"><img src="<?php echo @constant('WEBSITE_URL');?>
@@ -111,7 +139,7 @@ public/img/club.jpg" alt="会员俱乐部" /></h1>
                 <tr>
                     <td width="85"><img src="<?php echo @constant('WEBSITE_URL');?>
 public/img/logintextiocn-id.gif"/></td>
-                    <td width="225"><input type="text" class="input_style input-w1" name="username" value="<?php if ($_smarty_tpl->tpl_vars['_POST']->value['username']!="请输入会员卡号或手机号码任意一项"&&$_smarty_tpl->tpl_vars['_POST']->value['username']!=''){?><?php echo $_smarty_tpl->tpl_vars['_POST']->value['username'];?>
+                    <td width="225"><input type="text"  class="input_style input-w1" name="username" value="<?php if ($_smarty_tpl->tpl_vars['_POST']->value['username']!="请输入会员卡号或手机号码任意一项"&&$_smarty_tpl->tpl_vars['_POST']->value['username']!=''){?><?php echo $_smarty_tpl->tpl_vars['_POST']->value['username'];?>
 <?php }?><?php if ($_smarty_tpl->tpl_vars['_POST']->value['username']=="请输入会员卡号或手机号码任意一项"||$_smarty_tpl->tpl_vars['_POST']->value['username']==''){?>请输入会员卡号或手机号码任意一项<?php }?>">
                        </td>
                     <td></td>
@@ -120,7 +148,7 @@ public/img/logintextiocn-id.gif"/></td>
                     <td width="85"><img src="<?php echo @constant('WEBSITE_URL');?>
 public/img/logintextiocn-posw.gif" style=" position:relative; top:-16px;"/></td>
                     <td  colspan="2"><input type="password" name="passwd" value="<?php echo $_smarty_tpl->tpl_vars['_POST']->value['passwd'];?>
-" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom:1px solid #56280f;"><a href="#" class="linkstyle01">忘记密码?</a></span><br/>
+" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom:1px solid #56280f;"><a href="javascript:showWinF();" class="linkstyle01">忘记密码?</a></span><br/>
                     	您在开卡时所填写的手机号码后6位为初始密码
                     </td>
                 </tr>  
