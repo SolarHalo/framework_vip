@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-05 16:26:51
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-06 13:57:20
          compiled from "G:/phpserver/framework/templates/modifypwd.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1155451ff35df035e00-91968683%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0e517866e555f5d85a6a0816fd555ae7c46f53f1' => 
     array (
       0 => 'G:/phpserver/framework/templates/modifypwd.tpl',
-      1 => 1375720001,
+      1 => 1375720025,
       2 => 'file',
     ),
   ),
@@ -83,7 +83,7 @@ $(function(){
                <li class="nav1"><a href="<?php echo @constant('WEBSITE_URL');?>
 rights">会员权益</a></li>
                 <li class="nav2"><a href="<?php echo @constant('WEBSITE_URL');?>
-activities" class="current">会员专享活动</a></li>
+activities" >会员专享活动</a></li>
                 <li class="nav3"><a href="<?php echo @constant('WEBSITE_URL');?>
 faq">常见问题</a></li>
             </ul>
