@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-05 06:47:29
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-06 14:20:16
          compiled from "G:/phpserver/framework/templates/account.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1875851ff40244ee8b5-60954283%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '60073a2e6d9952aabe6a070386d28f4e10cac0a1' => 
     array (
       0 => 'G:/phpserver/framework/templates/account.tpl',
-      1 => 1375685181,
+      1 => 1375721129,
       2 => 'file',
     ),
   ),
@@ -79,10 +79,10 @@ $(function(){
     <div class="content">
         <div class="nav">
             <ul class="clearfix">
-                <li class="nav1"><a href="<?php echo @constant('WEBSITE_URL');?>
+                    <li class="nav1"><a href="<?php echo @constant('WEBSITE_URL');?>
 rights">会员权益</a></li>
                 <li class="nav2"><a href="<?php echo @constant('WEBSITE_URL');?>
-activities" class="current">会员专享活动</a></li>
+activities">会员专享活动</a></li>
                 <li class="nav3"><a href="<?php echo @constant('WEBSITE_URL');?>
 faq">常见问题</a></li>
             </ul>

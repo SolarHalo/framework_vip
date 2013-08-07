@@ -454,10 +454,21 @@ li.w50{
 #pagecontent .recordsearch span a.linkstyle01,#pagecontent .recordtext span a.linkstyle01{
 	text-decoration:none;
 	}	
+
+.inputtextcolor{
+	color:#67451d;
+	}	/* 输入框初始时字体颜色	*/
 	
+.inputtextcolor2{
+	color:#bca14e;
+	}/* 输入框激活时字体颜色	*/
+		
+.input-color-red{
+	border:1px solid #f00;
+	color:#f00;
+	}
 	
-	
-	
+
 	
 	
 	

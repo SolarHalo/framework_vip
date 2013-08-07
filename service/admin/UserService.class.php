@@ -62,7 +62,7 @@ class UserService{
 	}
 	public function countNum(){
 		$sql = "select count(id) from admin_users";
-    	return	$this->dbutil->get_row($sql);
+    	return	$this->dbutil->get_results($sql);
 	}
 	
 	public function addAdUser($data){

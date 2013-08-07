@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-05 16:26:51
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-07 10:27:16
          compiled from "G:/phpserver/framework/templates/modifypwd.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1155451ff35df035e00-91968683%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0e517866e555f5d85a6a0816fd555ae7c46f53f1' => 
     array (
       0 => 'G:/phpserver/framework/templates/modifypwd.tpl',
-      1 => 1375720001,
+      1 => 1375806082,
       2 => 'file',
     ),
   ),
@@ -55,13 +55,43 @@ public/js/jquery.mousewheel.js"></script>
 <script type="text/javascript">
 //code for vetically center
 $(function(){
+
 	winH = $(window).height();
 	warpH = $("#warp").height();
 	paddingT = (winH - warpH-70)/2;
 	if( winH < warpH ){
 		paddingT = 10;
 	}
+	
 	$("body").css({paddingTop:paddingT});
+	$("#windbox3success").hide();
+	$("#windbox11twosame").hide();
+	$("#windbox13illegal").hide();
+	$("#windbox14errorpwd").hide();
+	
+	$("#submit-bt").click(function(){
+		
+		var submitData = {oldpwd:$('#oldpwd').val(),newpwd:$('#newpwd').val()};
+		var renewpwd = $('#renewpwd').val();
+		
+		if(renewpwd != null && renewpwd != submitData.newpwd){
+			$("#windbox11twosame").show();
+		}
+		
+		if(submitData.oldpwd != null && submitData.newpwd != null){
+			$.post(
+				'<?php echo @constant('WEBSITE_URL');?>
+usermanager/savepwd',
+				,
+				function(obj){
+					alert(obj);
+				},
+				"json"
+			);
+		}
+		
+	});
+	
 })
 </script>
 <script type="text/javascript" id="sourcecode">
@@ -83,7 +113,7 @@ $(function(){
                <li class="nav1"><a href="<?php echo @constant('WEBSITE_URL');?>
 rights">会员权益</a></li>
                 <li class="nav2"><a href="<?php echo @constant('WEBSITE_URL');?>
-activities" class="current">会员专享活动</a></li>
+activities" >会员专享活动</a></li>
                 <li class="nav3"><a href="<?php echo @constant('WEBSITE_URL');?>
 faq">常见问题</a></li>
             </ul>
@@ -109,15 +139,15 @@ usermanager/checkinfos"><!--消费记录-->
                  	<table>
                     	<tr>
                         	<td width="70"></td>
-                        	<td><input type="password" class="input_style2"></td>
+                        	<td><input id='oldpwd' type="password" class="input_style2"></td>
                         </tr>
                         <tr>
                         	<td width="70"></td>
-                            <td><input type="password" class="input_style2"></td>
+                            <td><input id="newpwd" type="password" class="input_style2"></td>
                         </tr>
                         <tr>
                         	<td width="70"></td>
-                            <td><input type="password" class="input_style2"></td>
+                            <td><input id="renewpwd" type="password" class="input_style2"></td>
                         </tr>
                         <tr>
                             <td colspan="2"><img src="<?php echo @constant('WEBSITE_URL');?>
@@ -125,7 +155,7 @@ public/img/resetpassword-ts2.gif"></td>
                         </tr>
                         <tr>
                         	<td width="70"></td>
-                        	<td><input type="button" class="Submit" style="margin-left:32px;"></td>
+                        	<td><input id='submit-bt' type="button" class="Submit" style="margin-left:32px;"></td>
                         </tr>
                     </table>
                  </div>
@@ -146,6 +176,61 @@ public/img/resetpassword-ts2.gif"></td>
         <p><span class="en">Copyright @ 20<b>11</b> Trendy International Group All Rights Reserved</span><br>
         <a href="http://www.miibeian.gov.cn/" target="_blank"><span class="zh">备案号：粤</span><span class="en">ICP<b>11</b>0<b>1</b>0295</span></a></p>
 </div>
+
+
+<!-- 弹出窗口 -->
+<div id='windbox3success' class="windbox">
+	<div class="wind">
+    	<a href="#" class="fr"><img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/Close-ioc.gif"/></a>
+    	<span class="alterpassword-y">
+        	<img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/alterpassword-y.gif" border="0" usemap="#Map03"/>
+            <map name="Map03"> 
+              	<area shape="rect" coords="215,93,276,118" href="#"><!--指向账号管理页面-->
+            </map>
+        </span>
+  	</div>
+  	<div class="windbg"></div>
+</div>
+
+<div id='windbox11twosame' class="windbox">
+	<div class="wind">
+    	<a href="#" class="fr"><img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/Close-ioc.gif"/></a>
+    	<span class="eorrpassword2">
+        	<img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/resetpassword-ts3.gif" />
+        </span>
+  	</div>
+	<div class="windbg"></div>
+</div>
+
+<div id='windbox13illegal' class="windbox">
+	<div class="wind">
+    	<a href="#" class="fr"><img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/Close-ioc.gif"/></a>
+    	<span class="eorrpassword2">
+        	<img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/resetpassword-ts5.gif" />
+        </span>
+  	</div>
+	<div class="windbg"></div>
+</div>
+
+
+<div id='windbox14errorpwd' class="windbox">
+	<div class="wind">
+    	<a href="#" class="fr"><img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/Close-ioc.gif"/></a>
+    	<span class="eorrpassword2">
+        	<img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/resetpassword-ts6.gif" />
+        </span>
+  	</div>
+	<div class="windbg"></div>
+</div>
+
 </body>
 </html>
 <?php }} ?>

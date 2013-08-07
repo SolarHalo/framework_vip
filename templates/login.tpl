@@ -9,7 +9,7 @@
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/font/font.css" rel="stylesheet" />
 <link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/base.css" rel="stylesheet" />
-<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/other.css" rel="stylesheet" />
+<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/assets/other.css" rel="stylesheet" />
 <script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -20,22 +20,39 @@ $(function(){
 		paddingT = 10;
 	}
 	$("body").css({paddingTop:paddingT});
-	
+	$("#forgetpassword").hide();
 	 $("input[name='username']").bind('focus',function (){
 		 var username = $("input[name='username']").val();
 		 if(username == '请输入会员卡号或手机号码任意一项'){
 			 $("input[name='username']").val('');
+			 $("input[name='username']").removeClass('inputtextcolor');
+			 
 		 }
 	 }); 
+	 if($("input[name='username']").val() ==  '请输入会员卡号或手机号码任意一项'){
+		   $("input[name='username']").addClass('inputtextcolor');
+		 }
 	 $("input[name='username']").bind('blur',function (){
 		 var username = $("input[name='username']").val();
 		 if(username == ''){
 			 $("input[name='username']").val('请输入会员卡号或手机号码任意一项');
+			 $("input[name='username']").addClass('inputtextcolor');
+		 }else{
+			 $("input[name='username']").removeClass('inputtextcolor');
+			 
 		 }
 	 }); 
+	  
+	
 });
 function closeWin(){
 	$("#windbox").hide();
+}
+function closeWinF(){
+	$("#forgetpassword").hide();
+}
+function showWinF(){
+	$("#forgetpassword").show();
 }
 function closeWinJump(url){
 	$("#windbox").hide();
@@ -61,6 +78,15 @@ function changeCode(){
 
 <body>
 {{$loginErrorWin}} 
+<div class="windbox hidden" id="forgetpassword">
+	<div class="wind">
+    	<a href="#" class="fr" onclick="javascript:closeWinF();"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"/></a>
+    	<span class="newpassword-reset">
+        	<img src="{{$smarty.const.WEBSITE_URL}}public/img/newpassword-reset.gif" border="0"/> 
+        </span>
+  </div>
+	<div class="windbg"></div>
+</div>
 <div id="warp" class="container">
     <div class="content login">
         <h1 class="pagetitle tc"><img src="{{$smarty.const.WEBSITE_URL}}public/img/club.jpg" alt="会员俱乐部" /></h1>
@@ -76,13 +102,13 @@ function changeCode(){
             <table width="430">
                 <tr>
                     <td width="85"><img src="{{$smarty.const.WEBSITE_URL}}public/img/logintextiocn-id.gif"/></td>
-                    <td width="225"><input type="text" class="input_style input-w1" name="username" value="{{if $_POST.username neq "请输入会员卡号或手机号码任意一项" and $_POST.username neq "" }}{{$_POST.username}}{{/if}}{{if $_POST.username eq "请输入会员卡号或手机号码任意一项" or $_POST.username eq ""}}请输入会员卡号或手机号码任意一项{{/if}}">
+                    <td width="225"><input type="text"  class="input_style input-w1" name="username" value="{{if $_POST.username neq "请输入会员卡号或手机号码任意一项" and $_POST.username neq "" }}{{$_POST.username}}{{/if}}{{if $_POST.username eq "请输入会员卡号或手机号码任意一项" or $_POST.username eq ""}}请输入会员卡号或手机号码任意一项{{/if}}">
                        </td>
                     <td></td>
                 </tr>
                 <tr>
                     <td width="85"><img src="{{$smarty.const.WEBSITE_URL}}public/img/logintextiocn-posw.gif" style=" position:relative; top:-16px;"/></td>
-                    <td  colspan="2"><input type="password" name="passwd" value="{{$_POST.passwd}}" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom:1px solid #56280f;"><a href="#" class="linkstyle01">忘记密码?</a></span><br/>
+                    <td  colspan="2"><input type="password" name="passwd" value="{{$_POST.passwd}}" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom:1px solid #56280f;"><a href="javascript:showWinF();" class="linkstyle01">忘记密码?</a></span><br/>
                     	您在开卡时所填写的手机号码后6位为初始密码
                     </td>
                 </tr>  
