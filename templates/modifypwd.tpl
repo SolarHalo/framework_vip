@@ -42,12 +42,14 @@ $(function(){
 	$("#windbox11twosame").hide();
 	$("#windbox13illegal").hide();
 	$("#windbox14errorpwd").hide();
+	$("#windbox12same").hide();
 	
 	$(".fr img").click(function(){
 		$("#windbox3success").hide();
 		$("#windbox11twosame").hide();
 		$("#windbox13illegal").hide();
 		$("#windbox14errorpwd").hide();
+		$("#windbox12same").hide();
 	});
 	
 	
@@ -60,11 +62,18 @@ $(function(){
 		//长度验证
 		if( submitData.newpwd.length < 6 || submitData.newpwd.length > 16){
 			$("#windbox13illegal").show();
+			return;
 		}
 		
 		//一致验证
 		if(renewpwd != null && renewpwd != submitData.newpwd){
 			$("#windbox11twosame").show();
+			return;
+		}
+		
+		if(submitData.oldpwd == submitData.newpwd){
+			$("#windbox12same").show();
+			return;
 		}
 		
 		if(submitData.newpwd != null){
@@ -190,6 +199,17 @@ $(function(){
   	</div>
 	<div class="windbg"></div>
 </div>
+
+<div id='windbox12same' class="windbox">
+	<div class="wind">
+    	<a href="#" class="fr"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"/></a>
+    	<span class="eorrpassword2">
+        	<img src="{{$smarty.const.WEBSITE_URL}}public/img/resetpassword-ts4.gif" />
+        </span>
+  	</div>
+	<div class="windbg"></div>
+</div>
+
 
 <div id='windbox13illegal' class="windbox">
 	<div class="wind">
