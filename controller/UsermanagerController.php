@@ -62,7 +62,7 @@ class UsermanagerController extends  Controller{
 			
 			$service->updatePasswd($cardNo, md5($newpwd));
 			
-			$_SESSION['loginuser'] = $service->getUserByCarNo($cardNo);
+			$user->pwd = md5($newpwd);
 			
 			$arr = array ('success'=>true,'oldpwd'=>true);
 		}else{
