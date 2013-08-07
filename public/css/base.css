@@ -96,13 +96,13 @@ h2 img {display:block;}
 
 .input_style{
 	height:40px;
-	padding:0 15px 0 15px; 
+	padding:14px 15px; 
 	color:#bca14e;
 	background-image:url(../img/input_bg.gif);
 	background-repeat:no-repeat;
 	border:0; 
 	font-size:12px;
-	line-height:40px;
+	height:12px; 
 	vertical-align:middle; 
 	}
 .input-w1{
@@ -454,21 +454,18 @@ li.w50{
 #pagecontent .recordsearch span a.linkstyle01,#pagecontent .recordtext span a.linkstyle01{
 	text-decoration:none;
 	}	
-
 .inputtextcolor{
 	color:#67451d;
-	}	/* 输入框初始时字体颜色	*/
+	}	/* 杈撳叆妗嗗垵濮嬫椂瀛椾綋棰滆壊	*/
 	
 .inputtextcolor2{
 	color:#bca14e;
-	}/* 输入框激活时字体颜色	*/
+	}/* 杈撳叆妗嗘縺娲绘椂瀛椾綋棰滆壊	*/
 		
 .input-color-red{
 	border:1px solid #f00;
 	color:#f00;
 	}
-	
-
 	
 	
 	
