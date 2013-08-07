@@ -72,7 +72,6 @@ $(function(){
 				'{{$smarty.const.WEBSITE_URL}}usermanager/savepwd',
 				submitData,
 				function(obj){
-					alert(obj.info);
 					if(!obj.oldpwd){
 						$("#windbox14errorpwd").show();
 					}else{
