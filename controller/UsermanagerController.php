@@ -1,4 +1,6 @@
 <?php
+require_once SERVICE.DS.'UserService.class.php';
+
 class UsermanagerController extends  Controller{
 	
 	public function index(){ 
@@ -49,16 +51,16 @@ class UsermanagerController extends  Controller{
 		
 		$user = $_SESSION['loginuser'];
 		$pwd = $user->pwd;
+		$cardNo = $user->cardno;
 		
 		$arr = null;
-		if($pwd == $oldpwd){
+		if($pwd == md5($oldpwd)){
 			//更新
 			$dbutil = $this->getDB();
+			
 			$service = new UserService($dbutil);
 			
-			$cardNo = $user->cardno;
-			
-			$service->updatePasswd($cardNo, $newpwd);
+			$service->updatePasswd($cardNo, md5($oldpwd));
 			
 			$arr = array ('success'=>true,'oldpwd'=>true);
 		}else{
