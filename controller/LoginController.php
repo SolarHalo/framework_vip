@@ -27,35 +27,42 @@ class LoginController extends  Controller{
 		 }  
 		 	require_once SERVICE.DS.'UserService.class.php';
 		 	$userSerivce = new UserService($this->getDB());
-		 	$users = $userSerivce->getUserByTel($username);
+		 	$usersTel = $userSerivce->getUserByTel($username); 
+		 	$userCard = $userSerivce->getUserByCarNo($username); 
+		 	$user;
 		 //ppt第35页,用户不存在的情况下
-		 if(empty($users)){
+		 if(empty($usersTel) and empty($userCard)){
 		 	$this->smarty->assign("loginErrorWin",$this->loginErrWinNoUser());  
 		 	$this->smarty->assign("_POST",$_POST); 
 		 	$this->smarty->display("login.tpl");     
 		 	return;
 		  
 		 }else{
-		 	//用户信息中的card 个数大于1
-		 	if(count($users) > 1){
-			 	$this->smarty->assign("loginErrorWin",$this->loginErrWinMoreOneUser(count($users)));  
-			 	$this->smarty->assign("_POST",$_POST); 
-			 	$this->smarty->display("login.tpl");     
-			 	return;
-		 	}else{ 
-		 	    $user = $users[0]; 
-		 	    if(md5($passwd) != $user->pwd){
-			 		//密码问题
-			 		$this->smarty->assign("loginErrorWin",$this->loginErrForgetpassword2()); 
-				    $this->smarty->assign("_POST",$_POST); 
-				 	$this->smarty->display("login.tpl");  
+		 	 //用户存在的情况下，先判断用户是登录的卡号，还是手机号
+		    if(!empty($usersTel)){	
+			 	//手机号登录，要判断下面挂 的是不是一张卡
+			 	if(count($usersTel) > 1){
+				 	$this->smarty->assign("loginErrorWin",$this->loginErrWinMoreOneUser(count($users)));  
+				 	$this->smarty->assign("_POST",$_POST); 
+				 	$this->smarty->display("login.tpl");     
 				 	return;
-		 	    }else{
-		 	    	$_SESSION['loginuser'] = $user;  
-		 	    }
-		 		 
-		 	}
-		 	
+			 	}else{ 
+			 	    $user = $usersTel[0];  
+			 	}
+		     }else{
+		     	$user = $userCard[0]; 
+		     } 
+		     //确认用户存在了，判断密码
+		     if(md5($passwd) != $user->pwd){
+				 		//密码问题，这里还要判断 这个用户是否是第一次登录
+				 		$this->smarty->assign("loginErrorWin",$this->loginErrForgetpassword2()); 
+					    $this->smarty->assign("_POST",$_POST); 
+					 	$this->smarty->display("login.tpl");  
+					 	return;
+			  }else{ 
+			  	  //密码正确，还要判断是不是第一次登录，如果第一次登录转向修改密码，如果非第一次登录转向信息
+			 	   $_SESSION['loginuser'] = $user;  
+			  }
 		 } 
 		 
 		  $this->smarty->assign("loginErrorWin",$this->loginErrorJump(WEBSITE_URL."usermanager/mdfpasswd")); 
