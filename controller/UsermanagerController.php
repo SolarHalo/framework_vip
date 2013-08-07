@@ -44,7 +44,26 @@ class UsermanagerController extends  Controller{
 	} 
 	
 	public function savepwd(){
-		$arr = array ('success'=>true,'oldpwdvar'=>true);
+		$oldpwd = $_POST['oldpwd'];
+		$newpwd = $_POST['newpwd'];
+		
+		$user = $_SESSION['loginuser'];
+		$pwd = $user->pwd;
+		
+		$arr = null;
+		if($pwd == $oldpwd){
+			//更新
+			$dbutil = $this->getDB();
+			$service = new UserService($dbutil);
+			
+			$cardNo = $user->cardno;
+			
+			$service->updatePasswd($cardNo, $newpwd);
+			
+			$arr = array ('success'=>true,'oldpwd'=>true);
+		}else{
+			$arr = array ('success'=>true,'oldpwd'=>false);
+		}
 		echo json_encode($arr);
 	}
 }
