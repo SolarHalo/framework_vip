@@ -29,7 +29,7 @@ class UserService{
 	 * @param unknown_type $name
 	 */
 	function getUserByCarNo($cardNo){
-		return $this->dbutil->get_results("select * from vip_users where cardno='$tel' and  status = 0");
+		return $this->dbutil->get_results("select * from vip_users where cardno='$cardNo' and  status = 0");
 	}
 	
 }

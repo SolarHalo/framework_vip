@@ -35,8 +35,7 @@ class LoginController extends  Controller{
 		 	$this->smarty->assign("loginErrorWin",$this->loginErrWinNoUser());  
 		 	$this->smarty->assign("_POST",$_POST); 
 		 	$this->smarty->display("login.tpl");     
-		 	return;
-		  
+		 	return; 
 		 }else{
 		 	 //用户存在的情况下，先判断用户是登录的卡号，还是手机号
 		    if(!empty($usersTel)){	

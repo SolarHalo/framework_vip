@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-06 16:20:52
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-07 10:27:16
          compiled from "G:/phpserver/framework/templates/modifypwd.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1155451ff35df035e00-91968683%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0e517866e555f5d85a6a0816fd555ae7c46f53f1' => 
     array (
       0 => 'G:/phpserver/framework/templates/modifypwd.tpl',
-      1 => 1375806050,
+      1 => 1375806082,
       2 => 'file',
     ),
   ),
@@ -69,7 +69,28 @@ $(function(){
 	$("#windbox13illegal").hide();
 	$("#windbox14errorpwd").hide();
 	
-	
+	$("#submit-bt").click(function(){
+		
+		var submitData = {oldpwd:$('#oldpwd').val(),newpwd:$('#newpwd').val()};
+		var renewpwd = $('#renewpwd').val();
+		
+		if(renewpwd != null && renewpwd != submitData.newpwd){
+			$("#windbox11twosame").show();
+		}
+		
+		if(submitData.oldpwd != null && submitData.newpwd != null){
+			$.post(
+				'<?php echo @constant('WEBSITE_URL');?>
+usermanager/savepwd',
+				,
+				function(obj){
+					alert(obj);
+				},
+				"json"
+			);
+		}
+		
+	});
 	
 })
 </script>
