@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-05 16:37:56
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-07 15:34:49
          compiled from "G:/phpserver/framework/templates/userinfomdf.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1677051ff37a46a9068-75349776%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '950ea35e1532bdd9da9706c84253a070071d77d0' => 
     array (
       0 => 'G:/phpserver/framework/templates/userinfomdf.tpl',
-      1 => 1375720517,
+      1 => 1375889686,
       2 => 'file',
     ),
   ),
@@ -137,7 +137,7 @@ usermanager/checkinfos"><!--消费记录-->
                     <li class="w50">性&nbsp;&nbsp;&nbsp;&nbsp;别:<font>男</font></li>
                     <li class="w50">手机号码:
                     	<div class="head5">
-                            <a href="#" class="xiaoguo5">+86</a>
+                            <a href="#" class="xiaoguo5">+853</a>
                             <ul class="wrapper5">
                                 <li class="nshow5"><a href="#">中国大陆+86</a></li> 
                                 <li class="nshow5"><a href="#">香港+852</a></li> 
@@ -147,7 +147,7 @@ usermanager/checkinfos"><!--消费记录-->
                         </div>-<font class="en"><input type="text" class="input_style3" style="width:120px;"></font>
                     </li>
                     <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font>1974年05月24日</font></li>
-                    <li class="w50">电子邮箱:<font><input type="text" class="input_style3"  style=" width:187px;"></font></li>
+                    <li class="w50">电子邮箱:<font><input type="text" class="input_style3 input-color-red"  style=" width:187px;"></font></li>
                     <li class="w100"><img src="<?php echo @constant('WEBSITE_URL');?>
 public/img/n-iocn.gif" onclick="changeImg(this);"/><font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
                 </ul>

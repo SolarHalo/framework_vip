@@ -100,7 +100,7 @@ function changeImg(target){
                     <li class="w50">性&nbsp;&nbsp;&nbsp;&nbsp;别:<font>男</font></li>
                     <li class="w50">手机号码:
                     	<div class="head5">
-                            <a href="#" class="xiaoguo5">+86</a>
+                            <a href="#" class="xiaoguo5">+853</a>
                             <ul class="wrapper5">
                                 <li class="nshow5"><a href="#">中国大陆+86</a></li> 
                                 <li class="nshow5"><a href="#">香港+852</a></li> 
@@ -110,7 +110,7 @@ function changeImg(target){
                         </div>-<font class="en"><input type="text" class="input_style3" style="width:120px;"></font>
                     </li>
                     <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font>1974年05月24日</font></li>
-                    <li class="w50">电子邮箱:<font><input type="text" class="input_style3"  style=" width:187px;"></font></li>
+                    <li class="w50">电子邮箱:<font><input type="text" class="input_style3 input-color-red"  style=" width:187px;"></font></li>
                     <li class="w100"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif" onclick="changeImg(this);"/><font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
                 </ul>
                 <span class="zh"><font color="#56280f">*为必填项，如需修改其它信息请在工作时间内致电赫基客服热线800-830-8348。</font></span>
