@@ -36,6 +36,61 @@ $(function(){
 </script>
 <script type="text/javascript" id="sourcecode">
 //code for scroll
+
+	function valid(){
+		
+		var valid = true;
+		
+		var areaCode = $("#areaCode").text();
+		var phoneNum = $("#phoneNum").val();
+		
+		if(phoneNum != null && phoneNum != "" && phoneNum != undefined){
+			
+			phoneNum = phoneNum.trim();
+			
+			if(areaCode == "+86"){
+				if(phoneNum.length == 11){
+					var fix = phoneNum.substring(0,3);
+					var prefix = parseInt(fix);
+					
+					if(!(
+						(prefix >= 130 && prefix <= 139) ||
+						 prefix == 147 || prefix == 189  ||
+						(prefix >= 150 && prefix <= 153) ||
+						(prefix >= 155 && prefix <= 159) ||
+						(prefix >= 180 && prefix <= 183) ||
+						(prefix >= 185 && prefix <= 186) 
+					)){
+						valid = false;
+					}
+				}else{
+					valid = false;
+				}
+			}else if(areaCode == "+852"){
+				if( phoneNum.length != 8){
+					valid = false;
+				}
+			}else if(areaCode == "+853"){
+				if(phoneNum.length != 8){
+					valid = false;
+				}
+			}else if(areaCode == "+886"){
+				if( phoneNum.length != 9){
+					valid = false;
+				}
+			}
+		}else{
+			valid = false;
+		}
+
+		if(!valid){
+			$("#phoneNum").addClass("input-color-red");
+		}else{
+			$("#phoneNum").removeClass("input-color-red");
+		}
+		
+	}
+
 $(function(){
 	$('.scroll-pane').jScrollPane();
 	  $('.wrapper5').hide();
@@ -52,7 +107,16 @@ $(function(){
       	  $('.wrapper5').slideUp();
       	  
        }); 
+	$("#phoneNum").keyup(valid);
+		
+	$(".base_save").click(valid);
 });
+
+function areaCode(com){
+	$("#areaCode").text("+"+com);
+	valid();
+}
+
 function changeImg(target){
 	var imguri = '{{$smarty.const.WEBSITE_URL}}public/img/';
 	var imgsrc = $(target).attr("src");
@@ -100,14 +164,14 @@ function changeImg(target){
                     <li class="w50">性&nbsp;&nbsp;&nbsp;&nbsp;别:<font>男</font></li>
                     <li class="w50">手机号码:
                     	<div class="head5">
-                            <a href="#" class="xiaoguo5">+853</a>
+                            <a href="#" id='areaCode' class="xiaoguo5">+853</a>
                             <ul class="wrapper5">
-                                <li class="nshow5"><a href="#">中国大陆+86</a></li> 
-                                <li class="nshow5"><a href="#">香港+852</a></li> 
-                                <li class="nshow5"><a href="#">澳门+853</a></li> 
-                                <li class="nshow5"><a href="#">台湾+886</a></li>  
+                                <li class="nshow5"><a href="javascript:areaCode(86);">中国大陆+86</a></li> 
+                                <li class="nshow5"><a href="javascript:areaCode(852);">香港+852</a></li> 
+                                <li class="nshow5"><a href="javascript:areaCode(853);">澳门+853</a></li> 
+                                <li class="nshow5"><a href="javascript:areaCode(886);">台湾+886</a></li>  
                             </ul>
-                        </div>-<font class="en"><input type="text" class="input_style3" style="width:120px;"></font>
+                        </div>-<font class="en"><input id="phoneNum" type="text" class="input_style3" style="width:120px;"></font>
                     </li>
                     <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font>1974年05月24日</font></li>
                     <li class="w50">电子邮箱:<font><input type="text" class="input_style3 input-color-red"  style=" width:187px;"></font></li>
