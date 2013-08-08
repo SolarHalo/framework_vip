@@ -96,13 +96,13 @@ h2 img {display:block;}
 
 .input_style{
 	height:40px;
-	padding:14px 15px; 
+	padding:0 15px 0 15px; 
 	color:#bca14e;
 	background-image:url(../img/input_bg.gif);
 	background-repeat:no-repeat;
 	border:0; 
 	font-size:12px;
-	height:12px; 
+	line-height:40px;
 	vertical-align:middle; 
 	}
 .input-w1{
@@ -419,12 +419,12 @@ li.w50{
 	z-index:15;
 	padding:15px 20px;
 	}	
-.validationerror,.btts,.inquire-ts1,.eorrpassword2,.vipiderror,.forgotpassword,.newpassword-reset,.Dataerror,.errorpassword,.alterpassword-y,.firstlogin-y,.login-y{
+.recordlistpagewind,.validationerror,.btts,.inquire-ts1,.eorrpassword2,.vipiderror,.forgotpassword,.newpassword-reset,.Dataerror,.errorpassword,.alterpassword-y,.firstlogin-y,.login-y{
 	float:left;
 	width:100%;
 	text-align:center;
 	}	
-.vipidtitle,.recordlistpagewind{
+.vipidtitle{
 	padding:70px 30px;
 	font-size:15px;
 	color:#bca14e;

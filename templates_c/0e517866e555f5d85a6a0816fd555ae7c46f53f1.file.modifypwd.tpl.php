@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-07 15:21:06
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-07 15:46:23
          compiled from "G:/phpserver/framework/templates/modifypwd.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1155451ff35df035e00-91968683%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0e517866e555f5d85a6a0816fd555ae7c46f53f1' => 
     array (
       0 => 'G:/phpserver/framework/templates/modifypwd.tpl',
-      1 => 1375888365,
+      1 => 1375890239,
       2 => 'file',
     ),
   ),
@@ -69,12 +69,14 @@ $(function(){
 	$("#windbox11twosame").hide();
 	$("#windbox13illegal").hide();
 	$("#windbox14errorpwd").hide();
+	$("#windbox12same").hide();
 	
 	$(".fr img").click(function(){
 		$("#windbox3success").hide();
 		$("#windbox11twosame").hide();
 		$("#windbox13illegal").hide();
 		$("#windbox14errorpwd").hide();
+		$("#windbox12same").hide();
 	});
 	
 	
@@ -87,11 +89,18 @@ $(function(){
 		//长度验证
 		if( submitData.newpwd.length < 6 || submitData.newpwd.length > 16){
 			$("#windbox13illegal").show();
+			return;
 		}
 		
 		//一致验证
 		if(renewpwd != null && renewpwd != submitData.newpwd){
 			$("#windbox11twosame").show();
+			return;
+		}
+		
+		if(submitData.oldpwd == submitData.newpwd){
+			$("#windbox12same").show();
+			return;
 		}
 		
 		if(submitData.newpwd != null){
@@ -233,6 +242,19 @@ public/img/resetpassword-ts3.gif" />
   	</div>
 	<div class="windbg"></div>
 </div>
+
+<div id='windbox12same' class="windbox">
+	<div class="wind">
+    	<a href="#" class="fr"><img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/Close-ioc.gif"/></a>
+    	<span class="eorrpassword2">
+        	<img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/resetpassword-ts4.gif" />
+        </span>
+  	</div>
+	<div class="windbg"></div>
+</div>
+
 
 <div id='windbox13illegal' class="windbox">
 	<div class="wind">

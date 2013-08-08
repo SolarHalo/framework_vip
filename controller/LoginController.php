@@ -42,7 +42,7 @@ class LoginController extends  Controller{
 		    if(!empty($usersTel)){	
 			 	//手机号登录，要判断下面挂 的是不是一张卡
 			 	if(count($usersTel) > 1){
-				 	$this->smarty->assign("loginErrorWin",$this->loginErrWinMoreOneUser(count($users)));  
+				 	$this->smarty->assign("loginErrorWin",$this->loginErrWinMoreOneUser(count($usersTel)));  
 				 	$this->smarty->assign("_POST",$_POST); 
 				 	$this->smarty->display("login.tpl");     
 				 	return;
