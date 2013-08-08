@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-06 16:50:57
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-08 15:28:40
          compiled from "G:/phpserver/framework/templates/login.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:616051fe5ab6948312-81008134%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '507d61f7c0e28578a948a7c2cdc7a2cfb3a49bf3' => 
     array (
       0 => 'G:/phpserver/framework/templates/login.tpl',
-      1 => 1375807853,
+      1 => 1375947459,
       2 => 'file',
     ),
   ),
@@ -128,9 +128,12 @@ public/img/newpassword-reset.gif" border="0"/>
 public/img/club.jpg" alt="会员俱乐部" /></h1>
         <div class="homenav">
             <ul class="clearfix">
-                <li><a href="rights.html">会员权益</a></li>
-                <li><a href="activities.html">会员专享活动</a></li>
-                <li class="last"><a href="faq.html">常见问题</a></li>
+                <li><a href="<?php echo @constant('WEBSITE_URL');?>
+rights">会员权益</a></li>
+                <li><a href="<?php echo @constant('WEBSITE_URL');?>
+activities">会员专享活动</a></li>
+                <li class="last"><a href="<?php echo @constant('WEBSITE_URL');?>
+faq">常见问题</a></li>
             </ul>
         </div>
          <div class="userlogin">
