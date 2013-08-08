@@ -48,7 +48,10 @@ $(function(){
 			
 			phoneNum = phoneNum.trim();
 			
-			if(areaCode == "+86"){
+			var part = new RegExp("^[0-9]*$");
+			if(!part.test(phoneNum)){
+				valid = false;
+			}else if(areaCode == "+86"){
 				if(phoneNum.length == 11){
 					var fix = phoneNum.substring(0,3);
 					var prefix = parseInt(fix);
@@ -89,6 +92,19 @@ $(function(){
 			$("#phoneNum").removeClass("input-color-red");
 		}
 		
+		var email = $("#email").val();
+		if(email != null && email != "" && email != undefined){
+			email = email.trim();
+		
+			var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+			if(reg.test(email)){
+				$("#email").removeClass("input-color-red");
+			}else{
+				$("#email").addClass("input-color-red");
+			}
+		}else{
+			$("#email").addClass("input-color-red");
+		}
 	}
 
 $(function(){
@@ -108,6 +124,7 @@ $(function(){
       	  
        }); 
 	$("#phoneNum").keyup(valid);
+	$("#email").keyup(valid);
 		
 	$(".base_save").click(valid);
 });
@@ -174,7 +191,7 @@ function changeImg(target){
                         </div>-<font class="en"><input id="phoneNum" type="text" class="input_style3" style="width:120px;"></font>
                     </li>
                     <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font>1974年05月24日</font></li>
-                    <li class="w50">电子邮箱:<font><input type="text" class="input_style3 input-color-red"  style=" width:187px;"></font></li>
+                    <li class="w50">电子邮箱:<font><input id="email" type="text" class="input_style3 input-color-red"  style=" width:187px;"></font></li>
                     <li class="w100"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif" onclick="changeImg(this);"/><font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
                 </ul>
                 <span class="zh"><font color="#56280f">*为必填项，如需修改其它信息请在工作时间内致电赫基客服热线800-830-8348。</font></span>
