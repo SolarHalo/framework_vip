@@ -1,7 +1,8 @@
 <?php 
-define('SMARTY_DIR', PROJECT.'/framework/lib/Smarty-3.1.13/libs/');
+
 define('ADMIN_TITLE', "后台管理中心");
 define('PROJECT_NAME', "通用封装框架");
+define('WEBSITE_URL','http://localhost/');
                 
  
 //for include smarty 
@@ -24,7 +25,7 @@ $CONFIG['SMARTY']= array(
     'cache'             =>      PROJECT.'/cache/',
     'left_delimiter'    =>      '{{',
     'right_delimiter'   =>      '}}',
-    'debugging'         =>      true
+    'debugging'         =>      false
    // 'caching'           =>      Smarty::CACHING_OFF
 );
 $CONFIG['ROUTER']= array(

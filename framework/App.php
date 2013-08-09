@@ -1,10 +1,10 @@
 <?php  
-define('PROJECT',ROOT.DS.'framework');
 define('CORE',PROJECT.DS.'framework'.DS.'core');
 define('CONTROLLER',PROJECT.DS.'controller');
 define('COMMON',PROJECT.DS.'common');
 define('SERVICE',PROJECT.DS.'service');
-define('WEBSITE_URL','http://localhost/');
+define('SMARTY_DIR', PROJECT.'/framework/lib/Smarty-3.1.13/libs/');
+
 require_once CORE.DS.'config.php';
 require_once CORE.DS.'Router.class.php';
 require_once CORE.DS.'Controller.class.php';
@@ -20,7 +20,7 @@ class App{
 		$route = new Router($reqUri); 
 		$filePath = $route->getControllerFilePath();
 		if (!file_exists($filePath)) {
-            die("con't find the Constroller file!!! <br>the filepath is ".$filePath);
+            die("Con't find the Constroller file!!! <br>the filepath is ".$filePath);
         }   
         session_start();  
         require_once  $filePath;
