@@ -14,18 +14,8 @@
         </div>
         
 		<ul class="breadcrumb">
-            <li><a href="<{$smarty.const.ADMIN_URL}><{$content_header.module_url}>"> qk tqi  </a> <span class="divider">/</span></li>
-            
-			<li><a href="<{$smarty.const.ADMIN_URL}><{$content_header.father_menu_url}>">dddd</a> <span class="divider">/</span></li>
-		 
-			
-			<li class="active">aaa</li>
-			 
-					<a title= "移除快捷菜单" href="#"><li class="active"><i class="icon-minus" method="del" url="<{$smarty.const.ADMIN_URL}>/ajax/shortcut.php?menu_id=<{$content_header.menu_id}>"></i></li></a>
-	 
-					<a title= "加入快捷菜单" href="#"><li class="active"><i class="icon-plus" method="add" url="<{$smarty.const.ADMIN_URL}>/ajax/shortcut.php?menu_id=<{$content_header.menu_id}>"></i></li></a>
-			 
-			
+            <li><a href="<{$smarty.const.ADMIN_URL}><{$content_header.module_url}>">首页 </a> <span class="divider">/</span></li> 
+			<li class="active"><a href="<{$smarty.const.ADMIN_URL}><{$content_header.father_menu_url}>">快捷操作</a> <span class="divider">/</span></li> 
         </ul>
 <div class="container-fluid">
 	<div class="row-fluid">
@@ -43,15 +33,10 @@
 		<h3>
 		 
 			<span>
-				<a href="">
-				   可以多个称
+				<a href="{{$smarty.const.WEBSITE_URL}}admin/userLog">
+				  查看VIP会没登录日志
 				</a>
-			</span>&nbsp;
-			 	<span>
-				<a href="">
-				   可以多个称
-				</a>
-			</span>&nbsp;
+			</span>&nbsp; 
 			 
 		</h3>
 		</div> 

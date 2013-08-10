@@ -5,10 +5,10 @@ class UserController  extends  Controller{
 		require_once SERVICE.DS.'admin'.DS.'UserService.class.php';
 		//START 数据库查询及分页数据
 		$userService = new UserService($this->getDB());
-		$page_size = "2";
+		$page_size = 2;
 		$page_no=$page_no<1?1:$page_no;
-		$row_count = $userService->countNum();
-	    $total_page=$row_count%$page_size==0?$row_count/$page_size:ceil($row_count/$page_size);
+		$row_count = $userService->countNum(); 
+ 	    $total_page =$row_count/$page_size==0 ?$row_count/$page_size:ceil($row_count/$page_size);
 	    $total_page=$total_page<1?1:$total_page;
 	    $page_no=$page_no>($total_page)?($total_page):$page_no;
 	    $start = ($page_no - 1) * $page_size;
@@ -16,8 +16,8 @@ class UserController  extends  Controller{
 	    $user_infos = $userService->userPage( $start , $page_size );
          $this->smarty->assign ( 'user_infos', $user_infos );
 		$this->smarty->assign ( '_GET', $_GET );
-		$this->smarty->assign ( 'page_no', $page_no );
-		$this->smarty->assign ( 'page_html', $page_html );
+//		$this->smarty->assign ( 'page_no', $page_no );
+//		$this->smarty->assign ( 'page_html', $page_html );
 		$this->smarty->assign ( 'oadmin_action_confirm' , "");
 		$this->smarty->display("admin/users.tpl"); 
 	}

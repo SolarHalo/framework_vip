@@ -25,7 +25,7 @@ $(function () {
     sortorder: "desc",
     caption:"用户日志"
 });
-jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false},{},
+jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,excel:true},{},
 {},
 {},
 {multipleSearch:true, multipleGroup:true});
