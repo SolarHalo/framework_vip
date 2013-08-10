@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -37,26 +37,61 @@ $(function(){
 	}
 	
 	$("body").css({paddingTop:paddingT});
+	
 	$("#windbox3success").hide();
 	$("#windbox11twosame").hide();
 	$("#windbox13illegal").hide();
 	$("#windbox14errorpwd").hide();
+	$("#windbox12same").hide();
+	
+	$(".fr img").click(function(){
+		$("#windbox3success").hide();
+		$("#windbox11twosame").hide();
+		$("#windbox13illegal").hide();
+		$("#windbox14errorpwd").hide();
+		$("#windbox12same").hide();
+	});
+	
+	
 	
 	$("#submit-bt").click(function(){
 		
 		var submitData = {oldpwd:$('#oldpwd').val(),newpwd:$('#newpwd').val()};
 		var renewpwd = $('#renewpwd').val();
 		
-		if(renewpwd != null && renewpwd != submitData.newpwd){
-			$("#windbox11twosame").show();
+		//长度验证
+		if( submitData.newpwd.length < 6 || submitData.newpwd.length > 16){
+			$("#windbox13illegal").show();
+			return;
 		}
 		
-		if(submitData.oldpwd != null && submitData.newpwd != null){
+		//一致验证
+		if(renewpwd != null && renewpwd != submitData.newpwd){
+			$("#windbox11twosame").show();
+			return;
+		}
+		
+		if(submitData.oldpwd == submitData.newpwd){
+			$("#windbox12same").show();
+			return;
+		}
+		
+		if(submitData.newpwd != null){
 			$.post(
 				'{{$smarty.const.WEBSITE_URL}}usermanager/savepwd',
-				,
+				submitData,
 				function(obj){
-					alert(obj);
+
+					if(!obj.oldpwd){
+						$("#windbox14errorpwd").show();
+					}else{
+						$("#windbox3success").show();
+						
+						setTimeout(function(){
+							$("#windbox3success").hide();
+							window.location.href = "{{$smarty.const.WEBSITE_URL}}usermanager/index";
+						},2000);
+					}
 				},
 				"json"
 			);
@@ -148,7 +183,7 @@ $(function(){
     	<span class="alterpassword-y">
         	<img src="{{$smarty.const.WEBSITE_URL}}public/img/alterpassword-y.gif" border="0" usemap="#Map03"/>
             <map name="Map03"> 
-              	<area shape="rect" coords="215,93,276,118" href="#"><!--指向账号管理页面-->
+              	<area shape="rect" coords="215,93,276,118" href="{{$smarty.const.WEBSITE_URL}}usermanager/index"><!--指向账号管理页面-->
             </map>
         </span>
   	</div>
@@ -164,6 +199,17 @@ $(function(){
   	</div>
 	<div class="windbg"></div>
 </div>
+
+<div id='windbox12same' class="windbox">
+	<div class="wind">
+    	<a href="#" class="fr"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"/></a>
+    	<span class="eorrpassword2">
+        	<img src="{{$smarty.const.WEBSITE_URL}}public/img/resetpassword-ts4.gif" />
+        </span>
+  	</div>
+	<div class="windbg"></div>
+</div>
+
 
 <div id='windbox13illegal' class="windbox">
 	<div class="wind">

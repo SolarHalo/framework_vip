@@ -38,9 +38,7 @@ $(function(){
 <script type="text/javascript" id="sourcecode">
 //code for scroll
 $(function(){
-	$('.scroll-pane').jScrollPane();
-});
-$(function(){
+	$('.scroll-pane').jScrollPane(); 
           $('.wrapper').hide();
           $('.xiaoguo').click(function(){
           	
@@ -97,7 +95,17 @@ $(function(){
           	  $('.wrapper4').slideUp();
           	  
            });
+		    $("#datedesc").hide();
+		    $("#moneydesc").hide();
+			 
   	});
+  	function openWin(winId){
+  		$("#"+winId).show();
+  	}
+  	function closeWin(winId){
+  		$("#"+winId).hide();
+  	}
+  	  	
 </script>
 </head>
 
@@ -105,6 +113,25 @@ $(function(){
 <div class="Welcomeuseer zh">
 	尊贵的<font>汪涵</font>，您好！<a href="#">退出</a>
 </div>
+<div class="windbox" id="datedesc">
+	<div class="wind">
+    	<a href="#" onclick="javascript:closeWin('datedesc');" class="fr"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"/></a>
+    	<span class="inquire-ts1">
+        	<img src="{{$smarty.const.WEBSITE_URL}}public/img/inquire-ts1.gif"/>
+        </span>
+  </div>
+	<div class="windbg"></div>
+</div>
+
+<div class="windbox" id="moneydesc">
+	<div class="wind">
+    	<a href="#"  onclick="javascript:closeWin('moneydesc');" class="fr"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"/></a>
+    	<span class="recordlistpagewind"><img src="{{$smarty.const.WEBSITE_URL}}public/img/recordlistpagewind.jpg" /> 
+        </span>
+  </div>
+	<div class="windbg"></div>
+</div>
+
 <div id="warp" class="container">
     <div class="content">
         <div class="nav">
@@ -200,12 +227,12 @@ $(function(){
                         </ul>
                     </div>
                     月
-                   <span style="border-bottom:1px solid #BCA14E;"> <a href="#" class="linkstyle01">说明</a></span>
+                   <span style="border-bottom:1px solid #BCA14E;"> <a href="#" onclick="javascript:openWin('datedesc');" class="linkstyle01">说明</a></span>
                 </div>
                 <div class="recordtext mb25">
                 	卡号：<font>0000000000</font>,姓名：<font>张三</font>,开卡店铺：<font>ochirly深圳海岸城南山店</font>,<br>
                     开卡日期：<font>2011</font>年<font>9</font>月<font>1</font>日,有效期：<font>2011</font>年<font>9</font>月<font>1</font>日,
-                    续卡尚需有效金额<font>xxx</font>元。<span style="border-bottom:1px solid #BCA14E;"><a href="#" class="linkstyle01">说明</a></span>
+                    续卡尚需有效金额<font>xxx</font>元。<span style="border-bottom:1px solid #BCA14E;"><a href="#"  onclick="javascript:openWin('moneydesc')"; class="linkstyle01">说明</a></span>
                 </div>
                 <div class="recordlist">
                 	<ol>
@@ -264,7 +291,7 @@ $(function(){
                         <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
                         <li class="je">599.00</li>
                     </ul>
-                    <a href="#" class="linkstyle01 fr" style="display:block; width:100%; margin-top:20px;  text-align:right;">查看更多</a>
+                    <a href="{{$smarty.const.WEBSITE_URL}}usermanager/morecheckinfos" class="linkstyle01 fr" style="display:block; width:100%; margin-top:20px;  text-align:right;">查看更多</a>
                 </div>
 			</div>
         </div>

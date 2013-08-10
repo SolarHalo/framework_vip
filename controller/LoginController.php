@@ -20,7 +20,7 @@ class LoginController extends  Controller{
 		 //验证码不对的情况下
 	     if(strtolower($verify_code) != strtolower($_SESSION['osa_verify_code'])){
 	        
-		    $this->smarty->assign("loginErrorWin",$this->ModifyHtmlWord("您输入的验证码不正确，请重新输入")); 
+		    $this->smarty->assign("loginErrorWin",$this->verifyCodeHtml()); 
 		    $this->smarty->assign("_POST",$_POST); 
 		 	$this->smarty->display("login.tpl");  
 		 	return;
@@ -29,6 +29,7 @@ class LoginController extends  Controller{
 		 	$userSerivce = new UserService($this->getDB());
 		 	$usersTel = $userSerivce->getUserByTel($username); 
 		 	$userCard = $userSerivce->getUserByCarNo($username); 
+		 	$log =  $userSerivce->getOneLoginLog($user->cardno); 
 		 	$user;
 		 //ppt第35页,用户不存在的情况下
 		 if(empty($usersTel) and empty($userCard)){
@@ -41,7 +42,7 @@ class LoginController extends  Controller{
 		    if(!empty($usersTel)){	
 			 	//手机号登录，要判断下面挂 的是不是一张卡
 			 	if(count($usersTel) > 1){
-				 	$this->smarty->assign("loginErrorWin",$this->loginErrWinMoreOneUser(count($users)));  
+				 	$this->smarty->assign("loginErrorWin",$this->loginErrWinMoreOneUser(count($usersTel)));  
 				 	$this->smarty->assign("_POST",$_POST); 
 				 	$this->smarty->display("login.tpl");     
 				 	return;
@@ -53,14 +54,27 @@ class LoginController extends  Controller{
 		     } 
 		     //确认用户存在了，判断密码
 		     if(md5($passwd) != $user->pwd){
-				 		//密码问题，这里还要判断 这个用户是否是第一次登录
-				 		$this->smarty->assign("loginErrorWin",$this->loginErrForgetpassword2()); 
+		     	       
+				 		//密码问题，这里还要判断 这个用户是否是第一次登录 
+		     	        if(empty($log)){
+				 			$this->smarty->assign("loginErrorWin",$this->loginErrForgetpassword1()); 
+		     	        }else{
+		     	        	$this->smarty->assign("loginErrorWin",$this->loginErrForgetpassword2()); 
+		     	        }
 					    $this->smarty->assign("_POST",$_POST); 
 					 	$this->smarty->display("login.tpl");  
 					 	return;
 			  }else{ 
 			  	  //密码正确，还要判断是不是第一次登录，如果第一次登录转向修改密码，如果非第一次登录转向信息
 			 	   $_SESSION['loginuser'] = $user;  
+			 	   $userSerivce->recoredLoginLog($user);
+			       //正常登录这里还要判断 这个用户是否是第一次登录 
+		     	        if(empty($log)){
+		     	        	$this->smarty->assign("loginErrorWin",$this->loginErrorJump(WEBSITE_URL."usermanager/mdfpasswd")); 
+				 		
+		     	        }else{
+		     	        	 	$this->smarty->assign("loginErrorWin",$this->loginErrForgetpassword1()); 
+		     	        }
 			  }
 		 } 
 		 
@@ -92,6 +106,14 @@ class LoginController extends  Controller{
 		return $errohtml;
 		
 	}
+	//验证码错误 
+  public function verifyCodeHtml(){ 
+			$errohtml="<div class=\"windbox\" id='windbox'><div class=\"wind\" >	<a href=\"#\" class=\"fr\" onclick=\"javascript:closeWin();\"><img src=\"".WEBSITE_URL."public/img/Close-ioc.gif\"/></a><span class=\"validationerror zh\">".
+        	      "<img src=\"".WEBSITE_URL."public/img/validationerror.gif\" border=\"0\"/> ".
+                  "</span>  </div>	<div class=\"windbg\"></div></div>";
+		return $errohtml;
+		
+	}
     //查不到此用户
 	public function loginErrWinNoUser(){ 
 		$errohtml="<div class=\"windbox\" id='windbox'><div class=\"wind\" >	<a href=\"#\" class=\"fr\" onclick=\"javascript:closeWin();\"><img src=\"".WEBSITE_URL."public/img/Close-ioc.gif\"/></a><span class=\"validationerror zh\">".
@@ -108,10 +130,18 @@ class LoginController extends  Controller{
 		return $errohtml;
 		
 	}
- //再次登录，忘记密码
+   //再次登录，忘记密码
 	public function loginErrForgetpassword2(){ 
 		$errohtml="<div class=\"windbox\" id='windbox'><div class=\"wind\" >	<a href=\"#\" class=\"fr\" onclick=\"javascript:closeWin();\"><img src=\"".WEBSITE_URL."public/img/Close-ioc.gif\"/></a><span class=\"forgotpassword\">".
         	     "<img src=\"".WEBSITE_URL."public/img/forgotpassword.gif\" border=\"0\"/> ".
+                  "</span>  </div>	<div class=\"windbg\"></div></div>";
+		return $errohtml;
+		
+	}
+//初次登录，忘记密码
+	public function loginErrForgetpassword1(){ 
+		$errohtml="<div class=\"windbox\" id='windbox'><div class=\"wind\" >	<a href=\"#\" class=\"fr\" onclick=\"javascript:closeWin();\"><img src=\"".WEBSITE_URL."public/img/Close-ioc.gif\"/></a><span class=\"errorpassword\">".
+        	     "<img src=\"".WEBSITE_URL."public/img/errorpassword.gif\" border=\"0\"/> ".
                   "</span>  </div>	<div class=\"windbg\"></div></div>";
 		return $errohtml;
 		

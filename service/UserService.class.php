@@ -32,4 +32,23 @@ class UserService{
 		return $this->dbutil->get_results("select * from vip_users where cardno='$cardNo' and  status = 0");
 	}
 	
+    /**
+	 * 记录用户的登录日志
+	 *  
+	 * @param unknown_type $user
+	 */
+	function recoredLoginLog($user){
+		 $log = array("cardno"=>$user->cardno,"login_type"=>1,"login_time"=> date('Y-m-d', time()));
+		return $this->dbutil->insert("vipuser_loginlog", $log);
+	}
+	 /**
+	 *  
+	 * 判断此用户是否是有登录日志
+	 * @param unknown_type $cardno
+	 */
+	function getOneLoginLog($cardno){
+		return $this->dbutil->get_results("select * from vipuser_loginlog where cardno='$cardno' limit 1");
+	}
+	
+	
 }
