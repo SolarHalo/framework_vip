@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-10 15:46:54
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-12 15:03:15
          compiled from "G:\phpserver\framework\templates\admin\param.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3195752065b49cf8683-98582543%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '001b650c5eccc9e7b13006502b807ff4331466c6' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\admin\\param.tpl',
-      1 => 1376149604,
+      1 => 1376318110,
       2 => 'file',
     ),
   ),
@@ -73,19 +73,22 @@ admin/user">管理列表</a> <span class="divider">/</span></li>
 	<div id="myTabContent" class="tab-content">
 		  <div class="tab-pane active in" id="home">
 
-           <form id="tab" method="post" action="" autocomplete="off">
+           <form id="tab" method="post" action="<?php echo @constant('WEBSITE_URL');?>
+admin/param/update" autocomplete="off">
 				<label>修改的name</label>
-				<input type="text" name="user_name" value="<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
-" class="input-xlarge" autofocus="true" required="true" >
+				<input type="text" name="paramname" value="<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
+" class="input-xlarge" 
+				readonly=true" autofocus="true" required="true" >
 				<input type="hidden" name="id" value="<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
 "/>
 				<label>内容</label>
 				 
-				<textarea name="user_desc" rows="50" class="input-xxlarge" ><?php echo $_smarty_tpl->tpl_vars['value']->value;?>
+				<textarea name="paramvalue" rows="25" class="input-xxlarge" ><?php echo $_smarty_tpl->tpl_vars['value']->value;?>
 </textarea>
 				
 			<div class="btn-toolbar">
-				<button type="submit" class="btn btn-primary"><strong>提交</strong></button>
+				<button type="submit"  onclick="javascript:document.tab.submit()" class="btn btn-primary">
+				<strong>提交</strong></button>
 				<div class="btn-group"></div>
 			</div>
 			</form>

@@ -56,33 +56,55 @@ $(function(){
 	
 	$("#submit-bt").click(function(){
 		
-		var submitData = {oldpwd:$('#oldpwd').val(),newpwd:$('#newpwd').val()};
+		var submitData = {oldpwd:$('#oldpwd').val(),newpwd:$('#newpwd').val(),renewpwd:$('#renewpwd').val()};
 		var renewpwd = $('#renewpwd').val();
 		
 		//长度验证
-		if( submitData.newpwd.length < 6 || submitData.newpwd.length > 16){
+		/*if( submitData.newpwd.length < 6 || submitData.newpwd.length > 16){
 			$("#windbox13illegal").show();
 			return;
-		}
+		}*/
 		
 		//一致验证
-		if(renewpwd != null && renewpwd != submitData.newpwd){
+		/*if(renewpwd != null && renewpwd != submitData.newpwd){
 			$("#windbox11twosame").show();
 			return;
-		}
+		}*/
 		
-		if(submitData.oldpwd == submitData.newpwd){
+		/*if(submitData.oldpwd == submitData.newpwd){
 			$("#windbox12same").show();
 			return;
-		}
+		}*/
 		
-		if(submitData.newpwd != null){
+		//if(submitData.newpwd != null){
 			$.post(
 				'{{$smarty.const.WEBSITE_URL}}usermanager/savepwd',
 				submitData,
 				function(obj){
 
 					if(!obj.oldpwd){
+						$("#windbox14errorpwd").show();
+						return;
+					}else if(!obj.vlid){
+						$("#windbox13illegal").show();
+						return;
+					}else if(!obj.same){
+						$("#windbox11twosame").show();
+						return;
+					}else if(!obj.change){
+						$("#windbox12same").show();
+						return;
+					}else{
+						$("#windbox3success").show();
+						
+						setTimeout(function(){
+							$("#windbox3success").hide();
+							window.location.href = "{{$smarty.const.WEBSITE_URL}}usermanager/index";
+						},2000);
+						return ;
+					}
+					
+					/*if(!obj.oldpwd){
 						$("#windbox14errorpwd").show();
 					}else{
 						$("#windbox3success").show();
@@ -91,11 +113,11 @@ $(function(){
 							$("#windbox3success").hide();
 							window.location.href = "{{$smarty.const.WEBSITE_URL}}usermanager/index";
 						},2000);
-					}
+					}*/
 				},
 				"json"
 			);
-		}
+		//}
 		
 	});
 	

@@ -3,7 +3,6 @@ class FaqController extends  Controller{
 
 	public function index(){
 		$smaryt = $this->getSmarty();
-
 		require_once SERVICE.DS.'admin'.DS.'ParamService.class.php';
 		$this->getSmarty();
 		$params = 'faq';
@@ -15,7 +14,9 @@ class FaqController extends  Controller{
 		if(count($parame) >=1){
 //			$this->smarty->assign("id",$parame[0]->id);
 //			$this->smarty->assign("name",$parame[0]->paramname);
-			$this->smarty->assign("paramvalue",$parame[0]->paramvalue);
+
+			$parvalue =str_replace('{{$smarty.const.WEBSITE_URL}}',WEBSITE_URL, $parame[0]->paramvalue);
+			$this->smarty->assign("paramvalue",$parvalue);
 		}
 //		$this->smarty->display("admin/param.tpl");
 		$this->smarty->display("faq.tpl");

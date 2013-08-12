@@ -49,25 +49,42 @@ class UsermanagerController extends  Controller{
 		$oldpwd = $_POST['oldpwd'];
 		$newpwd = $_POST['newpwd'];
 		
+		$renewpwd = $_POST['renewpwd'];
+		
 		$user = $_SESSION['loginuser'];
 		$pwd = $user->pwd;
 		$cardNo = $user->cardno;
 		
 		$arr = null;
 		if($pwd == md5($oldpwd)){
-			//更新
-			$dbutil = $this->getDB();
 			
-			$service = new UserService($dbutil);
-			
-			$service->updatePasswd($cardNo, md5($newpwd));
-			
-			$user->pwd = md5($newpwd);
-			
-			$arr = array ('success'=>true,'oldpwd'=>true);
+			if(strlen($newpwd) < 6 || strlen($newpwd) > 16){
+				$arr = array ('success'=>true,'oldpwd'=>true,'vlid'=>false);
+			}else{
+				if($newpwd != $renewpwd){
+					$arr = array ('success'=>true,'oldpwd'=>true,'vlid'=>true,'same'=>false);
+				}else{
+					if($oldpwd == $newpwd){
+						$arr = array ('success'=>true,'oldpwd'=>true,'vlid'=>true,'same'=>true,'change'=>false);
+					}else{
+						
+						//更新
+						$dbutil = $this->getDB();
+							
+						$service = new UserService($dbutil);
+							
+						$service->updatePasswd($cardNo, md5($newpwd));
+							
+						$user->pwd = md5($newpwd);
+						$arr = array ('success'=>true,'oldpwd'=>true,'vlid'=>true,'same'=>true,'change'=>true);
+					}
+				}
+			}
 		}else{
 			$arr = array ('success'=>true,'oldpwd'=>false);
 		}
 		echo json_encode($arr);
+		
+		
 	}
 }
