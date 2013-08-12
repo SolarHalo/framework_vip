@@ -21,5 +21,11 @@ class Activities{
 	public function addAdUser($data){
 		return	$this->dbutil->insert("admin_users", $data);
 	}
-
+	public function insertActivity($data){
+	    $this->dbutil->insert("activities", $data); 
+		return $this->dbutil->insert_id;
+	}
+	public function insertFiles($data){
+	  return  $this->dbutil->insert("files", $data);  
+	}
 }

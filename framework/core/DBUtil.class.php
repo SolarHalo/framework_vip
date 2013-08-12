@@ -74,7 +74,7 @@ class DbUtil{
 		if(defined('DB_CHARSET')){
 			$this->charset = DB_CHARSET;
 		}else {
-			$this->charset = 'utf-8';
+			$this->charset = 'utf8';
 		}
 			
 		if(defined('DB_COLLATE'))

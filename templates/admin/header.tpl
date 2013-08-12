@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8">
+   <meta charset="utf-8">
     <title>{{$page_title}} - {{$smarty.const.ADMIN_TITLE}} - </title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

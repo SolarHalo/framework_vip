@@ -2,6 +2,13 @@
 {{include file ="admin/navibar.tpl"}}
 {{include file ="admin/sidebar.tpl"}}
 <script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/assets/lib/ajaxupload.js"></script>
+<<style>
+<!--
+#uploadedName{
+	width:50%;
+}
+-->
+</style>
 <script type="text/javascript">
 window.onload = function(){
 	var oBtn = document.getElementById("unloadPic");
@@ -11,13 +18,13 @@ window.onload = function(){
 		action:"{{$smarty.const.WEBSITE_URL}}admin/activities/fileupload",
 		name:"upload",
 		onSubmit:function(file,ext){
-			if(ext && /^(jpg|jpeg|png|gif)$/.test(ext)){
+			if(ext && /^(jpg|jpeg|png|gif|mp4)$/.test(ext)){
 				//ext是后缀名
 				oBtn.value = "正在上传…";
 				oBtn.disabled = "disabled";
 			}else{	
 				oRemind.style.color = "#ff3300";
-				oRemind.innerHTML = "不支持非图片格式！";
+				oRemind.innerHTML = "不支持的文件格式！只能上传jpg|jpeg|png|gif|mp4";
 				return true;
 			}
 		},
@@ -26,12 +33,49 @@ window.onload = function(){
 			oBtn.disabled = "";
 			oBtn.value = "再上传一张图片";
 			oRemind.innerHTML = "";
-			var newChild =  document.createElement("li");
-			newChild.innerHTML = file;
-			oShow.appendChild(newChild);
+			var rownum = $("#uploadedName tr").length;
+			var filehtml ="<tr id='"+rownum+"'><td><input type='radio' name='imgdefault'  value='"+file+"'  /></td><td> <span class='imgname'>"+file+"</span></td><td><a href='javascript:delrows(\""+rownum+"\");'>删除</a></td></tr>";
+			 
+			$("#uploadedName").append(filehtml);
+			 
 		}
 	});
 };
+function delrows(rownum){
+	$("#"+rownum).remove();  
+	  
+}
+function checkform(){
+
+	var obj = new Object();
+	var files = new Array();
+	
+	$(".imgname").each(function(){ 
+		files.push($(this).text()); 
+	 });
+	
+	 var defaulimg = $("input[name='imgdefault']:checked").val();
+	 obj.files = files;
+	 obj.defaultimgs =  defaulimg;
+	 obj.activities_name = $("#activities_name").val();
+	 obj.activities_desc = $("#activities_desc").val();
+     obj.imgtype = $(".activities_type").val();  
+     if(obj.defaultimgs == null){
+          alert("请选择默认显示的图片");
+          return false;
+     }
+ 
+	    $.post(
+				'{{$smarty.const.WEBSITE_URL}}admin/activities/updateorinsert',
+				obj,
+				function(data){ 
+					 alert("上传成功");
+				},
+				"json"
+	    );
+	  
+	return false;
+}
 </script>
 <div class="content">
         
@@ -67,27 +111,29 @@ window.onload = function(){
 	<div id="myTabContent" class="tab-content">
 		  <div class="tab-pane active in" id="home">
 
-           <form id="tab" method="post" action="" autocomplete="off">
+           <form id="tab" method="post" action="" autocomplete="off" onsubmit="javascript: return false;">
 				<label>活动名称</label>
-				<input type="text" name="activities_name"   class="input-xlarge" autofocus="true" required="true" >
+				<input type="text" name="activities_name"  id = "activities_name" class="input-xlarge" autofocus="true" required="true" >
 				<label>活动类型</label>  
-				 <select name="activities_type">
-				  <option value="1">图片</option>
+				 <select name="activities_type" >
+				  <option value="1" selected >图片</option>
 				  <option value="2">视频</option>
 				 </select> 
 				 <label>文件</label>  
 				  <p id="errorRemind"></p>
                   <input id="unloadPic" type="button" value="上传图片" />
-                 <ol id="uploadedName"></ol>
-				   
+           
+				<table id="uploadedName" class="table table-hover" width="51%"> 
+				<tr><th>默认显示</th><th>文件名</th><th>操作</th></tr>
+                </table>
 				   
 				<label>活动描述</label>
-				<textarea name="activities_desc" rows="6" class="input-xxlarge"></textarea>
+				<textarea name="activities_desc" id="activities_desc" rows="6" class="input-xxlarge"></textarea>
 				
 				
 				
 			<div class="btn-toolbar">
-				<button type="submit" class="btn btn-primary"><strong>提交</strong></button>
+				<button type="submit" class="btn btn-primary"  onclick="checkform();"><strong>提交</strong></button>
 				<div class="btn-group"></div>
 			</div> 
 			</form>
