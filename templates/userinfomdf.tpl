@@ -181,7 +181,7 @@ function changeImg(target){
                     <li class="w50">性&nbsp;&nbsp;&nbsp;&nbsp;别:<font>男</font></li>
                     <li class="w50">手机号码:
                     	<div class="head5">
-                            <a href="#" id='areaCode' class="xiaoguo5">+853</a>
+                            <a href="#" id='areaCode' class="xiaoguo5">+86</a>
                             <ul class="wrapper5">
                                 <li class="nshow5"><a href="javascript:areaCode(86);">中国大陆+86</a></li> 
                                 <li class="nshow5"><a href="javascript:areaCode(852);">香港+852</a></li> 

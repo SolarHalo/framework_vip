@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-09 01:21:43
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-12 05:55:37
          compiled from "G:\phpserver\framework\templates\Activities.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2951352044427bcb346-95214282%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '543f520dd781062d8008bfa43e05834fb6940024' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\Activities.tpl',
-      1 => 1375684990,
+      1 => 1376286931,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.13',
   'unifunc' => 'content_52044427f039c4_76187141',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_52044427f039c4_76187141')) {function content_52044427f039c4_76187141($_smarty_tpl) {?><!doctype html>
 <html>
@@ -41,6 +41,14 @@ public/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" src="<?php echo @constant('WEBSITE_URL');?>
 public/js/jquery.slides.js"></script>
 
+<!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript" src="<?php echo @constant('WEBSITE_URL');?>
+public/assets/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+<!-- Add fancyBox main JS and CSS files -->
+<script type="text/javascript" src="<?php echo @constant('WEBSITE_URL');?>
+public/assets/source/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo @constant('WEBSITE_URL');?>
+public/assets/source/jquery.fancybox.css?v=2.1.5" media="screen" />
  
 <script type="text/javascript">
 //code for vetically center
@@ -52,9 +60,25 @@ $(function(){
 		paddingT = 10;
 	}
 	$("body").css({paddingTop:paddingT});
+	
 })
 //code for gallery and video
 $(function(){
+	$("#fancybox-manual-b").click(function() {
+		$.fancybox.open({
+			href : '<?php echo @constant('WEBSITE_URL');?>
+activities/media',
+			type : 'iframe',
+			maxWidth	: 536,
+			maxHeight	: 600,
+			fitToView	: false,
+			width		: '70%',
+			height		: '70%',
+			padding : 5
+		});
+	});
+
+	
 	$(".photo div.fl,.photo a.abtn").click(function(){
 		$("#warp").append("<div id='mask'></div><div id='alertbox'><div id='gallery-head'><a href='javascript:;'></a></div><div id='gallery-body'><div id='gallery-photos' class='gallery'></div></div></div>");
 		if($(this).hasClass("abtn")){
@@ -153,6 +177,18 @@ public/gallery/2/9.jpg"> </div>
                         </div>
                         <p><span class="en">ochirly、Five Plus、TRENDIANO</span><span class="zh">太古汇全新形象店举办的一场“</span><span class="en">Enjoy Your Fashion Style</span><span class="zh">”时尚</span><span class="en">Mini Party</span><span class="zh">。伴随着来自欧美的</span><span class="en">Live Band</span><span class="zh">充满热情的音乐风格演绎，</span><span class="en">ochirly</span><span class="zh">引领现场嘉宾们一同领略全新门店艺术，徜徉于音乐与艺术的时空。</span></p>
                         <p><a href="#" class="abtn"><span class="zh">观看更多</span></a></p>
+                    </li>
+                      <li class="photo">
+                        <div class="fl"> <img src="<?php echo @constant('WEBSITE_URL');?>
+public/gallery/2/1.jpg">
+                         <img src="<?php echo @constant('WEBSITE_URL');?>
+public/gallery/2/2.jpg">
+                        </div>
+                        <div class="title">
+                            <h3><span class="zh">测试播放视频</span><span class="en">Mini Party</span></h3>
+                        </div>
+                        <p><span class="en">ochirly、Five Plus、TRENDIANO</span><span class="zh">太古汇全新形象店举办的一场“</span><span class="en">Enjoy Your Fashion Style</span><span class="zh">”时尚</span><span class="en">Mini Party</span><span class="zh">。伴随着来自欧美的</span><span class="en">Live Band</span><span class="zh">充满热情的音乐风格演绎，</span><span class="en">ochirly</span><span class="zh">引领现场嘉宾们一同领略全新门店艺术，徜徉于音乐与艺术的时空。</span></p>
+                        <p><a  class="abtn " id="fancybox-manual-b" href="javascript:;"><span class="zh">观看视频</span></a></p>
                     </li>
                 </ul>
             </div>

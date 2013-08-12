@@ -13,7 +13,7 @@ class UserController  extends  Controller{
 	    $page_no=$page_no>($total_page)?($total_page):$page_no;
 	    $start = ($page_no - 1) * $page_size;
 	    
-	    $user_infos = $userService->userPage( $start , $page_size );
+	      $user_infos = $userService->userPage( $start , $page_size );
          $this->smarty->assign ( 'user_infos', $user_infos );
 		$this->smarty->assign ( '_GET', $_GET );
 //		$this->smarty->assign ( 'page_no', $page_no );
