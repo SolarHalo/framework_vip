@@ -29,8 +29,8 @@ class ParamController  extends  Controller{
 		$paramvalue = $_POST['paramvalue'];
 		$paramService = new ParamService($this->getDB());
 		$updata = $paramService->update($id,$paramname,$paramvalue);
-		
-		CommonBase::jumpUrl ( 'admin/param' );
+		$this->index();
+//		CommonBase::jumpUrl ( 'admin/param' );
 //		if ($updata != 1) {
 //			//可以处理其他用户登录以后的事情
 //			//可以处理用户登录日志 

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-11 23:11:24
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-12 23:22:57
          compiled from "D:\PHPWeb\framework_vip\templates\faq.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:189525207a0b4698cb1-01691013%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '02ca50db3562b26a3cbb82707aa039d21ab04e49' => 
     array (
       0 => 'D:\\PHPWeb\\framework_vip\\templates\\faq.tpl',
-      1 => 1376233869,
+      1 => 1376320973,
       2 => 'file',
     ),
   ),
@@ -89,9 +89,8 @@ activities">会员专享活动</a></li>
 faq" class="current">常见问题</a></li>
             </ul>
         </div>
-          <?php echo $_smarty_tpl->tpl_vars['paramvalue']->value;?>
+       <?php echo $_smarty_tpl->tpl_vars['paramvalue']->value;?>
  
-    </div>
     <div class="sitelinks">
         <ul class="clearfix">
             <li class="ochirly"><a href="http://ochirly.trendy-global.com" target="_blank">ochirly</a></li>
@@ -106,5 +105,4 @@ faq" class="current">常见问题</a></li>
         <a href="http://www.miibeian.gov.cn/" target="_blank"><span class="zh">备案号：粤</span><span class="en">ICP<b>11</b>0<b>1</b>0295</span></a></p>
 </div>
 </body>
-</html>
-<?php }} ?>
+</html><?php }} ?>

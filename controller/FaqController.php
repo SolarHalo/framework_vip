@@ -18,7 +18,6 @@ class FaqController extends  Controller{
 			$this->smarty->assign("paramvalue",$parame[0]->paramvalue);
 		}
 //		$this->smarty->display("admin/param.tpl");
-			
 		$this->smarty->display("faq.tpl");
 	}
 }
