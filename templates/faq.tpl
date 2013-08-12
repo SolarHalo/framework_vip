@@ -53,8 +53,7 @@ $(function(){
                 <li class="nav3"><a href="{{$smarty.const.WEBSITE_URL}}faq" class="current">常见问题</a></li>
             </ul>
         </div>
-          {{$paramvalue}} 
-    </div>
+       {{$paramvalue}} 
     <div class="sitelinks">
         <ul class="clearfix">
             <li class="ochirly"><a href="http://ochirly.trendy-global.com" target="_blank">ochirly</a></li>
