@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50051
 File Encoding         : 65001
 
-Date: 2013-08-07 18:15:32
+Date: 2013-08-10 23:34:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -54,21 +54,25 @@ CREATE TABLE `vipuser_loginlog` (
 -- ----------------------------
 -- Records of vipuser_loginlog
 -- ----------------------------
+INSERT INTO `vipuser_loginlog` VALUES ('0', '00522746', '1', '2013-08-07 00:00:00');
 
 -- ----------------------------
 -- Table structure for `vip_param`
 -- ----------------------------
 DROP TABLE IF EXISTS `vip_param`;
 CREATE TABLE `vip_param` (
-  `id` int(11) NOT NULL default '0',
+  `id` int(11) NOT NULL auto_increment,
   `paramname` varchar(1024) default NULL,
-  `paramvalue` varchar(2048) default NULL,
+  `paramvalue` text,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of vip_param
 -- ----------------------------
+INSERT INTO `vip_param` VALUES ('1', 'rights', 'rights的内容');
+INSERT INTO `vip_param` VALUES ('2', 'faq', 'faq内容');
+INSERT INTO `vip_param` VALUES ('3', 'google', 'google统计的代码');
 
 -- ----------------------------
 -- Table structure for `vip_users`
@@ -92,4 +96,4 @@ CREATE TABLE `vip_users` (
 -- ----------------------------
 INSERT INTO `vip_users` VALUES ('1', '00522744', '00522744', '18600590400', '96e79218965eb72c92a549dd5a330112', '0', '7705502', '2013-08-06 23:00:33', null);
 INSERT INTO `vip_users` VALUES ('2', '00522745', '00522745', '18600590400', '96e79218965eb72c92a549dd5a330112', '0', '7705502', '2013-08-06 23:08:43', null);
-INSERT INTO `vip_users` VALUES ('3', '00522746', '00522746', '18888888888', '96e79218965eb72c92a549dd5a330112', '0', '7705502', '2013-08-06 23:14:39', null);
+INSERT INTO `vip_users` VALUES ('3', '00522746', '00522746', '18888888888', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', '0', '7705502', '2013-08-07 23:50:50', null);

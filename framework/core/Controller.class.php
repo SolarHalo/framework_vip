@@ -1,7 +1,7 @@
 <?php
  
 class Controller{ 
-	public $smarty ;
+	public $parame ;
 	public $dbutil;
 	function __construct(){
 	  	

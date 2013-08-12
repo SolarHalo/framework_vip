@@ -53,72 +53,7 @@ $(function(){
                 <li class="nav3"><a href="{{$smarty.const.WEBSITE_URL}}faq" class="current">常见问题</a></li>
             </ul>
         </div>
-        <h1 class="pagetitle"><img src="{{$smarty.const.WEBSITE_URL}}public/img/faqt.jpg" alt="常见问题" /></h1>
-        <div class="pagecontent scroll-pane">
-            <h2 class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/t4.jpg" /></h2>
-            <table class="table" width="600" border="0" cellspacing="0" cellpadding="0">
-            	<tr>
-                	<td colspan="3"><span class="zh">有的，目前</span><span class="en">ochirly&amp;Five Plus</span><span class="zh">均有官方微博及微信，</span><span class="en">TRENDIANO</span><span class="zh">有官方微博</span>。</td>
-                </tr>
-                <tr>
-                    <td width="114"><span class="en">ochirly</span><span class="zh">微博</span></td>
-                    <td width="262"><span class="zh">：</span><a href="http://e.weibo.com/ochirlyochirly" target="_blank" class="en"><span class="en">http://e.weibo.com/ochirlyochirly</span></a></td>
-                    <td width="224"><span class="zh">微信账号 ：</span><span class="en">ochirlyochirly</span></td>
-                </tr>
-                <tr>
-                    <td><span class="en">Five Plus</span><span class="zh">微博</span></td>
-                    <td><span class="zh">：</span><a href="http://e.weibo.com/fiveplustrendy" target="_blank" class="en"><span class="en">http://e.weibo.com/fiveplustrendy</span></a></td>
-                    <td><span class="zh">微信账号 ：</span><span class="en">fiveplus5</span></td>
-                </tr>
-                <tr>
-                	<td><span class="en">TRENDIANO</span><span class="zh">微博</span></td>
-                	<td colspan="2"><span class="zh">：</span><a href="http://e.weibo.com/trendiano" target="_blank" class="en"><span class="en">http://e.weibo.com/trendiano</span></a></td>
-                </tr>
-                <tr>
-                	<td colspan="3"></td>
-                </tr>
-            </table>
-            <h2 class="zh"><{{$smarty.const.WEBSITE_URL}}public/img src="img/t5.jpg" /></h2>
-            <table class="table" width="600" border="0" cellspacing="0" cellpadding="0">
-            	<tr>
-                	<td colspan="2"><span class="zh">有的，目前</span><span class="en">ochirly&amp;Five Plus</span><span class="zh">均有官方购物网。</span></td>
-                </tr>
-                <tr>
-                    <td width="64"><span class="en">ochirly</span></td>
-                    <td width="536"><span class="zh">：</span><a href="http://www.ochirly.com" target="_blank" class="en"><span class="en">http://www.ochirly.com</span></a></td>
-                </tr>
-                <tr>
-                    <td><span class="en">Five Plus</span></td>
-                    <td><span class="zh">：</span><a href="http://www.fiveplus.com" target="_blank" class="en"><span class="en">http://www.fiveplus.com</span></a></td>
-                </tr>
-                <tr>
-                	<td colspan="2"></td>
-                </tr>
-            </table>
-            <h2 class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/t6.jpg" /></h2>
-            <table class="table" width="600" border="0" cellspacing="0" cellpadding="0">
-            	<tr>
-                	<td colspan="2"><span class="zh">赫基客服热线 ：</span><strong style="font-size:16px; font-weight:bold;color:#FC0;" class="en">800-830-8348</strong><br>
-				<span class="zh">赫基服务邮箱 ：</span><a href="mailto:customer-service@trendy-global.com" target="_blank" class="en"><span class="en">customer-service@trendy-global.com</span></a><br>
-                <span class="zh">工作时间 ：逢周一至周五</span><span class="en">9:00-<b class="num1">1</b>2:30，<b class="num1">1</b>3:30-<b class="num1">1</b>8:00 (</span> <span class="zh">国家法定节假日除外</span> <span class="en">)</span><br>
-                <span class="zh">官方购物网客服热线 ：</span><strong style="font-size:16px;font-weight:bold;color:#FC0;" class="en">400-880-0086</strong><br></td>
-                </tr>
-                <tr>
-                    <td width="204"><span class="zh">官方购物网服务邮箱</span> <span class="en">( ochirly )</span></td>
-                    <td width="396"><span class="zh">：</span><a href="mailto:service@ochirly.com" target="_blank" class="en"><span class="en">service@ochirly.com</span></a></td>
-                </tr>
-                <tr>
-                    <td><span class="zh">官方购物网服务邮箱</span> <span class="en">( Five Plus )</span></td>
-                    <td><span class="zh"> ：</span><a href="mailto:service@fiveplus.com" target="_blank" class="en"><span class="en">service@fiveplus.com</span></a></td>
-                </tr>
-                <tr>
-                	<td colspan="2"><span class="zh">工作时间 ：逢周一至周日</span> <span class="en">9:00-2<b class="num1">4</b>:00 </span></td>
-                </tr>
-                <tr>
-                	<td colspan="2"></td>
-                </tr>
-            </table>
-        </div>
+          {{$paramvalue}} 
     </div>
     <div class="sitelinks">
         <ul class="clearfix">

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{$smarty.const.WEBSITE_URL}}/public/assets/lib/font-awesome/css/font-awesome.css">
 	<link rel="stylesheet" href="{{$smarty.const.WEBSITE_URL}}/public/assets/css/other.css">
 	<link rel="stylesheet" href="{{$smarty.const.WEBSITE_URL}}/public/assets/css/jquery-ui.css" />
+	<link rel="stylesheet" href="{{$smarty.const.WEBSITE_URL}}/public/assets/css/ui.jqgrid.css" />
 	
     <script src="{{$smarty.const.WEBSITE_URL}}/public/assets/lib/jquery-1.8.1.min.js" ></script>
 	<!--script src="http://www.cnbootstrap.com/assets/js/jquery.js"></script-->
@@ -21,6 +22,9 @@
 	<script src="{{$smarty.const.WEBSITE_URL}}/public/assets/lib/bootstrap/js/bootstrap-modal.js"></script>
 	<script src="{{$smarty.const.WEBSITE_URL}}/public/assets/js/other.js"></script>
 	<script src="{{$smarty.const.WEBSITE_URL}}/public/assets/js/jquery-ui.js"></script>
+	<script src="{{$smarty.const.WEBSITE_URL}}/public/assets/js/grid.locale-en.js"></script>
+	<script src="{{$smarty.const.WEBSITE_URL}}/public/assets/js/jquery.jqGrid.min.js"></script>
+	<script src="{{$smarty.const.WEBSITE_URL}}/public/assets/js/My97DatePicker/WdatePicker.js"></script>
     <!-- Demo page code -->
 
     <style type="text/css">

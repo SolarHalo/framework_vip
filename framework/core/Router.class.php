@@ -59,11 +59,11 @@
 	}
 	
    function urlToArray(){
-			global  $CONFIG;
-			 
-			if(!isset($this->url) || ($this->url=='/')){
-				return $CONFIG['ROUTER'];
-			}
+			global  $CONFIG; 
+			if(empty($this->url) || ($this->url=='/')){
+				 $this->uriarray = $CONFIG['ROUTER'];
+				 return $this->uriarray;
+			} 
 			if($this->url)
 			$urlArray = explode('/' , $this->url);
 			//drop the first element,because of it's ''
@@ -76,7 +76,7 @@
 			
    }
    function frontRouter($urlArray){
-   	   if(count($urlArray) == 1){
+   	       if(count($urlArray) == 1){ 
 				  $this->uriarray = array(
 					    "dir"               => "",
 					    "controler"         => $urlArray[0],
@@ -111,7 +111,7 @@
 			} 
    }
    function adminRouter($urlArray){
-   	   if(count($urlArray) == 1){
+   	        if(count($urlArray) == 1){
 				  $this->uriarray = array(
 					    "dir"               => "admin",
 					    "controler"         => "index",

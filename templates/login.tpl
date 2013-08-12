@@ -92,9 +92,9 @@ function changeCode(){
         <h1 class="pagetitle tc"><img src="{{$smarty.const.WEBSITE_URL}}public/img/club.jpg" alt="会员俱乐部" /></h1>
         <div class="homenav">
             <ul class="clearfix">
-                <li><a href="rights.html">会员权益</a></li>
-                <li><a href="activities.html">会员专享活动</a></li>
-                <li class="last"><a href="faq.html">常见问题</a></li>
+                <li><a href="{{$smarty.const.WEBSITE_URL}}rights">会员权益</a></li>
+                <li><a href="{{$smarty.const.WEBSITE_URL}}activities">会员专享活动</a></li>
+                <li class="last"><a href="{{$smarty.const.WEBSITE_URL}}faq">常见问题</a></li>
             </ul>
         </div>
          <div class="userlogin">
@@ -119,7 +119,8 @@ function changeCode(){
                     </td> 
                 </tr>
             </table>
-            <input type="button" class="input_style_but" style="margin-left:27px;" onclick="javascript:document.loginForm.submit()"> 
+            <input type="button" class="input_style_but" style="margin-left:27px;"
+             onclick="javascript:document.loginForm.submit()"> 
             </form>
         </div>
     </div>
