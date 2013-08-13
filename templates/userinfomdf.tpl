@@ -38,11 +38,34 @@ $(function(){
 //code for scroll
 
 	function valid(){
-		
-		var valid = true;
-		
 		var areaCode = $("#areaCode").text();
 		var phoneNum = $("#phoneNum").val();
+		
+		var email = $("#email").val();
+		
+		var mustFillShow = false;
+				
+		if(phoneNum == null || phoneNum == "" ){
+			$("#phoneNum").addClass("input-color-red");
+			mustFillShow = true;
+		}else{
+			$("#phoneNum").removeClass("input-color-red");
+		}
+		
+		if(email == null || email == ""){
+			$("#email").addClass("input-color-red");
+			mustFillShow = true;
+		}else{
+			$("#email").removeClass("input-color-red");
+		}
+		
+		if(mustFillShow){
+			$("#mustfill").show();
+			return ;
+		}
+		
+		var validShow = false;
+		var valid = true;
 		
 		if(phoneNum != null && phoneNum != "" && phoneNum != undefined){
 			
@@ -88,11 +111,11 @@ $(function(){
 
 		if(!valid){
 			$("#phoneNum").addClass("input-color-red");
+			validShow = true;
 		}else{
 			$("#phoneNum").removeClass("input-color-red");
 		}
 		
-		var email = $("#email").val();
 		if(email != null && email != "" && email != undefined){
 			email = email.trim();
 		
@@ -101,13 +124,30 @@ $(function(){
 				$("#email").removeClass("input-color-red");
 			}else{
 				$("#email").addClass("input-color-red");
+				validShow = true;
 			}
 		}else{
 			$("#email").addClass("input-color-red");
+			validShow = true;
 		}
+		
+		if(validShow){
+			$("#vlid").show();
+		}
+
 	}
 
 $(function(){
+	$("#mustfill").hide();
+	$("#vlid").hide();
+	
+	$(".fr img").click(function(){
+		$("#mustfill").hide();
+		$("#vlid").hide();
+		$("#stander").hide();
+	});
+	
+
 	$('.scroll-pane').jScrollPane();
 	  $('.wrapper5').hide();
       $('.xiaoguo5').click(function(){
@@ -123,15 +163,18 @@ $(function(){
       	  $('.wrapper5').slideUp();
       	  
        }); 
-	$("#phoneNum").keyup(valid);
-	$("#email").keyup(valid);
+	$("#phoneNum").keyup(function(){
+		$("#phoneNum").removeClass("input-color-red");
+	});
+	$("#email").keyup(function(){
+		$("#email").removeClass("input-color-red");
+	});
 		
 	$(".base_save").click(valid);
 });
 
 function areaCode(com){
 	$("#areaCode").text("+"+com);
-	valid();
 }
 
 function changeImg(target){
@@ -191,7 +234,7 @@ function changeImg(target){
                         </div>-<font class="en"><input id="phoneNum" type="text" class="input_style3" style="width:120px;"></font>
                     </li>
                     <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font>1974年05月24日</font></li>
-                    <li class="w50"><img src="{{$smarty.const.WEBSITE_URL}}public/img/xxioc.gif" class="xxioc"/>电子邮箱:<font><input id="email" type="text" class="input_style3 input-color-red"  style=" width:187px;"></font></li>
+                    <li class="w50"><img src="{{$smarty.const.WEBSITE_URL}}public/img/xxioc.gif" class="xxioc"/>电子邮箱:<font><input id="email" type="text" class="input_style3"  style=" width:187px;"></font></li>
                     <li class="w100"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif" onclick="changeImg(this);"/><font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
                 </ul>
                 <span class="zh"><font color="#56280f">*为必填项，如需修改其它信息请在工作时间内致电赫基客服热线800-830-8348。</font></span>
@@ -265,26 +308,28 @@ function changeImg(target){
 </div>
 
 
+
+
 <div id='mustfill' class="windbox">
 	<div class="wind">
-    	<a href="#" class="fr"><img src="img/Close-ioc.gif"/></a>
+    	<a href="#" class="fr"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"/></a>
     	<span class="btts">
-        	<img src="img/btts.gif"/>
+        	<img src="{{$smarty.const.WEBSITE_URL}}public/img/btts.gif"/>
         </span>
   </div>
 	<div class="windbg"></div>
 </div>
-
 
 <div id='vlid' class="windbox">
 	<div class="wind">
-    	<a href="#" class="fr"><img src="img/Close-ioc.gif"/></a>
+    	<a href="#" class="fr"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"/></a>
     	<span class="Dataerror">
-        	<img src="img/Dataerror.gif" border="0"/> 
+        	<img src="{{$smarty.const.WEBSITE_URL}}public/img/Dataerror.gif" border="0"/> 
         </span>
-  </div>
+  	</div>
 	<div class="windbg"></div>
 </div>
+
 
 </body>
 </html>
