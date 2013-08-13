@@ -184,7 +184,7 @@ li.w50{
 	padding-left:8px;
 	}
 #pagecontent{
-	height:345px;
+	height:360px;
 	font-size:14px;
 	font-family:黑体,'Simhei',sans-serif;
 	color:#bca14e;
@@ -300,12 +300,19 @@ li.w50{
 	text-align:center;
 	width:100%;
 	}
-.page span font{
+
+.page span font input{
 	border:1px solid #bca14e;
 	padding:0 3px;
 	margin:0 3px;
 	font-size:12px;
+	height:12px;
+	background:none;
+	color:#bca14e;
+	width:15px;
+	text-align:center;
 	}
+
 .page a{
 	display: inline-block;
 	text-decoration:none;
@@ -467,5 +474,12 @@ li.w50{
 	color:#f00;
 	}
 	
-	
+		
+/*==================20130812==============*/	
+.xxioc{
+	margin:0 3px 0 -11px;
+	}
+.mt20{
+	margin-top:20px;
+	}	
 	

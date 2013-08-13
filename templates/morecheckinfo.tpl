@@ -161,7 +161,7 @@ $(function(){
                     <div class="page">
                     	<a href="#"><img src="{{$smarty.const.WEBSITE_URL}}public/img/backhomeioc.gif">首页</a>
                         <a href="#"><img src="{{$smarty.const.WEBSITE_URL}}public/img/previousioc.gif">上页</a>
-                        <span>第<font>1</font>页 总共 2 页 |</span>
+                      <span>第<font><input value="1" type="text"  class="zh"/></font>页 总共 2 页 |</span>
                         <a href="#">下页<img src="{{$smarty.const.WEBSITE_URL}}public/img/nextioc.gif"></a>
                         <a href="#">尾页<img src="{{$smarty.const.WEBSITE_URL}}public/img/endioc.gif"></a>
                     </div> 
