@@ -11,7 +11,8 @@ class UserLogController  extends  Controller{
 
 		$page = $_POST['page'];
 		$limit = $_POST['rows'];
-		
+
+
 		require_once SERVICE.DS.'admin'.DS.'UserLogService.class.php';
 		$userLogService = new UserLogService($this->getDB());
 
@@ -19,6 +20,10 @@ class UserLogController  extends  Controller{
 		
 		echo json_encode($results);
 
+	}
+	
+	public function exportExcel(){
+		
 	}
 
 	

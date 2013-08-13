@@ -24,8 +24,8 @@ class ParamController  extends  Controller{
 		$params = $data[0];
 		$paramService = new ParamService($this->getDB());
 		$parame = $paramService->getParamByname($params);
-
-		//print_r($parame[0]->id);
+print_r($params);
+		print_r($parame);
 
 		if(count($parame) >=1){
 			$this->smarty->assign("id",$parame[0]->id);

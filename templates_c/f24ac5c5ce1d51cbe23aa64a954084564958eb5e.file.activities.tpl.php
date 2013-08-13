@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-11 15:29:50
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-13 08:27:33
          compiled from "G:\phpserver\framework\templates\admin\activities.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1277852079d0999e286-55666554%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f24ac5c5ce1d51cbe23aa64a954084564958eb5e' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\admin\\activities.tpl',
-      1 => 1376234778,
+      1 => 1376382449,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'admin_quick_note' => 0,
     'activitis' => 0,
     'activity' => 0,
-    'user_info' => 0,
     'page_html' => 0,
   ),
   'has_nocache_code' => false,
@@ -102,8 +101,12 @@ $_smarty_tpl->tpl_vars['activity']->_loop = true;
 				    <td><?php echo $_smarty_tpl->tpl_vars['activity']->value->uptime;?>
 </td> 
 					<td>
-					<a href="user_modify.php?user_id=<?php echo $_smarty_tpl->tpl_vars['user_info']->value->id;?>
+					<a href="<?php echo @constant('WEBSITE_URL');?>
+admin/activities/updateactivity/?activi=<?php echo $_smarty_tpl->tpl_vars['activity']->value->id;?>
 " title= "修改" ><i class="icon-pencil"></i></a> 
+					<a href="<?php echo @constant('WEBSITE_URL');?>
+admin/activities/delactivity/?activi=<?php echo $_smarty_tpl->tpl_vars['activity']->value->id;?>
+" title= "删除" ><i class="icon-remove"></i></a> 
 					</td>
 					</tr>
 				<?php } ?>
