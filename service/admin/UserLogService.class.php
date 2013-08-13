@@ -7,6 +7,15 @@
  		$this->dbutil =  $dbutil;
  	}
  	
+ 	
+ 	
+ 	/**
+ 	 * 获取分页用户登陆日志
+ 	 * @param unknown $page
+ 	 * @param unknown $page_size
+ 	 * @param string $conditions
+ 	 * @return unknown
+ 	 */
  	function getUseLog($page,$page_size,$conditions=null){
  		$sql = "select * from vipuser_loginlog";
 
@@ -15,6 +24,8 @@
  		if(!empty($sqlcondition)){
  			$sql .=$sqlcondition;
  		}
+ 		
+ 		$sql .=" order by login_time desc ";
  		
  		//获取总记录数
  		$totalcount = $this->dbutil->getResultNums($sql);
@@ -27,7 +38,9 @@
  			$start = ($page-1)*$page_size;
  		}
 
- 		$sql.=" limit $start,$page_size" ;
+ 		$sql .=" limit $start,$page_size" ;
+ 		
+ 		
  		//查询结果
  		$results =  $this->dbutil->get_results($sql);
  		
@@ -72,6 +85,41 @@
  			}
  			return $sqlcondition;
  		}
+ 	}
+ 	
+ 	/**
+ 	 * 获取无分页用户登陆日志
+ 	 * @param string $conditions
+ 	 * @return unknown
+ 	 */
+ 	function getUserLogWithoutPage($conditions=null){
+ 		$sql = "select * from vipuser_loginlog";
+ 			
+ 		//拼查询条件
+ 		$sqlcondition = $this->getSqlCondition($conditions);
+ 		if(!empty($sqlcondition)){
+ 			$sql .=$sqlcondition;
+ 		}
+ 		
+ 		$sql.=" order by login_time desc";
+ 	
+ 		//查询结果
+ 		$results =  $this->dbutil->get_results($sql);
+ 		return $results;
+ 	}
+ 	
+ 	function getExportExcelData($conditions=null){
+ 		$results = $this->getUserLogWithoutPage($conditions);
+ 		$data = "cardno"."\t".'login_type'."\t".'login_time'."\n";
+ 		foreach($results as $result){
+ 			$data .=$result->cardno;
+ 			$data.="\t";
+ 			$data.=$result->login_type;
+ 			$data.="\t";
+ 			$data.=$result->login_time;
+ 			$data.="\n";
+ 		}
+ 		return $data;
  	}
  	
  }

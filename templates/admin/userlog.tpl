@@ -29,12 +29,26 @@ jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,exce
 {},
 {},
 {multipleSearch:true, multipleGroup:true});
+
+jQuery("#list2").jqGrid('navButtonAdd','#pager2',{
+                    caption:"Export", 
+                    buttonicon:"ui-icon-save",
+                    onClickButton : function () { 
+						var condition = getTimeCondition();
+                        //window.location.href = "{{$smarty.const.WEBSITE_URL}}admin/userLog/exportExcel";
+                   		window.location.href = "{{$smarty.const.WEBSITE_URL}}service/admin/exportuserlog.php?"+condition;
+                    } 
+                });
 }); 
 
 function gridReload(){
+	jQuery("#list2").jqGrid('setGridParam',{url:"{{$smarty.const.WEBSITE_URL}}admin/userLog/getUserLog/"+getTimeCondition(),page:1}).trigger("reloadGrid");
+}
+
+function getTimeCondition(){
 	var starttime = jQuery("#datepicker1").val();
 	var endtime = jQuery("#datepicker2").val();
-	jQuery("#list2").jqGrid('setGridParam',{url:"{{$smarty.const.WEBSITE_URL}}admin/userLog/getUserLog/starttime="+starttime+"&endtime="+endtime,page:1}).trigger("reloadGrid");
+	return ("starttime="+starttime+"&endtime="+endtime);
 }
 
 function cleartime(){

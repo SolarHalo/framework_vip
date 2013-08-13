@@ -1,30 +1,30 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-10 08:08:47
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-13 14:29:06
          compiled from "D:\workspace\php\framework\templates\admin\userlog.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:103855205f50f26cc70-45841936%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:8950520a423715a7f3-68565361%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'd3454d0b1e0e7ab37e4b75c702befcad4815b3ed' => 
     array (
       0 => 'D:\\workspace\\php\\framework\\templates\\admin\\userlog.tpl',
-      1 => 1376120440,
+      1 => 1376404137,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '103855205f50f26cc70-45841936',
+  'nocache_hash' => '8950520a423715a7f3-68565361',
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_520a42371db916_00996259',
   'variables' => 
   array (
     'admin_action_alert' => 0,
     'admin_quick_note' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_5205f50f40f3d8_84815307',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5205f50f40f3d8_84815307')) {function content_5205f50f40f3d8_84815307($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("admin/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_520a42371db916_00996259')) {function content_520a42371db916_00996259($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("admin/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 <?php echo $_smarty_tpl->getSubTemplate ("admin/navibar.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
@@ -55,17 +55,35 @@ admin/userLog/getUserLog',
     sortorder: "desc",
     caption:"用户日志"
 });
-jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false},{},
+jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,excel:true},{},
 {},
 {},
 {multipleSearch:true, multipleGroup:true});
+
+jQuery("#list2").jqGrid('navButtonAdd','#pager2',{
+                    caption:"Export", 
+                    buttonicon:"ui-icon-save",
+                    onClickButton : function () { 
+						var condition = getTimeCondition();
+                        //window.location.href = "<?php echo @constant('WEBSITE_URL');?>
+admin/userLog/exportExcel";
+                   		window.location.href = "<?php echo @constant('WEBSITE_URL');?>
+service/admin/exportuserlog.php?"+condition;
+                    } 
+                });
 }); 
 
 function gridReload(){
 	var starttime = jQuery("#datepicker1").val();
 	var endtime = jQuery("#datepicker2").val();
 	jQuery("#list2").jqGrid('setGridParam',{url:"<?php echo @constant('WEBSITE_URL');?>
-admin/userLog/getUserLog/starttime="+starttime+"&endtime="+endtime,page:1}).trigger("reloadGrid");
+admin/userLog/getUserLog/"+getTimeCondition(),page:1}).trigger("reloadGrid");
+}
+
+function getTimeCondition(){
+	var starttime = jQuery("#datepicker1").val();
+	var endtime = jQuery("#datepicker2").val();
+	return ("starttime="+starttime+"&endtime="+endtime);
 }
 
 function cleartime(){
