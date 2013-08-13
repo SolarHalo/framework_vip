@@ -56,7 +56,8 @@
 				    </td>
 				    <td>{{$activity->uptime}}</td> 
 					<td>
-					<a href="user_modify.php?user_id={{$user_info->id}}" title= "修改" ><i class="icon-pencil"></i></a> 
+					<a href="{{$smarty.const.WEBSITE_URL}}admin/activities/updateactivity/?activi={{$activity->id}}" title= "修改" ><i class="icon-pencil"></i></a> 
+					<a href="{{$smarty.const.WEBSITE_URL}}admin/activities/delactivity/?activi={{$activity->id}}" title= "删除" ><i class="icon-remove"></i></a> 
 					</td>
 					</tr>
 				{{/foreach}}

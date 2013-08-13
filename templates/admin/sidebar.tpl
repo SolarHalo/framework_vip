@@ -6,7 +6,7 @@
 					<li><a href=" ">会员权益更新</a></li>
 					<li><a href=" ">常见问题更新</a></li>
 					<li><a href=" ">GOOGLE统计更新</a></li>
-					<li><a href="{$smarty.const.WEBSITE_URL}}admin/activities">会员专享活动管理</a></li>
+					<li><a href="{{$smarty.const.WEBSITE_URL}}admin/activities">会员专享活动管理</a></li>
 					<li><a href="{{$smarty.const.WEBSITE_URL}}admin/userLog">用户日志</a></li>
 				</ul> 
 				
