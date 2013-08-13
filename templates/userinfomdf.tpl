@@ -263,5 +263,28 @@ function changeImg(target){
         <p><span class="en">Copyright @ 20<b>11</b> Trendy International Group All Rights Reserved</span><br>
         <a href="http://www.miibeian.gov.cn/" target="_blank"><span class="zh">备案号：粤</span><span class="en">ICP<b>11</b>0<b>1</b>0295</span></a></p>
 </div>
+
+
+<div id='mustfill' class="windbox">
+	<div class="wind">
+    	<a href="#" class="fr"><img src="img/Close-ioc.gif"/></a>
+    	<span class="btts">
+        	<img src="img/btts.gif"/>
+        </span>
+  </div>
+	<div class="windbg"></div>
+</div>
+
+
+<div id='vlid' class="windbox">
+	<div class="wind">
+    	<a href="#" class="fr"><img src="img/Close-ioc.gif"/></a>
+    	<span class="Dataerror">
+        	<img src="img/Dataerror.gif" border="0"/> 
+        </span>
+  </div>
+	<div class="windbg"></div>
+</div>
+
 </body>
 </html>
