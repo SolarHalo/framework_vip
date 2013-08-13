@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-09 01:21:48
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-12 15:01:21
          compiled from "G:\phpserver\framework\templates\login.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:39135204442c0cd395-08651705%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f96113354c01af86db5c099e676b79f33d29de3d' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\login.tpl',
-      1 => 1375947459,
+      1 => 1376318110,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_5204442c41b459_82140119',
   'variables' => 
   array (
     'loginErrorWin' => 0,
     '_POST' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_5204442c41b459_82140119',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5204442c41b459_82140119')) {function content_5204442c41b459_82140119($_smarty_tpl) {?><!doctype html>
 <html>
@@ -165,7 +165,8 @@ public/img/logintextiocn-yzm.gif"/></td>
                     </td> 
                 </tr>
             </table>
-            <input type="button" class="input_style_but" style="margin-left:27px;" onclick="javascript:document.loginForm.submit()"> 
+            <input type="button" class="input_style_but" style="margin-left:27px;"
+             onclick="javascript:document.loginForm.submit()"> 
             </form>
         </div>
     </div>

@@ -10,31 +10,42 @@ $(function () {
    	
 	datatype: "json",
 	mtype: 'POST',
-   	colNames:['id','cardno', 'login_type', 'login_time'],
+   	colNames:['id','cardno',  'login_time'],
    	colModel:[
    		{name:'id',index:'id', width:100},
    		{name:'cardno',index:'cardno', width:150},
-   		{name:'login_type',index:'login_type', width:100},
    		{name:'login_time',index:'login_time', width:200, align:"right"}
    	],
    	rowNum:10,
    	rowList:[10,20,30],
    	pager: '#pager2',
-   	sortname: 'id',
     viewrecords: true,
-    sortorder: "desc",
     caption:"用户日志"
 });
 jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,excel:true},{},
 {},
 {},
 {multipleSearch:true, multipleGroup:true});
+
+jQuery("#list2").jqGrid('navButtonAdd','#pager2',{
+                    caption:"Export", 
+                    buttonicon:"ui-icon-save",
+                    onClickButton : function () { 
+						var condition = getTimeCondition();
+                        //window.location.href = "{{$smarty.const.WEBSITE_URL}}admin/userLog/exportExcel";
+                   		window.location.href = "{{$smarty.const.WEBSITE_URL}}service/admin/exportuserlog.php?"+condition;
+                    } 
+                });
 }); 
 
 function gridReload(){
+	jQuery("#list2").jqGrid('setGridParam',{url:"{{$smarty.const.WEBSITE_URL}}admin/userLog/getUserLog/"+getTimeCondition(),page:1}).trigger("reloadGrid");
+}
+
+function getTimeCondition(){
 	var starttime = jQuery("#datepicker1").val();
 	var endtime = jQuery("#datepicker2").val();
-	jQuery("#list2").jqGrid('setGridParam',{url:"{{$smarty.const.WEBSITE_URL}}admin/userLog/getUserLog/starttime="+starttime+"&endtime="+endtime,page:1}).trigger("reloadGrid");
+	return ("starttime="+starttime+"&endtime="+endtime);
 }
 
 function cleartime(){

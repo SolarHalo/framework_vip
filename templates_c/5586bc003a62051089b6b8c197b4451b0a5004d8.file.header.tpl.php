@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-11 00:19:04
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-12 23:10:25
          compiled from "D:\PHPWeb\framework_vip\templates\admin\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:8385520667f8397d84-16252315%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5586bc003a62051089b6b8c197b4451b0a5004d8' => 
     array (
       0 => 'D:\\PHPWeb\\framework_vip\\templates\\admin\\header.tpl',
-      1 => 1376150742,
+      1 => 1376314356,
       2 => 'file',
     ),
   ),
@@ -15,18 +15,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_520667f83e5f96_32100695',
   'variables' => 
   array (
     'page_title' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_520667f83e5f96_32100695',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_520667f83e5f96_32100695')) {function content_520667f83e5f96_32100695($_smarty_tpl) {?><!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8">
+   <meta charset="utf-8">
     <title><?php echo $_smarty_tpl->tpl_vars['page_title']->value;?>
  - <?php echo @constant('ADMIN_TITLE');?>
  - </title>

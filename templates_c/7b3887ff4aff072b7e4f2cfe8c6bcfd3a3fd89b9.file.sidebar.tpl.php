@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-12 10:25:26
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-13 08:50:15
          compiled from "G:\phpserver\framework\templates\admin\sidebar.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:311805205fdf2d53da6-28802027%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7b3887ff4aff072b7e4f2cfe8c6bcfd3a3fd89b9' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\admin\\sidebar.tpl',
-      1 => 1376303119,
+      1 => 1376383812,
       2 => 'file',
     ),
   ),
@@ -27,7 +27,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<li><a href=" ">会员权益更新</a></li>
 					<li><a href=" ">常见问题更新</a></li>
 					<li><a href=" ">GOOGLE统计更新</a></li>
-					<li><a href="{$smarty.const.WEBSITE_URL}}admin/activities">会员专享活动管理</a></li>
+					<li><a href="<?php echo @constant('WEBSITE_URL');?>
+admin/activities">会员专享活动管理</a></li>
 					<li><a href="<?php echo @constant('WEBSITE_URL');?>
 admin/userLog">用户日志</a></li>
 				</ul> 
