@@ -2,6 +2,7 @@
 define('CORE',PROJECT.DS.'framework'.DS.'core');
 define('CONTROLLER',PROJECT.DS.'controller');
 define('COMMON',PROJECT.DS.'common');
+define('LIB',PROJECT.DS.'framework'.DS.'lib');
 define('SERVICE',PROJECT.DS.'service');
 define('SMARTY_DIR', PROJECT.'/framework/lib/Smarty-3.1.13/libs/');
 define('NUSOAP_DIR',PROJECT.'/framework/lib/nusoap-0.9.5/lib/');
