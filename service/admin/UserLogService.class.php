@@ -110,11 +110,9 @@
  	
  	function getExportExcelData($conditions=null){
  		$results = $this->getUserLogWithoutPage($conditions);
- 		$data = "cardno"."\t".'login_type'."\t".'login_time'."\n";
+ 		$data = "cardno"."\t".'login_time'."\n";
  		foreach($results as $result){
  			$data .=$result->cardno;
- 			$data.="\t";
- 			$data.=$result->login_type;
  			$data.="\t";
  			$data.=$result->login_time;
  			$data.="\n";

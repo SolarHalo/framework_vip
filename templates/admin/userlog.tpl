@@ -10,19 +10,16 @@ $(function () {
    	
 	datatype: "json",
 	mtype: 'POST',
-   	colNames:['id','cardno', 'login_type', 'login_time'],
+   	colNames:['id','cardno',  'login_time'],
    	colModel:[
    		{name:'id',index:'id', width:100},
    		{name:'cardno',index:'cardno', width:150},
-   		{name:'login_type',index:'login_type', width:100},
    		{name:'login_time',index:'login_time', width:200, align:"right"}
    	],
    	rowNum:10,
    	rowList:[10,20,30],
    	pager: '#pager2',
-   	sortname: 'id',
     viewrecords: true,
-    sortorder: "desc",
     caption:"用户日志"
 });
 jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,excel:true},{},

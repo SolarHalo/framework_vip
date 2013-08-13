@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-13 14:29:06
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-13 14:59:55
          compiled from "D:\workspace\php\framework\templates\admin\userlog.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:8950520a423715a7f3-68565361%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd3454d0b1e0e7ab37e4b75c702befcad4815b3ed' => 
     array (
       0 => 'D:\\workspace\\php\\framework\\templates\\admin\\userlog.tpl',
-      1 => 1376404137,
+      1 => 1376405937,
       2 => 'file',
     ),
   ),
@@ -40,19 +40,16 @@ admin/userLog/getUserLog',
    	
 	datatype: "json",
 	mtype: 'POST',
-   	colNames:['id','cardno', 'login_type', 'login_time'],
+   	colNames:['id','cardno',  'login_time'],
    	colModel:[
    		{name:'id',index:'id', width:100},
    		{name:'cardno',index:'cardno', width:150},
-   		{name:'login_type',index:'login_type', width:100},
    		{name:'login_time',index:'login_time', width:200, align:"right"}
    	],
    	rowNum:10,
    	rowList:[10,20,30],
    	pager: '#pager2',
-   	sortname: 'id',
     viewrecords: true,
-    sortorder: "desc",
     caption:"用户日志"
 });
 jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,excel:true},{},
@@ -74,8 +71,6 @@ service/admin/exportuserlog.php?"+condition;
 }); 
 
 function gridReload(){
-	var starttime = jQuery("#datepicker1").val();
-	var endtime = jQuery("#datepicker2").val();
 	jQuery("#list2").jqGrid('setGridParam',{url:"<?php echo @constant('WEBSITE_URL');?>
 admin/userLog/getUserLog/"+getTimeCondition(),page:1}).trigger("reloadGrid");
 }
