@@ -68,13 +68,19 @@ class LoginController extends  Controller{
 			  }else{ 
 			  	  //密码正确，还要判断是不是第一次登录，如果第一次登录转向修改密码，如果非第一次登录转向信息
 			 	   $_SESSION['loginuser'] = $user;  
+			 	   $vipid = $user->cardid;
+			 	   require_once DRIVER.DS.'WebServiceInit.class.php';
+			 	   $webServiceInit = new WebServiceInit();
+			 	   $client = $webServiceInit->getProxy();
+			 	   require_once SERVICE.DS.'InterfaceService.class.php';
+			 	   $interfaceService = new InterfaceService($client);
+			 	   $vipInfo = $interfaceService->getVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipid);
 			 	   $userSerivce->recoredLoginLog($user);
 			       //正常登录这里还要判断 这个用户是否是第一次登录 
 		     	        if(empty($log)){
 		     	        	$this->smarty->assign("loginErrorWin",$this->loginErrorJump(WEBSITE_URL."usermanager/mdfpasswd")); 
-				 		
 		     	        }else{
-		     	        	 	$this->smarty->assign("loginErrorWin",$this->loginErrForgetpassword1()); 
+	     	        	 	$this->smarty->assign("loginErrorWin",$this->loginErrForgetpassword1()); 
 		     	        }
 			  }
 		 } 

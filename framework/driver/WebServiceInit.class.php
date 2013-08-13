@@ -4,7 +4,7 @@ require(NUSOAP_DIR.'nusoap.php');
 class WebServiceInit {
 
     private $url;
- 	
+
  	/**
  	 * 统一获取webservice连接入口
 	 * 可以根据需要拓展获取webservice连接的方法
