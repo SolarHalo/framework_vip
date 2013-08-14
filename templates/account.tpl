@@ -68,19 +68,20 @@ $(function(){
             </div> 
             <div class="pagecontent scroll-pane" id="pagecontent">
             	<ul class="userinfolist zh">
-                	<li class="w100">会员卡号:<font class="en">888888888888</font></li>
-                    <li class="w50">姓&nbsp;&nbsp;&nbsp;&nbsp;名:<font>汪涵</font></li>
+                	<li class="w100">会员卡号:<font class="en">{{$smarty.session.vipInfoArr["IDCard"]}}</font></li>
+                    <li class="w50">姓&nbsp;&nbsp;&nbsp;&nbsp;名:<font>{{$smarty.session.vipInfoArr["name"]}}</font></li>
                     <li class="w50">身份证号:<font class="en"></font></li>
-                    <li class="w50">性&nbsp;&nbsp;&nbsp;&nbsp;别:<font>男</font></li>
-                    <li class="w50">手机号码:<font class="en">13955532509</font></li>
-                    <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font>1974年05月24日</font></li>
-                    <li class="w50">电子邮箱:<font></font></li>
+                    <li class="w50">性&nbsp;&nbsp;&nbsp;&nbsp;别:<font>{{$smarty.session.vipInfoArr["sex"]}}</font></li>
+                    <li class="w50">手机号码:<font class="en">{{$smarty.session.vipInfoArr["mobilePhones"]}}</font></li>
+                    <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font>{{$smarty.session.vipInfoArr["birthday"]}}</font></li>
+                    <li class="w50">电子邮箱:<font>{{$smarty.session.vipInfoArr["eMail"]}}</font></li>
                     <li class="w100"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/><font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
                 </ul>
                 <div class="Project">
                 	<span>1.过去6个月内您经常购买哪些品牌？（可多选）</span>
                     <span>女士选项</span>
                     <span>
+                    	
                     	<font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>ochirly </font>
                     	<font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>Five Plus </font>
                         <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>MiuMiu </font>

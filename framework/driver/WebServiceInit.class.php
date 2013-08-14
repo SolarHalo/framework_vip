@@ -29,6 +29,9 @@ class WebServiceInit {
  	 */
 	function getProxy(){  
 		$client = new soapclient($this->url, true);
+		$client->soap_defencoding = 'UTF-8'; 
+		$client->xml_encoding = 'UTF-8';
+		$client->decode_utf8 = false;
     	return $proxy=$client->getProxy();
  	}
 }
