@@ -21,7 +21,7 @@ class InterfaceService{
 	 * @param unknown_type $vipid
 	 */
 	function getVipInfo($userName, $passWord, $vipid){
-		$proxy = $this->$webService->getProxy();
+		$proxy = $this->webService->getProxy();
 		$arrayParam = array('in0'=>$userName, 'in1'=>$passWord, 'in2'=>$vipid);
 		$arryResult = $proxy->getVipInfo($arrayParam);
 		return $arryResult;
@@ -36,7 +36,7 @@ class InterfaceService{
 	 * @return 0 
 	 */
 	function updateVipInfo($userName, $passWord, $vipid, $xmlVipInfo){
-		$proxy = $this->$webService->getProxy();
+		$proxy = $this->webService->getProxy();
 		$arrayParam = array('in0'=>$userName, 'in1'=>$passWord, 
 			'in2'=>$vipid, 'in3'=>$xmlVipInfo);
 		$arryResult = $proxy->updateVipInfo($arrayParam);
@@ -55,7 +55,7 @@ class InterfaceService{
 	 * @param unknown_type $checkDate_end 结束日期
 	 */
 	function getVipCheck($userName, $passWord, $vipid, $showCount, $currentPage, 			  	 $chechDate_start, $checkDate_end){
-		$proxy = $this->$webService->getProxy();
+		$proxy = $this->webService->getProxy();
 		$arrayParam = array('in0'=>$userName, 'in1'=>$passWord, 
 			'in2'=>$vipid, 'in3'=>$showCount, 'in4'=>$currentPage, 
 			'in5'=>$chechDate_start, 'in6'=>$checkDate_end);
@@ -71,7 +71,7 @@ class InterfaceService{
 	 * @return xmlVipInfo
 	 */
 	function SynchroByVipInfo($userName, $passWord){
-		$proxy = $this->$webService->getProxy();
+		$proxy = $this->webService->getProxy();
 		$arrayParam = array('in0'=>$userName, 'in1'=>$passWord);
 		$arryResult = $proxy->SynchroByVipInfo($arrayParam);
 		return $arryResult;
@@ -84,7 +84,7 @@ class InterfaceService{
 	 * @param unknown_type $batched
 	 */
 	function returnInfo($userName, $passWord, $batched){
-		$proxy = $this->$webService->getProxy();
+		$proxy = $this->webService->getProxy();
 		$arrayParam = array('in0'=>$userName, 'in1'=>$passWord, 'in2'=>$batched);
 		$arryResult = $proxy->returnInfo($arrayParam);
 		return $arryResult;
