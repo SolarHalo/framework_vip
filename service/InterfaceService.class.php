@@ -21,10 +21,15 @@ class InterfaceService{
 	 * @param unknown_type $vipid
 	 */
 	function getVipInfo($userName, $passWord, $vipid){
+		$arrayData;
 		$proxy = $this->webService->getProxy();
 		$arrayParam = array('in0'=>$userName, 'in1'=>$passWord, 'in2'=>$vipid);
 		$arryResult = $proxy->getVipInfo($arrayParam);
-		return $arryResult;
+		if ($arryResult['out']=='-1'){
+			$arrayData = '-1';
+		}
+		$arrayData = $this->xmlToArray($arryResult['out']);
+		return $arrayData;
 	}
    /**
 	 * 
@@ -123,7 +128,7 @@ class InterfaceService{
 		$var_data= array();//封装data 数据格式 feilds=>values
 
 		foreach($vipItemArray as $k=>$v){
- 			$data = getData($v);
+ 			$data = $this->getData($v);
 			$var_data[$k] = $data;
 		}
 		foreach($var_data as $k=>$v){ //循环insert数据
@@ -149,7 +154,7 @@ class InterfaceService{
         	}else{ 
             	foreach ($node->childNodes as $childNode){ 
                 	if ($childNode->nodeType != XML_TEXT_NODE){ 
-                    	$array[$childNode->nodeName][] = getArray($childNode); 
+                    	$array[$childNode->nodeName][] = $this->getArray($childNode); 
                 	} 
             	} 
         	} 
@@ -158,6 +163,7 @@ class InterfaceService{
 	} 
  	/**
 	 * 封装data 数据格式 
+	 * 同步时候调用
 	 * @param unknown_type $node
 	 */
 	function getData($vipItemArrItem){ 
@@ -178,6 +184,24 @@ class InterfaceService{
 				}
 			}
  		}
+		return $data;
+	}
+ 	/**
+	 * 封装Array data 数据格式  
+	 * 前台展示    如：array("name"="","email"=>"")
+	 * @param unknown_type $node
+	 */
+	function xmlToArray($xml){
+		$data = array();
+		$doc = new DOMDocument();
+		$doc->loadXML($xml);
+ 		$documentElement  = $doc->documentElement;
+		$resultArray = $this->getArray($documentElement);
+		foreach ($resultArray as $k=>$v) {
+			foreach ($v as $ks=>$vs){
+				$data[$k] = $vs['#text'];
+			}
+		}
 		return $data;
 	}
 }

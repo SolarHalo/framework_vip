@@ -74,7 +74,9 @@ class LoginController extends  Controller{
 			 	   $client = $webServiceInit->getProxy();
 			 	   require_once SERVICE.DS.'InterfaceService.class.php';
 			 	   $interfaceService = new InterfaceService($client);
-			 	   $vipInfo = $interfaceService->getVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipid);
+			 	   global $CONFIG;
+			 	   $vipInfoArr = $interfaceService->getVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipid);
+			 	   $_SESSION['vipInfoArr'] = $vipInfoArr;  
 			 	   $userSerivce->recoredLoginLog($user);
 			       //正常登录这里还要判断 这个用户是否是第一次登录 
 		     	        if(empty($log)){
