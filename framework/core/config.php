@@ -1,7 +1,7 @@
 <?php 
 
-//error_reporting(E_ERROR | E_WARNING | E_PARSE);
-error_reporting(E_ALL & ~E_STRICT & ~E_DEPRECATED);
+error_reporting(E_ERROR | E_PARSE);
+//error_reporting(E_ALL & ~E_STRICT & ~E_DEPRECATED);
 ini_set("display_errors", 0);
 //define('SMARTY_DIR', PROJECT.'/framework/lib/Smarty-3.1.13/libs/');
 //  
@@ -17,8 +17,8 @@ ini_set('include_path', ini_get('include_path').PATH_SEPARATOR.SMARTY_DIR);
 $CONFIG['DB']= array(
     'db_host'           =>      '127.0.0.1',
     'db_user'           =>      'root',
-    'db_password'       =>      '',
-    'db_database'       =>      'test1',
+    'db_password'       =>      'root',
+    'db_database'       =>      'test',
     'db_table_prefix'   =>      'app_',
     'db_charset'        =>      'urf8'   
 );

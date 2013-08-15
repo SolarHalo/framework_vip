@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-13 20:49:22
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-14 00:02:23
          compiled from "D:\PHPWeb\framework_vip\templates\admin\activities.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5063520a2b52da75f8-45380715%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '41d2cca5e6d940b6fc3025cb319568600360b328' => 
     array (
       0 => 'D:\\PHPWeb\\framework_vip\\templates\\admin\\activities.tpl',
-      1 => 1376314356,
+      1 => 1376409126,
       2 => 'file',
     ),
   ),
@@ -15,18 +15,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_520a2b52e213f9_63966416',
   'variables' => 
   array (
     'admin_action_alert' => 0,
     'admin_quick_note' => 0,
     'activitis' => 0,
     'activity' => 0,
-    'user_info' => 0,
     'page_html' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_520a2b52e213f9_63966416',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_520a2b52e213f9_63966416')) {function content_520a2b52e213f9_63966416($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("admin/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
@@ -102,8 +101,12 @@ $_smarty_tpl->tpl_vars['activity']->_loop = true;
 				    <td><?php echo $_smarty_tpl->tpl_vars['activity']->value->uptime;?>
 </td> 
 					<td>
-					<a href="user_modify.php?user_id=<?php echo $_smarty_tpl->tpl_vars['user_info']->value->id;?>
+					<a href="<?php echo @constant('WEBSITE_URL');?>
+admin/activities/updateactivity/?activi=<?php echo $_smarty_tpl->tpl_vars['activity']->value->id;?>
 " title= "修改" ><i class="icon-pencil"></i></a> 
+					<a href="<?php echo @constant('WEBSITE_URL');?>
+admin/activities/delactivity/?activi=<?php echo $_smarty_tpl->tpl_vars['activity']->value->id;?>
+" title= "删除" ><i class="icon-remove"></i></a> 
 					</td>
 					</tr>
 				<?php } ?>

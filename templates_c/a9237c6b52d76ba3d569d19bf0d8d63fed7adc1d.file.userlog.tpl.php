@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-11 00:19:12
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-15 21:35:12
          compiled from "D:\PHPWeb\framework_vip\templates\admin\userlog.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1260152066800572502-43564560%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a9237c6b52d76ba3d569d19bf0d8d63fed7adc1d' => 
     array (
       0 => 'D:\\PHPWeb\\framework_vip\\templates\\admin\\userlog.tpl',
-      1 => 1376150742,
+      1 => 1376409126,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_520668006e1863_96982718',
   'variables' => 
   array (
     'admin_action_alert' => 0,
     'admin_quick_note' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_520668006e1863_96982718',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_520668006e1863_96982718')) {function content_520668006e1863_96982718($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("admin/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
@@ -40,32 +40,45 @@ admin/userLog/getUserLog',
    	
 	datatype: "json",
 	mtype: 'POST',
-   	colNames:['id','cardno', 'login_type', 'login_time'],
+   	colNames:['id','cardno',  'login_time'],
    	colModel:[
    		{name:'id',index:'id', width:100},
    		{name:'cardno',index:'cardno', width:150},
-   		{name:'login_type',index:'login_type', width:100},
    		{name:'login_time',index:'login_time', width:200, align:"right"}
    	],
    	rowNum:10,
    	rowList:[10,20,30],
    	pager: '#pager2',
-   	sortname: 'id',
     viewrecords: true,
-    sortorder: "desc",
     caption:"用户日志"
 });
 jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,excel:true},{},
 {},
 {},
 {multipleSearch:true, multipleGroup:true});
+
+jQuery("#list2").jqGrid('navButtonAdd','#pager2',{
+                    caption:"Export", 
+                    buttonicon:"ui-icon-save",
+                    onClickButton : function () { 
+						var condition = getTimeCondition();
+                        //window.location.href = "<?php echo @constant('WEBSITE_URL');?>
+admin/userLog/exportExcel";
+                   		window.location.href = "<?php echo @constant('WEBSITE_URL');?>
+service/admin/exportuserlog.php?"+condition;
+                    } 
+                });
 }); 
 
 function gridReload(){
+	jQuery("#list2").jqGrid('setGridParam',{url:"<?php echo @constant('WEBSITE_URL');?>
+admin/userLog/getUserLog/"+getTimeCondition(),page:1}).trigger("reloadGrid");
+}
+
+function getTimeCondition(){
 	var starttime = jQuery("#datepicker1").val();
 	var endtime = jQuery("#datepicker2").val();
-	jQuery("#list2").jqGrid('setGridParam',{url:"<?php echo @constant('WEBSITE_URL');?>
-admin/userLog/getUserLog/starttime="+starttime+"&endtime="+endtime,page:1}).trigger("reloadGrid");
+	return ("starttime="+starttime+"&endtime="+endtime);
 }
 
 function cleartime(){

@@ -8,9 +8,6 @@ class ParamController  extends  Controller{
 		$params = 'faq';
 		$paramService = new ParamService($this->getDB());
 		$parame = $paramService->getParamByname($params);
-
-		//print_r($parame[0]->id);
-
 		if(count($parame) >=1){
 			$this->smarty->assign("id",$parame[0]->id);
 			$this->smarty->assign("name",$parame[0]->paramname);
@@ -24,9 +21,6 @@ class ParamController  extends  Controller{
 		$params = $data[0];
 		$paramService = new ParamService($this->getDB());
 		$parame = $paramService->getParamByname($params);
-print_r($params);
-		print_r($parame);
-
 		if(count($parame) >=1){
 			$this->smarty->assign("id",$parame[0]->id);
 			$this->smarty->assign("name",$parame[0]->paramname);
@@ -49,7 +43,7 @@ print_r($params);
 		$paramService->update($id,$paramname,$paramvalue);
 		$arr = array();
 		array_push($arr,$paramname);
-		 		$this->load($arr);
+		$this->load($arr);
 //		$this->smarty->assign("admin_action_alert",$this->modifySucess());
 //		$this->smarty->assign("_POST",$_POST);
 //		$this->smarty->display("admin/param.tpl");
