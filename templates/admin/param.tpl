@@ -24,16 +24,14 @@
 			<span>操作成功</span>
 		</div>
  
-{{$admin_action_alert}}
-{{$admin_quick_note}}
     
 <div class="well">
 
- 
+ <!--
     <ul class="nav nav-tabs">
       <li class="active"><a href="#home" data-toggle="tab">{{$name}}</a></li>
     </ul>	
-	
+	-->
 	<div id="myTabContent" class="tab-content">
 		  <div class="tab-pane active in" id="home">
 
