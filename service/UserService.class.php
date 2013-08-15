@@ -47,7 +47,8 @@ class UserService{
 	 * @param unknown_type $cardno
 	 */
 	function getOneLoginLog($cardno){
-		return $this->dbutil->get_results("select * from vipuser_loginlog where cardno='$cardno' limit 1");
+		$logs = $this->dbutil->get_results("select * from vipuser_loginlog where cardno='$cardno' limit 1");
+		return $logs[0];
 	}
 	
 	

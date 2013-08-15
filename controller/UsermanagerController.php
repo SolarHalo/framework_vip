@@ -4,10 +4,37 @@ require_once SERVICE.DS.'UserService.class.php';
 class UsermanagerController extends  Controller{
 	
 	public function index(){ 
-		 $smaryt = $this->getSmarty(); 
+		 $smaryt = $this->getSmarty();  
+		 //把所有的女士品牌抽出
+		 $ladaybrands = array("ochirly","Five Plus","MiuMiu","MARC JACOBS","MICHAEL KORS","initial","Mo&Co","DAZZLE","I.T","Vero Moda","ZARA","H&M","其它/Others");
+		 //在session中，取到现在选中的品牌：格式是 品牌1,品牌2...
+		   $vipInfoArr = $_SESSION['vipInfoArr'] ;  
+		   $brandStr = $vipInfoArr["brand"];
+		   $ladaybrandsStr;
+		   
+		 foreach($ladaybrands as $brandtemp){ 
+			  if(strpos($brandStr,$brandtemp)=== false){
+			  	$ladaybrandsStr.=$this->returnBrandStr(0,$brandtemp);
+			  }else{
+			  	$ladaybrandsStr.=$this->returnBrandStr(1,$brandtemp); 
+			  }
+		 } 
+		 $this->smarty->assign("ladaybrand",$ladaybrandsStr); 
+		 
 		 $this->smarty->display("account.tpl"); 
 		  
 	}
+	
+	public function returnBrandStr($selected,$brand){
+		//没有选中状态
+		if($selected == 0){
+			return "<font class='en'><img src='".WEBSITE_URL."public/img/n-iocn.gif'/>$brand </font>";
+		}else{//选 中状态 
+			return "<font class='en'><img src='".WEBSITE_URL."public/img/y-iocn.gif'/>$brand </font>";
+		}
+		
+	}
+	
 	public function mdfpasswd(){ 
 		 $smaryt = $this->getSmarty();
 		 //如果不是post方式的提交，直接转向

@@ -68,9 +68,9 @@ $(function(){
             </div> 
             <div class="pagecontent scroll-pane" id="pagecontent">
             	<ul class="userinfolist zh">
-                	<li class="w100">会员卡号:<font class="en">{{$smarty.session.vipInfoArr["IDCard"]}}</font></li>
+                	<li class="w100">会员卡号:<font class="en">{{$smarty.session.vipInfoArr["vip_no"]}}</font></li>
                     <li class="w50">姓&nbsp;&nbsp;&nbsp;&nbsp;名:<font>{{$smarty.session.vipInfoArr["name"]}}</font></li>
-                    <li class="w50">身份证号:<font class="en"></font></li>
+                    <li class="w50">身份证号:<font class="en">{{$smarty.session.vipInfoArr["IDCard"]}}</font></li>
                     <li class="w50">性&nbsp;&nbsp;&nbsp;&nbsp;别:<font>{{$smarty.session.vipInfoArr["sex"]}}</font></li>
                     <li class="w50">手机号码:<font class="en">{{$smarty.session.vipInfoArr["mobilePhones"]}}</font></li>
                     <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font>{{$smarty.session.vipInfoArr["birthday"]}}</font></li>
@@ -80,21 +80,8 @@ $(function(){
                 <div class="Project">
                 	<span>1.过去6个月内您经常购买哪些品牌？（可多选）</span>
                     <span>女士选项</span>
-                    <span>
-                    	
-                    	<font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>ochirly </font>
-                    	<font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>Five Plus </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>MiuMiu </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>MARC JACOBS </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>MICHAEL KORS </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/y-iocn.gif"/>initial </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>Mo&Co  </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>DAZZLE </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/y-iocn.gif"/>I.T </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>Vero Moda </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>ZARA </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>H&M </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>其它/Others</font>
+                    <span> 
+                    	{{$ladaybrand}}
                     </span>
                     <span>男士选项</span>
                     <span class="mb25">

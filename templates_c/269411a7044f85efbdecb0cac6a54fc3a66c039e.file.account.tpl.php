@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-13 03:35:37
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-15 07:41:57
          compiled from "G:\phpserver\framework\templates\account.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:72445209a989d1be69-35088723%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '269411a7044f85efbdecb0cac6a54fc3a66c039e' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\account.tpl',
-      1 => 1375721129,
+      1 => 1376551397,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.13',
   'unifunc' => 'content_5209a98a48f7f0_95659172',
+  'variables' => 
+  array (
+    'ladaybrand' => 0,
+  ),
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5209a98a48f7f0_95659172')) {function content_5209a98a48f7f0_95659172($_smarty_tpl) {?><!doctype html>
 <html>
@@ -104,46 +108,29 @@ usermanager/checkinfos"><!--消费记录-->
             </div> 
             <div class="pagecontent scroll-pane" id="pagecontent">
             	<ul class="userinfolist zh">
-                	<li class="w100">会员卡号:<font class="en">888888888888</font></li>
-                    <li class="w50">姓&nbsp;&nbsp;&nbsp;&nbsp;名:<font>汪涵</font></li>
-                    <li class="w50">身份证号:<font class="en"></font></li>
-                    <li class="w50">性&nbsp;&nbsp;&nbsp;&nbsp;别:<font>男</font></li>
-                    <li class="w50">手机号码:<font class="en">13955532509</font></li>
-                    <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font>1974年05月24日</font></li>
-                    <li class="w50">电子邮箱:<font></font></li>
+                	<li class="w100">会员卡号:<font class="en"><?php echo $_SESSION['vipInfoArr']["vip_no"];?>
+</font></li>
+                    <li class="w50">姓&nbsp;&nbsp;&nbsp;&nbsp;名:<font><?php echo $_SESSION['vipInfoArr']["name"];?>
+</font></li>
+                    <li class="w50">身份证号:<font class="en"><?php echo $_SESSION['vipInfoArr']["IDCard"];?>
+</font></li>
+                    <li class="w50">性&nbsp;&nbsp;&nbsp;&nbsp;别:<font><?php echo $_SESSION['vipInfoArr']["sex"];?>
+</font></li>
+                    <li class="w50">手机号码:<font class="en"><?php echo $_SESSION['vipInfoArr']["mobilePhones"];?>
+</font></li>
+                    <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font><?php echo $_SESSION['vipInfoArr']["birthday"];?>
+</font></li>
+                    <li class="w50">电子邮箱:<font><?php echo $_SESSION['vipInfoArr']["eMail"];?>
+</font></li>
                     <li class="w100"><img src="<?php echo @constant('WEBSITE_URL');?>
 public/img/n-iocn.gif"/><font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
                 </ul>
                 <div class="Project">
                 	<span>1.过去6个月内您经常购买哪些品牌？（可多选）</span>
                     <span>女士选项</span>
-                    <span>
-                    	<font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>ochirly </font>
-                    	<font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>Five Plus </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>MiuMiu </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>MARC JACOBS </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>MICHAEL KORS </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/y-iocn.gif"/>initial </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>Mo&Co  </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>DAZZLE </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/y-iocn.gif"/>I.T </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>Vero Moda </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>ZARA </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>H&M </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>其它/Others</font>
+                    <span> 
+                    	<?php echo $_smarty_tpl->tpl_vars['ladaybrand']->value;?>
+
                     </span>
                     <span>男士选项</span>
                     <span class="mb25">
