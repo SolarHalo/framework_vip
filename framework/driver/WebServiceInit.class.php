@@ -4,7 +4,7 @@ require(NUSOAP_DIR.'nusoap.php');
 class WebServiceInit {
 
     private $url;
- 	
+
  	/**
  	 * 统一获取webservice连接入口
 	 * 可以根据需要拓展获取webservice连接的方法
@@ -29,6 +29,9 @@ class WebServiceInit {
  	 */
 	function getProxy(){  
 		$client = new soapclient($this->url, true);
+		$client->soap_defencoding = 'UTF-8'; 
+		$client->xml_encoding = 'UTF-8';
+		$client->decode_utf8 = false;
     	return $proxy=$client->getProxy();
  	}
 }

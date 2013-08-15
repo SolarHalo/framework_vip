@@ -21,10 +21,15 @@ class InterfaceService{
 	 * @param unknown_type $vipid
 	 */
 	function getVipInfo($userName, $passWord, $vipid){
-		$proxy = $this->$webService->getProxy();
+		$arrayData;
+		$proxy = $this->webService->getProxy();
 		$arrayParam = array('in0'=>$userName, 'in1'=>$passWord, 'in2'=>$vipid);
 		$arryResult = $proxy->getVipInfo($arrayParam);
-		return $arryResult;
+		if ($arryResult['out']=='-1'){
+			$arrayData = '-1';
+		}
+		$arrayData = $this->xmlToArray($arryResult['out']);
+		return $arrayData;
 	}
    /**
 	 * 
@@ -36,7 +41,7 @@ class InterfaceService{
 	 * @return 0 
 	 */
 	function updateVipInfo($userName, $passWord, $vipid, $xmlVipInfo){
-		$proxy = $this->$webService->getProxy();
+		$proxy = $this->webService->getProxy();
 		$arrayParam = array('in0'=>$userName, 'in1'=>$passWord, 
 			'in2'=>$vipid, 'in3'=>$xmlVipInfo);
 		$arryResult = $proxy->updateVipInfo($arrayParam);
@@ -55,7 +60,7 @@ class InterfaceService{
 	 * @param unknown_type $checkDate_end 结束日期
 	 */
 	function getVipCheck($userName, $passWord, $vipid, $showCount, $currentPage, 			  	 $chechDate_start, $checkDate_end){
-		$proxy = $this->$webService->getProxy();
+		$proxy = $this->webService->getProxy();
 		$arrayParam = array('in0'=>$userName, 'in1'=>$passWord, 
 			'in2'=>$vipid, 'in3'=>$showCount, 'in4'=>$currentPage, 
 			'in5'=>$chechDate_start, 'in6'=>$checkDate_end);
@@ -71,7 +76,7 @@ class InterfaceService{
 	 * @return xmlVipInfo
 	 */
 	function SynchroByVipInfo($userName, $passWord){
-		$proxy = $this->$webService->getProxy();
+		$proxy = $this->webService->getProxy();
 		$arrayParam = array('in0'=>$userName, 'in1'=>$passWord);
 		$arryResult = $proxy->SynchroByVipInfo($arrayParam);
 		return $arryResult;
@@ -84,7 +89,7 @@ class InterfaceService{
 	 * @param unknown_type $batched
 	 */
 	function returnInfo($userName, $passWord, $batched){
-		$proxy = $this->$webService->getProxy();
+		$proxy = $this->webService->getProxy();
 		$arrayParam = array('in0'=>$userName, 'in1'=>$passWord, 'in2'=>$batched);
 		$arryResult = $proxy->returnInfo($arrayParam);
 		return $arryResult;
@@ -123,7 +128,7 @@ class InterfaceService{
 		$var_data= array();//封装data 数据格式 feilds=>values
 
 		foreach($vipItemArray as $k=>$v){
- 			$data = getData($v);
+ 			$data = $this->getData($v);
 			$var_data[$k] = $data;
 		}
 		foreach($var_data as $k=>$v){ //循环insert数据
@@ -149,7 +154,7 @@ class InterfaceService{
         	}else{ 
             	foreach ($node->childNodes as $childNode){ 
                 	if ($childNode->nodeType != XML_TEXT_NODE){ 
-                    	$array[$childNode->nodeName][] = getArray($childNode); 
+                    	$array[$childNode->nodeName][] = $this->getArray($childNode); 
                 	} 
             	} 
         	} 
@@ -158,6 +163,7 @@ class InterfaceService{
 	} 
  	/**
 	 * 封装data 数据格式 
+	 * 同步时候调用
 	 * @param unknown_type $node
 	 */
 	function getData($vipItemArrItem){ 
@@ -178,6 +184,24 @@ class InterfaceService{
 				}
 			}
  		}
+		return $data;
+	}
+ 	/**
+	 * 封装Array data 数据格式  
+	 * 前台展示    如：array("name"="","email"=>"")
+	 * @param unknown_type $node
+	 */
+	function xmlToArray($xml){
+		$data = array();
+		$doc = new DOMDocument();
+		$doc->loadXML($xml);
+ 		$documentElement  = $doc->documentElement;
+		$resultArray = $this->getArray($documentElement);
+		foreach ($resultArray as $k=>$v) {
+			foreach ($v as $ks=>$vs){
+				$data[$k] = $vs['#text'];
+			}
+		}
 		return $data;
 	}
 }

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-10 08:59:56
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-13 14:55:33
          compiled from "G:\phpserver\framework\templates\admin\userlog.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:17275205fe09561226-16992095%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f366e54f81db8685e939a31353dd2dac996fe755' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\admin\\userlog.tpl',
-      1 => 1376125194,
+      1 => 1376405323,
       2 => 'file',
     ),
   ),
@@ -59,13 +59,29 @@ jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,exce
 {},
 {},
 {multipleSearch:true, multipleGroup:true});
+
+jQuery("#list2").jqGrid('navButtonAdd','#pager2',{
+                    caption:"Export", 
+                    buttonicon:"ui-icon-save",
+                    onClickButton : function () { 
+						var condition = getTimeCondition();
+                        //window.location.href = "<?php echo @constant('WEBSITE_URL');?>
+admin/userLog/exportExcel";
+                   		window.location.href = "<?php echo @constant('WEBSITE_URL');?>
+service/admin/exportuserlog.php?"+condition;
+                    } 
+                });
 }); 
 
 function gridReload(){
+	jQuery("#list2").jqGrid('setGridParam',{url:"<?php echo @constant('WEBSITE_URL');?>
+admin/userLog/getUserLog/"+getTimeCondition(),page:1}).trigger("reloadGrid");
+}
+
+function getTimeCondition(){
 	var starttime = jQuery("#datepicker1").val();
 	var endtime = jQuery("#datepicker2").val();
-	jQuery("#list2").jqGrid('setGridParam',{url:"<?php echo @constant('WEBSITE_URL');?>
-admin/userLog/getUserLog/starttime="+starttime+"&endtime="+endtime,page:1}).trigger("reloadGrid");
+	return ("starttime="+starttime+"&endtime="+endtime);
 }
 
 function cleartime(){

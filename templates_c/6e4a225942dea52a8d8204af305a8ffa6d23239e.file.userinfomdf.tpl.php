@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-13 03:35:55
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-15 03:15:45
          compiled from "G:\phpserver\framework\templates\userinfomdf.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:164775209a99bae6b27-65648507%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6e4a225942dea52a8d8204af305a8ffa6d23239e' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\userinfomdf.tpl',
-      1 => 1376364444,
+      1 => 1376409569,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.13',
   'unifunc' => 'content_5209a99be7fda0_35938949',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5209a99be7fda0_35938949')) {function content_5209a99be7fda0_35938949($_smarty_tpl) {?><!doctype html>
 <html>
@@ -66,11 +66,34 @@ $(function(){
 //code for scroll
 
 	function valid(){
-		
-		var valid = true;
-		
 		var areaCode = $("#areaCode").text();
 		var phoneNum = $("#phoneNum").val();
+		
+		var email = $("#email").val();
+		
+		var mustFillShow = false;
+				
+		if(phoneNum == null || phoneNum == "" ){
+			$("#phoneNum").addClass("input-color-red");
+			mustFillShow = true;
+		}else{
+			$("#phoneNum").removeClass("input-color-red");
+		}
+		
+		if(email == null || email == ""){
+			$("#email").addClass("input-color-red");
+			mustFillShow = true;
+		}else{
+			$("#email").removeClass("input-color-red");
+		}
+		
+		if(mustFillShow){
+			$("#mustfill").show();
+			return ;
+		}
+		
+		var validShow = false;
+		var valid = true;
 		
 		if(phoneNum != null && phoneNum != "" && phoneNum != undefined){
 			
@@ -116,11 +139,11 @@ $(function(){
 
 		if(!valid){
 			$("#phoneNum").addClass("input-color-red");
+			validShow = true;
 		}else{
 			$("#phoneNum").removeClass("input-color-red");
 		}
 		
-		var email = $("#email").val();
 		if(email != null && email != "" && email != undefined){
 			email = email.trim();
 		
@@ -129,13 +152,30 @@ $(function(){
 				$("#email").removeClass("input-color-red");
 			}else{
 				$("#email").addClass("input-color-red");
+				validShow = true;
 			}
 		}else{
 			$("#email").addClass("input-color-red");
+			validShow = true;
 		}
+		
+		if(validShow){
+			$("#vlid").show();
+		}
+
 	}
 
 $(function(){
+	$("#mustfill").hide();
+	$("#vlid").hide();
+	
+	$(".fr img").click(function(){
+		$("#mustfill").hide();
+		$("#vlid").hide();
+		$("#stander").hide();
+	});
+	
+
 	$('.scroll-pane').jScrollPane();
 	  $('.wrapper5').hide();
       $('.xiaoguo5').click(function(){
@@ -151,15 +191,18 @@ $(function(){
       	  $('.wrapper5').slideUp();
       	  
        }); 
-	$("#phoneNum").keyup(valid);
-	$("#email").keyup(valid);
+	$("#phoneNum").keyup(function(){
+		$("#phoneNum").removeClass("input-color-red");
+	});
+	$("#email").keyup(function(){
+		$("#email").removeClass("input-color-red");
+	});
 		
 	$(".base_save").click(valid);
 });
 
 function areaCode(com){
 	$("#areaCode").text("+"+com);
-	valid();
 }
 
 function changeImg(target){
@@ -230,7 +273,7 @@ public/img/xxioc.gif" class="xxioc"/>手机号码:
                     </li>
                     <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font>1974年05月24日</font></li>
                     <li class="w50"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/xxioc.gif" class="xxioc"/>电子邮箱:<font><input id="email" type="text" class="input_style3 input-color-red"  style=" width:187px;"></font></li>
+public/img/xxioc.gif" class="xxioc"/>电子邮箱:<font><input id="email" type="text" class="input_style3"  style=" width:187px;"></font></li>
                     <li class="w100"><img src="<?php echo @constant('WEBSITE_URL');?>
 public/img/n-iocn.gif" onclick="changeImg(this);"/><font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
                 </ul>
@@ -338,6 +381,35 @@ public/img/n-iocn.gif"/>20000元以上</font>
         <p><span class="en">Copyright @ 20<b>11</b> Trendy International Group All Rights Reserved</span><br>
         <a href="http://www.miibeian.gov.cn/" target="_blank"><span class="zh">备案号：粤</span><span class="en">ICP<b>11</b>0<b>1</b>0295</span></a></p>
 </div>
+
+
+
+
+<div id='mustfill' class="windbox">
+	<div class="wind">
+    	<a href="#" class="fr"><img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/Close-ioc.gif"/></a>
+    	<span class="btts">
+        	<img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/btts.gif"/>
+        </span>
+  </div>
+	<div class="windbg"></div>
+</div>
+
+<div id='vlid' class="windbox">
+	<div class="wind">
+    	<a href="#" class="fr"><img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/Close-ioc.gif"/></a>
+    	<span class="Dataerror">
+        	<img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/Dataerror.gif" border="0"/> 
+        </span>
+  	</div>
+	<div class="windbg"></div>
+</div>
+
+
 </body>
 </html>
 <?php }} ?>

@@ -40,5 +40,7 @@ $CONFIG['ROUTER']= array(
     "param"             => ""
 );
 $CONFIG['WEBSERVICE']= array(
-    "url"               => "http://172.17.3.196/service/VipService?wsdl"
+    "url"               => "http://172.17.3.196/service/VipService?wsdl",
+    "userName" 			=> "trendy",
+    "passWord" 			=> "webvip_7uj*IK-2013"
 );

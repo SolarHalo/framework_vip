@@ -5,8 +5,8 @@ define('COMMON',PROJECT.DS.'common');
 define('LIB',PROJECT.DS.'framework'.DS.'lib');
 define('SERVICE',PROJECT.DS.'service');
 define('SMARTY_DIR', PROJECT.'/framework/lib/Smarty-3.1.13/libs/');
-define('NUSOAP_DIR',PROJECT.'/framework/lib/nusoap-0.9.5/lib');
-
+define('NUSOAP_DIR',PROJECT.'/framework/lib/nusoap-0.9.5/lib/');
+define('DRIVER',PROJECT.DS.'framework'.DS.'driver');
 
 require_once CORE.DS.'config.php';
 require_once CORE.DS.'Router.class.php';
