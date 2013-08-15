@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-15 13:53:33
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-15 14:17:59
          compiled from "G:\phpserver\framework\templates\admin\sidebar.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:311805205fdf2d53da6-28802027%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7b3887ff4aff072b7e4f2cfe8c6bcfd3a3fd89b9' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\admin\\sidebar.tpl',
-      1 => 1376410727,
+      1 => 1376576191,
       2 => 'file',
     ),
   ),
@@ -35,8 +35,6 @@ admin/activities">会员专享活动管理</a></li>
 					<li><a href="<?php echo @constant('WEBSITE_URL');?>
 admin/userLog">用户日志</a></li>
 				</ul> 
-				
-				
 		 <a href="#sidebar_menu_1" class="nav-header collapsed" data-toggle="collapse"><i class="icon-th"></i>系统管理 <i class="icon-chevron-up"></i></a>
 		 
 				<ul id="sidebar_menu_1" class="nav nav-list collapse in">
@@ -47,5 +45,5 @@ admin/userLog">用户日志</a></li>
 			 </ul> 
         <a target="_blank" href="#" class="nav-header" ><i class="icon-question-sign"></i>帮助</a>
 </div> 
- <!--- 以上为左侧菜单栏 sidebar --->
+ 
 	<?php }} ?>

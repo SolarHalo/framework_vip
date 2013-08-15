@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-12 15:03:15
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-15 14:19:48
          compiled from "G:\phpserver\framework\templates\admin\param.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3195752065b49cf8683-98582543%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '001b650c5eccc9e7b13006502b807ff4331466c6' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\admin\\param.tpl',
-      1 => 1376318110,
+      1 => 1376576191,
       2 => 'file',
     ),
   ),
@@ -19,8 +19,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_52065b49e0ef40_41169360',
   'variables' => 
   array (
-    'admin_action_alert' => 0,
-    'admin_quick_note' => 0,
     'name' => 0,
     'id' => 0,
     'value' => 0,
@@ -57,19 +55,15 @@ admin/user">管理列表</a> <span class="divider">/</span></li>
 			<span>操作成功</span>
 		</div>
  
-<?php echo $_smarty_tpl->tpl_vars['admin_action_alert']->value;?>
-
-<?php echo $_smarty_tpl->tpl_vars['admin_quick_note']->value;?>
-
     
 <div class="well">
 
- 
+ <!--
     <ul class="nav nav-tabs">
       <li class="active"><a href="#home" data-toggle="tab"><?php echo $_smarty_tpl->tpl_vars['name']->value;?>
 </a></li>
     </ul>	
-	
+	-->
 	<div id="myTabContent" class="tab-content">
 		  <div class="tab-pane active in" id="home">
 
