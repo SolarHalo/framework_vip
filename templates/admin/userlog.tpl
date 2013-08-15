@@ -1,7 +1,15 @@
 {{include file ="admin/header.tpl"}}
 {{include file ="admin/navibar.tpl"}}
 {{include file ="admin/sidebar.tpl"}}
-
+<style type="text/css">
+.ui-pg-input{
+	width:20px;
+}
+.ui-pg-selbox {
+	width:60px;
+    height:30px;
+}
+</style>
  
  <script type="text/javascript">
 $(function () {
@@ -10,19 +18,18 @@ $(function () {
    	
 	datatype: "json",
 	mtype: 'POST',
-   	colNames:['id','cardno',  'login_time'],
+   	colNames:['编号','会员卡号',  '登录时间'],
    	colModel:[
    		{name:'id',index:'id', width:100},
    		{name:'cardno',index:'cardno', width:150},
-   		{name:'login_time',index:'login_time', width:200, align:"right"}
+   		{name:'login_time',index:'login_time', width:250, align:"left"}
    	],
-   	rowNum:10,
-   	rowList:[10,20,30],
+   	rowNum:30, 
    	pager: '#pager2',
     viewrecords: true,
     caption:"用户日志"
 });
-jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,excel:true},{},
+jQuery("#list2").jqGrid('navGrid','#pager2',{find:false,edit:false,add:false,del:false,excel:true},{},
 {},
 {},
 {multipleSearch:true, multipleGroup:true});

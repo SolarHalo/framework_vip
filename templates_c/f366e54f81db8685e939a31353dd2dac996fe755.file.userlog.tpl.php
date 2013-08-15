@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-13 14:55:33
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-15 14:14:24
          compiled from "G:\phpserver\framework\templates\admin\userlog.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:17275205fe09561226-16992095%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f366e54f81db8685e939a31353dd2dac996fe755' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\admin\\userlog.tpl',
-      1 => 1376405323,
+      1 => 1376576027,
       2 => 'file',
     ),
   ),
@@ -30,7 +30,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <?php echo $_smarty_tpl->getSubTemplate ("admin/sidebar.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
-
+<style type="text/css">
+.ui-pg-input{
+	width:20px;
+}
+.ui-pg-selbox {
+	width:60px;
+    height:30px;
+}
+</style>
  
  <script type="text/javascript">
 $(function () {
@@ -40,22 +48,18 @@ admin/userLog/getUserLog',
    	
 	datatype: "json",
 	mtype: 'POST',
-   	colNames:['id','cardno', 'login_type', 'login_time'],
+   	colNames:['编号','会员卡号',  '登录时间'],
    	colModel:[
    		{name:'id',index:'id', width:100},
    		{name:'cardno',index:'cardno', width:150},
-   		{name:'login_type',index:'login_type', width:100},
-   		{name:'login_time',index:'login_time', width:200, align:"right"}
+   		{name:'login_time',index:'login_time', width:250, align:"left"}
    	],
-   	rowNum:10,
-   	rowList:[10,20,30],
+   	rowNum:30, 
    	pager: '#pager2',
-   	sortname: 'id',
     viewrecords: true,
-    sortorder: "desc",
     caption:"用户日志"
 });
-jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,excel:true},{},
+jQuery("#list2").jqGrid('navGrid','#pager2',{find:false,edit:false,add:false,del:false,excel:true},{},
 {},
 {},
 {multipleSearch:true, multipleGroup:true});

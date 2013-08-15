@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-13 08:50:15
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-15 13:53:33
          compiled from "G:\phpserver\framework\templates\admin\sidebar.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:311805205fdf2d53da6-28802027%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7b3887ff4aff072b7e4f2cfe8c6bcfd3a3fd89b9' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\admin\\sidebar.tpl',
-      1 => 1376383812,
+      1 => 1376410727,
       2 => 'file',
     ),
   ),
@@ -24,9 +24,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	       <a href="#sidebar_menu_1" class="nav-header collapsed" data-toggle="collapse"><i class="icon-th"></i>系统展示管理<i class="icon-chevron-up"></i></a>
 		 
 				<ul id="sidebar_menu_1" class="nav nav-list collapse in">
-					<li><a href=" ">会员权益更新</a></li>
-					<li><a href=" ">常见问题更新</a></li>
-					<li><a href=" ">GOOGLE统计更新</a></li>
+					<li><a href="<?php echo @constant('WEBSITE_URL');?>
+admin/param/load/paramtype=rights">会员权益更新</a></li>
+					<li><a href="<?php echo @constant('WEBSITE_URL');?>
+admin/param/load/paramtype=faq">常见问题更新</a></li>
+					<li><a href="<?php echo @constant('WEBSITE_URL');?>
+admin/param/load/paramtype=google">GOOGLE统计更新</a></li>
 					<li><a href="<?php echo @constant('WEBSITE_URL');?>
 admin/activities">会员专享活动管理</a></li>
 					<li><a href="<?php echo @constant('WEBSITE_URL');?>
