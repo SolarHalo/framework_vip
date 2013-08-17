@@ -75,44 +75,31 @@ $(function(){
                     <li class="w50">手机号码:<font class="en">{{$smarty.session.vipInfoArr["mobilePhones"]}}</font></li>
                     <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font>{{$smarty.session.vipInfoArr["birthday"]}}</font></li>
                     <li class="w50">电子邮箱:<font>{{$smarty.session.vipInfoArr["eMail"]}}</font></li>
-                    <li class="w100"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/><font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
+                    <li class="w100">
+                    {{if $smarty.session.vipInfoArr['smsAllow'] eq '是'}}
+                    	<img src="{{$smarty.const.WEBSITE_URL}}public/img/y-iocn.gif"/>
+                    	{{else}}
+                    	<img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>
+                    {{/if}}	
+                    <font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
                 </ul>
                 <div class="Project">
                 	<span>1.过去6个月内您经常购买哪些品牌？（可多选）</span>
                     <span>女士选项</span>
-                    <span> 
-                    	{{$ladaybrand}}
+                    <span>
+                    	{{$ladybrands}}
                     </span>
                     <span>男士选项</span>
                     <span class="mb25">
-                    	<font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>TRENDIANO  </font>
-                    	<font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>Jack&Jones  </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>ELECTED </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>马克华菲/Mark Fairwhale </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/y-iocn.gif"/>GXG </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>i.t  </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>其它/Others  </font> 
+                    	{{$manbrands}}
                     </span>
                     <span>2.您的职业（单选）</span>
                     <span class="mb25">
-						<font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>公务员 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>教师\律师\医生等专业人士 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>企业管理者 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>公司职员 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>自由职业者 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/y-iocn.gif"/>家庭主妇 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>学生 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>私营企业主 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>其它</font>
+						{{$vacation}}
                     </span>
                     <span>3.您的每月收入（单选）</span>
                     <span class="mb25">
-						<font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>4999元或以下 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>5000-6999元 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>7000-8999元 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/y-iocn.gif"/>9000-9999元 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>10000-19999元 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>20000元以上</font> 
+                    	{{$ysr}}
                     </span> 
                 </div>
 			</div>
