@@ -4,35 +4,53 @@ require_once SERVICE.DS.'UserService.class.php';
 class UsermanagerController extends  Controller{
 	
 	public function index(){ 
-		 $smaryt = $this->getSmarty();  
-		 //把所有的女士品牌抽出
-		 $ladaybrands = array("ochirly","Five Plus","MiuMiu","MARC JACOBS","MICHAEL KORS","initial","Mo&Co","DAZZLE","I.T","Vero Moda","ZARA","H&M","其它/Others");
-		 //在session中，取到现在选中的品牌：格式是 品牌1,品牌2...
-		   $vipInfoArr = $_SESSION['vipInfoArr'] ;  
-		   $brandStr = $vipInfoArr["brand"];
-		   $ladaybrandsStr;
-		   
-		 foreach($ladaybrands as $brandtemp){ 
-			  if(strpos($brandStr,$brandtemp)=== false){
-			  	$ladaybrandsStr.=$this->returnBrandStr(0,$brandtemp);
-			  }else{
-			  	$ladaybrandsStr.=$this->returnBrandStr(1,$brandtemp); 
-			  }
-		 } 
-		 $this->smarty->assign("ladaybrand",$ladaybrandsStr); 
+		 $smaryt = $this->getSmarty(); 
+		 /** lady*/ 
+		 $ladyBrands = array("ochirly","Five Plus","MiuMiu","MARC JACOBS","MICHAEL KORS","initial","Mo&Co","DAZZLE","I.T","Vero Moda","ZARA","H&M","其它/Others");
+		 /** man*/ 
+		 $manBrands = array("TRENDIANO","Jack&Jones","ELECTED","马克华菲/Mark Fairwhale","GXG","i.t","其它/Others");
+ 		 /** vacation*/ 
+ 		 $vacations = array("公务员","教师\律师\医生等专业人士","企业管理者","公司职员","自由职业者","家庭主妇","学生","私营企业主","其它");
+ 		 /** ysr*/ 
+ 		 $ysrs = array("4999元或以下","5000-6999元","7000-8999元","9000-9999元","10000-19999元","20000元以上");
+ 		 
 		 
+ 		 $vipInfoArr = $_SESSION['vipInfoArr'];
+		 $brandStr = $vipInfoArr["brand"];
+		 $vocationStr = $vipInfoArr["vocation"];
+		 $ysrStr = $vipInfoArr["ysr"];
+		 
+		 $ladyBrandsHtml = $this->returnHtml($ladyBrands, $brandStr);
+	     $manBrandsHtml = $this->returnHtml($manBrands, $brandStr);
+         $vacationBrandsHtml = $this->returnHtml($vacations, $vocationStr);
+         $ysrHtml = $this->returnHtml($ysrs, $ysrStr);
+         
+		 $this->smarty->assign("ladybrands", $ladyBrandsHtml);
+		 $this->smarty->assign("manbrands", $manBrandsHtml);
+ 		 $this->smarty->assign("vacation", $vacationBrandsHtml);
+ 		 $this->smarty->assign("ysr", $ysrHtml);
 		 $this->smarty->display("account.tpl"); 
-		  
+		
 	}
 	
-	public function returnBrandStr($selected,$brand){
-		//没有选中状态
-		if($selected == 0){
-			return "<font class='en'><img src='".WEBSITE_URL."public/img/n-iocn.gif'/>$brand </font>";
-		}else{//选 中状态 
-			return "<font class='en'><img src='".WEBSITE_URL."public/img/y-iocn.gif'/>$brand </font>";
+	/**
+	 * 显示VIP信息,实现显示和隐藏公共方法
+	 * Enter description here ...
+	 * @param unknown_type $isShow
+	 * @param unknown_type $brandTemp
+	 */
+	function returnHtml($Arr, $Str){
+		$html;
+		$show = "y-iocn.gif";
+		$hide = "n-iocn.gif";
+		foreach ($Arr as $Temp){
+			if (strpos($Str, $Temp)===false){
+				$html .= "<font class=\"en\"><img src=\"".WEBSITE_URL."public/img/".$hide."\"/>".$Temp."</font>";
+			}else {
+				$html .= "<font class=\"en\"><img src=\"".WEBSITE_URL."public/img/".$show."\"/>".$Temp."</font>";
+			}
 		}
-		
+		return $html;
 	}
 	
 	public function mdfpasswd(){ 
@@ -55,6 +73,19 @@ class UsermanagerController extends  Controller{
 	} 
    public function checkinfos(){ 
 		 $smaryt = $this->getSmarty();
+		/* $vipInfoArr = $_SESSION['vipInfoArr'];
+		 require_once DRIVER.DS.'WebServiceInit.class.php';
+		 $webServiceInit = new WebServiceInit();
+		 $client = $webServiceInit->getProxy();
+		 require_once SERVICE.DS.'InterfaceService.class.php';
+		 $interfaceService = new InterfaceService($client);
+		 global $CONFIG;
+		 $CheckInfoArr = $interfaceService->getVipCheck($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipInfoArr['vip_no'], 7, 1);
+		 
+		 
+		 $showCount;
+		 $currentPage;*/
+		 
 		 //如果不是post方式的提交，直接转向
 		 if(!CommonBase::isPost()){
 		 	$this->smarty->display("checkinfos.tpl"); 

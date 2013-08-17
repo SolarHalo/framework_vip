@@ -71,17 +71,14 @@ class LoginController extends  Controller{
 			 	   $_SESSION['loginuser'] = $user;  
 			 	   $vipid = $user->cardid;
 			 	   //这里，如果连不上接口，程序等待。。。所以，先注掉，能连接口时开启
-//			 	   require_once DRIVER.DS.'WebServiceInit.class.php';
-//			 	   $webServiceInit = new WebServiceInit();
-//			 	   $client = $webServiceInit->getProxy();
-//			 	   require_once SERVICE.DS.'InterfaceService.class.php';
-//			 	   $interfaceService = new InterfaceService($client);
-//			 	   global $CONFIG;
-//			 	   $vipInfoArr = $interfaceService->getVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipid);
-//			 	   $_SESSION['vipInfoArr'] = $vipInfoArr;  
-                   $vipInfoArr=array("vip_no"=>$vipid,"name"=>"王晶","sex"=>"女","birthday"=>"1987-08-24","IDCard"=>"440602198708243029",
-                                     "mobilePhones"=>"13968249088","eMail"=>"wangjin@sina.com","brand"=>"ochirly,H&M","vocation"=>"家庭主妇","ysr"=>"4999元以下","myxfe"=>"2000-2999元");
-			 	    $_SESSION['vipInfoArr'] = $vipInfoArr;  
+			 	   require_once DRIVER.DS.'WebServiceInit.class.php';
+			 	   $webServiceInit = new WebServiceInit();
+			 	   $client = $webServiceInit->getProxy();
+			 	   require_once SERVICE.DS.'InterfaceService.class.php';
+			 	   $interfaceService = new InterfaceService($client);
+			 	   global $CONFIG;
+			 	   $vipInfoArr = $interfaceService->getVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipid);
+			 	   $_SESSION['vipInfoArr'] = $vipInfoArr;  
 			 	   $userSerivce->recoredLoginLog($user);
 			       //正常登录这里还要判断 这个用户是否是第一次登录 
 		     	        if(empty($log)){ 
