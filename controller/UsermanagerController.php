@@ -39,7 +39,7 @@ class UsermanagerController extends  Controller{
 	 * @param unknown_type $isShow
 	 * @param unknown_type $brandTemp
 	 */
-	function returnHtml($Arr, $Str){
+	public function returnHtml($Arr, $Str){
 		$html;
 		$show = "y-iocn.gif";
 		$hide = "n-iocn.gif";
@@ -71,21 +71,30 @@ class UsermanagerController extends  Controller{
 		 } 
 		 $this->smarty->display("userinfomdf.tpl"); 
 	} 
+	
    public function checkinfos(){ 
 		 $smaryt = $this->getSmarty();
-		/* $vipInfoArr = $_SESSION['vipInfoArr'];
+		 $vipInfoArr = $_SESSION['vipInfoArr'];
 		 require_once DRIVER.DS.'WebServiceInit.class.php';
 		 $webServiceInit = new WebServiceInit();
 		 $client = $webServiceInit->getProxy();
 		 require_once SERVICE.DS.'InterfaceService.class.php';
 		 $interfaceService = new InterfaceService($client);
 		 global $CONFIG;
-		 $CheckInfoArr = $interfaceService->getVipCheck($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipInfoArr['vip_no'], 7, 1);
+		 $checkInfoArr = $interfaceService->getVipCheck($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], '00001032', 7, 1, '2010-12-21', '2013-05-22');
 		 
+		 $inDate =  $checkInfoArr['cardInfo']['inDate'];
+	     $endDate = $checkInfoArr['cardInfo']['endDate']; 
 		 
-		 $showCount;
-		 $currentPage;*/
+//		 var_dump($CheckInfoArr);
+		  $_SESSION['checkInfoArr'] = $checkInfoArr;  
+		// $showCount;
+		// $currentPage;
 		 
+		  $dateHtml = $this->returnDateHtml($inDate, $endDate);
+		  
+		 $this->smarty->assign("dateHtml", $dateHtml);
+		  
 		 //如果不是post方式的提交，直接转向
 		 if(!CommonBase::isPost()){
 		 	$this->smarty->display("checkinfos.tpl"); 
@@ -93,16 +102,99 @@ class UsermanagerController extends  Controller{
 		 } 
 		 $this->smarty->display("checkinfos.tpl"); 
 	} 
+	/**
+	 * 显示消费信息开始时间,结束时间
+	 * Enter description here ...
+	 * @param unknown_type $isShow
+	 * @param unknown_type $brandTemp
+	 */
+	public function returnDateHtml($inDate, $endDate){
+		$inDateArr = explode("-", $inDate);
+		$endDateArr = explode("-", $endDate);
+		$html = "开卡日期：<font>".trim($inDateArr[0])."</font>年<font>".trim($inDateArr[1])."</font>月<font>".trim($inDateArr[2])."</font>日,有效期：<font>".trim($endDateArr[0])."</font>年<font>".trim($endDateArr[1])."</font>月<font>".trim($endDateArr[2])."</font>日";
+		return $html;
+	}
+	
 	public function morecheckinfos(){ 
 		 $smaryt = $this->getSmarty();
-		 //如果不是post方式的提交，直接转向
+		 
+		 $firstPage = $_GET['firstPage'];
+		 $previousPage = $_GET['previousPage'];
+		 $nextPage = $_GET['nextPage'];
+		 $endPage = $_GET['endPage'];
+		 $page = $_SESSION['page'];
+		 var_dump($page);
+		 if (!empty($firstPage)){
+		 	//判断session是否存在 if(!session_is_registered("page")){}
+			$page = $this->initPaging();
+			$this->checkInfoPage((string)$page['pageSize'], (string)$page['pageCurrent']); 
+		 }
+		 if (!empty($previousPage)){
+		 	//本来想判断一下弹出一个层"已经是首页了"
+		 	if($page['pageCurrent']!==1){
+		 		$page['pageCurrent'] = $page['pageCurrent']-1;
+		 	}
+		 	$this->checkInfoPage($page['pageSize'], $page['pageCurrent']); 
+		 }
+		 if (!empty($nextPage)){
+		 	if($page['pageCurrent']<$page['countPage']){
+		 		$page['pageCurrent'] = $page['pageCurrent']+1;
+		 	}
+		 	$this->checkInfoPage($page['pageSize'], $page['pageCurrent']);
+		 }
+		 if (!empty($endPage)){
+		 	$page['pageCurrent'] = $page['countPage'];
+		 	$this->checkInfoPage($page['pageSize'], $page['countPage']);
+		 }
+		 //预留方法，当输入第几页按回车的时候触发
+//		 if (!empty($pageIndex)){
+//		 	$this->checkInfoPage($page['pageSize'], $page['countPage']);
+//		 }
+		 $_SESSION['page'] = $page;  
 		 if(!CommonBase::isPost()){
 		 	$this->smarty->display("morecheckinfo.tpl"); 
 		 	return;
 		 } 
 		 $this->smarty->display("morecheckinfo.tpl"); 
 	} 
-	
+	/**
+	 * 抽取调用接口方法，获取销售信息
+	 * Enter description here ...
+	 */
+	public function  checkInfoPage($pageSize, $pageCurrent, $chechDate_start=null, $checkDate_end=null){
+		 $vipInfoArr = $_SESSION['vipInfoArr'];
+		 require_once DRIVER.DS.'WebServiceInit.class.php';
+		 $webServiceInit = new WebServiceInit();
+		 $client = $webServiceInit->getProxy();
+		 require_once SERVICE.DS.'InterfaceService.class.php';
+		 $interfaceService = new InterfaceService($client);
+		 global $CONFIG;
+		 $checkInfoArr = $interfaceService->getVipCheck($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], '00001032', $pageSize, $pageCurrent, '2010-12-21', '2013-05-22');
+		 $_SESSION['checkInfoArr'] = $checkInfoArr;  
+	}
+	/**
+	 * 分页初始化
+	 * Enter description here ...
+	 */
+	public function initPaging(){
+		
+ 		 $count;//总记录数
+		 $countPage;//总页数
+		 $pageSize;//每页显示多少条数据
+		 $pageCurrent;//当前页
+//		 $pagePrevious;//上一页
+//		 $pageNext;//下一页
+		 
+		 $page = array();
+		 $page['count'] = 17;
+		 $page['countPage'] = 2;
+		 $page['pageSize'] = 10;
+		 $page['pageCurrent'] = 1;
+//		 $page['pagePrevious'] = $pagePrevious;
+//		 $page['pageNext'] = $pageNext;
+
+		 return $page;
+	}
 	public function savepwd(){
 		$oldpwd = $_POST['oldpwd'];
 		$newpwd = $_POST['newpwd'];
@@ -145,4 +237,5 @@ class UsermanagerController extends  Controller{
 		
 		
 	}
+
 }

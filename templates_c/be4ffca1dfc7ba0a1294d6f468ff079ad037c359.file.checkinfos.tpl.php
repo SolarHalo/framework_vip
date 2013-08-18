@@ -1,4 +1,30 @@
-<!doctype html>
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-17 16:53:55
+         compiled from "F:\PHP_WorkSapce\framework\templates\checkinfos.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:7093520f21f576f174-69213104%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'be4ffca1dfc7ba0a1294d6f468ff079ad037c359' => 
+    array (
+      0 => 'F:\\PHP_WorkSapce\\framework\\templates\\checkinfos.tpl',
+      1 => 1376750254,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '7093520f21f576f174-69213104',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_520f21f5842dc0_29315526',
+  'variables' => 
+  array (
+    'dateHtml' => 0,
+    'v' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_520f21f5842dc0_29315526')) {function content_520f21f5842dc0_29315526($_smarty_tpl) {?><!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -8,11 +34,16 @@
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/font/font.css" rel="stylesheet" />
-<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/base.css" rel="stylesheet" />
-<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/other.css" rel="stylesheet" />
-<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/jquery.jscrollpane.css" rel="stylesheet" media="all"> 
-<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery-1.8.2.min.js"></script>
+<link type="text/css" href="<?php echo @constant('WEBSITE_URL');?>
+public/font/font.css" rel="stylesheet" />
+<link type="text/css" href="<?php echo @constant('WEBSITE_URL');?>
+public/css/base.css" rel="stylesheet" />
+<link type="text/css" href="<?php echo @constant('WEBSITE_URL');?>
+public/css/other.css" rel="stylesheet" />
+<link type="text/css" href="<?php echo @constant('WEBSITE_URL');?>
+public/css/jquery.jscrollpane.css" rel="stylesheet" media="all"> 
+<script type="text/javascript" src="<?php echo @constant('WEBSITE_URL');?>
+public/js/jquery-1.8.2.min.js"></script>
 <style type="text/css" id="page-css">
 .scroll-pane {
 	width:574px;
@@ -21,8 +52,10 @@
 }
 </style>
  
-<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery.jscrollpane.min.js"></script>
-<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="<?php echo @constant('WEBSITE_URL');?>
+public/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="<?php echo @constant('WEBSITE_URL');?>
+public/js/jquery.mousewheel.js"></script>
 <script type="text/javascript">
 //code for vetically center
 $(function(){
@@ -115,9 +148,11 @@ $(function(){
 </div>
 <div class="windbox" id="datedesc">
 	<div class="wind">
-    	<a href="#" onclick="javascript:closeWin('datedesc');" class="fr"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"/></a>
+    	<a href="#" onclick="javascript:closeWin('datedesc');" class="fr"><img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/Close-ioc.gif"/></a>
     	<span class="inquire-ts1">
-        	<img src="{{$smarty.const.WEBSITE_URL}}public/img/inquire-ts1.gif"/>
+        	<img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/inquire-ts1.gif"/>
         </span>
   </div>
 	<div class="windbg"></div>
@@ -125,8 +160,10 @@ $(function(){
 
 <div class="windbox" id="moneydesc">
 	<div class="wind">
-    	<a href="#"  onclick="javascript:closeWin('moneydesc');" class="fr"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"/></a>
-    	<span class="recordlistpagewind"><img src="{{$smarty.const.WEBSITE_URL}}public/img/recordlistpagewind.jpg" /> 
+    	<a href="#"  onclick="javascript:closeWin('moneydesc');" class="fr"><img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/Close-ioc.gif"/></a>
+    	<span class="recordlistpagewind"><img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/recordlistpagewind.jpg" /> 
         </span>
   </div>
 	<div class="windbg"></div>
@@ -136,19 +173,27 @@ $(function(){
     <div class="content">
         <div class="nav">
             <ul class="clearfix">
-               <li class="nav1"><a href="{{$smarty.const.WEBSITE_URL}}rights">会员权益</a></li>
-                <li class="nav2"><a href="{{$smarty.const.WEBSITE_URL}}activities">会员专享活动</a></li>
-                <li class="nav3"><a href="{{$smarty.const.WEBSITE_URL}}faq">常见问题</a></li>
+               <li class="nav1"><a href="<?php echo @constant('WEBSITE_URL');?>
+rights">会员权益</a></li>
+                <li class="nav2"><a href="<?php echo @constant('WEBSITE_URL');?>
+activities">会员专享活动</a></li>
+                <li class="nav3"><a href="<?php echo @constant('WEBSITE_URL');?>
+faq">常见问题</a></li>
             </ul>
         </div>
     	<div class="user-content">
             <div class="user-nav">
-                <img src="{{$smarty.const.WEBSITE_URL}}public/img/user-nav04.gif" border="0" usemap="#Map">
+                <img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/user-nav04.gif" border="0" usemap="#Map">
                  <map name="Map"> 
-                 <area shape="rect" coords="4,3,108,29" href="{{$smarty.const.WEBSITE_URL}}usermanager"><!--账号管理-->
-                  <area shape="rect" coords="3,36,73,60" href="{{$smarty.const.WEBSITE_URL}}usermanager/mdfpasswd"><!--修改密码-->
-                  <area shape="rect" coords="2,65,104,85" href="{{$smarty.const.WEBSITE_URL}}usermanager/mdfuserinfo"><!--编辑个人信息-->
-                  <area shape="rect" coords="3,118,93,144" href="{{$smarty.const.WEBSITE_URL}}usermanager/checkinfos"><!--消费记录-->
+                 <area shape="rect" coords="4,3,108,29" href="<?php echo @constant('WEBSITE_URL');?>
+usermanager"><!--账号管理-->
+                  <area shape="rect" coords="3,36,73,60" href="<?php echo @constant('WEBSITE_URL');?>
+usermanager/mdfpasswd"><!--修改密码-->
+                  <area shape="rect" coords="2,65,104,85" href="<?php echo @constant('WEBSITE_URL');?>
+usermanager/mdfuserinfo"><!--编辑个人信息-->
+                  <area shape="rect" coords="3,118,93,144" href="<?php echo @constant('WEBSITE_URL');?>
+usermanager/checkinfos"><!--消费记录-->
                 </map>
             </div> 
             <div class="pagecontent scroll-pane" id="pagecontent">
@@ -230,10 +275,15 @@ $(function(){
                    <span style="border-bottom:1px solid #BCA14E;"> <a href="#" onclick="javascript:openWin('datedesc');" class="linkstyle01">说明</a></span>
                 </div>
                 <div class="recordtext mb25 mt20">
-                	卡号：<font>{{$smarty.session.checkInfoArr["cardInfo"]["vip_no"]}}</font>,姓名：<font>{{$smarty.session.checkInfoArr["cardInfo"]["name"]}}</font>,开卡店铺：<font>{{$smarty.session.checkInfoArr["cardInfo"]["customer_na"]}}</font>,<br>
+                	卡号：<font><?php echo $_SESSION['checkInfoArr']["cardInfo"]["vip_no"];?>
+</font>,姓名：<font><?php echo $_SESSION['checkInfoArr']["cardInfo"]["name"];?>
+</font>,开卡店铺：<font><?php echo $_SESSION['checkInfoArr']["cardInfo"]["customer_na"];?>
+</font>,<br>
                 	
-                    {{$dateHtml}},
-                                                     续卡尚需有效金额<font>{{$smarty.session.checkInfoArr["cardInfo"]["checkMoney"]}}</font>元。<span style="border-bottom:1px solid #BCA14E;"><a href="#"  onclick="javascript:openWin('moneydesc')"; class="linkstyle01">说明</a></span>
+                    <?php echo $_smarty_tpl->tpl_vars['dateHtml']->value;?>
+,
+                                                     续卡尚需有效金额<font><?php echo $_SESSION['checkInfoArr']["cardInfo"]["checkMoney"];?>
+</font>元。<span style="border-bottom:1px solid #BCA14E;"><a href="#"  onclick="javascript:openWin('moneydesc')"; class="linkstyle01">说明</a></span>
                 </div>
                 <div class="recordlist">
                 	<ol>
@@ -243,16 +293,28 @@ $(function(){
                         <li class="dpmc">消费店铺名称</li>
                         <li class="je">金额</li>
                     </ol>
-                    {{foreach $smarty.session.checkInfoArr["CheckInfo"] as $k=>$v}}
+                    <?php  $_smarty_tpl->tpl_vars['v'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['v']->_loop = false;
+ $_smarty_tpl->tpl_vars['k'] = new Smarty_Variable;
+ $_from = $_SESSION['checkInfoArr']["CheckInfo"]; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['v']->key => $_smarty_tpl->tpl_vars['v']->value){
+$_smarty_tpl->tpl_vars['v']->_loop = true;
+ $_smarty_tpl->tpl_vars['k']->value = $_smarty_tpl->tpl_vars['v']->key;
+?>
                      	<ul>
-                    	 <li class="rq">{{$v['checkDate']}}</li>
-                         <li class="xsd">{{$v['checkId']}}</li>
-                         <li class="xfcs">{{$v['cs']}}</li>
-                         <li class="dpmc">{{$v['customer_na']}}</li>
-                         <li class="je">{{$v['CheckAmount']}}</li>
+                    	 <li class="rq"><?php echo $_smarty_tpl->tpl_vars['v']->value['checkDate'];?>
+</li>
+                         <li class="xsd"><?php echo $_smarty_tpl->tpl_vars['v']->value['checkId'];?>
+</li>
+                         <li class="xfcs"><?php echo $_smarty_tpl->tpl_vars['v']->value['cs'];?>
+</li>
+                         <li class="dpmc"><?php echo $_smarty_tpl->tpl_vars['v']->value['customer_na'];?>
+</li>
+                         <li class="je"><?php echo $_smarty_tpl->tpl_vars['v']->value['CheckAmount'];?>
+</li>
                     	</ul>
-                    {{/foreach}}
-                   <a href="{{$smarty.const.WEBSITE_URL}}usermanager/morecheckinfos/?firstPage=firstPage" class="linkstyle01 fr" style="display:block; width:100%; margin-top:20px;  text-align:right;">查看更多</a>
+                    <?php } ?>
+                   <a href="<?php echo @constant('WEBSITE_URL');?>
+usermanager/morecheckinfos/?firstPage=firstPage" class="linkstyle01 fr" style="display:block; width:100%; margin-top:20px;  text-align:right;">查看更多</a>
                 </div>
 			</div>
         </div>
@@ -272,3 +334,4 @@ $(function(){
 </div>
 </body>
 </html>
+<?php }} ?>
