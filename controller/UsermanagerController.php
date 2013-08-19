@@ -81,17 +81,16 @@ class UsermanagerController extends  Controller{
 		 require_once SERVICE.DS.'InterfaceService.class.php';
 		 $interfaceService = new InterfaceService($client);
 		 global $CONFIG;
-		 $checkInfoArr = $interfaceService->getVipCheck($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], '00001032', 7, 1, '2010-12-21', '2013-05-22');
+		 $checkInfoArr = $interfaceService->getVipCheck($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipInfoArr['vip_no'], 7, 1, '2010-12-21', '2013-05-22');
 		 
 		 $inDate =  $checkInfoArr['cardInfo']['inDate'];
 	     $endDate = $checkInfoArr['cardInfo']['endDate']; 
+
+	     $count = $checkInfoArr['Page']['totalResult']; 
+		 $_SESSION['checkInfoArr'] = $checkInfoArr;  
+		 $_SESSION['count'] = $count;  //总记录数
 		 
-//		 var_dump($CheckInfoArr);
-		  $_SESSION['checkInfoArr'] = $checkInfoArr;  
-		// $showCount;
-		// $currentPage;
-		 
-		  $dateHtml = $this->returnDateHtml($inDate, $endDate);
+		 $dateHtml = $this->returnDateHtml($inDate, $endDate);
 		  
 		 $this->smarty->assign("dateHtml", $dateHtml);
 		  
@@ -123,7 +122,6 @@ class UsermanagerController extends  Controller{
 		 $nextPage = $_GET['nextPage'];
 		 $endPage = $_GET['endPage'];
 		 $page = $_SESSION['page'];
-		 var_dump($page);
 		 if (!empty($firstPage)){
 		 	//判断session是否存在 if(!session_is_registered("page")){}
 			$page = $this->initPaging();
@@ -178,20 +176,16 @@ class UsermanagerController extends  Controller{
 	 */
 	public function initPaging(){
 		
- 		 $count;//总记录数
-		 $countPage;//总页数
-		 $pageSize;//每页显示多少条数据
-		 $pageCurrent;//当前页
-//		 $pagePrevious;//上一页
-//		 $pageNext;//下一页
+ 		 $count = $_SESSION['count'];//总记录数 totalResult
+		 $countPage = intval($count/10) + 1;//总页数 totalPage
+		 $pageSize = 10;//每页显示多少条数据 showCount
+		 $pageCurrent = 1;//当前页currentPage
 		 
 		 $page = array();
-		 $page['count'] = 17;
-		 $page['countPage'] = 2;
-		 $page['pageSize'] = 10;
-		 $page['pageCurrent'] = 1;
-//		 $page['pagePrevious'] = $pagePrevious;
-//		 $page['pageNext'] = $pageNext;
+		 $page['count'] = $count;
+		 $page['countPage'] = $countPage;
+		 $page['pageSize'] = $pageSize;
+		 $page['pageCurrent'] = $pageCurrent;
 
 		 return $page;
 	}

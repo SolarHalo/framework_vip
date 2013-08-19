@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-18 07:54:43
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-19 13:21:40
          compiled from "F:\PHP_WorkSapce\framework\templates\morecheckinfo.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:25854520f21fee03889-52452979%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '3bfac4897b6f0f6253c4d18b50c248fe8588d0e5' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\morecheckinfo.tpl',
-      1 => 1376812464,
+      1 => 1376917723,
       2 => 'file',
     ),
   ),
@@ -135,93 +135,6 @@ $_smarty_tpl->tpl_vars['v']->_loop = true;
 </li>
                     	</ul>
                     <?php } ?>
-                    
-                    <!--
-                    <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul> 
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                    -->
                     <div class="page">
                     	<a href="<?php echo @constant('WEBSITE_URL');?>
 usermanager/morecheckinfos/?firstPage=firstPage"><img src="<?php echo @constant('WEBSITE_URL');?>
@@ -230,7 +143,8 @@ public/img/backhomeioc.gif">首页</a>
 usermanager/morecheckinfos/?previousPage=previousPage"><img src="<?php echo @constant('WEBSITE_URL');?>
 public/img/previousioc.gif">上页</a>
                       <span>第<font><input value="<?php echo $_SESSION['page']['pageCurrent'];?>
-" type="text"  class="zh"/></font>页 总共 2 页 |</span>
+" type="text"  class="zh"/></font>页 总共 <?php echo $_SESSION['page']['countPage'];?>
+ 页 |</span>
                         <a href="<?php echo @constant('WEBSITE_URL');?>
 usermanager/morecheckinfos/?nextPage=nextPage">下页<img src="<?php echo @constant('WEBSITE_URL');?>
 public/img/nextioc.gif"></a>

@@ -84,97 +84,10 @@ $(function(){
                          <li class="je">{{$v['CheckAmount']}}</li>
                     	</ul>
                     {{/foreach}}
-                    
-                    <!--
-                    <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul> 
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                    -->
                     <div class="page">
                     	<a href="{{$smarty.const.WEBSITE_URL}}usermanager/morecheckinfos/?firstPage=firstPage"><img src="{{$smarty.const.WEBSITE_URL}}public/img/backhomeioc.gif">首页</a>
                         <a href="{{$smarty.const.WEBSITE_URL}}usermanager/morecheckinfos/?previousPage=previousPage"><img src="{{$smarty.const.WEBSITE_URL}}public/img/previousioc.gif">上页</a>
-                      <span>第<font><input value="{{$smarty.session.page['pageCurrent']}}" type="text"  class="zh"/></font>页 总共 2 页 |</span>
+                      <span>第<font><input value="{{$smarty.session.page['pageCurrent']}}" type="text"  class="zh"/></font>页 总共 {{$smarty.session.page['countPage']}} 页 |</span>
                         <a href="{{$smarty.const.WEBSITE_URL}}usermanager/morecheckinfos/?nextPage=nextPage">下页<img src="{{$smarty.const.WEBSITE_URL}}public/img/nextioc.gif"></a>
                         <a href="{{$smarty.const.WEBSITE_URL}}usermanager/morecheckinfos/?endPage=endPage">尾页<img src="{{$smarty.const.WEBSITE_URL}}public/img/endioc.gif"></a>
                     </div> 
