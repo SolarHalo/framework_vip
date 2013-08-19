@@ -74,96 +74,22 @@ $(function(){
                         <li class="dpmc">消费店铺名称</li>
                         <li class="je">金额</li>
                     </ol>
-                    <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul> 
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
+                    
+                    {{foreach $smarty.session.checkInfoArr["CheckInfo"] as $k=>$v}}
+                     	<ul>
+                    	 <li class="rq">{{$v['checkDate']}}</li>
+                         <li class="xsd">{{$v['checkId']}}</li>
+                         <li class="xfcs">{{$v['cs']}}</li>
+                         <li class="dpmc">{{$v['customer_na']}}</li>
+                         <li class="je">{{$v['CheckAmount']}}</li>
+                    	</ul>
+                    {{/foreach}}
                     <div class="page">
-                    	<a href="#"><img src="{{$smarty.const.WEBSITE_URL}}public/img/backhomeioc.gif">首页</a>
-                        <a href="#"><img src="{{$smarty.const.WEBSITE_URL}}public/img/previousioc.gif">上页</a>
-                      <span>第<font><input value="1" type="text"  class="zh"/></font>页 总共 2 页 |</span>
-                        <a href="#">下页<img src="{{$smarty.const.WEBSITE_URL}}public/img/nextioc.gif"></a>
-                        <a href="#">尾页<img src="{{$smarty.const.WEBSITE_URL}}public/img/endioc.gif"></a>
+                    	<a href="{{$smarty.const.WEBSITE_URL}}usermanager/morecheckinfos/?firstPage=firstPage"><img src="{{$smarty.const.WEBSITE_URL}}public/img/backhomeioc.gif">首页</a>
+                        <a href="{{$smarty.const.WEBSITE_URL}}usermanager/morecheckinfos/?previousPage=previousPage"><img src="{{$smarty.const.WEBSITE_URL}}public/img/previousioc.gif">上页</a>
+                      <span>第<font><input value="{{$smarty.session.page['pageCurrent']}}" type="text"  class="zh"/></font>页 总共 {{$smarty.session.page['countPage']}} 页 |</span>
+                        <a href="{{$smarty.const.WEBSITE_URL}}usermanager/morecheckinfos/?nextPage=nextPage">下页<img src="{{$smarty.const.WEBSITE_URL}}public/img/nextioc.gif"></a>
+                        <a href="{{$smarty.const.WEBSITE_URL}}usermanager/morecheckinfos/?endPage=endPage">尾页<img src="{{$smarty.const.WEBSITE_URL}}public/img/endioc.gif"></a>
                     </div> 
                 </div>
 			</div>

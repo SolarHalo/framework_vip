@@ -59,12 +59,19 @@ class InterfaceService{
 	 * @param unknown_type $chechDate_start 开始日期
 	 * @param unknown_type $checkDate_end 结束日期
 	 */
-	function getVipCheck($userName, $passWord, $vipid, $showCount, $currentPage, 			  	 $chechDate_start, $checkDate_end){
+	function getVipCheck($userName, $passWord, $vipid, $showCount, $currentPage, $chechDate_start=null, $checkDate_end=null){
+		$arrayData;
 		$proxy = $this->webService->getProxy();
 		$arrayParam = array('in0'=>$userName, 'in1'=>$passWord, 
 			'in2'=>$vipid, 'in3'=>$showCount, 'in4'=>$currentPage, 
 			'in5'=>$chechDate_start, 'in6'=>$checkDate_end);
 		$arryResult = $proxy->getVipCheck($arrayParam);
+		$xml = '<?xml version="1.0" encoding="UTF-8"?>
+<expense><cardInfo><vip_no>00001032  </vip_no><name>赵莹莹</name><customer_na>ochirly宁波天一银泰专柜</customer_na><inDate>2010-12-22</inDate><endDate>2011-12-22</endDate><checkMoney>0.00</checkMoney></cardInfo><Page><showCount>17</showCount><totalPage>1</totalPage><totalResult>17</totalResult><currentPage>1</currentPage></Page><CheckInfo><check><checkDate>2011-01-04</checkDate><checkId>K8A4009727</checkId><cs>上海-上海</cs><customer_na>FivePlus上海龙之梦长宁店</customer_na><CheckAmount>512</CheckAmount></check><check><checkDate>2011-03-05</checkDate><checkId>K8A4011795</checkId><cs>上海-上海</cs><customer_na>FivePlus上海龙之梦长宁店</customer_na><CheckAmount>664</CheckAmount></check><check><checkDate>2011-12-18</checkDate><checkId>K836007504</checkId><cs>上海-上海</cs><customer_na>OCHIRLY上海又一城淞沪店</customer_na><CheckAmount>629</CheckAmount></check><check><checkDate>2011-12-18</checkDate><checkId>K3AJ002213</checkId><cs>北京-北京</cs><customer_na>FivePlus北京华宇海淀店</customer_na><CheckAmount>1970</CheckAmount></check><check><checkDate>2011-12-19</checkDate><checkId>K4C4001942</checkId><cs>天津-天津</cs><customer_na>FivePlus天津友谊新天地店 </customer_na><CheckAmount>1521</CheckAmount></check><check><checkDate>2011-12-31</checkDate><checkId>K4C4002116</checkId><cs>天津-天津</cs><customer_na>FivePlus天津友谊新天地店 </customer_na><CheckAmount>-1521</CheckAmount></check><check><checkDate>2012-04-02</checkDate><checkId>KSH3033278</checkId><cs>上海-上海</cs><customer_na>OCHIRLY上海置地广场南京东店</customer_na><CheckAmount>1563</CheckAmount></check><check><checkDate>2012-05-28</checkDate><checkId>KDBB000221</checkId><cs>辽宁-沈阳</cs><customer_na>Ochirly沈阳皇城恒隆广场店</customer_na><CheckAmount>1251</CheckAmount></check><check><checkDate>2012-05-31</checkDate><checkId>KDBB000236</checkId><cs>辽宁-沈阳</cs><customer_na>Ochirly沈阳皇城恒隆广场店</customer_na><CheckAmount>755</CheckAmount></check><check><checkDate>2012-05-31</checkDate><checkId>KDBB000237</checkId><cs>辽宁-沈阳</cs><customer_na>Ochirly沈阳皇城恒隆广场店</customer_na><CheckAmount>242</CheckAmount></check><check><checkDate>2012-05-31</checkDate><checkId>KDBB000238</checkId><cs>辽宁-沈阳</cs><customer_na>Ochirly沈阳皇城恒隆广场店</customer_na><CheckAmount>395</CheckAmount></check><check><checkDate>2012-05-31</checkDate><checkId>KDBB000239</checkId><cs>辽宁-沈阳</cs><customer_na>Ochirly沈阳皇城恒隆广场店</customer_na><CheckAmount>242</CheckAmount></check><check><checkDate>2012-06-02</checkDate><checkId>KDBB000256</checkId><cs>辽宁-沈阳</cs><customer_na>Ochirly沈阳皇城恒隆广场店</customer_na><CheckAmount>-242</CheckAmount></check><check><checkDate>2012-07-04</checkDate><checkId>K8AD010144</checkId><cs>上海-上海</cs><customer_na>Fiveplus上海百盛淮海店</customer_na><CheckAmount>1239</CheckAmount></check><check><checkDate>2012-09-09</checkDate><checkId>KBJU018720</checkId><cs>北京-北京</cs><customer_na>OCHIRLY北京新世界百货朝阳店</customer_na><CheckAmount>1932</CheckAmount></check><check><checkDate>2012-09-19</checkDate><checkId>KBJU018821</checkId><cs>北京-北京</cs><customer_na>OCHIRLY北京新世界百货朝阳店</customer_na><CheckAmount>-782</CheckAmount></check><check><checkDate>2012-10-19</checkDate><checkId>K364013658</checkId><cs>北京-北京</cs><customer_na>Ochirly北京朝阳大悦城店</customer_na><CheckAmount>1266</CheckAmount></check></CheckInfo></expense>
+		';
+		$arrayData = $this->xmlCheckInfoToArray($arryResult['out']);
+//		$arrayData = $this->xmlCheckInfoToArray($xml);
+		return $arrayData;
 	}
 	
     /**
@@ -122,7 +129,7 @@ class InterfaceService{
 		$doc->loadXML($resultXML);
 		$node_lists = $doc->getElementsByTagName('vipInfos');
  		$node  = $node_lists->item(0);
-		$resultArray = getArray($node);
+		$resultArray = $this->getArray($node);
 		$vipItem = $resultArray['batchId'];
 		$vipItemArray = $resultArray['vipItem'];
 		$var_data= array();//封装data 数据格式 feilds=>values
@@ -188,7 +195,7 @@ class InterfaceService{
 	}
  	/**
 	 * 封装Array data 数据格式  
-	 * 前台展示    如：array("name"="","email"=>"")
+	 * 前台展示  "点击账号管理"  如：array("name"="","email"=>"")
 	 * @param unknown_type $node
 	 */
 	function xmlToArray($xml){
@@ -203,5 +210,63 @@ class InterfaceService{
 			}
 		}
 		return $data;
+	}
+	
+ 	/**
+	 * 封装Array data 数据格式  
+	 * 前台展示  "消费记录"  如：array("cardInfo"=>arr,"Page"=>arr,'CheckInfo'=>arr[0]=>arr)
+	 * @param unknown_type $node
+	 */
+	function xmlCheckInfoToArray($xml){
+		$data = array();
+		$tempData = array();
+		$doc = new DOMDocument();
+		$doc->loadXML($xml);
+
+		$documentElement  = $doc->documentElement;
+		$resultArray = $this->getArray($documentElement);
+		foreach ($resultArray as $k=>$v) {
+			if($k==='cardInfo'){
+				$tempData = $this->toArray($v);
+				$data[$k] = $tempData;
+			}
+			if($k==='Page'){
+				$tempData = $this->toArray($v);
+				$data[$k] = $tempData;
+			}
+			if($k==='CheckInfo'){
+				$tempData = $this->checkInfoToArray($v);
+				$data[$k] = $tempData;
+			}
+		}
+		return $data;
+	}
+
+	function checkInfoToArray($v){
+		$Data = array();
+		$tempData = array();
+		foreach($v as $k=>$vs){
+			foreach($vs['check'] as $ks=>$vss){
+				foreach($vss as $kss=>$vsss){
+					if($kss!=='#comment'){
+						$tempData[$kss] = $vsss[0]['#text'];
+					}
+				}
+				$Data[$ks] = $tempData;
+			}
+		}
+		return $Data;
+	}
+
+	function toArray($v){
+		$Data = array();
+		foreach($v as $k=>$vs){
+			foreach($vs as $ks=>$vss){
+				if($ks!=='#comment'){
+					$Data[$ks] = $vss[0]['#text'];
+				}
+			}
+		}
+		return $Data;
 	}
 }
