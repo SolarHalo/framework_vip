@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-17 07:10:37
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-20 13:15:55
          compiled from "F:\PHP_WorkSapce\framework\templates\account.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:15340520f21edea89d0-33995197%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'cbbc7625b33999b61df6ca701c61bec0cc295945' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\account.tpl',
-      1 => 1376585198,
+      1 => 1377003857,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_520f21ee069ff1_22403566',
   'variables' => 
   array (
     'ladybrands' => 0,
@@ -23,8 +25,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ysr' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_520f21ee069ff1_22403566',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_520f21ee069ff1_22403566')) {function content_520f21ee069ff1_22403566($_smarty_tpl) {?><!doctype html>
 <html>
@@ -68,7 +68,14 @@ $(function(){
 		paddingT = 10;
 	}
 	$("body").css({paddingTop:paddingT});
-})
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});
+})   
 </script>
 <script type="text/javascript" id="sourcecode">
 //code for scroll
@@ -79,9 +86,8 @@ $(function(){
 </head>
 
 <body>
-<div class="Welcomeuseer zh">
-	尊贵的<font>汪涵</font>，您好！<a href="#">退出</a>
-</div>
+<?php echo $_smarty_tpl->getSubTemplate ('loginbanner.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+ 
 <div id="warp" class="container">
     <div class="content">
         <div class="nav">

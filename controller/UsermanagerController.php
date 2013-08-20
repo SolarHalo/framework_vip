@@ -12,7 +12,7 @@ class UsermanagerController extends  Controller{
  		 /** vacation*/ 
  		 $vacations = array("公务员","教师\律师\医生等专业人士","企业管理者","公司职员","自由职业者","家庭主妇","学生","私营企业主","其它");
  		 /** ysr*/ 
- 		 $ysrs = array("4999元或以下","5000-6999元","7000-8999元","9000-9999元","10000-19999元","20000元以上");
+ 		 $ysrs = array("4999元以下","5000-6999元","7000-8999元","9000-9999元","10000-19999元","20000元以上");
  		 
 		 
  		 $vipInfoArr = $_SESSION['vipInfoArr'];
@@ -24,6 +24,11 @@ class UsermanagerController extends  Controller{
 	     $manBrandsHtml = $this->returnHtml($manBrands, $brandStr);
          $vacationBrandsHtml = $this->returnHtml($vacations, $vocationStr);
          $ysrHtml = $this->returnHtml($ysrs, $ysrStr);
+         
+         $_SESSION['ladybrands'] = $ladyBrandsHtml;
+         $_SESSION['manbrands'] = $manBrandsHtml;
+         $_SESSION['vacation'] = $vacationBrandsHtml;
+         $_SESSION['ysr'] = $ysrHtml;
          
 		 $this->smarty->assign("ladybrands", $ladyBrandsHtml);
 		 $this->smarty->assign("manbrands", $manBrandsHtml);
@@ -39,12 +44,12 @@ class UsermanagerController extends  Controller{
 	 * @param unknown_type $isShow
 	 * @param unknown_type $brandTemp
 	 */
-	public function returnHtml($Arr, $Str){
+	public function returnHtml($Arr, $str){
 		$html;
 		$show = "y-iocn.gif";
 		$hide = "n-iocn.gif";
 		foreach ($Arr as $Temp){
-			if (strpos($Str, $Temp)===false){
+			if (strpos($str, $Temp)===false){
 				$html .= "<font class=\"en\"><img src=\"".WEBSITE_URL."public/img/".$hide."\"/>".$Temp."</font>";
 			}else {
 				$html .= "<font class=\"en\"><img src=\"".WEBSITE_URL."public/img/".$show."\"/>".$Temp."</font>";
@@ -65,6 +70,7 @@ class UsermanagerController extends  Controller{
 	public function mdfuserinfo(){ 
 		 $smaryt = $this->getSmarty();
 		 //如果不是post方式的提交，直接转向
+		
 		 if(!CommonBase::isPost()){
 		 	$this->smarty->display("userinfomdf.tpl"); 
 		 	return;
@@ -72,6 +78,51 @@ class UsermanagerController extends  Controller{
 		 $this->smarty->display("userinfomdf.tpl"); 
 	} 
 	
+	public function updateVipInfo(){
+		 $vipInfoArr = $_SESSION['vipInfoArr'];//修改完成之后西药更新session信息
+		 $phoneNum = $_POST['phoneNum'];
+		 $email = $_POST['email'];
+		 $ladyBrands = $_POST['ladyBrands'];
+		 $manBrands = $_POST['manBrands'];
+		 $vacations = $_POST['vacations'];
+		 $ysrs = $_POST['ysrs'];
+		 $smsAllow = $_POST['smsAllow'];
+		 
+		 $postData = array('vip_no'=>$vipInfoArr['vip_no'],'name'=>$vipInfoArr['name'],'sex'=>$vipInfoArr['sex'],'birthday'=>$vipInfoArr['birthday'],
+		 'IDCard'=>$vipInfoArr['IDCard'],'phoneNum'=>$phoneNum,'email'=>$email,
+		 'ladyBrands'=>$ladyBrands,'manBrands'=>$manBrands,'vacations'=>$vacations,'ysrs'=>$ysrs,'smsAllow'=>$smsAllow);
+		 
+		 
+		 $vipInfoXML = $this->getUpdateVipXML($postData);
+		 require_once DRIVER.DS.'WebServiceInit.class.php';
+		 $webServiceInit = new WebServiceInit();
+		 $client = $webServiceInit->getProxy();
+		 require_once SERVICE.DS.'InterfaceService.class.php';
+		 $interfaceService = new InterfaceService($client);
+		 global $CONFIG;
+		 $returnInfo = $interfaceService->updateVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipInfoArr['vip_no'], $vipInfoXML);
+		var_dump($returnInfo) ;
+	}
+	
+	public function getUpdateVipXML($postData){
+		$domDocument = new DOMDocument('1.0', "UTF-8");
+		$domElement = $domDocument->createElement('vipInfo');
+		$brands;
+		foreach ($postData as $k=>$v){
+			if ($k==='ladyBrands'){
+				$brands .= $v;
+			}elseif ($k==='manBrands'){
+				$brands .= $v;
+			}else {
+				$node = $domDocument->createElement($k, $v);
+				$domElement->appendChild($node);
+			}
+		}
+		$node = $domDocument->createElement('brand', $brands);
+		$domElement->appendChild($node);
+		$domDocument->appendChild($domElement);
+		return $domDocument->saveXML();
+	}
    public function checkinfos(){ 
 		 $smaryt = $this->getSmarty();
 		 $vipInfoArr = $_SESSION['vipInfoArr'];

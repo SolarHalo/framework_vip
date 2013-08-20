@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-17 06:45:10
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-20 13:25:11
          compiled from "F:\PHP_WorkSapce\framework\templates\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:31069520f1bf6dda303-97142720%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5ce76666006b1704289d8a487c33d67d7db73723' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\index.tpl',
-      1 => 1376717601,
+      1 => 1377003857,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.13',
   'unifunc' => 'content_520f1bf7eff393_58875223',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_520f1bf7eff393_58875223')) {function content_520f1bf7eff393_58875223($_smarty_tpl) {?><!doctype html>
 <html>
@@ -43,15 +43,20 @@ $(function(){
 		paddingT = 10;
 	}
 	$("body").css({paddingTop:paddingT});
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});  
 })
 </script>
 </head>
 
 <body>
-<div class="Welcomeuseer zh">
-	<a href="<?php echo @constant('WEBSITE_URL');?>
-login">欢迎登录</a>
-</div>
+<?php echo $_smarty_tpl->getSubTemplate ('loginbanner.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
 <div id="warp" class="container">
     <div class="content home">
         <h1 class="pagetitle tc"><img src="<?php echo @constant('WEBSITE_URL');?>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-17 16:53:55
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-20 13:32:00
          compiled from "F:\PHP_WorkSapce\framework\templates\checkinfos.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:7093520f21f576f174-69213104%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'be4ffca1dfc7ba0a1294d6f468ff079ad037c359' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\checkinfos.tpl',
-      1 => 1376750254,
+      1 => 1377003857,
       2 => 'file',
     ),
   ),
@@ -66,6 +66,13 @@ $(function(){
 		paddingT = 10;
 	}
 	$("body").css({paddingTop:paddingT});
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});  
 })
 </script>
 <script type="text/javascript" id="sourcecode">
@@ -143,9 +150,9 @@ $(function(){
 </head>
 
 <body>
-<div class="Welcomeuseer zh">
-	尊贵的<font>汪涵</font>，您好！<a href="#">退出</a>
-</div>
+<?php echo $_smarty_tpl->getSubTemplate ('loginbanner.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+
 <div class="windbox" id="datedesc">
 	<div class="wind">
     	<a href="#" onclick="javascript:closeWin('datedesc');" class="fr"><img src="<?php echo @constant('WEBSITE_URL');?>
