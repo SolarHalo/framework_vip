@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-18 13:57:12
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-19 16:11:34
          compiled from "F:\PHP_WorkSapce\framework\templates\userinfomdf.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:216935210d2b815d0a6-85247427%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8e93ac54c8be734cc5e618fcb0f5bc7af18f22e9' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\userinfomdf.tpl',
-      1 => 1376717601,
+      1 => 1376928685,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.13',
   'unifunc' => 'content_5210d2b8af1cf0_36165333',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5210d2b8af1cf0_36165333')) {function content_5210d2b8af1cf0_36165333($_smarty_tpl) {?><!doctype html>
 <html>
@@ -165,7 +165,83 @@ $(function(){
 
 	}
 
+
+/**
+ * 获取更改的参数
+ */
+
+ function getparms(){
+//data:{"userPageFlag":queryFlag.join(",")}
+	var parms = {};
+	var ladyBrandsTarget = $("#ladyBrands .en img[src$='y-iocn.gif']");
+	var manBrandsTarget = $("#manBrands .en img[src$='y-iocn.gif']");
+	var vacationsTarget = $("#vacations .zh img[src$='y-iocn.gif']");
+	var ysrsTarget = $("#ysrs .zh img[src$='y-iocn.gif']");
+	var ladyBrands = getOptions(ladyBrandsTarget);
+	var manBrands = getOptions(manBrandsTarget);
+	var vacations = getOptions(vacationsTarget);
+	var ysrs = getOptions(ysrsTarget);
+//	console.log(ladyBrands);
+	var phoneNum = $("#phoneNum").val();
+	var email = $("#email").val();
+	parms.phoneNum = phoneNum;
+	parms.email = email;
+	parms.ladyBrands = ladyBrands;
+	parms.manBrands = manBrands;
+	parms.vacations = vacations;
+	parms.ysrs = ysrs;
+
+	console.log(parms);
+ }
+
+function getOptions(target){
+	var options = "";
+	for(var i=0;i<target.size();i++){
+		options += target[i].value + ";";
+	}
+	return options;
+}
+/**
+ * 初始化数据
+ */
+	function initDate(){
+		 /** lady*/ 
+		var ladyBrands = new Array("ochirly","Five Plus","MiuMiu","MARC JACOBS","MICHAEL KORS","initial","Mo&Co","DAZZLE","I.T","Vero Moda","ZARA","H&M","其它/Others");
+		 /** man*/ 
+		var manBrands = new Array("TRENDIANO","Jack&Jones","ELECTED","马克华菲/Mark Fairwhale","GXG","i.t","其它/Others");
+		 /** vacation*/ 
+		var vacations = new Array("公务员","教师\律师\医生等专业人士","企业管理者","公司职员","自由职业者","家庭主妇","学生","私营企业主","其它");
+		 /** ysr*/ 
+		var ysrs = new Array("4999元或以下","5000-6999元","7000-8999元","9000-9999元","10000-19999元","20000元以上");
+
+		var ladyBrandsTarget = $("#ladyBrands .en img");
+		for(var i=0;i<ladyBrandsTarget.length;i++){
+			$(ladyBrandsTarget[i]).attr({"value": ladyBrands[i]});
+		}
+		ladyBrandsTarget.attr({"onclick": "changeImg(this);"});
+
+		var manBrandsTarget = $("#manBrands .en img");
+		for(var i=0;i<manBrandsTarget.length;i++){
+			$(manBrandsTarget[i]).attr({"value": manBrands[i]});
+		}
+		manBrandsTarget.attr({"onclick": "changeImg(this);"});
+
+		var vacationsTarget = $("#vacations .zh img");
+		for(var i=0;i<vacationsTarget.length;i++){
+			$(vacationsTarget[i]).attr({"value": vacations[i]});
+		}
+		vacationsTarget.attr({"onclick": "changeImg(this);"});
+
+		var ysrsTarget = $("#ysrs .zh img");
+		for(var i=0;i<ysrsTarget.length;i++){
+			$(ysrsTarget[i]).attr({"value": ysrs[i]});
+		}
+		ysrsTarget.attr({"onclick": "changeImg(this);"});
+	}
+
 $(function(){
+	initDate();
+	getparms();
 	$("#mustfill").hide();
 	$("#vlid").hide();
 	
@@ -175,7 +251,6 @@ $(function(){
 		$("#stander").hide();
 	});
 	
-
 	$('.scroll-pane').jScrollPane();
 	  $('.wrapper5').hide();
       $('.xiaoguo5').click(function(){
@@ -217,13 +292,30 @@ public/img/';
 		$(target).attr("src",imguri+'n-iocn.gif');
 	}
 }
- 
+/**
+ * 登陆的需要公共的 
+ */
+$(function(){
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});
+});
 </script>
 </head>
 
 <body>
-<div class="Welcomeuseer zh">
-	尊贵的<font>汪涵</font>，您好！<a href="#">退出</a>
+<div class="head6 Welcomeuseer zh">
+	<img src="img/hduser-iocn.gif" style="vertical-align:sub; cursor:pointer;" class="xiaoguo6"/>
+    <a class="xiaoguo6 user_login-y" href="#">尊贵的<font>汪涵</font>，您好!</a>
+    <ul class="wrapper6 zh">
+    	<li><a href="#">账号管理</a></li>
+        <li><a href="#">消费记录</a></li>
+    </ul>
+    <a href="#">退出</a>
 </div>
 <div id="warp" class="container">
     <div class="content">
@@ -281,7 +373,7 @@ public/img/n-iocn.gif" onclick="changeImg(this);"/><font>是否同意会员俱�
                 <div class="Project">
                 	<span>1.过去6个月内您经常购买哪些品牌？（可多选）</span>
                     <span>女士选项</span>
-                    <span>
+                    <span id="ladyBrands">
                     	<font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
 public/img/n-iocn.gif" onclick="changeImg(this);" value="ochirly" />ochirly </font>
                     	<font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
@@ -310,7 +402,7 @@ public/img/n-iocn.gif"/>H&M </font>
 public/img/n-iocn.gif"/>其它/Others</font>
                     </span>
                     <span>男士选项</span>
-                    <span class="mb25">
+                    <span id="manBrands" class="mb25">
                     	<font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
 public/img/n-iocn.gif"/>TRENDIANO  </font>
                     	<font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
@@ -327,7 +419,7 @@ public/img/n-iocn.gif"/>i.t  </font>
 public/img/n-iocn.gif"/>其它/Others  </font> 
                     </span>
                     <span>2.您的职业（单选）</span>
-                    <span class="mb25">
+                    <span id="vacations" class="mb25">
 						<font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
 public/img/n-iocn.gif"/>公务员 </font>
                         <font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
@@ -348,7 +440,7 @@ public/img/n-iocn.gif"/>私营企业主 </font>
 public/img/n-iocn.gif"/>其它</font>
                     </span>
                     <span>3.您的每月收入（单选）</span>
-                    <span class="mb25">
+                    <span id="ysrs" class="mb25">
 						<font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
 public/img/n-iocn.gif"/>4999元或以下 </font>
                         <font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>

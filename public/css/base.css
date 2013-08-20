@@ -482,4 +482,49 @@ li.w50{
 .mt20{
 	margin-top:20px;
 	}	
-	
+/*====================20130820===============*/
+
+
+.Welcomeuseer .user_login-y{   
+	margin:0;
+	}
+.Welcomeuseer .user_login-y:hover{
+	text-decoration:none;
+	}
+.wrapper6{
+	position: absolute;
+	right:53px;
+	top:15px;
+	}
+.wrapper6 li a{
+	display:block;
+	width:92px;
+	height:22px;
+	line-height:22px;
+	text-align:center;
+	font-size:11px;
+	color:#340d00;
+	background:#bca14e;
+	margin-top:2px;
+	text-decoration:none;
+	}
+.head6{
+	position:relative;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
