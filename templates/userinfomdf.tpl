@@ -181,7 +181,7 @@ function changeImg(target){
 	var imguri = '{{$smarty.const.WEBSITE_URL}}public/img/';
 	var imgsrc = $(target).attr("src");
 	var imgvalue = $(target).attr("value");
-	 
+	alert(imgvalue);
 	if(imgsrc.indexOf("n-iocn") >= 0 ){
 		$(target).attr("src",imguri+'y-iocn.gif');
 	}else{

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-15 03:15:45
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-19 13:57:15
          compiled from "G:\phpserver\framework\templates\userinfomdf.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:164775209a99bae6b27-65648507%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6e4a225942dea52a8d8204af305a8ffa6d23239e' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\userinfomdf.tpl',
-      1 => 1376409569,
+      1 => 1376920632,
       2 => 'file',
     ),
   ),
@@ -210,7 +210,7 @@ function changeImg(target){
 public/img/';
 	var imgsrc = $(target).attr("src");
 	var imgvalue = $(target).attr("value");
-	 
+	alert(imgvalue);
 	if(imgsrc.indexOf("n-iocn") >= 0 ){
 		$(target).attr("src",imguri+'y-iocn.gif');
 	}else{

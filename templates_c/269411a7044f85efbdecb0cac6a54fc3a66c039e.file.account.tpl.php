@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-15 07:41:57
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-19 13:48:35
          compiled from "G:\phpserver\framework\templates\account.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:72445209a989d1be69-35088723%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '269411a7044f85efbdecb0cac6a54fc3a66c039e' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\account.tpl',
-      1 => 1376551397,
+      1 => 1376722857,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_5209a98a48f7f0_95659172',
   'variables' => 
   array (
-    'ladaybrand' => 0,
+    'ladybrands' => 0,
+    'manbrands' => 0,
+    'vacation' => 0,
+    'ysr' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -122,68 +125,37 @@ usermanager/checkinfos"><!--消费记录-->
 </font></li>
                     <li class="w50">电子邮箱:<font><?php echo $_SESSION['vipInfoArr']["eMail"];?>
 </font></li>
-                    <li class="w100"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/><font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
+                    <li class="w100">
+                    <?php if ($_SESSION['vipInfoArr']['smsAllow']=='是'){?>
+                    	<img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/y-iocn.gif"/>
+                    	<?php }else{ ?>
+                    	<img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/n-iocn.gif"/>
+                    <?php }?>	
+                    <font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
                 </ul>
                 <div class="Project">
                 	<span>1.过去6个月内您经常购买哪些品牌？（可多选）</span>
                     <span>女士选项</span>
-                    <span> 
-                    	<?php echo $_smarty_tpl->tpl_vars['ladaybrand']->value;?>
+                    <span>
+                    	<?php echo $_smarty_tpl->tpl_vars['ladybrands']->value;?>
 
                     </span>
                     <span>男士选项</span>
                     <span class="mb25">
-                    	<font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>TRENDIANO  </font>
-                    	<font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>Jack&Jones  </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>ELECTED </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>马克华菲/Mark Fairwhale </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/y-iocn.gif"/>GXG </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>i.t  </font>
-                        <font class="en"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>其它/Others  </font> 
+                    	<?php echo $_smarty_tpl->tpl_vars['manbrands']->value;?>
+
                     </span>
                     <span>2.您的职业（单选）</span>
                     <span class="mb25">
-						<font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>公务员 </font>
-                        <font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>教师\律师\医生等专业人士 </font>
-                        <font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>企业管理者 </font>
-                        <font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>公司职员 </font>
-                        <font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>自由职业者 </font>
-                        <font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/y-iocn.gif"/>家庭主妇 </font>
-                        <font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>学生 </font>
-                        <font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>私营企业主 </font>
-                        <font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>其它</font>
+						<?php echo $_smarty_tpl->tpl_vars['vacation']->value;?>
+
                     </span>
                     <span>3.您的每月收入（单选）</span>
                     <span class="mb25">
-						<font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>4999元或以下 </font>
-                        <font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>5000-6999元 </font>
-                        <font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>7000-8999元 </font>
-                        <font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/y-iocn.gif"/>9000-9999元 </font>
-                        <font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>10000-19999元 </font>
-                        <font class="zh"><img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif"/>20000元以上</font> 
+                    	<?php echo $_smarty_tpl->tpl_vars['ysr']->value;?>
+
                     </span> 
                 </div>
 			</div>
