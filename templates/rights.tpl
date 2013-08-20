@@ -31,6 +31,13 @@ $(function(){
 		paddingT = 10;
 	}
 	$("body").css({paddingTop:paddingT});
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});
 })
 </script>
 <script type="text/javascript" id="sourcecode">
@@ -42,9 +49,8 @@ $(function(){
 </head>
 
 <body>
-<div class="Welcomeuseer zh">
-	<a href="{{$smarty.const.WEBSITE_URL}}login">欢迎登录</a>
-</div>
+{{include file='loginbanner.tpl'}}
+
 <div id="warp" class="container">
     <div class="content">
         <div class="nav">

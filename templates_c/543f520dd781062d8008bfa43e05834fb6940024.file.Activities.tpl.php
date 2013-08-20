@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-12 05:55:37
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-20 07:09:10
          compiled from "G:\phpserver\framework\templates\Activities.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2951352044427bcb346-95214282%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '543f520dd781062d8008bfa43e05834fb6940024' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\Activities.tpl',
-      1 => 1376286931,
+      1 => 1376982323,
       2 => 'file',
     ),
   ),
@@ -17,6 +17,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'version' => 'Smarty-3.1.13',
   'unifunc' => 'content_52044427f039c4_76187141',
+  'variables' => 
+  array (
+    'activitishtml' => 0,
+  ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_52044427f039c4_76187141')) {function content_52044427f039c4_76187141($_smarty_tpl) {?><!doctype html>
@@ -64,10 +68,13 @@ $(function(){
 })
 //code for gallery and video
 $(function(){
-	$("#fancybox-manual-b").click(function() {
+
+	
+	$(".fancybox-manual-b").click(function() { 
+		console.log('activities/media/?id='+$(this).attr("idvalue"));
 		$.fancybox.open({
 			href : '<?php echo @constant('WEBSITE_URL');?>
-activities/media',
+activities/media/?id='+$(this).attr("idvalue"),
 			type : 'iframe',
 			maxWidth	: 536,
 			maxHeight	: 600,
@@ -100,15 +107,21 @@ activities/media',
       });
 		return false;
 	});
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});
 })
 </script>
 </head>
 
 <body>
-<div class="Welcomeuseer zh">
-	<a href="<?php echo @constant('WEBSITE_URL');?>
-login">欢迎登录</a>
-</div>
+<?php echo $_smarty_tpl->getSubTemplate ('loginbanner.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+
 <div id="warp" class="container" style="position:relative;">
     <div class="content">
         <div class="nav">
@@ -178,7 +191,7 @@ public/gallery/2/9.jpg"> </div>
                         <p><span class="en">ochirly、Five Plus、TRENDIANO</span><span class="zh">太古汇全新形象店举办的一场“</span><span class="en">Enjoy Your Fashion Style</span><span class="zh">”时尚</span><span class="en">Mini Party</span><span class="zh">。伴随着来自欧美的</span><span class="en">Live Band</span><span class="zh">充满热情的音乐风格演绎，</span><span class="en">ochirly</span><span class="zh">引领现场嘉宾们一同领略全新门店艺术，徜徉于音乐与艺术的时空。</span></p>
                         <p><a href="#" class="abtn"><span class="zh">观看更多</span></a></p>
                     </li>
-                      <li class="photo">
+                     <li class="photo">
                         <div class="fl"> <img src="<?php echo @constant('WEBSITE_URL');?>
 public/gallery/2/1.jpg">
                          <img src="<?php echo @constant('WEBSITE_URL');?>
@@ -188,8 +201,11 @@ public/gallery/2/2.jpg">
                             <h3><span class="zh">测试播放视频</span><span class="en">Mini Party</span></h3>
                         </div>
                         <p><span class="en">ochirly、Five Plus、TRENDIANO</span><span class="zh">太古汇全新形象店举办的一场“</span><span class="en">Enjoy Your Fashion Style</span><span class="zh">”时尚</span><span class="en">Mini Party</span><span class="zh">。伴随着来自欧美的</span><span class="en">Live Band</span><span class="zh">充满热情的音乐风格演绎，</span><span class="en">ochirly</span><span class="zh">引领现场嘉宾们一同领略全新门店艺术，徜徉于音乐与艺术的时空。</span></p>
-                        <p><a  class="abtn " id="fancybox-manual-b" href="javascript:;"><span class="zh">观看视频</span></a></p>
+                        <p><a  class="abtn fancybox-manual-b"   href="javascript:;" idvalue="-1"><span class="zh">观看视频</span></a></p>
                     </li>
+                  
+                    <?php echo $_smarty_tpl->tpl_vars['activitishtml']->value;?>
+
                 </ul>
             </div>
         </div>

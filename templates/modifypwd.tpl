@@ -120,7 +120,13 @@ $(function(){
 		//}
 
 	});
-
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});
 })
 </script>
 <script type="text/javascript" id="sourcecode">
@@ -132,9 +138,8 @@ $(function(){
 </head>
 
 <body>
-<div class="Welcomeuseer zh">
-	尊贵的<font>汪涵</font>，您好！<a href="#">退出</a>
-</div>
+{{include file='loginbanner.tpl'}}
+
 <div id="warp" class="container">
     <div class="content">
         <div class="nav">

@@ -19,14 +19,19 @@ $(function(){
 		paddingT = 10;
 	}
 	$("body").css({paddingTop:paddingT});
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});
 })
 </script>
 </head>
 
 <body>
-<div class="Welcomeuseer zh">
-	<a href="{{$smarty.const.WEBSITE_URL}}login">欢迎登录</a>
-</div>
+{{include file='loginbanner.tpl'}}
 <div id="warp" class="container">
     <div class="content home">
         <h1 class="pagetitle tc"><img src="{{$smarty.const.WEBSITE_URL}}public/img/club.jpg" alt="会员俱乐部" /></h1>

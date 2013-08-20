@@ -12,7 +12,7 @@ class Activities{
 	}
 	public function activityByid($id){
 		$result = array();
-		$sqlactivi = "select a.*,f.id as f_id,f.imgname,f.default_show  from activities a,files f where a.id=f.activ_id and a.id = $id"; 
+		$sqlactivi = "select a.*,f.id as f_id,f.imgname,f.default_show  from activities a,files f where a.id=f.activ_id and a.id = $id  order by default_show desc"; 
     	 $actitities = $this->dbutil->get_results($sqlactivi);  
     	 return $actitities;
 	}

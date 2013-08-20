@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-12 10:34:11
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-20 07:36:07
          compiled from "G:\phpserver\framework\templates\admin\activities_add.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:298505207afb45152c4-69076830%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '12f79d20ca5a6043d9400633ba8bf9a6c2fc9aca' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\admin\\activities_add.tpl',
-      1 => 1376303085,
+      1 => 1376984133,
       2 => 'file',
     ),
   ),
@@ -90,7 +90,7 @@ function checkform(){
 	 obj.defaultimgs =  defaulimg;
 	 obj.activities_name = $("#activities_name").val();
 	 obj.activities_desc = $("#activities_desc").val();
-     obj.imgtype = $(".activities_type").val();  
+	 obj.imgtype = $("#activities_type").val();  
      if(obj.defaultimgs == null){
           alert("请选择默认显示的图片");
           return false;
@@ -150,7 +150,7 @@ admin/user">管理列表</a> <span class="divider">/</span></li>
 				<label>活动名称</label>
 				<input type="text" name="activities_name"  id = "activities_name" class="input-xlarge" autofocus="true" required="true" >
 				<label>活动类型</label>  
-				 <select name="activities_type" >
+				 <select id="activities_type" >
 				  <option value="1" selected >图片</option>
 				  <option value="2">视频</option>
 				 </select> 

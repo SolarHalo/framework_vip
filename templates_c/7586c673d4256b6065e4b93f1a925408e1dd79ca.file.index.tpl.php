@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-09 01:14:41
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-20 04:20:07
          compiled from "G:\phpserver\framework\templates\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3248051f55f198f7677-44627389%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7586c673d4256b6065e4b93f1a925408e1dd79ca' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\index.tpl',
-      1 => 1375685144,
+      1 => 1376972401,
       2 => 'file',
     ),
   ),
@@ -43,15 +43,20 @@ $(function(){
 		paddingT = 10;
 	}
 	$("body").css({paddingTop:paddingT});
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});
 })
 </script>
 </head>
 
 <body>
-<div class="Welcomeuseer zh">
-	<a href="<?php echo @constant('WEBSITE_URL');?>
-login">欢迎登录</a>
-</div>
+<?php echo $_smarty_tpl->getSubTemplate ('loginbanner.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
 <div id="warp" class="container">
     <div class="content home">
         <h1 class="pagetitle tc"><img src="<?php echo @constant('WEBSITE_URL');?>

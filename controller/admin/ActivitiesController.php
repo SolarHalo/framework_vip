@@ -30,7 +30,7 @@ class ActivitiesController  extends  Controller{
 	    $name =  $_POST['activities_name']; 
 	    $desc = $_POST['activities_desc'];
 	    $defaultimg = $_POST['defaultimgs'];
-	    $imgtype = $_POST['imgtype'];
+	     $imgtype = $_POST['imgtype'];
 	    
 	    $data = array("acti_name"=>$name,"acti_desc"=>$desc,"acti_type"=>$imgtype);
 	    require_once SERVICE.DS.'admin'.DS.'Activities.class.php';

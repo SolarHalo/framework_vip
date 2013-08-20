@@ -34,9 +34,12 @@ $(function(){
 })
 //code for gallery and video
 $(function(){
-	$("#fancybox-manual-b").click(function() {
+
+	
+	$(".fancybox-manual-b").click(function() { 
+		console.log('activities/media/?id='+$(this).attr("idvalue"));
 		$.fancybox.open({
-			href : '{{$smarty.const.WEBSITE_URL}}activities/media',
+			href : '{{$smarty.const.WEBSITE_URL}}activities/media/?id='+$(this).attr("idvalue"),
 			type : 'iframe',
 			maxWidth	: 536,
 			maxHeight	: 600,
@@ -69,14 +72,20 @@ $(function(){
       });
 		return false;
 	});
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});
 })
 </script>
 </head>
 
 <body>
-<div class="Welcomeuseer zh">
-	<a href="{{$smarty.const.WEBSITE_URL}}login">欢迎登录</a>
-</div>
+{{include file='loginbanner.tpl'}}
+
 <div id="warp" class="container" style="position:relative;">
     <div class="content">
         <div class="nav">
@@ -123,7 +132,7 @@ $(function(){
                         <p><span class="en">ochirly、Five Plus、TRENDIANO</span><span class="zh">太古汇全新形象店举办的一场“</span><span class="en">Enjoy Your Fashion Style</span><span class="zh">”时尚</span><span class="en">Mini Party</span><span class="zh">。伴随着来自欧美的</span><span class="en">Live Band</span><span class="zh">充满热情的音乐风格演绎，</span><span class="en">ochirly</span><span class="zh">引领现场嘉宾们一同领略全新门店艺术，徜徉于音乐与艺术的时空。</span></p>
                         <p><a href="#" class="abtn"><span class="zh">观看更多</span></a></p>
                     </li>
-                      <li class="photo">
+                     <li class="photo">
                         <div class="fl"> <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/2/1.jpg">
                          <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/2/2.jpg">
                         </div>
@@ -131,8 +140,10 @@ $(function(){
                             <h3><span class="zh">测试播放视频</span><span class="en">Mini Party</span></h3>
                         </div>
                         <p><span class="en">ochirly、Five Plus、TRENDIANO</span><span class="zh">太古汇全新形象店举办的一场“</span><span class="en">Enjoy Your Fashion Style</span><span class="zh">”时尚</span><span class="en">Mini Party</span><span class="zh">。伴随着来自欧美的</span><span class="en">Live Band</span><span class="zh">充满热情的音乐风格演绎，</span><span class="en">ochirly</span><span class="zh">引领现场嘉宾们一同领略全新门店艺术，徜徉于音乐与艺术的时空。</span></p>
-                        <p><a  class="abtn " id="fancybox-manual-b" href="javascript:;"><span class="zh">观看视频</span></a></p>
+                        <p><a  class="abtn fancybox-manual-b"   href="javascript:;" idvalue="-1"><span class="zh">观看视频</span></a></p>
                     </li>
+                  
+                    {{$activitishtml}}
                 </ul>
             </div>
         </div>

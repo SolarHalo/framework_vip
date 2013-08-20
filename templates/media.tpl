@@ -21,9 +21,9 @@
 </head>
 <body> 
   <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="550" height="264"
-      poster="{{$smarty.const.WEBSITE_URL}}public/video/1.jpg"
+      poster="{{$imgpath}}"
       data-setup="{}">
-    <source src="{{$smarty.const.WEBSITE_URL}}public/video/1.mp4" type='video/mp4' />
+    <source src="{{$vidiopath}}" type='video/mp4' />
     <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
     <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
     <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->

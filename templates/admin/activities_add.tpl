@@ -59,7 +59,7 @@ function checkform(){
 	 obj.defaultimgs =  defaulimg;
 	 obj.activities_name = $("#activities_name").val();
 	 obj.activities_desc = $("#activities_desc").val();
-     obj.imgtype = $(".activities_type").val();  
+	 obj.imgtype = $("#activities_type").val();  
      if(obj.defaultimgs == null){
           alert("请选择默认显示的图片");
           return false;
@@ -115,7 +115,7 @@ function checkform(){
 				<label>活动名称</label>
 				<input type="text" name="activities_name"  id = "activities_name" class="input-xlarge" autofocus="true" required="true" >
 				<label>活动类型</label>  
-				 <select name="activities_type" >
+				 <select id="activities_type" >
 				  <option value="1" selected >图片</option>
 				  <option value="2">视频</option>
 				 </select> 
