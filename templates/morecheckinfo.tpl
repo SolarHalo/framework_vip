@@ -19,7 +19,7 @@
 	float:left;
 }
 </style>
- 
+   
 <script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery.jscrollpane.min.js"></script>
 <script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery.mousewheel.js"></script>
 <script type="text/javascript">

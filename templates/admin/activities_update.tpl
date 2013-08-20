@@ -60,7 +60,7 @@ function checkform(){
 	 obj.activities_name = $("#activities_name").val();
 	 obj.activities_desc = $("#activities_desc").val();
 	 obj.id = $("#ac_id").val();
-     obj.imgtype = $("#activities_type").val();  
+     obj.imgtype = $("#activities_type").val();   
      if(obj.defaultimgs == null){
           alert("请选择默认显示的图片");
           return false;

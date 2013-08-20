@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ActivitiesController extends  Controller{
 	
 	public function index(){ 
@@ -7,7 +7,7 @@ class ActivitiesController extends  Controller{
 		$activities = new Activities($this->getDB()); 
 		 $alldatas= $activities->getAllActivities(); 
 		
-		 $html;
+		 $html; 
 		foreach($alldatas as $activity){
 			if($activity->acti_type == 1 ){
 				$acAdFiles = $activities->activityByid($activity->id);

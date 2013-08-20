@@ -14,7 +14,7 @@ class Activities{
 		$result = array();
 		$sqlactivi = "select a.*,f.id as f_id,f.imgname,f.default_show  from activities a,files f where a.id=f.activ_id and a.id = $id  order by default_show desc"; 
     	 $actitities = $this->dbutil->get_results($sqlactivi);  
-    	 return $actitities;
+    	 return $actitities;  
 	}
     public function finddefaultImgIdByid($id){
 		$result = array();

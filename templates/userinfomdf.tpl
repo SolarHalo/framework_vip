@@ -261,7 +261,7 @@ function changeImg(target){
 		$(target).attr("src",imguri+'y-iocn.gif');
 	}else{
 		$(target).attr("src",imguri+'n-iocn.gif');
-	}
+	}  
 }
 /**
  * 登陆的需要公共的 

@@ -126,7 +126,7 @@ $(function(){
 	});
 	$('.head6').mouseleave(function(){
 		$('.wrapper6').slideUp();
-	});
+	});  
 })
 </script>
 <script type="text/javascript" id="sourcecode">

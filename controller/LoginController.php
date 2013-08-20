@@ -87,7 +87,7 @@ class LoginController extends  Controller{
 	     	        	 	$this->smarty->assign("loginErrorWin",$this->loginErrorJump(WEBSITE_URL."usermanager")); 
 		     	        }
 			  }
-		 } 
+		 }  
 		 
 		   
 		 $this->smarty->assign("_POST",$_POST); 

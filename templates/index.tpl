@@ -25,7 +25,7 @@ $(function(){
 	});
 	$('.head6').mouseleave(function(){
 		$('.wrapper6').slideUp();
-	});
+	});  
 })
 </script>
 </head>

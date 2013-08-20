@@ -18,7 +18,7 @@
   </script>
 
 
-</head>
+</head>  
 <body> 
   <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="550" height="264"
       poster="{{$imgpath}}"

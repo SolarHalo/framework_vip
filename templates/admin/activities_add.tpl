@@ -107,7 +107,7 @@ function checkform(){
     <ul class="nav nav-tabs">
       <li class="active"><a href="#home" data-toggle="tab">请填写活动资料</a></li>
     </ul>	
-	
+	   
 	<div id="myTabContent" class="tab-content">
 		  <div class="tab-pane active in" id="home">
 
