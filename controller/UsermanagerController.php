@@ -19,11 +19,11 @@ class UsermanagerController extends  Controller{
 		 $brandStr = $vipInfoArr["brand"];
 		 $vocationStr = $vipInfoArr["vocation"];
 		 $ysrStr = $vipInfoArr["ysr"];
-		 
-		 $ladyBrandsHtml = $this->returnHtml($ladyBrands, $brandStr);
-	     $manBrandsHtml = $this->returnHtml($manBrands, $brandStr);
-         $vacationBrandsHtml = $this->returnHtml($vacations, $vocationStr);
-         $ysrHtml = $this->returnHtml($ysrs, $ysrStr);
+
+		 $ladyBrandsHtml = $this->returnHtmlEN($ladyBrands, $brandStr);
+	     $manBrandsHtml = $this->returnHtmlEN($manBrands, $brandStr);
+         $vacationBrandsHtml = $this->returnHtmlZH($vacations, $vocationStr);
+         $ysrHtml = $this->returnHtmlZH($ysrs, $ysrStr);
          
          $_SESSION['ladybrands'] = $ladyBrandsHtml;
          $_SESSION['manbrands'] = $manBrandsHtml;
@@ -44,7 +44,7 @@ class UsermanagerController extends  Controller{
 	 * @param unknown_type $isShow
 	 * @param unknown_type $brandTemp
 	 */
-	public function returnHtml($Arr, $str){
+	public function returnHtmlEN($Arr, $str){
 		$html;
 		$show = "y-iocn.gif";
 		$hide = "n-iocn.gif";
@@ -53,6 +53,20 @@ class UsermanagerController extends  Controller{
 				$html .= "<font class=\"en\"><img src=\"".WEBSITE_URL."public/img/".$hide."\"/>".$Temp."</font>";
 			}else {
 				$html .= "<font class=\"en\"><img src=\"".WEBSITE_URL."public/img/".$show."\"/>".$Temp."</font>";
+			}
+		}
+		return $html;
+	}
+	
+	public function returnHtmlZH($Arr, $str){
+		$html;
+		$show = "y-iocn.gif";
+		$hide = "n-iocn.gif";
+		foreach ($Arr as $Temp){
+			if (strpos($str, $Temp)===false){
+				$html .= "<font class=\"zh\"><img src=\"".WEBSITE_URL."public/img/".$hide."\"/>".$Temp."</font>";
+			}else {
+				$html .= "<font class=\"zh\"><img src=\"".WEBSITE_URL."public/img/".$show."\"/>".$Temp."</font>";
 			}
 		}
 		return $html;
@@ -86,14 +100,20 @@ class UsermanagerController extends  Controller{
 		 $manBrands = $_POST['manBrands'];
 		 $vacations = $_POST['vacations'];
 		 $ysrs = $_POST['ysrs'];
-		 $smsAllow = $_POST['smsAllow'];
+//		 $smsAllow = $_POST['smsAllow'];
+
+		 echo $ladyBrands;
+		 echo $manBrands;
+		 echo $vacations;
+		 echo $ysrs;
 		 
-		 $postData = array('vip_no'=>$vipInfoArr['vip_no'],'name'=>$vipInfoArr['name'],'sex'=>$vipInfoArr['sex'],'birthday'=>$vipInfoArr['birthday'],
+		 $postData = array('vip_no'=>trim($vipInfoArr['vip_no']),'name'=>$vipInfoArr['name'],'sex'=>$vipInfoArr['sex'],'birthday'=>$vipInfoArr['birthday'],
 		 'IDCard'=>$vipInfoArr['IDCard'],'phoneNum'=>$phoneNum,'email'=>$email,
-		 'ladyBrands'=>$ladyBrands,'manBrands'=>$manBrands,'vacations'=>$vacations,'ysrs'=>$ysrs,'smsAllow'=>$smsAllow);
-		 
+		 'ladyBrands'=>$ladyBrands,'manBrands'=>$manBrands,'vacations'=>trim($vacations, ","),'ysrs'=>trim($ysrs, ","));
 		 
 		 $vipInfoXML = $this->getUpdateVipXML($postData);
+		 
+		 var_dump($vipInfoXML);die();
 		 require_once DRIVER.DS.'WebServiceInit.class.php';
 		 $webServiceInit = new WebServiceInit();
 		 $client = $webServiceInit->getProxy();
@@ -113,13 +133,12 @@ class UsermanagerController extends  Controller{
 				$brands .= $v;
 			}elseif ($k==='manBrands'){
 				$brands .= $v;
+				$node = $domDocument->createElement('brand', trim($brands, ","));
 			}else {
 				$node = $domDocument->createElement($k, $v);
-				$domElement->appendChild($node);
 			}
+			$domElement->appendChild($node);
 		}
-		$node = $domDocument->createElement('brand', $brands);
-		$domElement->appendChild($node);
 		$domDocument->appendChild($domElement);
 		return $domDocument->saveXML();
 	}
@@ -132,7 +151,7 @@ class UsermanagerController extends  Controller{
 		 require_once SERVICE.DS.'InterfaceService.class.php';
 		 $interfaceService = new InterfaceService($client);
 		 global $CONFIG;
-		 $checkInfoArr = $interfaceService->getVipCheck($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipInfoArr['vip_no'], 7, 1, '2010-12-21', '2013-05-22');
+		 $checkInfoArr = $interfaceService->getVipCheck($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], "00001032", 7, 1, '2010-12-21', '2013-05-22');
 		 
 		 $inDate =  $checkInfoArr['cardInfo']['inDate'];
 	     $endDate = $checkInfoArr['cardInfo']['endDate']; 
@@ -140,6 +159,8 @@ class UsermanagerController extends  Controller{
 	     $count = $checkInfoArr['Page']['totalResult']; 
 		 $_SESSION['checkInfoArr'] = $checkInfoArr;  
 		 $_SESSION['count'] = $count;  //总记录数
+		 
+		 $this->returnSearchDateHtml($smaryt);
 		 
 		 $dateHtml = $this->returnDateHtml($inDate, $endDate);
 		  
@@ -162,6 +183,82 @@ class UsermanagerController extends  Controller{
 		$inDateArr = explode("-", $inDate);
 		$endDateArr = explode("-", $endDate);
 		$html = "开卡日期：<font>".trim($inDateArr[0])."</font>年<font>".trim($inDateArr[1])."</font>月<font>".trim($inDateArr[2])."</font>日,有效期：<font>".trim($endDateArr[0])."</font>年<font>".trim($endDateArr[1])."</font>月<font>".trim($endDateArr[2])."</font>日";
+		return $html;
+	}
+	
+	/**
+	 * 查询消费信息开始时间,结束时间(前一个自然日算起，过去两年)
+	 * Enter description here ...
+	 * @param unknown_type $isShow
+	 * @param unknown_type $brandTemp
+	 */
+	public function returnSearchDateHtml($smaryt){
+		
+		$yesteday = mktime(0,0,0,date("m"),date("d")-1,date("Y"));//当前的前一天
+		$date = date("Y-m-d", $yesteday); //格式化
+		$twoYearDate = date('Y-m-d', strtotime ("-2 year", strtotime($date)));//2年前的那一天
+		$twoYearDate_M = date('m', strtotime($twoYearDate));//2年前的那一天的月份
+		$twoYearDate_Y = date('Y', strtotime($twoYearDate));//2年前的那一天的年份
+		$date_Y = date('Y', strtotime($date));//前一天的年份
+		$date_M = date('m', strtotime($date));//前一天的月份
+		
+		$start_yyyy = $twoYearDate_Y;//2年前所需要展示的年份,首次展示(startDate)
+		$start_mm = $twoYearDate_M;//2年前所需要展示的月份(下拉)
+		$start_years = $date_Y - $twoYearDate_Y + 1;//2年前所需要展示的年份,首次展示(startDate)
+		
+		$end_yyyy = $date_Y;//当前时间所需要展示的年份,首次展示(endDate)
+		$end_years = $date_Y - $yesteday_Y + 1;//当前时间所需要展示的年份,首次展示(endDate)
+		$end_mm = $date_M;//当前时间所需要展示的月份
+		
+		$start_yyyy_html = "<a class=\"xiaoguo\">".$start_yyyy."</a>";//2年前被选中年
+		$start_years_html = "<li class=\"nshow\"><a>".$twoYearDate_Y ."</a></li> ";
+		$var_temp_year;
+		for($s_years=1;$s_years<$start_years;$s_years++){
+			$var_temp_year = $twoYearDate_Y + $s_years;
+			$start_years_html .= "<li class=\"nshow\"><a>".$var_temp_year."</a></li> ";//2年前下拉年
+		}
+		$twoYearDate_M_html = "<a class=\"xiaoguo2\">".$twoYearDate_M."</a>";//2年前被选中月
+		$start_mm_html;
+		for($s_mm=1;$s_mm<$start_mm+1;$s_mm++){
+			if ($s_mm<9){
+				$start_mm_html .= "<li class=\"nshow4\"><a>0".$s_mm."</a></li>";//下拉月
+			}else {
+				$start_mm_html .= "<li class=\"nshow2\"><a>".$s_mm."</a></li>";//2年前下拉月
+			}
+		}
+
+		$end_yyyy_html = "<a class=\"xiaoguo3\">".$end_yyyy."</a>";//当前被选中年
+//		$end_years_html = "<li class=\"nshow3\"><a>".$end_yyyy."</a></li> ";
+//		for($e_year=1;$e_year<$end_years;$e_year++){
+//			$end_years_html .= "<li class=\"nshow3\"><a>".$e_year."</a></li> ";//下拉年
+//		}
+		$date_M_html = "<a class=\"xiaoguo4\">".$date_M."</a>";//当前被选中月
+		$end_mm_html;
+		for($e_mm=1;$e_mm<$end_mm+1;$e_mm++){
+			if ($e_mm<9){
+				$end_mm_html .= "<li class=\"nshow4\"><a>0".$e_mm."</a></li>";//下拉月
+			}else {
+				$end_mm_html .= "<li class=\"nshow4\"><a>".$e_mm."</a></li>";//下拉月
+			}
+		}
+		
+		$this->smarty->assign("start_yyyy", $start_yyyy_html);
+		$this->smarty->assign("start_years", $start_years_html);
+		$this->smarty->assign("twoYearDate_M", $twoYearDate_M_html);
+		$this->smarty->assign("start_mm", $start_mm_html);
+		
+		$this->smarty->assign("end_yyyy", $end_yyyy_html);
+//		$this->smarty->assign("end_years", $end_years_html);
+		$this->smarty->assign("date_M", $date_M_html);
+		$this->smarty->assign("end_mm", $end_mm_html);
+		
+	}
+	
+	public function getDateHtml($temp){
+		$html;
+		foreach ($temp as $v){//<li class="nshow2"><a href="#">01</a></li> 
+			$html .= "<li class=\"nshow2\"><a>01</a></li>";
+		}
 		return $html;
 	}
 	

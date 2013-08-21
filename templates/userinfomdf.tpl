@@ -171,7 +171,7 @@ $(function(){
 		var manBrands = getOptions(manBrandsTarget);
 		var vacations = getOptions(vacationsTarget);
 		var ysrs = getOptions(ysrsTarget);
-		var smsAllow = $("form ul li.w100 img").attr("alt");;
+//		var smsAllow = $("form ul li.w100 img").attr("alt");;
 		var phoneNum = $("#phoneNum").val();
 		var email = $("#email").val();
 		parms.phoneNum = phoneNum;
@@ -180,7 +180,7 @@ $(function(){
 		parms.manBrands = manBrands;
 		parms.vacations = vacations;
 		parms.ysrs = ysrs;
-		parms.smsAllow = smsAllow;
+//		parms.smsAllow = smsAllow;
 		
 		console.log(parms);
 		return parms;
@@ -189,7 +189,7 @@ $(function(){
 	function getOptions(target){
 		var options = "";
 		for(var i=0;i<target.size();i++){
-			options += target[i].alt + ";";
+			options += target[i].alt + ",";
 		}
 		return options;
 	}
@@ -204,7 +204,7 @@ $(function(){
 			 /** vacation*/ 
 			var vacations = new Array("公务员","教师\律师\医生等专业人士","企业管理者","公司职员","自由职业者","家庭主妇","学生","私营企业主","其它");
 			 /** ysr*/ 
-			var ysrs = new Array("4999元或以下","5000-6999元","7000-8999元","9000-9999元","10000-19999元","20000元以上");
+			var ysrs = new Array("4999元以下","5000-6999元","7000-8999元","9000-9999元","10000-19999元","20000元以上");
 
 			var ladyBrandsTarget = $("#ladyBrands .en img");
 			for(var i=0;i<ladyBrandsTarget.length;i++){
@@ -222,13 +222,13 @@ $(function(){
 			for(var i=0;i<vacationsTarget.length;i++){
 				$(vacationsTarget[i]).attr({"alt": vacations[i]});
 			}
-			vacationsTarget.attr({"onclick": "changeImg(this);"});
+			vacationsTarget.attr({"onclick": "changeImgZH(this);"});
 
 			var ysrsTarget = $("#ysrs .zh img");
 			for(var i=0;i<ysrsTarget.length;i++){
 				$(ysrsTarget[i]).attr({"alt": ysrs[i]});
 			}
-			ysrsTarget.attr({"onclick": "changeImg(this);"});
+			ysrsTarget.attr({"onclick": "changeImgZH(this);"});
 		}
 
 	$(function(){
@@ -282,6 +282,17 @@ $(function(){
 				$(target).attr("alt",'否');
 			}
 		}
+		if(imgsrc.indexOf("n-iocn") >= 0 ){
+			$(target).attr("src",imguri+'y-iocn.gif');
+		}else{
+			$(target).attr("src",imguri+'n-iocn.gif');
+		}
+	}
+	function changeImgZH(target){
+		var imguri = '{{$smarty.const.WEBSITE_URL}}public/img/';
+		var imgsrc = $(target).attr("src");
+		var allTarget = $(target).parents("span").find("img");
+		allTarget.attr("src",imguri+'n-iocn.gif');
 		if(imgsrc.indexOf("n-iocn") >= 0 ){
 			$(target).attr("src",imguri+'y-iocn.gif');
 		}else{

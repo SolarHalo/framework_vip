@@ -511,7 +511,15 @@ li.w50{
 .head6{
 	position:relative;
 	}
-
+/*====================20130821===============*/
+.xfjl_cx input{
+	background:url(../img/cx_but_bg.gif) no-repeat;
+	width:54px;
+	height:21px;
+	cursor:pointer;
+	border:none;
+	margin:3px 5px 0 0px;
+	}
 
 
 

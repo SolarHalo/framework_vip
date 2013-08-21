@@ -161,78 +161,35 @@ $(function(){
             	<div class="recordsearch">
                 	查询日期：
                     <div class="head">
-                    	<a href="#" class="xiaoguo">2013</a>
+                    	{{$start_yyyy}}
                        	<ul class="wrapper">
-                        	<li class="nshow"><a href="#">2001</a></li> 
-                            <li class="nshow"><a href="#">2002</a></li> 
-                            <li class="nshow"><a href="#">2003</a></li> 
-                            <li class="nshow"><a href="#">2004</a></li> 
-                            <li class="nshow"><a href="#">2005</a></li> 
-                            <li class="nshow"><a href="#">2006</a></li> 
-                            <li class="nshow"><a href="#">2007</a></li> 
-                            <li class="nshow"><a href="#">2008</a></li> 
-                            <li class="nshow"><a href="#">2009</a></li> 
-                            <li class="nshow"><a href="#">2010</a></li> 
-                            <li class="nshow"><a href="#">2011</a></li> 
-                            <li class="nshow"><a href="#">2012</a></li> 
+                        	{{$start_years}}
                         </ul>
                     </div>
                     年
                     <div class="head2">
-                    	<a href="#" class="xiaoguo2">03</a>
+                    	{{$twoYearDate_M}}
                        	<ul class="wrapper2">
-                        	<li class="nshow2"><a href="#">01</a></li> 
-                            <li class="nshow2"><a href="#">02</a></li> 
-                            <li class="nshow2"><a href="#">03</a></li> 
-                            <li class="nshow2"><a href="#">04</a></li> 
-                            <li class="nshow2"><a href="#">05</a></li> 
-                            <li class="nshow2"><a href="#">06</a></li> 
-                            <li class="nshow2"><a href="#">07</a></li> 
-                            <li class="nshow2"><a href="#">08</a></li> 
-                            <li class="nshow2"><a href="#">09</a></li> 
-                            <li class="nshow2"><a href="#">10</a></li> 
-                            <li class="nshow2"><a href="#">11</a></li> 
-                            <li class="nshow2"><a href="#">12</a></li> 
+                        	{{$start_mm}}
                         </ul>
                     </div>
                     月
                     至
                     <div class="head3">
-                    	<a href="#" class="xiaoguo3">2013</a>
+                    	{{$end_yyyy}}
                        	<ul class="wrapper3">
-                        	<li class="nshow3"><a href="#">2001</a></li> 
-                            <li class="nshow3"><a href="#">2002</a></li> 
-                            <li class="nshow3"><a href="#">2003</a></li> 
-                            <li class="nshow3"><a href="#">2004</a></li> 
-                            <li class="nshow3"><a href="#">2005</a></li> 
-                            <li class="nshow3"><a href="#">2006</a></li> 
-                            <li class="nshow3"><a href="#">2007</a></li> 
-                            <li class="nshow3"><a href="#">2008</a></li> 
-                            <li class="nshow3"><a href="#">2009</a></li> 
-                            <li class="nshow3"><a href="#">2010</a></li> 
-                            <li class="nshow3"><a href="#">2011</a></li> 
-                            <li class="nshow3"><a href="#">2012</a></li> 
+                        	{{$start_years}}
                         </ul>
                     </div>
                     年
                     <div class="head4">
-                    	<a href="#" class="xiaoguo4">03</a>
+                    	{{$date_M}}
                        	<ul class="wrapper4">
-                        	<li class="nshow4"><a href="#">01</a></li> 
-                            <li class="nshow4"><a href="#">02</a></li> 
-                            <li class="nshow4"><a href="#">03</a></li> 
-                            <li class="nshow4"><a href="#">04</a></li> 
-                            <li class="nshow4"><a href="#">05</a></li> 
-                            <li class="nshow4"><a href="#">06</a></li> 
-                            <li class="nshow4"><a href="#">07</a></li> 
-                            <li class="nshow4"><a href="#">08</a></li> 
-                            <li class="nshow4"><a href="#">09</a></li> 
-                            <li class="nshow4"><a href="#">10</a></li> 
-                            <li class="nshow4"><a href="#">11</a></li> 
-                            <li class="nshow4"><a href="#">12</a></li> 
+                        	{{$end_mm}}
                         </ul>
                     </div>
                     月
+                    <span class="xfjl_cx"><input type="button" value="" /></span>
                    <span style="border-bottom:1px solid #BCA14E;"> <a href="#" onclick="javascript:openWin('datedesc');" class="linkstyle01">说明</a></span>
                 </div>
                 <div class="recordtext mb25 mt20">
