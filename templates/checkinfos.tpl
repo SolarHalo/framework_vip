@@ -42,9 +42,11 @@ $(function(){
 	});  
 })
 </script>
-<script type="text/javascript" id="sourcecode">
+<script type="text/javascript" id="sourcecode"><!--
 //code for scroll
+
 $(function(){
+	initDate();
 	$('.scroll-pane').jScrollPane(); 
           $('.wrapper').hide();
           $('.xiaoguo').click(function(){
@@ -112,7 +114,80 @@ $(function(){
   	function closeWin(winId){
   		$("#"+winId).hide();
   	}
-  	  	
+
+	function initDate(){
+		/** 开始年*/
+		$("div ul .wrapper li .nshow").bind("click", function(){
+			var start_Y_val = $(this).next().find("a").text();
+			 $("div a .xiaoguo").text(start_Y_val);
+			 $.ajax({
+				   type: "POST",
+				   url: "{{$smarty.const.WEBSITE_URL}}usermanager/dateVerify",
+				   data: {"start_Y":start_Y_val},
+				   error: {},
+				   success: function(json){
+				     alert(json);
+				   }
+			});
+		});
+		/** 开始月*/
+		$("div ul .wrapper2 li .nshow2").bind("click", function(){
+			var start_M_val = $(this).next().find("a").text();
+			 $("div a .xiaoguo2").text(start_M_val);
+			 var start_Y_val = $("div a .xiaoguo").text();
+			 $.ajax({
+				   type: "POST",
+				   url: "{{$smarty.const.WEBSITE_URL}}usermanager/dateVerify",
+				   data: {"start_M":start_M_val, "start_Y_val": start_Y_val},
+				   error: {},
+				   success: function(json){
+				     alert(json);
+				   }
+			});
+		});
+		/** 结束年*/
+		$("div ul .wrapper3 li .nshow3").bind("click", function(){
+			var end_Y_val = $(this).next().find("a").text()
+			 var xiaoguo3_val = $("div a .xiaoguo3").text();
+			 var start_mm_val = $("div a .xiaoguo2").text();
+			
+			 if(end_Y_val!=xiaoguo3_val){
+				 $("div a .xiaoguo3").text(end_Y_val);
+				 $.ajax({
+					   type: "POST",
+					   url: "{{$smarty.const.WEBSITE_URL}}usermanager/dateVerify",
+					   data: {"end_Y":end_Y_val, "end_M":start_mm_val},
+					   error: {},
+					   success: function(json){
+					     alert(json);
+					   }
+				});
+			 }
+		});
+		/** 结束月,展示不需要*/
+		$("div ul .wrapper4 li .nshow4").bind("click", function(){
+			var end_M_val = $(this).next().find("a").text()
+			 $("div a .xiaoguo4").text(end_M_val);
+		});
+	}
+
+	function searchVipInfo(){
+		$("span .xfjl_cx input").bind("click", function(){
+			 var star_Y = $("div a .xiaoguo").text();
+			 var start_M = $("div a .xiaoguo2").text();
+			 var end_Y = $("div a .xiaoguo3").text();
+			 var end_M = $("div a .xiaoguo4").text();
+			 $.ajax({
+				   type: "POST",
+				   url: "{{$smarty.const.WEBSITE_URL}}usermanager/searchVipInfo",
+				   data: {"star_Y":star_Y, "start_M":start_M, "end_Y":end_Y, "end_M":end_M},
+				   error: {},
+				   success: function(json){
+				     alert(json);
+				   }
+			});
+		});
+	}
 </script>
 </head>
 
@@ -178,7 +253,7 @@ $(function(){
                     <div class="head3">
                     	{{$end_yyyy}}
                        	<ul class="wrapper3">
-                        	{{$start_years}}
+                        	{{$end_years}}
                         </ul>
                     </div>
                     年

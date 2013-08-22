@@ -207,7 +207,7 @@ class UsermanagerController extends  Controller{
 		$start_years = $date_Y - $twoYearDate_Y + 1;//2年前所需要展示的年份,首次展示(startDate)
 		
 		$end_yyyy = $date_Y;//当前时间所需要展示的年份,首次展示(endDate)
-		$end_years = $date_Y - $yesteday_Y + 1;//当前时间所需要展示的年份,首次展示(endDate)
+		$end_years = $date_Y - $twoYearDate_Y + 1;//当前时间所需要展示的年份,首次展示(endDate)
 		$end_mm = $date_M;//当前时间所需要展示的月份
 		
 		$start_yyyy_html = "<a class=\"xiaoguo\">".$start_yyyy."</a>";//2年前被选中年
@@ -221,17 +221,19 @@ class UsermanagerController extends  Controller{
 		$start_mm_html;
 		for($s_mm=1;$s_mm<$start_mm+1;$s_mm++){
 			if ($s_mm<9){
-				$start_mm_html .= "<li class=\"nshow4\"><a>0".$s_mm."</a></li>";//下拉月
+				$start_mm_html .= "<li class=\"nshow2\"><a>0".$s_mm."</a></li>";//2年前下拉月
 			}else {
 				$start_mm_html .= "<li class=\"nshow2\"><a>".$s_mm."</a></li>";//2年前下拉月
 			}
 		}
 
 		$end_yyyy_html = "<a class=\"xiaoguo3\">".$end_yyyy."</a>";//当前被选中年
-//		$end_years_html = "<li class=\"nshow3\"><a>".$end_yyyy."</a></li> ";
-//		for($e_year=1;$e_year<$end_years;$e_year++){
-//			$end_years_html .= "<li class=\"nshow3\"><a>".$e_year."</a></li> ";//下拉年
-//		}
+		$end_years_html;
+		for($e_year=1;$e_year<$end_years;$e_year++){
+			$var_temp_year = $end_years - $e_year;
+			$end_years_html .= "<li class=\"nshow3\"><a>".$var_temp_year."</a></li> ";//下拉年
+		}
+		$end_years_html .= "<li class=\"nshow3\"><a>".$end_yyyy."</a></li> ";
 		$date_M_html = "<a class=\"xiaoguo4\">".$date_M."</a>";//当前被选中月
 		$end_mm_html;
 		for($e_mm=1;$e_mm<$end_mm+1;$e_mm++){
@@ -248,10 +250,147 @@ class UsermanagerController extends  Controller{
 		$this->smarty->assign("start_mm", $start_mm_html);
 		
 		$this->smarty->assign("end_yyyy", $end_yyyy_html);
-//		$this->smarty->assign("end_years", $end_years_html);
+		$this->smarty->assign("end_years", $end_years_html);
 		$this->smarty->assign("date_M", $date_M_html);
 		$this->smarty->assign("end_mm", $end_mm_html);
 		
+	}
+	
+	public function dateVerify(){
+		$yesteday = mktime(0,0,0,date("m"),date("d")-1,date("Y"));//当前的前一天
+		$date = date("Y-m-d", $yesteday); //格式化
+		$twoYearDate = date('Y-m-d', strtotime ("-2 year", strtotime($date)));//2年前的那一天
+		$twoYearDate_M = date('m', strtotime($twoYearDate));//2年前的那一天的月份
+		$twoYearDate_Y = date('Y', strtotime($twoYearDate));//2年前的那一天的年份
+		$date_Y = date('Y', strtotime($date));//前一天的年份
+		$date_M = date('m', strtotime($date));//前一天的月份
+		
+		$start_yyyy = $twoYearDate_Y;//2年前所需要展示的年份,首次展示(startDate)
+		$start_mm = $twoYearDate_M;//2年前所需要展示的月份(下拉)
+		$start_years = $date_Y - $twoYearDate_Y + 1;//2年前所需要展示的年份,首次展示(startDate)
+		
+		$end_yyyy = $date_Y;//当前时间所需要展示的年份,首次展示(endDate)
+		$end_years = $date_Y - $twoYearDate_Y + 1;//当前时间所需要展示的年份,首次展示(endDate)
+		$end_mm = $date_M;//当前时间所需要展示的月份
+		
+		$html;
+		if(isset($_POST["start_Y"])){//查询这一年有哪些可用的月份即可
+			$start_Y_val = 	$_POST["start_Y"];
+			if ($start_Y_val!==$twoYearDate_Y && $start_Y_val!==$date_Y){
+				$start_mm_html;
+				for($s_mm=1;$s_mm<12+1;$s_mm++){
+					if ($s_mm<9){
+						$start_mm_html .= "<li class=\"nshow2\"><a>0".$s_mm."</a></li>";//除去首尾年前下拉月
+					}else {
+						$start_mm_html .= "<li class=\"nshow2\"><a>".$s_mm."</a></li>";//除去首尾年前下拉月
+					}
+				}
+				$html = $start_mm_html;
+			}
+			if ($start_Y_val===$twoYearDate_Y){
+				$start_mm_html;
+				for($s_mm=1;$s_mm<$start_mm+1;$s_mm++){
+					if ($s_mm<9){
+						$start_mm_html .= "<li class=\"nshow2\"><a>0".$s_mm."</a></li>";//2年前下拉月
+					}else {
+						$start_mm_html .= "<li class=\"nshow2\"><a>".$s_mm."</a></li>";//2年前下拉月
+					}
+				}
+				$html = $start_mm_html;
+			}
+			if ($start_Y_val!==$date_Y){
+				$end_mm_html;
+				for($e_mm=1;$e_mm<$end_mm+1;$e_mm++){
+					if ($e_mm<9){
+						$end_mm_html .= "<li class=\"nshow4\"><a>0".$e_mm."</a></li>";//下拉月
+					}else {
+						$end_mm_html .= "<li class=\"nshow4\"><a>".$e_mm."</a></li>";//下拉月
+					}
+				}
+				$html = $end_mm_html;
+			}
+		}
+		if(isset($_POST["start_M"])){
+			$html = array();
+			$start_Y_val = $_POST['start_Y_val'];//当前选择的开始年份(两年前的)
+			$start_M_val = 	$_POST["start_M"];	
+			
+			$temp_years = $date_Y-$start_Y_val+1;
+			$var_temp_year;
+			$end_years_html;
+			for($e_year=1;$e_year<$temp_years;$e_year++){
+				$var_temp_year = $start_Y_val - $e_years;
+				$end_years_html .= "<li class=\"nshow3\"><a>".$var_temp_year."</a></li> ";//下拉年
+			}
+			$end_years_html .= "<li class=\"nshow3\"><a>".$end_yyyy."</a></li> ";
+			$end_yyyy_html = "<a class=\"xiaoguo3\">".$start_Y_val."</a>";//当前被选中年
+			
+			$html[0] = $end_yyyy_html;
+			$html[1] = $end_years_html;
+			
+			$end_M_html = "<a class=\"xiaoguo4\">".$start_M_val."</a>";//当前被选中月
+			$end_mm_html;
+			for($e_mm=$start_M_val;$e_mm<12+1;$e_mm++){//例如当前月是8月那么所显示的下拉月应该是8,9,10,11,12
+				if ($e_mm<9){
+					$end_mm_html .= "<li class=\"nshow4\"><a>0".$e_mm."</a></li>";//下拉月
+				}else {
+					$end_mm_html .= "<li class=\"nshow4\"><a>".$e_mm."</a></li>";//下拉月
+				}
+			}
+			$html[2] = $end_M_html;
+			$html[3] = $end_mm_html;
+		}
+		if(isset($_POST["end_Y"])){
+			$end_Y_val = $_POST["end_Y"];
+			if ($end_Y_val!==$twoYearDate_Y && $end_Y_val!==$date_Y){
+				$start_mm_html;
+				for($s_mm=1;$s_mm<12+1;$s_mm++){
+					if ($s_mm<9){
+						$start_mm_html .= "<li class=\"nshow4\"><a>0".$s_mm."</a></li>";//除去首尾年前下拉月
+					}else {
+						$start_mm_html .= "<li class=\"nshow4\"><a>".$s_mm."</a></li>";//除去首尾年前下拉月
+					}
+				}
+				$html = $start_mm_html;
+			}
+			if ($start_Y_val===$twoYearDate_Y){
+				$end_M = $_POST['end_M'];
+				$start_mm_html;
+				for($s_mm=$end_M;$s_mm<12+1;$s_mm++){
+					if ($s_mm<9){
+						$start_mm_html .= "<li class=\"nshow4\"><a>0".$s_mm."</a></li>";//2年前下拉月
+					}else {
+						$start_mm_html .= "<li class=\"nshow4\"><a>".$s_mm."</a></li>";//2年前下拉月
+					}
+				}
+				$html = $start_mm_html;
+			}
+			if ($start_Y_val!==$date_Y){
+				$end_M = $_POST['end_M'];
+				$end_mm_html;
+				for($e_mm=$end_M;$e_mm<12+1;$e_mm++){
+					if ($e_mm<9){
+						$end_mm_html .= "<li class=\"nshow4\"><a>0".$e_mm."</a></li>";//下拉月
+					}else {
+						$end_mm_html .= "<li class=\"nshow4\"><a>".$e_mm."</a></li>";//下拉月
+					}
+				}
+				$html = $end_mm_html;
+			}
+				
+		}
+//		if(isset($_POST["end_M"])){}//最后一个月份就不需要判断了
+				
+	}
+	
+	public function searchVipInfo(){
+	
+		$star_Y = $_POST['star_Y'];
+		$star_M = $_POST['star_M'];
+		$end_Y = $_POST['end_Y'];
+		$end_M = $_POST['end_M'];
+		
+		// 拼装查询数据  待续
 	}
 	
 	public function getDateHtml($temp){

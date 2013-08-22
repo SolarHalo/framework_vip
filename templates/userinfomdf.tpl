@@ -196,7 +196,7 @@ $(function(){
 	/**
 	 * 初始化数据
 	 */
-		function initDate(){
+		function initData(){
 			 /** lady*/ 
 			var ladyBrands = new Array("ochirly","Five Plus","MiuMiu","MARC JACOBS","MICHAEL KORS","initial","Mo&Co","DAZZLE","I.T","Vero Moda","ZARA","H&M","其它/Others");
 			 /** man*/ 
@@ -232,7 +232,7 @@ $(function(){
 		}
 
 	$(function(){
-		initDate();
+		initData();
 		$("#mustfill").hide();
 		$("#vlid").hide();
 		
