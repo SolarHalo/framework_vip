@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-19 13:21:40
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-21 14:16:26
          compiled from "F:\PHP_WorkSapce\framework\templates\morecheckinfo.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:25854520f21fee03889-52452979%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '3bfac4897b6f0f6253c4d18b50c248fe8588d0e5' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\morecheckinfo.tpl',
-      1 => 1376917723,
+      1 => 1377003857,
       2 => 'file',
     ),
   ),
@@ -49,7 +49,7 @@ public/js/jquery-1.8.2.min.js"></script>
 	float:left;
 }
 </style>
- 
+   
 <script type="text/javascript" src="<?php echo @constant('WEBSITE_URL');?>
 public/js/jquery.jscrollpane.min.js"></script>
 <script type="text/javascript" src="<?php echo @constant('WEBSITE_URL');?>
@@ -64,6 +64,13 @@ $(function(){
 		paddingT = 10;
 	}
 	$("body").css({paddingTop:paddingT});
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});
 })
 </script>
 <script type="text/javascript" id="sourcecode">
@@ -75,9 +82,9 @@ $(function(){
 </head>
 
 <body>
-<div class="Welcomeuseer zh">
-	尊贵的<font>汪涵</font>，您好！<a href="#">退出</a>
-</div>
+<?php echo $_smarty_tpl->getSubTemplate ('loginbanner.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+
 <div id="warp" class="container">
     <div class="content">
         <div class="nav">

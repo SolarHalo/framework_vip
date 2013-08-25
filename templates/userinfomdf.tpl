@@ -135,146 +135,182 @@ $(function(){
 			$("#vlid").show();
 		}
 
+		if(validShow==false){
+			requestDate();
+		}
+		
 	}
 
 
-/**
- * 获取更改的参数
- */
-
- function getparms(){
-//data:{"userPageFlag":queryFlag.join(",")}
-	var parms = {};
-	var ladyBrandsTarget = $("#ladyBrands .en img[src$='y-iocn.gif']");
-	var manBrandsTarget = $("#manBrands .en img[src$='y-iocn.gif']");
-	var vacationsTarget = $("#vacations .zh img[src$='y-iocn.gif']");
-	var ysrsTarget = $("#ysrs .zh img[src$='y-iocn.gif']");
-	var ladyBrands = getOptions(ladyBrandsTarget);
-	var manBrands = getOptions(manBrandsTarget);
-	var vacations = getOptions(vacationsTarget);
-	var ysrs = getOptions(ysrsTarget);
-	var phoneNum = $("#phoneNum").val();
-	var email = $("#email").val();
-	parms.phoneNum = phoneNum;
-	parms.email = email;
-	parms.ladyBrands = ladyBrands;
-	parms.manBrands = manBrands;
-	parms.vacations = vacations;
-	parms.ysrs = ysrs;
-
-	console.log(parms);
-	return parms;
- }
-
-function getOptions(target){
-	var options = "";
-	for(var i=0;i<target.size();i++){
-		options += target[i].value + ";";
-	}
-	return options;
-}
-/**
- * 初始化数据
- */
-	function initDate(){
-		 /** lady*/ 
-		var ladyBrands = new Array("ochirly","Five Plus","MiuMiu","MARC JACOBS","MICHAEL KORS","initial","Mo&Co","DAZZLE","I.T","Vero Moda","ZARA","H&M","其它/Others");
-		 /** man*/ 
-		var manBrands = new Array("TRENDIANO","Jack&Jones","ELECTED","马克华菲/Mark Fairwhale","GXG","i.t","其它/Others");
-		 /** vacation*/ 
-		var vacations = new Array("公务员","教师\律师\医生等专业人士","企业管理者","公司职员","自由职业者","家庭主妇","学生","私营企业主","其它");
-		 /** ysr*/ 
-		var ysrs = new Array("4999元或以下","5000-6999元","7000-8999元","9000-9999元","10000-19999元","20000元以上");
-
-		var ladyBrandsTarget = $("#ladyBrands .en img");
-		for(var i=0;i<ladyBrandsTarget.length;i++){
-			$(ladyBrandsTarget[i]).attr({"value": ladyBrands[i]});
-		}
-		ladyBrandsTarget.attr({"onclick": "changeImg(this);"});
-
-		var manBrandsTarget = $("#manBrands .en img");
-		for(var i=0;i<manBrandsTarget.length;i++){
-			$(manBrandsTarget[i]).attr({"value": manBrands[i]});
-		}
-		manBrandsTarget.attr({"onclick": "changeImg(this);"});
-
-		var vacationsTarget = $("#vacations .zh img");
-		for(var i=0;i<vacationsTarget.length;i++){
-			$(vacationsTarget[i]).attr({"value": vacations[i]});
-		}
-		vacationsTarget.attr({"onclick": "changeImg(this);"});
-
-		var ysrsTarget = $("#ysrs .zh img");
-		for(var i=0;i<ysrsTarget.length;i++){
-			$(ysrsTarget[i]).attr({"value": ysrs[i]});
-		}
-		ysrsTarget.attr({"onclick": "changeImg(this);"});
+	function requestDate(){
+		
+		$.ajax({
+			   type: "POST",
+			   url: "{{$smarty.const.WEBSITE_URL}}usermanager/updateVipInfo",
+			   data: getparms(),
+			   error: {},
+			   success: function(xml){
+			     alert(xml);
+			   }
+		});
 	}
 
-$(function(){
-	initDate();
-	getparms();
-	$("#mustfill").hide();
-	$("#vlid").hide();
-	
-	$(".fr img").click(function(){
+
+	/**
+	 * 获取更改的参数
+	 */
+
+	 function getparms(){
+	//data:{"userPageFlag":queryFlag.join(",")}
+		var parms = {};
+		var ladyBrandsTarget = $("#ladyBrands .en img[src$='y-iocn.gif']");
+		var manBrandsTarget = $("#manBrands .en img[src$='y-iocn.gif']");
+		var vacationsTarget = $("#vacations .zh img[src$='y-iocn.gif']");
+		var ysrsTarget = $("#ysrs .zh img[src$='y-iocn.gif']");
+		var ladyBrands = getOptions(ladyBrandsTarget);
+		var manBrands = getOptions(manBrandsTarget);
+		var vacations = getOptions(vacationsTarget);
+		var ysrs = getOptions(ysrsTarget);
+//		var smsAllow = $("form ul li.w100 img").attr("alt");;
+		var phoneNum = $("#phoneNum").val();
+		var email = $("#email").val();
+		parms.phoneNum = phoneNum;
+		parms.email = email;
+		parms.ladyBrands = ladyBrands;
+		parms.manBrands = manBrands;
+		parms.vacations = vacations;
+		parms.ysrs = ysrs;
+//		parms.smsAllow = smsAllow;
+		
+		console.log(parms);
+		return parms;
+	 }
+
+	function getOptions(target){
+		var options = "";
+		for(var i=0;i<target.size();i++){
+			options += target[i].alt + ",";
+		}
+		return options;
+	}
+	/**
+	 * 初始化数据
+	 */
+		function initData(){
+			 /** lady*/ 
+			var ladyBrands = new Array("ochirly","Five Plus","MiuMiu","MARC JACOBS","MICHAEL KORS","initial","Mo&Co","DAZZLE","I.T","Vero Moda","ZARA","H&M","其它/Others");
+			 /** man*/ 
+			var manBrands = new Array("TRENDIANO","Jack&Jones","ELECTED","马克华菲/Mark Fairwhale","GXG","i.t","其它/Others");
+			 /** vacation*/ 
+			var vacations = new Array("公务员","教师\律师\医生等专业人士","企业管理者","公司职员","自由职业者","家庭主妇","学生","私营企业主","其它");
+			 /** ysr*/ 
+			var ysrs = new Array("4999元以下","5000-6999元","7000-8999元","9000-9999元","10000-19999元","20000元以上");
+
+			var ladyBrandsTarget = $("#ladyBrands .en img");
+			for(var i=0;i<ladyBrandsTarget.length;i++){
+				$(ladyBrandsTarget[i]).attr({"alt": ladyBrands[i]});
+			}
+			ladyBrandsTarget.attr({"onclick": "changeImg(this);"});
+
+			var manBrandsTarget = $("#manBrands .en img");
+			for(var i=0;i<manBrandsTarget.length;i++){
+				$(manBrandsTarget[i]).attr({"alt": manBrands[i]});
+			}
+			manBrandsTarget.attr({"onclick": "changeImg(this);"});
+
+			var vacationsTarget = $("#vacations .zh img");
+			for(var i=0;i<vacationsTarget.length;i++){
+				$(vacationsTarget[i]).attr({"alt": vacations[i]});
+			}
+			vacationsTarget.attr({"onclick": "changeImgZH(this);"});
+
+			var ysrsTarget = $("#ysrs .zh img");
+			for(var i=0;i<ysrsTarget.length;i++){
+				$(ysrsTarget[i]).attr({"alt": ysrs[i]});
+			}
+			ysrsTarget.attr({"onclick": "changeImgZH(this);"});
+		}
+
+	$(function(){
+		initData();
 		$("#mustfill").hide();
 		$("#vlid").hide();
-		$("#stander").hide();
-	});
-	
-	$('.scroll-pane').jScrollPane();
-	  $('.wrapper5').hide();
-      $('.xiaoguo5').click(function(){
-      	
-      	 $('.wrapper5').slideDown("slow");
-      	  
-       });
-      $('.head5').mouseleave(function(){
-      	  $('.wrapper5').slideUp();
-      	  
-       });
-	  $('.nshow5').click(function(){
-      	  $('.wrapper5').slideUp();
-      	  
-       }); 
-	$("#phoneNum").keyup(function(){
-		$("#phoneNum").removeClass("input-color-red");
-	});
-	$("#email").keyup(function(){
-		$("#email").removeClass("input-color-red");
-	});
 		
-	$(".base_save").click(valid);
-});
-
-function areaCode(com){
-	$("#areaCode").text("+"+com);
-}
-
-function changeImg(target){
-	var imguri = '{{$smarty.const.WEBSITE_URL}}public/img/';
-	var imgsrc = $(target).attr("src");
-	var imgvalue = $(target).attr("value");
-	alert(imgvalue);
-	if(imgsrc.indexOf("n-iocn") >= 0 ){
-		$(target).attr("src",imguri+'y-iocn.gif');
-	}else{
-		$(target).attr("src",imguri+'n-iocn.gif');
-	}  
-}
-/**
- * 登陆的需要公共的 
- */
-$(function(){
-	$('.wrapper6').hide();
-	$('.xiaoguo6').mouseenter(function(){
-		$('.wrapper6').slideDown("slow");
+		$(".fr img").click(function(){
+			$("#mustfill").hide();
+			$("#vlid").hide();
+			$("#stander").hide();
+		});
+		
+		$('.scroll-pane').jScrollPane();
+		  $('.wrapper5').hide();
+	      $('.xiaoguo5').click(function(){
+	      	
+	      	 $('.wrapper5').slideDown("slow");
+	      	  
+	       });
+	      $('.head5').mouseleave(function(){
+	      	  $('.wrapper5').slideUp();
+	      	  
+	       });
+		  $('.nshow5').click(function(){
+	      	  $('.wrapper5').slideUp();
+	      	  
+	       }); 
+		$("#phoneNum").keyup(function(){
+			$("#phoneNum").removeClass("input-color-red");
+		});
+		$("#email").keyup(function(){
+			$("#email").removeClass("input-color-red");
+		});
+			
+		$(".base_save").click(valid);
 	});
-	$('.head6').mouseleave(function(){
-		$('.wrapper6').slideUp();
+
+	function areaCode(com){
+		$("#areaCode").text("+"+com);
+	}
+
+	function changeImg(target){
+		var imguri = '{{$smarty.const.WEBSITE_URL}}public/img/';
+		var imgsrc = $(target).attr("src");
+		var smsAllow = $(target).attr("alt");
+		if(smsAllow=="否"||smsAllow=="是"){
+			if(imgsrc.indexOf("n-iocn") >= 0 ){
+				$(target).attr("alt",'是');
+			}else{
+				$(target).attr("alt",'否');
+			}
+		}
+		if(imgsrc.indexOf("n-iocn") >= 0 ){
+			$(target).attr("src",imguri+'y-iocn.gif');
+		}else{
+			$(target).attr("src",imguri+'n-iocn.gif');
+		}
+	}
+	function changeImgZH(target){
+		var imguri = '{{$smarty.const.WEBSITE_URL}}public/img/';
+		var imgsrc = $(target).attr("src");
+		var allTarget = $(target).parents("span").find("img");
+		allTarget.attr("src",imguri+'n-iocn.gif');
+		if(imgsrc.indexOf("n-iocn") >= 0 ){
+			$(target).attr("src",imguri+'y-iocn.gif');
+		}else{
+			$(target).attr("src",imguri+'n-iocn.gif');
+		}
+	}
+	/**
+	 * 登陆的需要公共的 
+	 */
+	$(function(){
+		$('.wrapper6').hide();
+		$('.xiaoguo6').mouseenter(function(){
+			$('.wrapper6').slideDown("slow");
+		});
+		$('.head6').mouseleave(function(){
+			$('.wrapper6').slideUp();
+		});
 	});
-});
 </script>
 </head>
 
@@ -303,10 +339,10 @@ $(function(){
             <div class="pagecontent scroll-pane" id="pagecontent">
             <form>
             	<ul class="userinfolist zh">
-                	<li class="w100">会员卡号:<font class="en">888888888888</font></li>
-                    <li class="w50">姓&nbsp;&nbsp;&nbsp;&nbsp;名:<font>汪涵</font></li>
-                    <li class="w50">身份证号:<font class="en"></font></li>
-                    <li class="w50">性&nbsp;&nbsp;&nbsp;&nbsp;别:<font>男</font></li>
+                	<li class="w100">会员卡号:<font class="en">{{$smarty.session.vipInfoArr["vip_no"]}}</font></li>
+                    <li class="w50">姓&nbsp;&nbsp;&nbsp;&nbsp;名:<font>{{$smarty.session.vipInfoArr["name"]}}</font></li>
+                    <li class="w50">身份证号:<font class="en">{{$smarty.session.vipInfoArr["IDCard"]}}</font></li>
+                    <li class="w50">性&nbsp;&nbsp;&nbsp;&nbsp;别:<font>{{$smarty.session.vipInfoArr["sex"]}}</font></li>
                     <li class="w50"><img src="{{$smarty.const.WEBSITE_URL}}public/img/xxioc.gif" class="xxioc"/>手机号码:
                     	<div class="head5">
                             <a href="#" id='areaCode' class="xiaoguo5">+86</a>
@@ -316,61 +352,36 @@ $(function(){
                                 <li class="nshow5"><a href="javascript:areaCode(853);">澳门+853</a></li> 
                                 <li class="nshow5"><a href="javascript:areaCode(886);">台湾+886</a></li>  
                             </ul>
-                        </div>-<font class="en"><input id="phoneNum" type="text" class="input_style3" style="width:120px;"></font>
+                        </div>-<font class="en"><input id="phoneNum" type="text" class="input_style3" value="{{$smarty.session.vipInfoArr['mobilePhones']}}" style="width:120px;"></font>
                     </li>
-                    <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font>1974年05月24日</font></li>
-                    <li class="w50"><img src="{{$smarty.const.WEBSITE_URL}}public/img/xxioc.gif" class="xxioc"/>电子邮箱:<font><input id="email" type="text" class="input_style3"  style=" width:187px;"></font></li>
-                    <li class="w100"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif" onclick="changeImg(this);"/><font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
+                    <li class="w50">生&nbsp;&nbsp;&nbsp;&nbsp;日:<font>{{$smarty.session.vipInfoArr["birthday"]}}</font></li>
+                    <li class="w50"><img src="{{$smarty.const.WEBSITE_URL}}public/img/xxioc.gif" class="xxioc"/>电子邮箱:<font><input id="email" type="text" class="input_style3" value="{{$smarty.session.vipInfoArr['eMail']}}" style=" width:187px;"></font></li>
+                    <li class="w100">
+					 {{if $smarty.session.vipInfoArr['smsAllow'] eq '是'}}
+                    	<img src="{{$smarty.const.WEBSITE_URL}}public/img/y-iocn.gif" alt="是"/>
+                    	{{else}}
+                    	<img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif" alt="否"/>
+                    {{/if}}		
+					<font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
                 </ul>
                 <span class="zh"><font color="#56280f">*为必填项，如需修改其它信息请在工作时间内致电赫基客服热线800-830-8348。</font></span>
                 <div class="Project">
                 	<span>1.过去6个月内您经常购买哪些品牌？（可多选）</span>
                     <span>女士选项</span>
                     <span id="ladyBrands">
-                    	<font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif" onclick="changeImg(this);" value="ochirly" />ochirly </font>
-                    	<font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif" onclick="changeImg(this);"/>Five Plus </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif" onclick="changeImg(this);"/>MiuMiu </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif" onclick="changeImg(this);"/>MARC JACOBS </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>MICHAEL KORS </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/y-iocn.gif"/>initial </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>Mo&Co  </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>DAZZLE </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/y-iocn.gif"/>I.T </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>Vero Moda </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>ZARA </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>H&M </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>其它/Others</font>
+                    	{{$smarty.session.ladybrands}}
                     </span>
                     <span>男士选项</span>
                     <span id="manBrands" class="mb25">
-                    	<font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>TRENDIANO  </font>
-                    	<font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>Jack&Jones  </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>ELECTED </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>马克华菲/Mark Fairwhale </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/y-iocn.gif"/>GXG </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>i.t  </font>
-                        <font class="en"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>其它/Others  </font> 
+                    	{{$smarty.session.ladybrands}}
                     </span>
                     <span>2.您的职业（单选）</span>
                     <span id="vacations" class="mb25">
-						<font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>公务员 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>教师\律师\医生等专业人士 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>企业管理者 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>公司职员 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>自由职业者 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/y-iocn.gif"/>家庭主妇 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>学生 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>私营企业主 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>其它</font>
+						{{$smarty.session.vacation}}
                     </span>
                     <span>3.您的每月收入（单选）</span>
                     <span id="ysrs" class="mb25">
-						<font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>4999元或以下 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>5000-6999元 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>7000-8999元 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/y-iocn.gif"/>9000-9999元 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>10000-19999元 </font>
-                        <font class="zh"><img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif"/>20000元以上</font> 
+						{{$smarty.session.ysr}}
                     </span>
                     <span style="text-align:center; height:60px;" class="mb25"><input type="button" class="base_save"/></span> 
                 </div>

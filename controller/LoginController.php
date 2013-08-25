@@ -78,6 +78,7 @@ class LoginController extends  Controller{
 			 	   $interfaceService = new InterfaceService($client);
 			 	   global $CONFIG;
 			 	   $vipInfoArr = $interfaceService->getVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipid);
+//			 	   var_dump($vipInfoArr);
 			 	   $_SESSION['vipInfoArr'] = $vipInfoArr;  
 			 	   $userSerivce->recoredLoginLog($user);
 			       //正常登录这里还要判断 这个用户是否是第一次登录 

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-17 16:53:55
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-21 16:30:27
          compiled from "F:\PHP_WorkSapce\framework\templates\checkinfos.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:7093520f21f576f174-69213104%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'be4ffca1dfc7ba0a1294d6f468ff079ad037c359' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\checkinfos.tpl',
-      1 => 1376750254,
+      1 => 1377102614,
       2 => 'file',
     ),
   ),
@@ -19,6 +19,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_520f21f5842dc0_29315526',
   'variables' => 
   array (
+    'start_yyyy' => 0,
+    'start_years' => 0,
+    'twoYearDate_M' => 0,
+    'start_mm' => 0,
+    'end_yyyy' => 0,
+    'date_M' => 0,
+    'end_mm' => 0,
     'dateHtml' => 0,
     'v' => 0,
   ),
@@ -66,6 +73,13 @@ $(function(){
 		paddingT = 10;
 	}
 	$("body").css({paddingTop:paddingT});
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});  
 })
 </script>
 <script type="text/javascript" id="sourcecode">
@@ -143,9 +157,9 @@ $(function(){
 </head>
 
 <body>
-<div class="Welcomeuseer zh">
-	尊贵的<font>汪涵</font>，您好！<a href="#">退出</a>
-</div>
+<?php echo $_smarty_tpl->getSubTemplate ('loginbanner.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+
 <div class="windbox" id="datedesc">
 	<div class="wind">
     	<a href="#" onclick="javascript:closeWin('datedesc');" class="fr"><img src="<?php echo @constant('WEBSITE_URL');?>
@@ -200,78 +214,43 @@ usermanager/checkinfos"><!--消费记录-->
             	<div class="recordsearch">
                 	查询日期：
                     <div class="head">
-                    	<a href="#" class="xiaoguo">2013</a>
+                    	<?php echo $_smarty_tpl->tpl_vars['start_yyyy']->value;?>
+
                        	<ul class="wrapper">
-                        	<li class="nshow"><a href="#">2001</a></li> 
-                            <li class="nshow"><a href="#">2002</a></li> 
-                            <li class="nshow"><a href="#">2003</a></li> 
-                            <li class="nshow"><a href="#">2004</a></li> 
-                            <li class="nshow"><a href="#">2005</a></li> 
-                            <li class="nshow"><a href="#">2006</a></li> 
-                            <li class="nshow"><a href="#">2007</a></li> 
-                            <li class="nshow"><a href="#">2008</a></li> 
-                            <li class="nshow"><a href="#">2009</a></li> 
-                            <li class="nshow"><a href="#">2010</a></li> 
-                            <li class="nshow"><a href="#">2011</a></li> 
-                            <li class="nshow"><a href="#">2012</a></li> 
+                        	<?php echo $_smarty_tpl->tpl_vars['start_years']->value;?>
+
                         </ul>
                     </div>
                     年
                     <div class="head2">
-                    	<a href="#" class="xiaoguo2">03</a>
+                    	<?php echo $_smarty_tpl->tpl_vars['twoYearDate_M']->value;?>
+
                        	<ul class="wrapper2">
-                        	<li class="nshow2"><a href="#">01</a></li> 
-                            <li class="nshow2"><a href="#">02</a></li> 
-                            <li class="nshow2"><a href="#">03</a></li> 
-                            <li class="nshow2"><a href="#">04</a></li> 
-                            <li class="nshow2"><a href="#">05</a></li> 
-                            <li class="nshow2"><a href="#">06</a></li> 
-                            <li class="nshow2"><a href="#">07</a></li> 
-                            <li class="nshow2"><a href="#">08</a></li> 
-                            <li class="nshow2"><a href="#">09</a></li> 
-                            <li class="nshow2"><a href="#">10</a></li> 
-                            <li class="nshow2"><a href="#">11</a></li> 
-                            <li class="nshow2"><a href="#">12</a></li> 
+                        	<?php echo $_smarty_tpl->tpl_vars['start_mm']->value;?>
+
                         </ul>
                     </div>
                     月
                     至
                     <div class="head3">
-                    	<a href="#" class="xiaoguo3">2013</a>
+                    	<?php echo $_smarty_tpl->tpl_vars['end_yyyy']->value;?>
+
                        	<ul class="wrapper3">
-                        	<li class="nshow3"><a href="#">2001</a></li> 
-                            <li class="nshow3"><a href="#">2002</a></li> 
-                            <li class="nshow3"><a href="#">2003</a></li> 
-                            <li class="nshow3"><a href="#">2004</a></li> 
-                            <li class="nshow3"><a href="#">2005</a></li> 
-                            <li class="nshow3"><a href="#">2006</a></li> 
-                            <li class="nshow3"><a href="#">2007</a></li> 
-                            <li class="nshow3"><a href="#">2008</a></li> 
-                            <li class="nshow3"><a href="#">2009</a></li> 
-                            <li class="nshow3"><a href="#">2010</a></li> 
-                            <li class="nshow3"><a href="#">2011</a></li> 
-                            <li class="nshow3"><a href="#">2012</a></li> 
+                        	<?php echo $_smarty_tpl->tpl_vars['start_years']->value;?>
+
                         </ul>
                     </div>
                     年
                     <div class="head4">
-                    	<a href="#" class="xiaoguo4">03</a>
+                    	<?php echo $_smarty_tpl->tpl_vars['date_M']->value;?>
+
                        	<ul class="wrapper4">
-                        	<li class="nshow4"><a href="#">01</a></li> 
-                            <li class="nshow4"><a href="#">02</a></li> 
-                            <li class="nshow4"><a href="#">03</a></li> 
-                            <li class="nshow4"><a href="#">04</a></li> 
-                            <li class="nshow4"><a href="#">05</a></li> 
-                            <li class="nshow4"><a href="#">06</a></li> 
-                            <li class="nshow4"><a href="#">07</a></li> 
-                            <li class="nshow4"><a href="#">08</a></li> 
-                            <li class="nshow4"><a href="#">09</a></li> 
-                            <li class="nshow4"><a href="#">10</a></li> 
-                            <li class="nshow4"><a href="#">11</a></li> 
-                            <li class="nshow4"><a href="#">12</a></li> 
+                        	<?php echo $_smarty_tpl->tpl_vars['end_mm']->value;?>
+
                         </ul>
                     </div>
                     月
+                    <span class="xfjl_cx"><input type="button" value="" /></span>
                    <span style="border-bottom:1px solid #BCA14E;"> <a href="#" onclick="javascript:openWin('datedesc');" class="linkstyle01">说明</a></span>
                 </div>
                 <div class="recordtext mb25 mt20">
