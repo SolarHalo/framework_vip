@@ -13,6 +13,8 @@
 <link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/other.css" rel="stylesheet" />
 <link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/jquery.jscrollpane.css" rel="stylesheet" media="all"> 
 <script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery.mousewheel.js"></script>
 <style type="text/css" id="page-css">
 .scroll-pane {
 	width:574px;
@@ -20,18 +22,158 @@
 	float:left;
 }
 </style>
- 
-<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery.jscrollpane.min.js"></script>
-<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery.mousewheel.js"></script>
 <script type="text/javascript">
-//code for vetically center
+function initDate(){
+	/** 开始年*/
+	$("div ul.wrapper").delegate("li", "click", function(){
+		var start_Y_val = $(this).text();
+		 $("div a.xiaoguo").text(start_Y_val);
+		 var start_mm_val = $("div a.xiaoguo2").text();
+		 $.ajax({
+			   type: "POST",
+			   url: "{{$smarty.const.WEBSITE_URL}}usermanager/dateVerify",
+			   data: {"start_Y":start_Y_val, "start_MM":start_mm_val},
+			   error: {},
+			   success: function(json){
+				   var parseJson = JSON.parse(json);
+				   $("div a.xiaoguo2").text(parseJson[0]);
+				   $("div ul.wrapper2").empty().append(parseJson[1]);
+				   $("div a.xiaoguo3").text(parseJson[2]);
+				   $("div ul.wrapper3").empty().append(parseJson[3]);
+				   $("div a.xiaoguo4").text(parseJson[4]);
+				   $("div ul.wrapper4").empty().append(parseJson[5]);
+			   }
+		});
+	});
+	/** 开始月*/
+	$("div ul.wrapper2").delegate("li", "click", function(){
+		var start_M_val = $(this).text();
+		 $("div a.xiaoguo2").text(start_M_val);
+		 var start_Y_val = $("div a.xiaoguo").text();
+		 var end_Y_val = $("div a.xiaoguo3").text();
+		 $.ajax({
+			   type: "POST",
+			   url: "{{$smarty.const.WEBSITE_URL}}usermanager/dateVerify",
+			   data: {"start_M":start_M_val, "start_Y_val": start_Y_val, "end_Y_val": end_Y_val},
+			   error: {},
+			   success: function(json){
+				   if(json!=""){
+					   var parseJson = JSON.parse(json);
+					   $("div a.xiaoguo4").text(parseJson[0]);
+					   $("div ul.wrapper4").empty().append(parseJson[1]);
+				   }
+			   }
+		});
+	});
+	/** 结束年*/
+	$("div ul.wrapper3").delegate("li", "click", function(){
+		var end_Y_val = $(this).text()
+		var start_Y_val = $("div a.xiaoguo").text();
+		 $("div a.xiaoguo3").text(end_Y_val);
+		 var start_mm_val = $("div a.xiaoguo2").text();
+			 $("div a.xiaoguo3").text(end_Y_val);
+			 $.ajax({
+				   type: "POST",
+				   url: "{{$smarty.const.WEBSITE_URL}}usermanager/dateVerify",
+				   data: {"end_Y":end_Y_val, "end_M":start_mm_val, "start_YY":start_Y_val},
+				   error: {},
+				   success: function(json){
+					   var parseJson = JSON.parse(json);
+					   $("div a.xiaoguo4").text(parseJson[0]);
+					   $("div ul.wrapper4").empty().append(parseJson[1]);
+				   }
+			});
+	});
+	/** 结束月,展示不需要*/
+	$("div ul.wrapper4").delegate("li", "click", function(event){
+		var end_M_val = $(this).text();
+		 $("div a.xiaoguo4").text(end_M_val);
+	});
+	//实现效果鼠标移上去变色
+	$("div ul[class^='wrapper']").delegate("li", "mousemove", function(event){
+		$(this).attr("style","color: #F5E70C");
+			
+	});
+	$("div ul[class^='wrapper']").delegate("li", "mouseleave", function(event){
+		$(this).removeAttr("style");
+			
+	});
+	
+}
+
+function searchVipInfo(){
+	$("span.xfjl_cx input").bind("click", function(){
+		 var star_Y = $("div a.xiaoguo").text();
+		 var start_M = $("div a.xiaoguo2").text();
+		 var end_Y = $("div a.xiaoguo3").text();
+		 var end_M = $("div a.xiaoguo4").text();
+		 var countResult = $("div.recordlist ul"); 
+		 $.ajax({
+			   type: "POST",
+			   url: "{{$smarty.const.WEBSITE_URL}}usermanager/searchVipInfo",
+			   data: {"start_Y":star_Y, "start_M":start_M, "end_Y":end_Y, "end_M":end_M},
+			   error: {},
+			   success: function(json){
+				   if(json!=""){
+					   $(countResult).show()
+				       $("div.recordlist a").show(); 
+					   var parseJson = JSON.parse(json);
+				       $.each(parseJson,
+				    		   function(k, v) {
+				    		   	var li_Num = $(countResult[k]).find("li");
+				    		   	$.each(v,
+				    		   	function(key, val) {
+				    		   		$.each(li_Num,
+				    		   		function(li_k, li_v) {
+				    		   			if (key == "checkDate" && li_k == "0") {
+				    		   				$(li_v).text(val);
+				    		   			}
+				    		   			if (key == "checkId" && li_k == "1") {
+				    		   				$(li_v).text(val);
+				    		   			}
+				    		   			if (key == "cs" && li_k == "2") {
+				    		   				$(li_v).text(val);
+				    		   			}
+				    		   			if (key == "customer_na" && li_k == "3") {
+				    		   				$(li_v).text(val);
+				    		   			}
+				    		   			if (key == "CheckAmount" && li_k == "4") {
+				    		   				$(li_v).text(val);
+				    		   			}
+				    		   		});
+			    		   	});
+		    		   });
+				    }else{
+				    	$(countResult).hide()
+				    	$("div.recordlist a").hide(); 
+				    }
+			   }
+		});
+	});
+}
+	function openWin(winId){
+  		$("#"+winId).show();
+  	}
+  	function closeWin(winId){
+  		$("#"+winId).hide();
+  	}
+	
 $(function(){
+	initDate();
+	searchVipInfo();
 	winH = $(window).height();
 	warpH = $("#warp").height();
 	paddingT = (winH - warpH-70)/2;
 	if( winH < warpH ){
 		paddingT = 10;
 	}
+	winH = $(window).height();
+	warpH = $("#warp").height();
+	paddingT = (winH - warpH-70)/2;
+	if( winH < warpH ){
+		paddingT = 10;
+	}
+	
 	$("body").css({paddingTop:paddingT});
 	$('.wrapper6').hide();
 	$('.xiaoguo6').mouseenter(function(){
@@ -39,155 +181,24 @@ $(function(){
 	});
 	$('.head6').mouseleave(function(){
 		$('.wrapper6').slideUp();
-	});  
-})
-</script>
-<script type="text/javascript" id="sourcecode"><!--
-//code for scroll
-
-$(function(){
-	initDate();
+	});
+	
+	$("body").css({paddingTop:paddingT});
 	$('.scroll-pane').jScrollPane(); 
-          $('.wrapper').hide();
-          $('.xiaoguo').click(function(){
-          	
-          	 $('.wrapper').slideDown("slow");
-          	  
-           });
-          $('.head').mouseleave(function(){
-          	  $('.wrapper').slideUp();
-          	  
-           });
-		  $('.nshow').click(function(){
-          	  $('.wrapper').slideUp();
-          	  
-           });
-		  $('.wrapper2').hide();
-          $('.xiaoguo2').click(function(){
-          	
-          	 $('.wrapper2').slideDown("slow");
-          	  
-           });
-          $('.head2').mouseleave(function(){
-          	  $('.wrapper2').slideUp();
-          	  
-           });
-		  $('.nshow2').click(function(){
-          	  $('.wrapper2').slideUp();
-          	  
-           });
-		  $('.wrapper3').hide();
-          $('.xiaoguo3').click(function(){
-          	
-          	 $('.wrapper3').slideDown("slow");
-          	  
-           });
-          $('.head3').mouseleave(function(){
-          	  $('.wrapper3').slideUp();
-          	  
-           });
-		  $('.nshow3').click(function(){
-          	  $('.wrapper3').slideUp();
-          	  
-           });
-		  $('.wrapper4').hide();
-          $('.xiaoguo4').click(function(){
-          	
-          	 $('.wrapper4').slideDown("slow");
-          	  
-           });
-          $('.head4').mouseleave(function(){
-          	  $('.wrapper4').slideUp();
-          	  
-           });
-		  $('.nshow4').click(function(){
-          	  $('.wrapper4').slideUp();
-          	  
-           });
-		    $("#datedesc").hide();
-		    $("#moneydesc").hide();
-			 
-  	});
-  	function openWin(winId){
-  		$("#"+winId).show();
-  	}
-  	function closeWin(winId){
-  		$("#"+winId).hide();
-  	}
-
-	function initDate(){
-		/** 开始年*/
-		$("div ul .wrapper li .nshow").bind("click", function(){
-			var start_Y_val = $(this).next().find("a").text();
-			 $("div a .xiaoguo").text(start_Y_val);
-			 $.ajax({
-				   type: "POST",
-				   url: "{{$smarty.const.WEBSITE_URL}}usermanager/dateVerify",
-				   data: {"start_Y":start_Y_val},
-				   error: {},
-				   success: function(json){
-				     alert(json);
-				   }
-			});
-		});
-		/** 开始月*/
-		$("div ul .wrapper2 li .nshow2").bind("click", function(){
-			var start_M_val = $(this).next().find("a").text();
-			 $("div a .xiaoguo2").text(start_M_val);
-			 var start_Y_val = $("div a .xiaoguo").text();
-			 $.ajax({
-				   type: "POST",
-				   url: "{{$smarty.const.WEBSITE_URL}}usermanager/dateVerify",
-				   data: {"start_M":start_M_val, "start_Y_val": start_Y_val},
-				   error: {},
-				   success: function(json){
-				     alert(json);
-				   }
-			});
-		});
-		/** 结束年*/
-		$("div ul .wrapper3 li .nshow3").bind("click", function(){
-			var end_Y_val = $(this).next().find("a").text()
-			 var xiaoguo3_val = $("div a .xiaoguo3").text();
-			 var start_mm_val = $("div a .xiaoguo2").text();
-			
-			 if(end_Y_val!=xiaoguo3_val){
-				 $("div a .xiaoguo3").text(end_Y_val);
-				 $.ajax({
-					   type: "POST",
-					   url: "{{$smarty.const.WEBSITE_URL}}usermanager/dateVerify",
-					   data: {"end_Y":end_Y_val, "end_M":start_mm_val},
-					   error: {},
-					   success: function(json){
-					     alert(json);
-					   }
-				});
-			 }
-		});
-		/** 结束月,展示不需要*/
-		$("div ul .wrapper4 li .nshow4").bind("click", function(){
-			var end_M_val = $(this).next().find("a").text()
-			 $("div a .xiaoguo4").text(end_M_val);
-		});
-	}
-
-	function searchVipInfo(){
-		$("span .xfjl_cx input").bind("click", function(){
-			 var star_Y = $("div a .xiaoguo").text();
-			 var start_M = $("div a .xiaoguo2").text();
-			 var end_Y = $("div a .xiaoguo3").text();
-			 var end_M = $("div a .xiaoguo4").text();
-			 $.ajax({
-				   type: "POST",
-				   url: "{{$smarty.const.WEBSITE_URL}}usermanager/searchVipInfo",
-				   data: {"star_Y":star_Y, "start_M":start_M, "end_Y":end_Y, "end_M":end_M},
-				   error: {},
-				   success: function(json){
-				     alert(json);
-				   }
-			});
-		});
-	}
+	$("div a[class^='xiaoguo']").not($("a.xiaoguo6")).delegate(this, "click", function(){  
+        	  $(this).next().slideDown("slow");
+          });
+          $("div[class^='head']").bind("mouseleave", function(){  
+        	  $(this).find("ul").slideUp();
+          });
+          $("div ul[class^='wrapper']").delegate("li", "click", function(event){
+        	  $(this).parent().slideUp();
+      	  });
+          $("div ul[class^='wrapper']").hide();
+		  $("#datedesc").hide();
+		  $("#moneydesc").hide();
+  	})
+  
 </script>
 </head>
 
@@ -236,7 +247,7 @@ $(function(){
             	<div class="recordsearch">
                 	查询日期：
                     <div class="head">
-                    	{{$start_yyyy}}
+                    	 {{$start_yyyy}} 
                        	<ul class="wrapper">
                         	{{$start_years}}
                         </ul>
@@ -245,20 +256,21 @@ $(function(){
                     <div class="head2">
                     	{{$twoYearDate_M}}
                        	<ul class="wrapper2">
-                        	{{$start_mm}}
+                        	 {{$start_mm}}
+           
                         </ul>
                     </div>
                     月
                     至
                     <div class="head3">
-                    	{{$end_yyyy}}
+                    	{{$end_yyyy}} 
                        	<ul class="wrapper3">
-                        	{{$end_years}}
+                        	 {{$end_years}}
                         </ul>
                     </div>
                     年
                     <div class="head4">
-                    	{{$date_M}}
+                    	 {{$date_M}}
                        	<ul class="wrapper4">
                         	{{$end_mm}}
                         </ul>

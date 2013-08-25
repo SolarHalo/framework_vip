@@ -32,14 +32,6 @@ $(function(){
 	if( winH < warpH ){
 		paddingT = 10;
 	}
-	$("body").css({paddingTop:paddingT});
-	$('.wrapper6').hide();
-	$('.xiaoguo6').mouseenter(function(){
-		$('.wrapper6').slideDown("slow");
-	});
-	$('.head6').mouseleave(function(){
-		$('.wrapper6').slideUp();
-	});
 })   
 </script>
 <script type="text/javascript" id="sourcecode">
