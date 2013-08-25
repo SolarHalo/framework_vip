@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-19 13:48:35
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-22 14:24:49
          compiled from "G:\phpserver\framework\templates\account.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:72445209a989d1be69-35088723%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '269411a7044f85efbdecb0cac6a54fc3a66c039e' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\account.tpl',
-      1 => 1376722857,
+      1 => 1376985738,
       2 => 'file',
     ),
   ),
@@ -68,7 +68,14 @@ $(function(){
 		paddingT = 10;
 	}
 	$("body").css({paddingTop:paddingT});
-})
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});
+})   
 </script>
 <script type="text/javascript" id="sourcecode">
 //code for scroll
@@ -79,9 +86,8 @@ $(function(){
 </head>
 
 <body>
-<div class="Welcomeuseer zh">
-	尊贵的<font>汪涵</font>，您好！<a href="#">退出</a>
-</div>
+<?php echo $_smarty_tpl->getSubTemplate ('loginbanner.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+ 
 <div id="warp" class="container">
     <div class="content">
         <div class="nav">

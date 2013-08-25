@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-20 04:28:05
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-22 14:24:49
          compiled from "G:\phpserver\framework\templates\loginbanner.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3335212edb83ee9d0-30140240%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1b187724bce5faf76612081292d3d13c422f42ce' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\loginbanner.tpl',
-      1 => 1376972575,
+      1 => 1376985707,
       2 => 'file',
     ),
   ),
@@ -37,4 +37,4 @@ usermanager/checkinfos">消费记录</a></li>
     </ul>
     <a href="#">退出</a>
 </div>
-<?php }?><?php }} ?>
+<?php }?> <?php }} ?>

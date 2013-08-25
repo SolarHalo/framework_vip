@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-12 15:01:21
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-22 14:24:46
          compiled from "G:\phpserver\framework\templates\login.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:39135204442c0cd395-08651705%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f96113354c01af86db5c099e676b79f33d29de3d' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\login.tpl',
-      1 => 1376318110,
+      1 => 1376985757,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5204442c41b459_82140119')) {function content_5204442c41b459_82140119($_smarty_tpl) {?><!doctype html>
-<html>
+<html> 
 <head>
 <meta charset="utf-8">
 <title>会员俱乐部</title>
