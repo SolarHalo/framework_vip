@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-13 03:37:00
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-26 06:38:34
          compiled from "G:\phpserver\framework\templates\checkinfos.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:61215209a9dc070830-75833654%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0d5f2d9c3b6cc46247525c9f8f64a5e323bb66e6' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\checkinfos.tpl',
-      1 => 1376364585,
+      1 => 1377484207,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.13',
   'unifunc' => 'content_5209a9dc25d6e0_51555973',
+  'variables' => 
+  array (
+    'start_yyyy' => 0,
+    'start_years' => 0,
+    'twoYearDate_M' => 0,
+    'start_mm' => 0,
+    'end_yyyy' => 0,
+    'end_years' => 0,
+    'date_M' => 0,
+    'end_mm' => 0,
+    'dateHtml' => 0,
+    'v' => 0,
+  ),
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5209a9dc25d6e0_51555973')) {function content_5209a9dc25d6e0_51555973($_smarty_tpl) {?><!doctype html>
 <html>
@@ -39,6 +52,10 @@ public/css/other.css" rel="stylesheet" />
 public/css/jquery.jscrollpane.css" rel="stylesheet" media="all"> 
 <script type="text/javascript" src="<?php echo @constant('WEBSITE_URL');?>
 public/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="<?php echo @constant('WEBSITE_URL');?>
+public/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="<?php echo @constant('WEBSITE_URL');?>
+public/js/jquery.mousewheel.js"></script>
 <style type="text/css" id="page-css">
 .scroll-pane {
 	width:574px;
@@ -46,101 +63,194 @@ public/js/jquery-1.8.2.min.js"></script>
 	float:left;
 }
 </style>
- 
-<script type="text/javascript" src="<?php echo @constant('WEBSITE_URL');?>
-public/js/jquery.jscrollpane.min.js"></script>
-<script type="text/javascript" src="<?php echo @constant('WEBSITE_URL');?>
-public/js/jquery.mousewheel.js"></script>
 <script type="text/javascript">
-//code for vetically center
+function initDate(){
+	/** 开始年*/
+	$("div ul.wrapper").delegate("li", "click", function(){
+		var start_Y_val = $(this).text();
+		 $("div a.xiaoguo").text(start_Y_val);
+		 var start_mm_val = $("div a.xiaoguo2").text();
+		 $.ajax({
+			   type: "POST",
+			   url: "<?php echo @constant('WEBSITE_URL');?>
+usermanager/dateVerify",
+			   data: {"start_Y":start_Y_val, "start_MM":start_mm_val},
+			   error: {},
+			   success: function(json){
+				   var parseJson = JSON.parse(json);
+				   $("div a.xiaoguo2").text(parseJson[0]);
+				   $("div ul.wrapper2").empty().append(parseJson[1]);
+				   $("div a.xiaoguo3").text(parseJson[2]);
+				   $("div ul.wrapper3").empty().append(parseJson[3]);
+				   $("div a.xiaoguo4").text(parseJson[4]);
+				   $("div ul.wrapper4").empty().append(parseJson[5]);
+			   }
+		});
+	});
+	/** 开始月*/
+	$("div ul.wrapper2").delegate("li", "click", function(){
+		var start_M_val = $(this).text();
+		 $("div a.xiaoguo2").text(start_M_val);
+		 var start_Y_val = $("div a.xiaoguo").text();
+		 var end_Y_val = $("div a.xiaoguo3").text();
+		 $.ajax({
+			   type: "POST",
+			   url: "<?php echo @constant('WEBSITE_URL');?>
+usermanager/dateVerify",
+			   data: {"start_M":start_M_val, "start_Y_val": start_Y_val, "end_Y_val": end_Y_val},
+			   error: {},
+			   success: function(json){
+				   if(json!=""){
+					   var parseJson = JSON.parse(json);
+					   $("div a.xiaoguo4").text(parseJson[0]);
+					   $("div ul.wrapper4").empty().append(parseJson[1]);
+				   }
+			   }
+		});
+	});
+	/** 结束年*/
+	$("div ul.wrapper3").delegate("li", "click", function(){
+		var end_Y_val = $(this).text()
+		var start_Y_val = $("div a.xiaoguo").text();
+		 $("div a.xiaoguo3").text(end_Y_val);
+		 var start_mm_val = $("div a.xiaoguo2").text();
+			 $("div a.xiaoguo3").text(end_Y_val);
+			 $.ajax({
+				   type: "POST",
+				   url: "<?php echo @constant('WEBSITE_URL');?>
+usermanager/dateVerify",
+				   data: {"end_Y":end_Y_val, "end_M":start_mm_val, "start_YY":start_Y_val},
+				   error: {},
+				   success: function(json){
+					   var parseJson = JSON.parse(json);
+					   $("div a.xiaoguo4").text(parseJson[0]);
+					   $("div ul.wrapper4").empty().append(parseJson[1]);
+				   }
+			});
+	});
+	/** 结束月,展示不需要*/
+	$("div ul.wrapper4").delegate("li", "click", function(event){
+		var end_M_val = $(this).text();
+		 $("div a.xiaoguo4").text(end_M_val);
+	});
+	//实现效果鼠标移上去变色
+	$("div ul[class^='wrapper']").delegate("li", "mousemove", function(event){
+		$(this).attr("style","color: #F5E70C");
+			
+	});
+	$("div ul[class^='wrapper']").delegate("li", "mouseleave", function(event){
+		$(this).removeAttr("style");
+			
+	});
+	
+}
+
+function searchVipInfo(){
+	$("span.xfjl_cx input").bind("click", function(){
+		 var star_Y = $("div a.xiaoguo").text();
+		 var start_M = $("div a.xiaoguo2").text();
+		 var end_Y = $("div a.xiaoguo3").text();
+		 var end_M = $("div a.xiaoguo4").text();
+		 var countResult = $("div.recordlist ul"); 
+		 $.ajax({
+			   type: "POST",
+			   url: "<?php echo @constant('WEBSITE_URL');?>
+usermanager/searchVipInfo",
+			   data: {"start_Y":star_Y, "start_M":start_M, "end_Y":end_Y, "end_M":end_M},
+			   error: {},
+			   success: function(json){
+				   if(json!=""){
+					   $(countResult).show()
+				       $("div.recordlist a").show(); 
+					   var parseJson = JSON.parse(json);
+				       $.each(parseJson,
+				    		   function(k, v) {
+				    		   	var li_Num = $(countResult[k]).find("li");
+				    		   	$.each(v,
+				    		   	function(key, val) {
+				    		   		$.each(li_Num,
+				    		   		function(li_k, li_v) {
+				    		   			if (key == "checkDate" && li_k == "0") {
+				    		   				$(li_v).text(val);
+				    		   			}
+				    		   			if (key == "checkId" && li_k == "1") {
+				    		   				$(li_v).text(val);
+				    		   			}
+				    		   			if (key == "cs" && li_k == "2") {
+				    		   				$(li_v).text(val);
+				    		   			}
+				    		   			if (key == "customer_na" && li_k == "3") {
+				    		   				$(li_v).text(val);
+				    		   			}
+				    		   			if (key == "CheckAmount" && li_k == "4") {
+				    		   				$(li_v).text(val);
+				    		   			}
+				    		   		});
+			    		   	});
+		    		   });
+				    }else{
+				    	$(countResult).hide()
+				    	$("div.recordlist a").hide(); 
+				    }
+			   }
+		});
+	});
+}
+	function openWin(winId){
+  		$("#"+winId).show();
+  	}
+  	function closeWin(winId){
+  		$("#"+winId).hide();
+  	}
+	
 $(function(){
+	initDate();
+	searchVipInfo();
 	winH = $(window).height();
 	warpH = $("#warp").height();
 	paddingT = (winH - warpH-70)/2;
 	if( winH < warpH ){
 		paddingT = 10;
 	}
+	winH = $(window).height();
+	warpH = $("#warp").height();
+	paddingT = (winH - warpH-70)/2;
+	if( winH < warpH ){
+		paddingT = 10;
+	}
+	
 	$("body").css({paddingTop:paddingT});
-})
-</script>
-<script type="text/javascript" id="sourcecode">
-//code for scroll
-$(function(){
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});
+	
+	$("body").css({paddingTop:paddingT});
 	$('.scroll-pane').jScrollPane(); 
-          $('.wrapper').hide();
-          $('.xiaoguo').click(function(){
-          	
-          	 $('.wrapper').slideDown("slow");
-          	  
-           });
-          $('.head').mouseleave(function(){
-          	  $('.wrapper').slideUp();
-          	  
-           });
-		  $('.nshow').click(function(){
-          	  $('.wrapper').slideUp();
-          	  
-           });
-		  $('.wrapper2').hide();
-          $('.xiaoguo2').click(function(){
-          	
-          	 $('.wrapper2').slideDown("slow");
-          	  
-           });
-          $('.head2').mouseleave(function(){
-          	  $('.wrapper2').slideUp();
-          	  
-           });
-		  $('.nshow2').click(function(){
-          	  $('.wrapper2').slideUp();
-          	  
-           });
-		  $('.wrapper3').hide();
-          $('.xiaoguo3').click(function(){
-          	
-          	 $('.wrapper3').slideDown("slow");
-          	  
-           });
-          $('.head3').mouseleave(function(){
-          	  $('.wrapper3').slideUp();
-          	  
-           });
-		  $('.nshow3').click(function(){
-          	  $('.wrapper3').slideUp();
-          	  
-           });
-		  $('.wrapper4').hide();
-          $('.xiaoguo4').click(function(){
-          	
-          	 $('.wrapper4').slideDown("slow");
-          	  
-           });
-          $('.head4').mouseleave(function(){
-          	  $('.wrapper4').slideUp();
-          	  
-           });
-		  $('.nshow4').click(function(){
-          	  $('.wrapper4').slideUp();
-          	  
-           });
-		    $("#datedesc").hide();
-		    $("#moneydesc").hide();
-			 
-  	});
-  	function openWin(winId){
-  		$("#"+winId).show();
-  	}
-  	function closeWin(winId){
-  		$("#"+winId).hide();
-  	}
-  	  	
+	$("div a[class^='xiaoguo']").not($("a.xiaoguo6")).delegate(this, "click", function(){  
+        	  $(this).next().slideDown("slow");
+          });
+          $("div[class^='head']").bind("mouseleave", function(){  
+        	  $(this).find("ul").slideUp();
+          });
+          $("div ul[class^='wrapper']").delegate("li", "click", function(event){
+        	  $(this).parent().slideUp();
+      	  });
+          $("div ul[class^='wrapper']").hide();
+		  $("#datedesc").hide();
+		  $("#moneydesc").hide();
+  	})
+  
 </script>
 </head>
 
 <body>
-<div class="Welcomeuseer zh">
-	尊贵的<font>汪涵</font>，您好！<a href="#">退出</a>
-</div>
+<?php echo $_smarty_tpl->getSubTemplate ('loginbanner.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+
 <div class="windbox" id="datedesc">
 	<div class="wind">
     	<a href="#" onclick="javascript:closeWin('datedesc');" class="fr"><img src="<?php echo @constant('WEBSITE_URL');?>
@@ -195,84 +305,56 @@ usermanager/checkinfos"><!--消费记录-->
             	<div class="recordsearch">
                 	查询日期：
                     <div class="head">
-                    	<a href="#" class="xiaoguo">2013</a>
+                    	 <?php echo $_smarty_tpl->tpl_vars['start_yyyy']->value;?>
+ 
                        	<ul class="wrapper">
-                        	<li class="nshow"><a href="#">2001</a></li> 
-                            <li class="nshow"><a href="#">2002</a></li> 
-                            <li class="nshow"><a href="#">2003</a></li> 
-                            <li class="nshow"><a href="#">2004</a></li> 
-                            <li class="nshow"><a href="#">2005</a></li> 
-                            <li class="nshow"><a href="#">2006</a></li> 
-                            <li class="nshow"><a href="#">2007</a></li> 
-                            <li class="nshow"><a href="#">2008</a></li> 
-                            <li class="nshow"><a href="#">2009</a></li> 
-                            <li class="nshow"><a href="#">2010</a></li> 
-                            <li class="nshow"><a href="#">2011</a></li> 
-                            <li class="nshow"><a href="#">2012</a></li> 
+                        	<?php echo $_smarty_tpl->tpl_vars['start_years']->value;?>
+
                         </ul>
                     </div>
                     年
                     <div class="head2">
-                    	<a href="#" class="xiaoguo2">03</a>
+                    	<?php echo $_smarty_tpl->tpl_vars['twoYearDate_M']->value;?>
+
                        	<ul class="wrapper2">
-                        	<li class="nshow2"><a href="#">01</a></li> 
-                            <li class="nshow2"><a href="#">02</a></li> 
-                            <li class="nshow2"><a href="#">03</a></li> 
-                            <li class="nshow2"><a href="#">04</a></li> 
-                            <li class="nshow2"><a href="#">05</a></li> 
-                            <li class="nshow2"><a href="#">06</a></li> 
-                            <li class="nshow2"><a href="#">07</a></li> 
-                            <li class="nshow2"><a href="#">08</a></li> 
-                            <li class="nshow2"><a href="#">09</a></li> 
-                            <li class="nshow2"><a href="#">10</a></li> 
-                            <li class="nshow2"><a href="#">11</a></li> 
-                            <li class="nshow2"><a href="#">12</a></li> 
+                        	 <?php echo $_smarty_tpl->tpl_vars['start_mm']->value;?>
+
+           
                         </ul>
                     </div>
                     月
                     至
                     <div class="head3">
-                    	<a href="#" class="xiaoguo3">2013</a>
+                    	<?php echo $_smarty_tpl->tpl_vars['end_yyyy']->value;?>
+ 
                        	<ul class="wrapper3">
-                        	<li class="nshow3"><a href="#">2001</a></li> 
-                            <li class="nshow3"><a href="#">2002</a></li> 
-                            <li class="nshow3"><a href="#">2003</a></li> 
-                            <li class="nshow3"><a href="#">2004</a></li> 
-                            <li class="nshow3"><a href="#">2005</a></li> 
-                            <li class="nshow3"><a href="#">2006</a></li> 
-                            <li class="nshow3"><a href="#">2007</a></li> 
-                            <li class="nshow3"><a href="#">2008</a></li> 
-                            <li class="nshow3"><a href="#">2009</a></li> 
-                            <li class="nshow3"><a href="#">2010</a></li> 
-                            <li class="nshow3"><a href="#">2011</a></li> 
-                            <li class="nshow3"><a href="#">2012</a></li> 
+                        	 <?php echo $_smarty_tpl->tpl_vars['end_years']->value;?>
+
                         </ul>
                     </div>
                     年
                     <div class="head4">
-                    	<a href="#" class="xiaoguo4">03</a>
+                    	 <?php echo $_smarty_tpl->tpl_vars['date_M']->value;?>
+
                        	<ul class="wrapper4">
-                        	<li class="nshow4"><a href="#">01</a></li> 
-                            <li class="nshow4"><a href="#">02</a></li> 
-                            <li class="nshow4"><a href="#">03</a></li> 
-                            <li class="nshow4"><a href="#">04</a></li> 
-                            <li class="nshow4"><a href="#">05</a></li> 
-                            <li class="nshow4"><a href="#">06</a></li> 
-                            <li class="nshow4"><a href="#">07</a></li> 
-                            <li class="nshow4"><a href="#">08</a></li> 
-                            <li class="nshow4"><a href="#">09</a></li> 
-                            <li class="nshow4"><a href="#">10</a></li> 
-                            <li class="nshow4"><a href="#">11</a></li> 
-                            <li class="nshow4"><a href="#">12</a></li> 
+                        	<?php echo $_smarty_tpl->tpl_vars['end_mm']->value;?>
+
                         </ul>
                     </div>
                     月
+                    <span class="xfjl_cx"><input type="button" value="" /></span>
                    <span style="border-bottom:1px solid #BCA14E;"> <a href="#" onclick="javascript:openWin('datedesc');" class="linkstyle01">说明</a></span>
                 </div>
                 <div class="recordtext mb25 mt20">
-                	卡号：<font>0000000000</font>,姓名：<font>张三</font>,开卡店铺：<font>ochirly深圳海岸城南山店</font>,<br>
-                    开卡日期：<font>2011</font>年<font>9</font>月<font>1</font>日,有效期：<font>2011</font>年<font>9</font>月<font>1</font>日,
-                    续卡尚需有效金额<font>xxx</font>元。<span style="border-bottom:1px solid #BCA14E;"><a href="#"  onclick="javascript:openWin('moneydesc')"; class="linkstyle01">说明</a></span>
+                	卡号：<font><?php echo $_SESSION['checkInfoArr']["cardInfo"]["vip_no"];?>
+</font>,姓名：<font><?php echo $_SESSION['checkInfoArr']["cardInfo"]["name"];?>
+</font>,开卡店铺：<font><?php echo $_SESSION['checkInfoArr']["cardInfo"]["customer_na"];?>
+</font>,<br>
+                	
+                    <?php echo $_smarty_tpl->tpl_vars['dateHtml']->value;?>
+,
+                                                     续卡尚需有效金额<font><?php echo $_SESSION['checkInfoArr']["cardInfo"]["checkMoney"];?>
+</font>元。<span style="border-bottom:1px solid #BCA14E;"><a href="#"  onclick="javascript:openWin('moneydesc')"; class="linkstyle01">说明</a></span>
                 </div>
                 <div class="recordlist">
                 	<ol>
@@ -282,57 +364,28 @@ usermanager/checkinfos"><!--消费记录-->
                         <li class="dpmc">消费店铺名称</li>
                         <li class="je">金额</li>
                     </ol>
-                    <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                     <ul>
-                    	<li class="rq">2011-9-7</li>
-                        <li class="xsd">KSZL029310</li>
-                        <li class="xfcs">深圳</li>
-                        <li class="dpmc">OCHIRLY深圳海岸城南山店</li>
-                        <li class="je">599.00</li>
-                    </ul>
-                    <a href="<?php echo @constant('WEBSITE_URL');?>
-usermanager/morecheckinfos" class="linkstyle01 fr" style="display:block; width:100%; margin-top:20px;  text-align:right;">查看更多</a>
+                    <?php  $_smarty_tpl->tpl_vars['v'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['v']->_loop = false;
+ $_smarty_tpl->tpl_vars['k'] = new Smarty_Variable;
+ $_from = $_SESSION['checkInfoArr']["CheckInfo"]; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['v']->key => $_smarty_tpl->tpl_vars['v']->value){
+$_smarty_tpl->tpl_vars['v']->_loop = true;
+ $_smarty_tpl->tpl_vars['k']->value = $_smarty_tpl->tpl_vars['v']->key;
+?>
+                     	<ul>
+                    	 <li class="rq"><?php echo $_smarty_tpl->tpl_vars['v']->value['checkDate'];?>
+</li>
+                         <li class="xsd"><?php echo $_smarty_tpl->tpl_vars['v']->value['checkId'];?>
+</li>
+                         <li class="xfcs"><?php echo $_smarty_tpl->tpl_vars['v']->value['cs'];?>
+</li>
+                         <li class="dpmc"><?php echo $_smarty_tpl->tpl_vars['v']->value['customer_na'];?>
+</li>
+                         <li class="je"><?php echo $_smarty_tpl->tpl_vars['v']->value['CheckAmount'];?>
+</li>
+                    	</ul>
+                    <?php } ?>
+                   <a href="<?php echo @constant('WEBSITE_URL');?>
+usermanager/morecheckinfos/?firstPage=firstPage" class="linkstyle01 fr" style="display:block; width:100%; margin-top:20px;  text-align:right;">查看更多</a>
                 </div>
 			</div>
         </div>

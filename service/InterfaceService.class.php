@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class InterfaceService{
 	
@@ -66,12 +66,14 @@ class InterfaceService{
 			'in5'=>$chechDate_start, 'in6'=>$checkDate_end);
 		$arryResult = $proxy->getVipCheck($arrayParam);
 //		var_dump($arryResult);
-		$xml = '<<<?xml version="1.0" encoding="UTF-8"?>
-<expense><cardInfo><vip_no>00001032  </vip_no><name>赵莹莹</name><customer_na>ochirly宁波天一银泰专柜</customer_na><inDate>2010-12-22</inDate><endDate>2011-12-22</endDate><checkMoney>0.00</checkMoney></cardInfo><Page><showCount>14</showCount><totalPage>2</totalPage><totalResult>15</totalResult><currentPage>2</currentPage></Page><CheckInfo><check><checkDate>2012-10-19</checkDate><checkId>K364013658</checkId><cs>北京-北京</cs><customer_na>Ochirly北京朝阳大悦城店</customer_na><CheckAmount>1266</CheckAmount></check></CheckInfo></expense>';
+		$xml = <<<str
+<?xml version="1.0" encoding="UTF-8"?>
+<expense><cardInfo><vip_no>00001032  </vip_no><name>赵莹莹</name><customer_na>ochirly宁波天一银泰专柜</customer_na><inDate>2010-12-22</inDate><endDate>2011-12-22</endDate><checkMoney>0.00</checkMoney></cardInfo><Page><showCount>14</showCount><totalPage>2</totalPage><totalResult>15</totalResult><currentPage>2</currentPage></Page><CheckInfo><check><checkDate>2012-10-19</checkDate><checkId>K364013658</checkId><cs>北京-北京</cs><customer_na>Ochirly北京朝阳大悦城店</customer_na><CheckAmount>1266</CheckAmount></check></CheckInfo></expense>
+str;
 		//$arrayData = $this->xmlCheckInfoToArray($arryResult['out']);
 //var_dump($arrayData);
-$arrayData = $this->xmlCheckInfoToArray($xml);
-var_dump($arrayData);
+$arrayData = $this->xmlCheckInfoToArray($arryResult['out']);
+//var_dump($arrayData);
 		return $arrayData;
 	}
 	
@@ -158,7 +160,13 @@ var_dump($arrayData);
     	} 
     	if ($node->hasChildNodes()){ 
         	if ($node->childNodes->length == 1){ 
-            	$array[$node->firstChild->nodeName] = $node->firstChild->nodeValue; 
+            	
+            $childNode = $node->childNodes[0];
+            if ($childNode->nodeType != XML_TEXT_NODE){ 
+                    	$array[$childNode->nodeName][] = $this->getArray($childNode); 
+             } else{
+                     $array[$node->firstChild->nodeName] = $node->firstChild->nodeValue; 
+             }
         	}else{ 
             	foreach ($node->childNodes as $childNode){ 
                 	if ($childNode->nodeType != XML_TEXT_NODE){ 

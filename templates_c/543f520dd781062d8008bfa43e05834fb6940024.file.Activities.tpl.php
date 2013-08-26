@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-20 07:09:10
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-26 07:28:47
          compiled from "G:\phpserver\framework\templates\Activities.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2951352044427bcb346-95214282%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '543f520dd781062d8008bfa43e05834fb6940024' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\Activities.tpl',
-      1 => 1376982323,
+      1 => 1377502124,
       2 => 'file',
     ),
   ),
@@ -64,6 +64,13 @@ $(function(){
 		paddingT = 10;
 	}
 	$("body").css({paddingTop:paddingT});
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});
 	
 })
 //code for gallery and video
@@ -107,13 +114,7 @@ activities/media/?id='+$(this).attr("idvalue"),
       });
 		return false;
 	});
-	$('.wrapper6').hide();
-	$('.xiaoguo6').mouseenter(function(){
-		$('.wrapper6').slideDown("slow");
-	});
-	$('.head6').mouseleave(function(){
-		$('.wrapper6').slideUp();
-	});
+	
 })
 </script>
 </head>

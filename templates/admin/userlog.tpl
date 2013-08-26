@@ -24,6 +24,8 @@ $(function () {
    		{name:'cardno',index:'cardno', width:150},
    		{name:'login_time',index:'login_time', width:250, align:"left"}
    	],
+   	height: '100%',
+	width:'100%',
    	rowNum:30, 
    	pager: '#pager2',
     viewrecords: true,

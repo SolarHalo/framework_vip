@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-13 04:09:22
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-26 06:33:53
          compiled from "G:\phpserver\framework\templates\modifypwd.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:257495209a98e2367f5-12918708%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8e28f9718cf07b923931f316d86bb281fdc5cfa4' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\modifypwd.tpl',
-      1 => 1376366934,
+      1 => 1376985762,
       2 => 'file',
     ),
   ),
@@ -150,7 +150,13 @@ usermanager/index";
 		//}
 
 	});
-
+	$('.wrapper6').hide();
+	$('.xiaoguo6').mouseenter(function(){
+		$('.wrapper6').slideDown("slow");
+	});
+	$('.head6').mouseleave(function(){
+		$('.wrapper6').slideUp();
+	});  
 })
 </script>
 <script type="text/javascript" id="sourcecode">
@@ -162,9 +168,9 @@ $(function(){
 </head>
 
 <body>
-<div class="Welcomeuseer zh">
-	尊贵的<font>汪涵</font>，您好！<a href="#">退出</a>
-</div>
+<?php echo $_smarty_tpl->getSubTemplate ('loginbanner.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+
 <div id="warp" class="container">
     <div class="content">
         <div class="nav">

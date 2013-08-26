@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-20 07:16:53
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-26 08:12:44
          compiled from "G:\phpserver\framework\templates\media.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:4889520873a6bfc657-16062260%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8ef488c83811eabcf88cac66a0abb23cc9649476' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\media.tpl',
-      1 => 1376983003,
+      1 => 1376985745,
       2 => 'file',
     ),
   ),
@@ -47,7 +47,7 @@ public/assets/lib/video-js/video.js"></script>
   </script>
 
 
-</head>
+</head>  
 <body> 
   <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="550" height="264"
       poster="<?php echo $_smarty_tpl->tpl_vars['imgpath']->value;?>

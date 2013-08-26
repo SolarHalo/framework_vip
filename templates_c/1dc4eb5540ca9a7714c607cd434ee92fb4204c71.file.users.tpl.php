@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-10 15:01:20
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-26 08:32:03
          compiled from "G:\phpserver\framework\templates\admin\users.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:16780520655c06f4908-05032020%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1dc4eb5540ca9a7714c607cd434ee92fb4204c71' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\admin\\users.tpl',
-      1 => 1375548436,
+      1 => 1376985420,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_520655c0bd4fd3_63058568',
   'variables' => 
   array (
     'admin_action_alert' => 0,
@@ -27,8 +29,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'osadmin_action_confirm' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_520655c0bd4fd3_63058568',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_520655c0bd4fd3_63058568')) {function content_520655c0bd4fd3_63058568($_smarty_tpl) {?><?php if (!is_callable('smarty_function_html_options')) include 'G:\\phpserver\\framework/framework/lib/Smarty-3.1.13/libs/plugins\\function.html_options.php';
 ?><?php echo $_smarty_tpl->getSubTemplate ("admin/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
