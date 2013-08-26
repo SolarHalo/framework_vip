@@ -495,6 +495,7 @@ li.w50{
 	position: absolute;
 	right:53px;
 	top:15px;
+	z-index:50;
 	}
 .wrapper6 li a{
 	display:block;
@@ -519,11 +520,14 @@ li.w50{
 	cursor:pointer;
 	border:none;
 	margin:3px 5px 0 0px;
+	vertical-align:top;
 	}
 
+/*=================================20130826====================*/
 
-
-
+#pagecontent div.recordsearch,#pagecontent div.recordtext{
+	letter-spacing:-1.2px;
+	}
 
 
 

@@ -158,22 +158,23 @@ $arrayData = $this->xmlCheckInfoToArray($arryResult['out']);
            		$array[$attr->nodeName] = $attr->nodeValue; 
         	} 
     	} 
-    	if ($node->hasChildNodes()){ 
-        	if ($node->childNodes->length == 1){ 
-            	
-            $childNode = $node->childNodes[0];
-            if ($childNode->nodeType != XML_TEXT_NODE){ 
-                    	$array[$childNode->nodeName][] = $this->getArray($childNode); 
-             } else{
-                     $array[$node->firstChild->nodeName] = $node->firstChild->nodeValue; 
-             }
+    	if ($node->childNodes->length == 1){ 
+    	    if ($node->firstChild->nodeName == 'check'){  
+	              foreach ($node->childNodes as $childNode){ 
+	                 if ($childNode->nodeType != XML_TEXT_NODE){ 
+	                    $array[$childNode->nodeName][] = $this->getArray($childNode); 
+	                 } 
+	              } 
+	         } else{
+	              $array[$node->firstChild->nodeName] = $node->firstChild->nodeValue; 
+	         }
         	}else{ 
             	foreach ($node->childNodes as $childNode){ 
                 	if ($childNode->nodeType != XML_TEXT_NODE){ 
                     	$array[$childNode->nodeName][] = $this->getArray($childNode); 
                 	} 
             	} 
-        	} 
+        	  
     	} 
     	return $array; 
 	} 
