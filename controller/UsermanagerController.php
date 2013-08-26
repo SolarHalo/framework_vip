@@ -108,12 +108,12 @@ class UsermanagerController extends  Controller{
 		echo $ysrs;
 			
 		$postData = array('vip_no'=>trim($vipInfoArr['vip_no']),'name'=>$vipInfoArr['name'],'sex'=>$vipInfoArr['sex'],'birthday'=>$vipInfoArr['birthday'],
-		 'IDCard'=>$vipInfoArr['IDCard'],'phoneNum'=>$phoneNum,'email'=>$email,
-		 'ladyBrands'=>$ladyBrands,'manBrands'=>$manBrands,'vacations'=>trim($vacations, ","),'ysrs'=>trim($ysrs, ","));
+		 'IDCard'=>$vipInfoArr['IDCard'],'mobilePhones'=>$phoneNum,'eMail'=>$email,
+		 'brand'=>$ladyBrands.$manBrands,'vocation'=>trim($vacations, ","),'ysr'=>trim($ysrs, ","));
 			
 		$vipInfoXML = $this->getUpdateVipXML($postData);
 			
-		var_dump($vipInfoXML);die();
+		var_dump($vipInfoXML);
 		require_once DRIVER.DS.'WebServiceInit.class.php';
 		$webServiceInit = new WebServiceInit();
 		$client = $webServiceInit->getProxy();
@@ -129,14 +129,7 @@ class UsermanagerController extends  Controller{
 		$domElement = $domDocument->createElement('vipInfo');
 		$brands;
 		foreach ($postData as $k=>$v){
-			if ($k==='ladyBrands'){
-				$brands .= $v;
-			}elseif ($k==='manBrands'){
-				$brands .= $v;
-				$node = $domDocument->createElement('brand', trim($brands, ","));
-			}else {
-				$node = $domDocument->createElement($k, $v);
-			}
+			$node = $domDocument->createElement($k, $v);
 			$domElement->appendChild($node);
 		}
 		$domDocument->appendChild($domElement);
@@ -148,20 +141,20 @@ class UsermanagerController extends  Controller{
 		$vipInfoArr = $_SESSION['vipInfoArr'];
 		$s_date = $_SESSION['s_date'];//开始时间
 		$e_date = $_SESSION['e_date'];//结束时间
-//		require_once DRIVER.DS.'WebServiceInit.class.php';
-//		$webServiceInit = new WebServiceInit();
-//		$client = $webServiceInit->getProxy();
-//		require_once SERVICE.DS.'InterfaceService.class.php';
-//		$interfaceService = new InterfaceService($client);
-//		global $CONFIG;
-//		$checkInfoArr = $interfaceService->getVipCheck($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], "00001032", 7, 1, $s_date, $e_date);
-		$checkInfoArr=array("cardInfo"=>array("vip_no"=>"00001032","name"=>"赵莹莹","customer_na"=>"ochirly宁波天一银泰专柜","inDate"=>"2010-12-22","endDate"=>"2011-12-22","checkMoney"=>"0.00"),
+		require_once DRIVER.DS.'WebServiceInit.class.php';
+		$webServiceInit = new WebServiceInit();
+		$client = $webServiceInit->getProxy();
+		require_once SERVICE.DS.'InterfaceService.class.php';
+		$interfaceService = new InterfaceService($client);
+		global $CONFIG;
+		$checkInfoArr = $interfaceService->getVipCheck($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], "00001032", 7, 1, $s_date, $e_date);
+/*		$checkInfoArr=array("cardInfo"=>array("vip_no"=>"00001032","name"=>"赵莹莹","customer_na"=>"ochirly宁波天一银泰专柜","inDate"=>"2010-12-22","endDate"=>"2011-12-22","checkMoney"=>"0.00"),
 		                    "Page"=>array("showCount"=>"7","totalPage"=>"3","totalResult"=>"15","currentPage"=>"1"),"CheckInfo"=>array(array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),
 		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),
 		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),
 		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),
 		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),
-		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629")));	
+		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629")));	*/
 		$inDate =  $checkInfoArr['cardInfo']['inDate'];
 		$endDate = $checkInfoArr['cardInfo']['endDate'];
 
@@ -633,7 +626,7 @@ class UsermanagerController extends  Controller{
 	public function initPaging(){
 
 		$count = $_SESSION['count'];//总记录数 totalResult
-		$countPage = intval($count/14) + 1;//总页数 totalPage
+		$countPage = ceil($count/14);//总页数 totalPage
 		$pageSize = 14;//每页显示多少条数据 showCount
 		$pageCurrent = 1;//当前页currentPage
 			

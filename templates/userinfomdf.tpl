@@ -373,7 +373,7 @@ $(function(){
                     </span>
                     <span>男士选项</span>
                     <span id="manBrands" class="mb25">
-                    	{{$smarty.session.ladybrands}}
+                    	{{$smarty.session.manbrands}}
                     </span>
                     <span>2.您的职业（单选）</span>
                     <span id="vacations" class="mb25">

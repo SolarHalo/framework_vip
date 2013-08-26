@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-24 10:01:02
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-26 15:18:17
          compiled from "F:\PHP_WorkSapce\framework\templates\userinfomdf.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:216935210d2b815d0a6-85247427%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8e93ac54c8be734cc5e618fcb0f5bc7af18f22e9' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\userinfomdf.tpl',
-      1 => 1377175493,
+      1 => 1377530294,
       2 => 'file',
     ),
   ),
@@ -425,7 +425,7 @@ public/img/n-iocn.gif" alt="否"/>
                     </span>
                     <span>男士选项</span>
                     <span id="manBrands" class="mb25">
-                    	<?php echo $_SESSION['ladybrands'];?>
+                    	<?php echo $_SESSION['manbrands'];?>
 
                     </span>
                     <span>2.您的职业（单选）</span>

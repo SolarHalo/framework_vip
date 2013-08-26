@@ -7,7 +7,7 @@ ini_set("display_errors", 0);
 //  
 define('ADMIN_TITLE', "后台管理中心");
 define('PROJECT_NAME', "通用封装框架");
-define('WEBSITE_URL','http://test.advancemarketing.com.cn/trendy/vip/tmp/');
+define('WEBSITE_URL','http://localhost/');
                 
  
 //for include smarty 
@@ -15,10 +15,10 @@ ini_set('include_path', ini_get('include_path').PATH_SEPARATOR.SMARTY_DIR);
 
  
 $CONFIG['DB']= array(
-    'db_host'           =>      '101.226.179.176',
-    'db_user'           =>      'vd_vip',
-    'db_password'       =>      '147258.369',
-    'db_database'       =>      'vip',
+    'db_host'           =>      '127.0.0.1',
+    'db_user'           =>      'root',
+    'db_password'       =>      '',
+    'db_database'       =>      'test1',
     'db_table_prefix'   =>      'app_',
     'db_charset'        =>      'urf8'   
 );
