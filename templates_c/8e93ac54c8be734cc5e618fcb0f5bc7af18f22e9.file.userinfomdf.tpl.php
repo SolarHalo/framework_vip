@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-21 13:46:43
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-24 10:01:02
          compiled from "F:\PHP_WorkSapce\framework\templates\userinfomdf.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:216935210d2b815d0a6-85247427%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8e93ac54c8be734cc5e618fcb0f5bc7af18f22e9' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\userinfomdf.tpl',
-      1 => 1377092744,
+      1 => 1377175493,
       2 => 'file',
     ),
   ),
@@ -225,7 +225,7 @@ usermanager/updateVipInfo",
 	/**
 	 * 初始化数据
 	 */
-		function initDate(){
+		function initData(){
 			 /** lady*/ 
 			var ladyBrands = new Array("ochirly","Five Plus","MiuMiu","MARC JACOBS","MICHAEL KORS","initial","Mo&Co","DAZZLE","I.T","Vero Moda","ZARA","H&M","其它/Others");
 			 /** man*/ 
@@ -261,7 +261,7 @@ usermanager/updateVipInfo",
 		}
 
 	$(function(){
-		initDate();
+		initData();
 		$("#mustfill").hide();
 		$("#vlid").hide();
 		

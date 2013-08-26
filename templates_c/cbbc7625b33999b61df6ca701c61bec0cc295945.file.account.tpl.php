@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-20 13:15:55
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-24 13:32:41
          compiled from "F:\PHP_WorkSapce\framework\templates\account.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:15340520f21edea89d0-33995197%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'cbbc7625b33999b61df6ca701c61bec0cc295945' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\account.tpl',
-      1 => 1377003857,
+      1 => 1377264390,
       2 => 'file',
     ),
   ),
@@ -67,14 +67,6 @@ $(function(){
 	if( winH < warpH ){
 		paddingT = 10;
 	}
-	$("body").css({paddingTop:paddingT});
-	$('.wrapper6').hide();
-	$('.xiaoguo6').mouseenter(function(){
-		$('.wrapper6').slideDown("slow");
-	});
-	$('.head6').mouseleave(function(){
-		$('.wrapper6').slideUp();
-	});
 })   
 </script>
 <script type="text/javascript" id="sourcecode">
