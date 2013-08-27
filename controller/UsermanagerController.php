@@ -3,8 +3,7 @@ require_once SERVICE.DS.'UserService.class.php';
 
 class UsermanagerController extends  Controller{
 
-	public function index(){
-		$smaryt = $this->getSmarty();
+	public function showVipInfoTemple($smaryt){
 		/** lady*/
 		$ladyBrands = array("ochirly","Five Plus","MiuMiu","MARC JACOBS","MICHAEL KORS","initial","Mo&Co","DAZZLE","I.T","Vero Moda","ZARA","H&M","其它/Others");
 		/** man*/
@@ -13,8 +12,7 @@ class UsermanagerController extends  Controller{
 		$vacations = array("公务员","教师\律师\医生等专业人士","企业管理者","公司职员","自由职业者","家庭主妇","学生","私营企业主","其它");
 		/** ysr*/
 		$ysrs = array("4999元以下","5000-6999元","7000-8999元","9000-9999元","10000-19999元","20000元以上");
-
-			
+		
 		$vipInfoArr = $_SESSION['vipInfoArr'];
 		$brandStr = $vipInfoArr["brand"];
 		$vocationStr = $vipInfoArr["vocation"];
@@ -34,8 +32,12 @@ class UsermanagerController extends  Controller{
 		$this->smarty->assign("manbrands", $manBrandsHtml);
 		$this->smarty->assign("vacation", $vacationBrandsHtml);
 		$this->smarty->assign("ysr", $ysrHtml);
+	}
+	
+	public function index(){
+		$smaryt = $this->getSmarty();
+		$this->showVipInfoTemple($smaryt);
 		$this->smarty->display("account.tpl");
-
 	}
 
 	/**
@@ -84,7 +86,7 @@ class UsermanagerController extends  Controller{
 	public function mdfuserinfo(){
 		$smaryt = $this->getSmarty();
 		//如果不是post方式的提交，直接转向
-
+		$this->showVipInfoTemple($smaryt);
 		if(!CommonBase::isPost()){
 			$this->smarty->display("userinfomdf.tpl");
 			return;
@@ -93,7 +95,8 @@ class UsermanagerController extends  Controller{
 	}
 
 	public function updateVipInfo(){
-		$vipInfoArr = $_SESSION['vipInfoArr'];//修改完成之后西药更新session信息
+		$vipInfoArr = $_SESSION['vipInfoArr'];//修改完成之后更新session信息
+		
 		$phoneNum = $_POST['phoneNum'];
 		$email = $_POST['email'];
 		$ladyBrands = $_POST['ladyBrands'];
@@ -102,10 +105,10 @@ class UsermanagerController extends  Controller{
 		$ysrs = $_POST['ysrs'];
 		//		 $smsAllow = $_POST['smsAllow'];
 
-		echo $ladyBrands;
-		echo $manBrands;
-		echo $vacations;
-		echo $ysrs;
+//		echo $ladyBrands;
+//		echo $manBrands;
+//		echo $vacations;
+//		echo $ysrs;
 			
 		$postData = array('vip_no'=>trim($vipInfoArr['vip_no']),'name'=>$vipInfoArr['name'],'sex'=>$vipInfoArr['sex'],'birthday'=>$vipInfoArr['birthday'],
 		 'IDCard'=>$vipInfoArr['IDCard'],'mobilePhones'=>$phoneNum,'eMail'=>$email,
@@ -113,7 +116,7 @@ class UsermanagerController extends  Controller{
 			
 		$vipInfoXML = $this->getUpdateVipXML($postData);
 			
-		var_dump($vipInfoXML);
+//		var_dump($vipInfoXML);
 		require_once DRIVER.DS.'WebServiceInit.class.php';
 		$webServiceInit = new WebServiceInit();
 		$client = $webServiceInit->getProxy();
@@ -121,15 +124,22 @@ class UsermanagerController extends  Controller{
 		$interfaceService = new InterfaceService($client);
 		global $CONFIG;
 		$returnInfo = $interfaceService->updateVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipInfoArr['vip_no'], $vipInfoXML);
-		var_dump($returnInfo) ;
+		
+		//更新session开始
+		$vipInfoArr['mobilePhones'] = $phoneNum;
+		$vipInfoArr['eMail'] = $email;
+		$vipInfoArr['brand'] = $ladyBrands.$manBrands;
+		$vipInfoArr['vocation'] = $vacations;
+		$vipInfoArr['ysr'] = $ysrs;
+		$_SESSION['vipInfoArr'] = $vipInfoArr;
+		return json_encode($returnInfo['out']);
 	}
 
 	public function getUpdateVipXML($postData){
 		$domDocument = new DOMDocument('1.0', "UTF-8");
 		$domElement = $domDocument->createElement('vipInfo');
-		$brands;
 		foreach ($postData as $k=>$v){
-			$node = $domDocument->createElement($k, $v);
+			$node = $domDocument->createElement($k, htmlspecialchars($v));
 			$domElement->appendChild($node);
 		}
 		$domDocument->appendChild($domElement);
@@ -212,9 +222,14 @@ class UsermanagerController extends  Controller{
 
 		$strat_mm_for_days = cal_days_in_month(CAL_GREGORIAN, $start_mm, $start_yyyy);//判断这个月有多少天(开始年月)
 		$end_mm_for_days = cal_days_in_month(CAL_GREGORIAN, $end_mm, $end_yyyy);//判断这个月有多少天(结束年月)
-
+		$date_day = date('d', strtotime($date));//前一天的月份是几号
+		$e_day;
+		if($date_day===$end_mm_for_days){
+			$e_day = mktime(0,0,0,$end_mm,$end_mm_for_days,$end_yyyy);
+		}else {
+			$e_day = mktime(0,0,0,$end_mm,$date_day,$end_yyyy);
+		}
 		$s_day = mktime(0,0,0,$start_mm,$strat_mm_for_days,$start_yyyy);//当前的前一天
-		$e_day = mktime(0,0,0,$end_mm,$end_mm_for_days,$end_yyyy);//当前的前一天
 		$s_date = date("Y-m-d", $s_day); //格式化
 		$e_date = date("Y-m-d", $e_day); //格式化
 		$_SESSION['s_date'] = $s_date;
@@ -526,20 +541,26 @@ class UsermanagerController extends  Controller{
 	}
 
 	public function searchVipInfo(){
-
 		$start_Y = $_POST['start_Y'];
 		$start_M = $_POST['start_M'];
 		$end_Y = $_POST['end_Y'];
 		$end_M = $_POST['end_M'];
 
+		$yesteday = mktime(0,0,0,date("m"),date("d")-1,date("Y"));//当前的前一天
+		$date = date("Y-m-d", $yesteday); //格式化
+		$date_day = date('d', strtotime($date));//前一天的月份是几号
+
 		$strat_mm_for_days = cal_days_in_month(CAL_GREGORIAN, $start_M, $start_Y);//判断这个月有多少天(开始年月)
 		$end_mm_for_days = cal_days_in_month(CAL_GREGORIAN, $end_M, $end_Y);//判断这个月有多少天(结束年月)
-
+		$e_day;
+		if($date_day===$end_mm_for_days){
+			$e_day = mktime(0,0,0,$end_M,$end_mm_for_days,$end_Y);
+		}else {
+			$e_day = mktime(0,0,0,$end_M,$date_day,$end_Y);
+		}
 		$s_day = mktime(0,0,0,$start_M,$strat_mm_for_days,$start_Y);
-		$e_day = mktime(0,0,0,$end_M,$end_mm_for_days,$end_Y);
 		$s_date = date("Y-m-d", $s_day); //格式化
 		$e_date = date("Y-m-d", $e_day); //格式化
-		
 		if($s_date<=$e_date){
 			$vipInfoArr = $_SESSION['vipInfoArr'];
 			$_SESSION['s_date'] = $s_date;//开始时间
@@ -551,10 +572,13 @@ class UsermanagerController extends  Controller{
 			$interfaceService = new InterfaceService($client);
 			global $CONFIG;
 			$checkInfoArr = $interfaceService->getVipCheck($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], "00001032", 7, 1, $s_date, $e_date);
-
-			$count = $checkInfoArr['Page']['totalResult'];
-			$_SESSION['count'] = $count;  //总记录数
-			echo empty($checkInfoArr['CheckInfo'])?'':json_encode($checkInfoArr['CheckInfo']);
+			if (empty($checkInfoArr)){
+				echo "empty";
+			}else {
+				$count = $checkInfoArr['Page']['totalResult'];
+				$_SESSION['count'] = $count;  //总记录数
+				echo json_encode($checkInfoArr['CheckInfo']);
+			}
 		}else{
 			echo "error";
 		}
@@ -626,8 +650,8 @@ class UsermanagerController extends  Controller{
 	public function initPaging(){
 
 		$count = $_SESSION['count'];//总记录数 totalResult
-		$countPage = ceil($count/14);//总页数 totalPage
-		$pageSize = 14;//每页显示多少条数据 showCount
+		$countPage = ceil($count/10);//总页数 totalPage
+		$pageSize = 10;//每页显示多少条数据 showCount
 		$pageCurrent = 1;//当前页currentPage
 			
 		$page = array();

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-25 09:00:44
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-27 16:52:40
          compiled from "F:\PHP_WorkSapce\framework\templates\checkinfos.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:7093520f21f576f174-69213104%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'be4ffca1dfc7ba0a1294d6f468ff079ad037c359' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\checkinfos.tpl',
-      1 => 1377421240,
+      1 => 1377622078,
       2 => 'file',
     ),
   ),
@@ -159,10 +159,11 @@ usermanager/searchVipInfo",
 			   data: {"start_Y":star_Y, "start_M":start_M, "end_Y":end_Y, "end_M":end_M},
 			   error: {},
 			   success: function(json){
-				   if(json!=""){
+				   if(json.trim()!="empty"){
 					   $(countResult).show()
 				       $("div.recordlist a").show(); 
-					   var parseJson = JSON.parse(json);
+					   var arrJson = JSON.stringify(json);
+					   var parseJson = JSON.parse(arrJson);
 				       $.each(parseJson,
 				    		   function(k, v) {
 				    		   	var li_Num = $(countResult[k]).find("li");

@@ -143,14 +143,13 @@ $(function(){
 
 
 	function requestDate(){
-		
 		$.ajax({
 			   type: "POST",
 			   url: "{{$smarty.const.WEBSITE_URL}}usermanager/updateVipInfo",
 			   data: getparms(),
 			   error: {},
-			   success: function(xml){
-			     alert(xml);
+			   success: function(json){
+				   window.location.href = "{{$smarty.const.WEBSITE_URL}}usermanager";
 			   }
 		});
 	}

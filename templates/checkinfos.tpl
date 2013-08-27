@@ -114,10 +114,11 @@ function searchVipInfo(){
 			   data: {"start_Y":star_Y, "start_M":start_M, "end_Y":end_Y, "end_M":end_M},
 			   error: {},
 			   success: function(json){
-				   if(json!=""){
+				   if(json.trim()!="empty"){
 					   $(countResult).show()
 				       $("div.recordlist a").show(); 
-					   var parseJson = JSON.parse(json);
+					   var arrJson = JSON.stringify(json);
+					   var parseJson = JSON.parse(arrJson);
 				       $.each(parseJson,
 				    		   function(k, v) {
 				    		   	var li_Num = $(countResult[k]).find("li");

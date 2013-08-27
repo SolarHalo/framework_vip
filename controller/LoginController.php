@@ -78,7 +78,6 @@ class LoginController extends  Controller{
 			 	   $interfaceService = new InterfaceService($client);
 			 	   global $CONFIG;
 			 	   $vipInfoArr = $interfaceService->getVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipid);
-			 	   var_dump($vipInfoArr);
                    //模拟数据开始
 //                   $vipInfoArr =array("vip_no"=>"00001032","name"=>"赵莹莹","sex"=>"女","birthday"=>"1987-08-24","IDCard"=>"210102198708243029","mobilePhones"=>NULL,"eMail"=>NULL,"brand"=>"MiuMiu;MARC JACOBS;","vocation"=>NULL,"ysr"=>NULL,"myxfe"=>NULL,"smsAllow"=>"是");
 			 	   $_SESSION['vipInfoArr'] = $vipInfoArr;  

@@ -64,15 +64,21 @@ class InterfaceService{
 		$arrayParam = array('in0'=>$userName, 'in1'=>$passWord, 
 			'in2'=>$vipid, 'in3'=>$showCount, 'in4'=>$currentPage, 
 			'in5'=>$chechDate_start, 'in6'=>$checkDate_end);
+		//var_dump($arrayParam);
 		$arryResult = $proxy->getVipCheck($arrayParam);
-//		var_dump($arryResult);
 		/*$xml = <<<str
 <?xml version="1.0" encoding="UTF-8"?>
 <expense><cardInfo><vip_no>00001032  </vip_no><name>赵莹莹</name><customer_na>ochirly宁波天一银泰专柜</customer_na><inDate>2010-12-22</inDate><endDate>2011-12-22</endDate><checkMoney>0.00</checkMoney></cardInfo><Page><showCount>14</showCount><totalPage>2</totalPage><totalResult>15</totalResult><currentPage>2</currentPage></Page><CheckInfo><check><checkDate>2012-10-19</checkDate><checkId>K364013658</checkId><cs>北京-北京</cs><customer_na>Ochirly北京朝阳大悦城店</customer_na><CheckAmount>1266</CheckAmount></check></CheckInfo></expense>
 str;*/
 //$arrayData = $this->xmlCheckInfoToArray($xml);
 //var_dump($arrayData);
-$arrayData = $this->xmlCheckInfoToArray($arryResult['out']);
+		$arrayData;
+		if(stristr($arryResult['out'], "1:")){
+			$arrayData = "";
+		}else {
+			$arrayData = $this->xmlCheckInfoToArray($arryResult['out']);
+		}
+
 //var_dump($arrayData);
 		return $arrayData;
 	}

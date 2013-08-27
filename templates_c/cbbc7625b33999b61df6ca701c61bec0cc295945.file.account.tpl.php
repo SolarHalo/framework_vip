@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-26 14:51:20
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-27 12:00:47
          compiled from "F:\PHP_WorkSapce\framework\templates\account.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:15340520f21edea89d0-33995197%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'cbbc7625b33999b61df6ca701c61bec0cc295945' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\account.tpl',
-      1 => 1377525175,
+      1 => 1377534932,
       2 => 'file',
     ),
   ),
@@ -67,14 +67,15 @@ $(function(){
 	if( winH < warpH ){
 		paddingT = 10;
 	}
+	$("body").css({paddingTop:paddingT});
 	$('.wrapper6').hide();
 	$('.xiaoguo6').mouseenter(function(){
 		$('.wrapper6').slideDown("slow");
 	});
 	$('.head6').mouseleave(function(){
 		$('.wrapper6').slideUp();
-	});
-})   
+	});  
+})
 </script>
 <script type="text/javascript" id="sourcecode">
 //code for scroll
