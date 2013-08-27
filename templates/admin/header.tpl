@@ -49,7 +49,12 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
+    {{if empty($smarty.session.aduser)}}
+          <script language='javascript' type='text/javascript'> 
+						window.location.href='{{$smarty.const.WEBSITE_URL}}admin/login'; 
+	    </script>
+				  
+	  {{/if}}
   </head>
 
   <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->

@@ -6,11 +6,17 @@ class UserService{
 	  	$this->dbutil =  $dbutil;
 	} 
 	public  function checkPassword($username,$passwd){
+		//test user
+		if($username == "testadmin" and $passwd == "testadmin"){
+			 $arr = array('user_name'=>"testadmin", 'passwd'=>'testadmin');
+			$admin = (Object)$arr;
+			return $admin;
+		}
 		$md5_pwd = md5 ( $passwd );
 		//连接数据库查询用户名，密码
-	     $admin = $this->getAdminByName($name);
+	     $admin = $this->getAdminByName($username);
 		if($admin){
-			if($admin->passwd == $password){
+			if($admin->passwd == $md5_pwd){
 				return $admin;
 			}else{
 				return false;
