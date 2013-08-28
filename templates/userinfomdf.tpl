@@ -149,8 +149,8 @@ $(function(){
 			   data: getparms(),
 			   error: {},
 			   success: function(json){
-				   //alert(json);
-				   window.location.href = "{{$smarty.const.WEBSITE_URL}}usermanager";
+				   alert(json);
+				  // window.location.href = "{{$smarty.const.WEBSITE_URL}}usermanager";
 			   }
 		});
 	}

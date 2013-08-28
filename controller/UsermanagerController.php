@@ -115,7 +115,7 @@ class UsermanagerController extends  Controller{
 		 'brand'=>$ladyBrands.$manBrands,'vocation'=>trim($vacations, ","),'ysr'=>trim($ysrs, ","));
 			
 		$vipInfoXML = $this->getUpdateVipXML($postData);
-			
+		return var_dump($vipInfoXML);
 		require_once DRIVER.DS.'WebServiceInit.class.php';
 		$webServiceInit = new WebServiceInit();
 		$client = $webServiceInit->getProxy();
@@ -123,7 +123,7 @@ class UsermanagerController extends  Controller{
 		$interfaceService = new InterfaceService($client);
 		global $CONFIG;
 		$returnInfo = $interfaceService->updateVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipInfoArr['vip_no'], $vipInfoXML);
-		
+		//return $returnInfo;
 		//更新session开始
 		$vipInfoArr['mobilePhones'] = $phoneNum;
 		$vipInfoArr['eMail'] = $email;
@@ -131,7 +131,7 @@ class UsermanagerController extends  Controller{
 		$vipInfoArr['vocation'] = trim(stripslashes($vacations), ",");
 		$vipInfoArr['ysr'] = trim($ysrs, ",");
 		$_SESSION['vipInfoArr'] = $vipInfoArr;
-		return json_encode($returnInfo['out']);
+		//return json_encode($returnInfo['out']);
 	}
 
 	public function getUpdateVipXML($postData){
@@ -139,7 +139,7 @@ class UsermanagerController extends  Controller{
 		$domElement = $domDocument->createElement('vipInfo');
 		foreach ($postData as $k=>$v){
 			if (stristr($v, '\\')){
-				$node = $domDocument->createElement($k, $v);
+				$node = $domDocument->createElement($k, stripslashes($v));
 				$domElement->appendChild($node);
 			}else {
 				$node = $domDocument->createElement($k, htmlspecialchars($v));
