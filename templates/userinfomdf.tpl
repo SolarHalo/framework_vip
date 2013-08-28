@@ -149,8 +149,12 @@ $(function(){
 			   data: getparms(),
 			   error: {},
 			   success: function(json){
-				   alert(json);
-				  // window.location.href = "{{$smarty.const.WEBSITE_URL}}usermanager";
+				   console.log(json.trim()=='0');
+				   if(json.trim()=="0"){
+					   window.location.href = "{{$smarty.const.WEBSITE_URL}}usermanager";
+				    }else{
+						alert("更新失败");
+				    }
 			   }
 		});
 	}

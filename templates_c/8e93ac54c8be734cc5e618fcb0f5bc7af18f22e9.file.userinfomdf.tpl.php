@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-28 14:59:30
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-28 15:59:50
          compiled from "F:\PHP_WorkSapce\framework\templates\userinfomdf.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:216935210d2b815d0a6-85247427%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8e93ac54c8be734cc5e618fcb0f5bc7af18f22e9' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\userinfomdf.tpl',
-      1 => 1377701966,
+      1 => 1377705555,
       2 => 'file',
     ),
   ),
@@ -178,9 +178,13 @@ usermanager/updateVipInfo",
 			   data: getparms(),
 			   error: {},
 			   success: function(json){
-				   alert(json);
-				  // window.location.href = "<?php echo @constant('WEBSITE_URL');?>
+				   console.log(json.trim()=='0');
+				   if(json.trim()=="0"){
+					   window.location.href = "<?php echo @constant('WEBSITE_URL');?>
 usermanager";
+				    }else{
+						alert("更新失败");
+				    }
 			   }
 		});
 	}

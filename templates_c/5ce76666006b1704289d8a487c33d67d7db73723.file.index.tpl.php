@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-20 13:25:11
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-28 15:05:37
          compiled from "F:\PHP_WorkSapce\framework\templates\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:31069520f1bf6dda303-97142720%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5ce76666006b1704289d8a487c33d67d7db73723' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\index.tpl',
-      1 => 1377003857,
+      1 => 1377702324,
       2 => 'file',
     ),
   ),
@@ -17,6 +17,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'version' => 'Smarty-3.1.13',
   'unifunc' => 'content_520f1bf7eff393_58875223',
+  'variables' => 
+  array (
+    'googleanylze' => 0,
+  ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_520f1bf7eff393_58875223')) {function content_520f1bf7eff393_58875223($_smarty_tpl) {?><!doctype html>
@@ -85,6 +89,8 @@ faq">常见问题</a></li>
         <p><span class="en">Copyright @ 20<b>11</b> Trendy International Group All Rights Reserved</span><br>
         <a href="http://www.miibeian.gov.cn/" target="_blank"><span class="zh">备案号：粤</span><span class="en">ICP<b>11</b>0<b>1</b>0295</span></a></p>
 </div>
+<?php echo $_smarty_tpl->tpl_vars['googleanylze']->value;?>
+
 </body>
 </html>
 <?php }} ?>

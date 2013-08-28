@@ -51,5 +51,13 @@ class UserService{
 		return $logs[0];
 	}
 	
+	 /**
+	 *  
+	 * 接口更新手机号码
+	 * @param unknown_type $cardno
+	 */
+	function updateUserPhone($tel, $cardNo){
+		return $this->dbutil-> update( "vip_users", array("tel"=>$tel.trim()), array("cardno"=>$cardNo));
+	}
 	
 }

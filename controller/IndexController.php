@@ -9,7 +9,7 @@ class IndexController extends  Controller{
 		$params = 'google';
 		$paramService = new ParamService($this->getDB());
 		$parame = $paramService->getParamByname($params);
-		$this->smarty->assign("googleanylze",$parvalue);
+		$this->smarty->assign("googleanylze",$parame);
 	    $this->smarty->display("index.tpl"); 
 	}
 	

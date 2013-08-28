@@ -115,7 +115,7 @@ class UsermanagerController extends  Controller{
 		 'brand'=>$ladyBrands.$manBrands,'vocation'=>trim($vacations, ","),'ysr'=>trim($ysrs, ","));
 			
 		$vipInfoXML = $this->getUpdateVipXML($postData);
-		return var_dump($vipInfoXML);
+//		return var_dump($vipInfoXML);
 		require_once DRIVER.DS.'WebServiceInit.class.php';
 		$webServiceInit = new WebServiceInit();
 		$client = $webServiceInit->getProxy();
@@ -123,15 +123,20 @@ class UsermanagerController extends  Controller{
 		$interfaceService = new InterfaceService($client);
 		global $CONFIG;
 		$returnInfo = $interfaceService->updateVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipInfoArr['vip_no'], $vipInfoXML);
-		//return $returnInfo;
-		//更新session开始
-		$vipInfoArr['mobilePhones'] = $phoneNum;
-		$vipInfoArr['eMail'] = $email;
-		$vipInfoArr['brand'] = $ladyBrands.$manBrands;
-		$vipInfoArr['vocation'] = trim(stripslashes($vacations), ",");
-		$vipInfoArr['ysr'] = trim($ysrs, ",");
-		$_SESSION['vipInfoArr'] = $vipInfoArr;
-		//return json_encode($returnInfo['out']);
+		
+		if($returnInfo['out']==='0'){
+			require_once SERVICE.DS.'UserService.class.php';
+		 	$userSerivce = new UserService($this->getDB());
+		 	$userSerivce->updateUserPhone($phoneNum, trim($vipInfoArr['vip_no'])); 
+		 				//更新session开始
+			$vipInfoArr['mobilePhones'] = $phoneNum;
+			$vipInfoArr['eMail'] = $email;
+			$vipInfoArr['brand'] = $ladyBrands.$manBrands;
+			$vipInfoArr['vocation'] = trim(stripslashes($vacations), ",");
+			$vipInfoArr['ysr'] = trim($ysrs, ",");
+			$_SESSION['vipInfoArr'] = $vipInfoArr;
+		}
+		echo  $returnInfo['out'];
 	}
 
 	public function getUpdateVipXML($postData){
