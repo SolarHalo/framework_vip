@@ -27,7 +27,7 @@ class UsermanagerController extends  Controller{
 		$_SESSION['manbrands'] = $manBrandsHtml;
 		$_SESSION['vacation'] = $vacationBrandsHtml;
 		$_SESSION['ysr'] = $ysrHtml;
-			
+		
 		$this->smarty->assign("ladybrands", $ladyBrandsHtml);
 		$this->smarty->assign("manbrands", $manBrandsHtml);
 		$this->smarty->assign("vacation", $vacationBrandsHtml);
@@ -104,7 +104,7 @@ class UsermanagerController extends  Controller{
 		$vacations = $_POST['vacations'];
 		$ysrs = $_POST['ysrs'];
 		//		 $smsAllow = $_POST['smsAllow'];
-
+//
 //		echo $ladyBrands;
 //		echo $manBrands;
 //		echo $vacations;
@@ -116,7 +116,6 @@ class UsermanagerController extends  Controller{
 			
 		$vipInfoXML = $this->getUpdateVipXML($postData);
 			
-//		var_dump($vipInfoXML);
 		require_once DRIVER.DS.'WebServiceInit.class.php';
 		$webServiceInit = new WebServiceInit();
 		$client = $webServiceInit->getProxy();
@@ -129,8 +128,8 @@ class UsermanagerController extends  Controller{
 		$vipInfoArr['mobilePhones'] = $phoneNum;
 		$vipInfoArr['eMail'] = $email;
 		$vipInfoArr['brand'] = $ladyBrands.$manBrands;
-		$vipInfoArr['vocation'] = $vacations;
-		$vipInfoArr['ysr'] = $ysrs;
+		$vipInfoArr['vocation'] = trim(stripslashes($vacations), ",");
+		$vipInfoArr['ysr'] = trim($ysrs, ",");
 		$_SESSION['vipInfoArr'] = $vipInfoArr;
 		return json_encode($returnInfo['out']);
 	}
@@ -139,8 +138,13 @@ class UsermanagerController extends  Controller{
 		$domDocument = new DOMDocument('1.0', "UTF-8");
 		$domElement = $domDocument->createElement('vipInfo');
 		foreach ($postData as $k=>$v){
-			$node = $domDocument->createElement($k, htmlspecialchars($v));
-			$domElement->appendChild($node);
+			if (stristr($v, '\\')){
+				$node = $domDocument->createElement($k, $v);
+				$domElement->appendChild($node);
+			}else {
+				$node = $domDocument->createElement($k, htmlspecialchars($v));
+				$domElement->appendChild($node);
+			}
 		}
 		$domDocument->appendChild($domElement);
 		return $domDocument->saveXML();

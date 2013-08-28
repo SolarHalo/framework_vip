@@ -149,6 +149,7 @@ $(function(){
 			   data: getparms(),
 			   error: {},
 			   success: function(json){
+				   //alert(json);
 				   window.location.href = "{{$smarty.const.WEBSITE_URL}}usermanager";
 			   }
 		});
@@ -180,8 +181,7 @@ $(function(){
 		parms.vacations = vacations;
 		parms.ysrs = ysrs;
 //		parms.smsAllow = smsAllow;
-		
-		console.log(parms);
+
 		return parms;
 	 }
 
@@ -201,7 +201,7 @@ $(function(){
 			 /** man*/ 
 			var manBrands = new Array("TRENDIANO","Jack&Jones","ELECTED","马克华菲/Mark Fairwhale","GXG","i.t","其它/Others");
 			 /** vacation*/ 
-			var vacations = new Array("公务员","教师\律师\医生等专业人士","企业管理者","公司职员","自由职业者","家庭主妇","学生","私营企业主","其它");
+			var vacations = new Array("公务员","教师\\律师\\医生等专业人士","企业管理者","公司职员","自由职业者","家庭主妇","学生","私营企业主","其它");
 			 /** ysr*/ 
 			var ysrs = new Array("4999元以下","5000-6999元","7000-8999元","9000-9999元","10000-19999元","20000元以上");
 
@@ -219,7 +219,9 @@ $(function(){
 
 			var vacationsTarget = $("#vacations .zh img");
 			for(var i=0;i<vacationsTarget.length;i++){
-				$(vacationsTarget[i]).attr({"alt": vacations[i]});
+				var reg='/\\/g';
+				var vacation = vacations[i].replace(reg, "\\");
+				$(vacationsTarget[i]).attr({"alt": vacation});
 			}
 			vacationsTarget.attr({"onclick": "changeImgZH(this);"});
 

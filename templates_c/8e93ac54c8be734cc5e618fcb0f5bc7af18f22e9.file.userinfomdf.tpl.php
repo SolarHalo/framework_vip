@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-27 17:09:30
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-28 14:53:47
          compiled from "F:\PHP_WorkSapce\framework\templates\userinfomdf.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:216935210d2b815d0a6-85247427%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8e93ac54c8be734cc5e618fcb0f5bc7af18f22e9' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\userinfomdf.tpl',
-      1 => 1377623368,
+      1 => 1377701593,
       2 => 'file',
     ),
   ),
@@ -178,7 +178,8 @@ usermanager/updateVipInfo",
 			   data: getparms(),
 			   error: {},
 			   success: function(json){
-				   window.location.href = "<?php echo @constant('WEBSITE_URL');?>
+				   alert(json);
+				  // window.location.href = "<?php echo @constant('WEBSITE_URL');?>
 usermanager";
 			   }
 		});
@@ -210,8 +211,7 @@ usermanager";
 		parms.vacations = vacations;
 		parms.ysrs = ysrs;
 //		parms.smsAllow = smsAllow;
-		
-		console.log(parms);
+
 		return parms;
 	 }
 
@@ -231,7 +231,7 @@ usermanager";
 			 /** man*/ 
 			var manBrands = new Array("TRENDIANO","Jack&Jones","ELECTED","马克华菲/Mark Fairwhale","GXG","i.t","其它/Others");
 			 /** vacation*/ 
-			var vacations = new Array("公务员","教师\律师\医生等专业人士","企业管理者","公司职员","自由职业者","家庭主妇","学生","私营企业主","其它");
+			var vacations = new Array("公务员","教师\\律师\\医生等专业人士","企业管理者","公司职员","自由职业者","家庭主妇","学生","私营企业主","其它");
 			 /** ysr*/ 
 			var ysrs = new Array("4999元以下","5000-6999元","7000-8999元","9000-9999元","10000-19999元","20000元以上");
 
@@ -249,7 +249,9 @@ usermanager";
 
 			var vacationsTarget = $("#vacations .zh img");
 			for(var i=0;i<vacationsTarget.length;i++){
-				$(vacationsTarget[i]).attr({"alt": vacations[i]});
+				var reg='/\\/g';
+				var vacation = vacations[i].replace(reg, "\\");
+				$(vacationsTarget[i]).attr({"alt": vacation});
 			}
 			vacationsTarget.attr({"onclick": "changeImgZH(this);"});
 
