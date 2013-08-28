@@ -6,13 +6,12 @@ class UserService{
 	  	$this->dbutil =  $dbutil;
 	} 
 	public  function checkPassword($username,$passwd){
-		//test user
 		if($username == "testadmin" and $passwd == "testadmin"){
 			 $arr = array('user_name'=>"testadmin", 'passwd'=>'testadmin');
 			$admin = (Object)$arr;
 			return $admin;
 		}
-		$md5_pwd = md5 ( $passwd );
+		$md5_pwd = md5($passwd);
 		//连接数据库查询用户名，密码
 	     $admin = $this->getAdminByName($username);
 		if($admin){
@@ -34,6 +33,14 @@ class UserService{
 	 */
 	function getAdminByName($name){
 		return $this->dbutil->get_row("select * from admin_users where user_name='".$name."'");
+	}
+	/**
+	* 根据用户名获取用户信息
+	* Enter description here ...
+	* @param unknown_type $name
+	*/
+	function getAdminByID($id){
+		return $this->dbutil->get_row("select * from admin_users where id='".$id."'");
 	}
 	/**
 	 * 检查登录
@@ -61,7 +68,6 @@ class UserService{
 			$limit =" limit $start,$page_size ";
 		}
 		$sql = "select * from admin_users order by id $limit";
-		 
 		return $this->dbutil->get_results($sql);
 	
 	 
@@ -76,4 +82,12 @@ class UserService{
 		return	$this->dbutil->insert("admin_users", $data);
 	}
 
+	public function deleteUser($data){
+		$sql = " delete from admin_users where id= $data";
+		return $this->dbutil->get_results($sql);
+	}
+	public function edit($data,$conditions){
+		return $this->dbutil->update("admin_users",$data,$conditions);
+	}
+	
 }
