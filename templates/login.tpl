@@ -9,7 +9,7 @@
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/font/font.css" rel="stylesheet" />
 <link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/base.css" rel="stylesheet" />
-<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/assets/other.css" rel="stylesheet" />
+<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/assets/css/other.css" rel="stylesheet" />
 <script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -43,8 +43,42 @@ $(function(){
 		 }
 	 }); 
 	  
-	
+	$("#inputcardwin").hide();
+	$("#sendpasswordwin").hide();
+	$("#noemailwin").hide();
 });
+function handforgetpassword(){
+	var cardnum = $("input[name='username']").val();
+	if(cardnum == '请输入会员卡号或手机号码任意一项'){
+		$("#inputcardwin").show();
+		console.log(cardnum);
+		return ;
+	} 
+	var submitData = {"cardnum":cardnum};
+	$.post(
+			'{{$smarty.const.WEBSITE_URL}}login/forgetpassword',
+			submitData,
+			function(obj){ 
+				 
+				if(obj.result == 1){
+					$("#noemailwin").show();
+					return;
+				}else if(obj.result == 2){
+					$("#sendpasswordwin").show();
+					return;
+				} else if(obj.result == 3){
+					showWinF();
+					return;
+				} 
+			},"json");
+	
+}
+function closeWinUseId(winid){
+	$("#"+winid).hide();
+}
+function showWinUseId(){
+	$("#"+winid).show();
+}
 function closeWin(){
 	$("#windbox").hide();
 }
@@ -78,7 +112,9 @@ function changeCode(){
 
 <body>
 {{$loginErrorWin}} 
-<div class="windbox hidden" id="forgetpassword">
+
+<!-- new password send -->
+<div class="windbox" id="forgetpassword">
 	<div class="wind">
     	<a href="#" class="fr" onclick="javascript:closeWinF();"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"/></a>
     	<span class="newpassword-reset">
@@ -87,6 +123,37 @@ function changeCode(){
   </div>
 	<div class="windbg"></div>
 </div>
+<!-- first login forget password -->
+<div class="windbox" id="sendpasswordwin">
+	<div class="wind">
+    	<a href="#" class="fr" onclick="javascript:closeWinUseId('sendpasswordwin');"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"/></a>
+    	<span class="validationerror zh">
+        	<img src="{{$smarty.const.WEBSITE_URL}}public/img/csmm6.gif"/>
+        </span>
+  </div>
+	<div class="windbg"></div>
+</div>
+<!-- no email -->
+<div class="windbox" id="noemailwin">
+	<div class="wind">
+    	<a href="#" class="fr"  onclick="javascript:closeWinUseId('noemailwin');"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"/></a>
+    	<span class="validationerror zh">
+        	<img src="{{$smarty.const.WEBSITE_URL}}public/img/noemail.gif"/>
+        </span>
+  </div>
+	<div class="windbg"></div>
+</div>
+<!-- card is null -->
+<div class="windbox" id="inputcardwin">
+	<div class="wind">
+    	<a href="#" class="fr"  onclick="javascript:closeWinUseId('inputcardwin');"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"/></a>
+    	<span class="validationerror zh">
+        	<img src="{{$smarty.const.WEBSITE_URL}}public/img/srkh.gif"/>
+        </span>
+  </div>
+	<div class="windbg"></div>
+</div>
+
 <div id="warp" class="container">
     <div class="content login">
         <h1 class="pagetitle tc"><img src="{{$smarty.const.WEBSITE_URL}}public/img/club.jpg" alt="会员俱乐部" /></h1>
@@ -108,7 +175,7 @@ function changeCode(){
                 </tr>
                 <tr>
                     <td width="85"><img src="{{$smarty.const.WEBSITE_URL}}public/img/logintextiocn-posw.gif" style=" position:relative; top:-16px;"/></td>
-                    <td  colspan="2"><input type="password" name="passwd" value="{{$_POST.passwd}}" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom:1px solid #56280f;"><a href="javascript:showWinF();" class="linkstyle01">忘记密码?</a></span><br/>
+                    <td  colspan="2"><input type="password" name="passwd" value="{{$_POST.passwd}}" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom:1px solid #56280f;"><a href="javascript:handforgetpassword();" class="linkstyle01">忘记密码?</a></span><br/>
                     	您在开卡时所填写的手机号码后6位为初始密码
                     </td>
                 </tr>  

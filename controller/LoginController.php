@@ -1,7 +1,5 @@
 <?php
-class LoginController extends  Controller{
-	 
-	
+class LoginController extends  Controller{ 
 	public function index(){ 
 		 $smaryt = $this->getSmarty();
 		 //如果不是post方式的提交，直接转向
@@ -176,4 +174,82 @@ class LoginController extends  Controller{
 	       $this->smarty->display("index.tpl"); 
 		   
 	}
+   public function forgetpassword(){
+      $cardnum = $_POST['cardnum'];
+     require_once SERVICE.DS.'UserService.class.php';
+		 	$userSerivce = new UserService($this->getDB());
+		 	$usersTel = $userSerivce->getUserByTel($cardnum); 
+		 	$userCard = $userSerivce->getUserByCarNo($cardnum); 
+		 
+		 	$user;
+		 	
+		 //ppt第35页,用户不存在的情况下
+		 if(empty($usersTel) and empty($userCard)){
+		 	//1:no user 
+		   $arr = array ('result'=>1);
+   	    	echo json_encode($arr);
+		 	return; 
+		 }
+		 if(!empty($usersTel)){	 
+			  $user = $usersTel[0];  
+		     }else{
+		     	$user = $userCard[0]; 
+		  } 
+           $log =  $userSerivce->getOneLoginLog($user->cardno);   
+			//这里还要判断 这个用户是否是第一次登录 ,第一次登录提示默认密码
+		    if(empty($log)){ 
+				  $arr = array ('result'=>2);
+   	    	      echo json_encode($arr);
+		 	      return; 
+		     }else{
+		     	
+		     	   $vipid = $user->cardid;
+		     	   
+		     	   require_once DRIVER.DS.'WebServiceInit.class.php';
+			 	   $webServiceInit = new WebServiceInit();
+			 	   $client = $webServiceInit->getProxy();
+			 	   require_once SERVICE.DS.'InterfaceService.class.php';
+			 	   $interfaceService = new InterfaceService($client);
+			 	   global $CONFIG;
+			 	   $vipInfoArr = $interfaceService->getVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipid);
+			 	   
+			 	   
+		     	   if(empty($vipInfoArr->eMail)){
+		     	   	  $arr = array ('result'=>1);
+   	    	          echo json_encode($arr);
+		 	          return; 
+		     	   }  
+		     	   	 require_once COMMON.DS.'SendMailUtil.class.php'; 
+		     	   	 $newpassword = $this->genRandomString(6);
+		     	   	 $userSerivce->updatePasswd($vipid, md5($newpassword));
+                   SendMailUtil::sendmail("获取新密码","$vipid,你新新密码为:$newpassword",$vipInfoArr->eMail);
+		     	   $arr = array ('result'=>3,"newpwd"=>$newpassword); 
+   	    	       echo json_encode($arr);
+		 	       return; 
+		    } 
+   }
+public function genRandomString($len) 
+{ 
+    $chars = array( 
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",  
+        "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",  
+        "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G",  
+        "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",  
+        "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2",  
+        "3", "4", "5", "6", "7", "8", "9" 
+    ); 
+    $charsLen = count($chars) - 1; 
+ 
+    shuffle($chars);    // 将数组打乱 
+     
+    $output = ""; 
+    for ($i=0; $i<$len; $i++) 
+    { 
+        $output .= $chars[mt_rand(0, $charsLen)]; 
+    } 
+ 
+    return $output; 
+ 
+} 
+ 
 }

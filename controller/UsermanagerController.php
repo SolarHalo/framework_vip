@@ -695,9 +695,9 @@ class UsermanagerController extends  Controller{
 					}else{
 
 						//更新
-						$dbutil = $this->getDB();
-							
-						$service = new UserService($dbutil);
+					 
+						 require_once SERVICE.DS.'UserService.class.php';	
+						$service = new UserService($this->getDB());
 							
 						$service->updatePasswd($cardNo, md5($newpwd));
 							
