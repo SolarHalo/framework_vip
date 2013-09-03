@@ -103,8 +103,8 @@ class UsermanagerController extends  Controller{
 		$manBrands = $_POST['manBrands'];
 		$vacations = $_POST['vacations'];
 		$ysrs = $_POST['ysrs'];
-		//		 $smsAllow = $_POST['smsAllow'];
-//
+		$smsAllow = $_POST['smsAllow'];
+		
 //		echo $ladyBrands;
 //		echo $manBrands;
 //		echo $vacations;
@@ -112,8 +112,8 @@ class UsermanagerController extends  Controller{
 			
 		$postData = array('vip_no'=>trim($vipInfoArr['vip_no']),'name'=>$vipInfoArr['name'],'sex'=>$vipInfoArr['sex'],'birthday'=>$vipInfoArr['birthday'],
 		 'IDCard'=>$vipInfoArr['IDCard'],'mobilePhones'=>$phoneNum,'eMail'=>$email,
-		 'brand'=>$ladyBrands.$manBrands,'vocation'=>trim($vacations, ","),'ysr'=>trim($ysrs, ","));
-			
+		 'brand'=>$ladyBrands.$manBrands,'vocation'=>trim($vacations, ","),'ysr'=>trim($ysrs, ","), 'smsAllow'=>$smsAllow);
+
 		$vipInfoXML = $this->getUpdateVipXML($postData);
 //		return var_dump($vipInfoXML);
 		require_once DRIVER.DS.'WebServiceInit.class.php';
@@ -134,6 +134,7 @@ class UsermanagerController extends  Controller{
 			$vipInfoArr['brand'] = $ladyBrands.$manBrands;
 			$vipInfoArr['vocation'] = trim(stripslashes($vacations), ",");
 			$vipInfoArr['ysr'] = trim($ysrs, ",");
+			$vipInfoArr['smsAllow'] = $smsAllow;
 			$_SESSION['vipInfoArr'] = $vipInfoArr;
 		}
 		echo  $returnInfo['out'];

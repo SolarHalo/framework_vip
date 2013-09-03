@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-28 15:59:50
+<?php /* Smarty version Smarty-3.1.13, created on 2013-09-03 13:06:55
          compiled from "F:\PHP_WorkSapce\framework\templates\userinfomdf.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:216935210d2b815d0a6-85247427%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8e93ac54c8be734cc5e618fcb0f5bc7af18f22e9' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\userinfomdf.tpl',
-      1 => 1377705555,
+      1 => 1378213611,
       2 => 'file',
     ),
   ),
@@ -205,7 +205,7 @@ usermanager";
 		var manBrands = getOptions(manBrandsTarget);
 		var vacations = getOptions(vacationsTarget);
 		var ysrs = getOptions(ysrsTarget);
-//		var smsAllow = $("form ul li.w100 img").attr("alt");;
+		var smsAllow = $("form ul li.w100 img").attr("alt");;
 		var phoneNum = $("#phoneNum").val();
 		var email = $("#email").val();
 		parms.phoneNum = phoneNum;
@@ -214,8 +214,8 @@ usermanager";
 		parms.manBrands = manBrands;
 		parms.vacations = vacations;
 		parms.ysrs = ysrs;
-//		parms.smsAllow = smsAllow;
-
+		parms.smsAllow = smsAllow;
+//		console.log(parms);
 		return parms;
 	 }
 
@@ -414,10 +414,10 @@ public/img/xxioc.gif" class="xxioc"/>电子邮箱:<font><input id="email" type="
                     <li class="w100">
 					 <?php if ($_SESSION['vipInfoArr']['smsAllow']=='是'){?>
                     	<img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/y-iocn.gif" alt="是"/>
+public/img/y-iocn.gif" onclick="changeImg(this);" alt="是"/>
                     	<?php }else{ ?>
                     	<img src="<?php echo @constant('WEBSITE_URL');?>
-public/img/n-iocn.gif" alt="否"/>
+public/img/n-iocn.gif" onclick="changeImg(this);" alt="否"/>
                     <?php }?>		
 					<font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
                 </ul>

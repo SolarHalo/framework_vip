@@ -175,7 +175,7 @@ $(function(){
 		var manBrands = getOptions(manBrandsTarget);
 		var vacations = getOptions(vacationsTarget);
 		var ysrs = getOptions(ysrsTarget);
-//		var smsAllow = $("form ul li.w100 img").attr("alt");;
+		var smsAllow = $("form ul li.w100 img").attr("alt");;
 		var phoneNum = $("#phoneNum").val();
 		var email = $("#email").val();
 		parms.phoneNum = phoneNum;
@@ -184,8 +184,8 @@ $(function(){
 		parms.manBrands = manBrands;
 		parms.vacations = vacations;
 		parms.ysrs = ysrs;
-//		parms.smsAllow = smsAllow;
-
+		parms.smsAllow = smsAllow;
+//		console.log(parms);
 		return parms;
 	 }
 
@@ -363,9 +363,9 @@ $(function(){
                     <li class="w50"><img src="{{$smarty.const.WEBSITE_URL}}public/img/xxioc.gif" class="xxioc"/>电子邮箱:<font><input id="email" type="text" class="input_style3" value="{{$smarty.session.vipInfoArr['eMail']}}" style=" width:187px;"></font></li>
                     <li class="w100">
 					 {{if $smarty.session.vipInfoArr['smsAllow'] eq '是'}}
-                    	<img src="{{$smarty.const.WEBSITE_URL}}public/img/y-iocn.gif" alt="是"/>
+                    	<img src="{{$smarty.const.WEBSITE_URL}}public/img/y-iocn.gif" onclick="changeImg(this);" alt="是"/>
                     	{{else}}
-                    	<img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif" alt="否"/>
+                    	<img src="{{$smarty.const.WEBSITE_URL}}public/img/n-iocn.gif" onclick="changeImg(this);" alt="否"/>
                     {{/if}}		
 					<font>是否同意会员俱乐部以所填信息与您保持交流？</font></li>
                 </ul>

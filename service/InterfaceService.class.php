@@ -119,7 +119,7 @@ str;*/
 		$resultXML;
 		$vipItem;
 		if($vipItem){
-			$resultXML = SynchroByVipInfo($userName, $passWord);
+			$resultXML = $this->SynchroByVipInfo($userName, $passWord);
 			if($resultXML==1){//用户名、密码不正确
 				return;
 			}
@@ -127,7 +127,7 @@ str;*/
 				return;
 			}	
 		}else{
-			$resultXML = returnInfo($userName, $passWord, $vipItem);
+			$resultXML = $this->returnInfo($userName, $passWord, $vipItem);
 			if($resultXML==1){//用户名、密码不正确
 				return;
 			}
@@ -150,7 +150,7 @@ str;*/
 		foreach($var_data as $k=>$v){ //循环insert数据
 			$this->dbutil->insert('vip_users', $v, null, 'INSERT');
 		}
-		return is_null($vipItem)?'OK':syncVipInfo($userName, $passWord, $vipItem);
+		return is_null($vipItem)?'OK':$this->syncVipInfo($userName, $passWord, $vipItem);
 	}
 	
 	 /**
