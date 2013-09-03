@@ -13,9 +13,9 @@
 		 
 				<ul id="sidebar_menu_1" class="nav nav-list collapse in">
 					<li><a href="{{$smarty.const.WEBSITE_URL}}admin/user">管理员管理</a></li> 
-					<li><a href="{{$smarty.const.WEBSITE_URL}}admin/userLog">用户日志</a></li>
+					
 			 </ul> 
-        <a target="_blank" href="#" class="nav-header" ><i class="icon-question-sign"></i>帮助</a>
+        
 </div> 
  
 	
