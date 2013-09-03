@@ -161,20 +161,21 @@ class UsermanagerController extends  Controller{
 		$vipInfoArr = $_SESSION['vipInfoArr'];
 		$s_date = $_SESSION['s_date'];//开始时间
 		$e_date = $_SESSION['e_date'];//结束时间
-		require_once DRIVER.DS.'WebServiceInit.class.php';
+	/*	require_once DRIVER.DS.'WebServiceInit.class.php';
 		$webServiceInit = new WebServiceInit();
 		$client = $webServiceInit->getProxy();
 		require_once SERVICE.DS.'InterfaceService.class.php';
 		$interfaceService = new InterfaceService($client);
 		global $CONFIG;
 		$checkInfoArr = $interfaceService->getVipCheck($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipInfoArr['vip_no'], 7, 1, $s_date, $e_date);
-/*		$checkInfoArr=array("cardInfo"=>array("vip_no"=>"00001032","name"=>"赵莹莹","customer_na"=>"ochirly宁波天一银泰专柜","inDate"=>"2010-12-22","endDate"=>"2011-12-22","checkMoney"=>"0.00"),
+			*/
+		$checkInfoArr=array("cardInfo"=>array("vip_no"=>"00001032","name"=>"赵莹","customer_na"=>"ochirly宁波天一银泰专柜","inDate"=>"2010-12-22","endDate"=>"2011-12-22","checkMoney"=>"0.00"),
 		                    "Page"=>array("showCount"=>"7","totalPage"=>"3","totalResult"=>"15","currentPage"=>"1"),"CheckInfo"=>array(array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),
 		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),
 		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),
 		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),
 		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),
-		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629")));	*/
+		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629")));
 		$inDate =  $checkInfoArr['cardInfo']['inDate'];
 		$endDate = $checkInfoArr['cardInfo']['endDate'];
 

@@ -38,7 +38,7 @@ class UserService{
 	 * @param unknown_type $user
 	 */
 	function recoredLoginLog($user){
-		 $log = array("cardno"=>$user->cardno,"login_type"=>1,"login_time"=> date('Y-m-d', time()));
+		 $log = array("cardno"=>$user->cardno,"login_type"=>1,"login_time"=> date('Y-m-d  H:i:s', time()));
 		return $this->dbutil->insert("vipuser_loginlog", $log);
 	}
 	 /**
