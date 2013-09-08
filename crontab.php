@@ -9,7 +9,6 @@ define('ROOT',dirname(dirname(__FILE__))); //项目部署目录的上一级
 	define('COMMON',PROJECT.DS.'common');
 	define('LIB',PROJECT.DS.'framework'.DS.'lib');
 	define('SERVICE',PROJECT.DS.'service');
-	define('SMARTY_DIR', PROJECT.'/framework/lib/Smarty-3.1.13/libs/');
 	define('NUSOAP_DIR',PROJECT.'/framework/lib/nusoap-0.9.5/lib/');
 	define('DRIVER',PROJECT.DS.'framework'.DS.'driver');
 	$CONFIG['DB']= array(
@@ -37,12 +36,10 @@ define('ROOT',dirname(dirname(__FILE__))); //项目部署目录的上一级
 		
 ignore_user_abort(); //即使Client断开(如关掉浏览器)，PHP脚本也可以继续执行.
 set_time_limit(0); // 执行时间为无限制，php默认的执行时间是30秒，通过set_time_limit(0)可以让程序无限制的执行下去
-$interval=30*1; // 每隔5分钟运行
+$interval=3600*2; // 每隔5分钟运行
 do{
 	$dtsstate = $db->get_var('select dtsstate from vip_users where id = (SELECT max(id) FROM vip_users);');
 	$returnInfo = $interfaceService->syncVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], empty($dtsstate)?null:$dtsstate);
-	
-	file_put_contents('F:\\log.txt',$returnInfo);
 	sleep($interval); // 等待5分钟
 }while(true);
 ?>
