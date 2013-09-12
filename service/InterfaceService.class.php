@@ -95,7 +95,7 @@ str;*/
 		$proxy = $this->webService->getProxy();
 		$arrayParam = array('in0'=>$userName, 'in1'=>$passWord);
 		$arryResult = $proxy->SynchroByVipInfo($arrayParam);
-		return $arryResult;
+		return $arryResult['out'];
 	}
 	 /**
 	 * 根据SynchroByVipInfo返回的信息batchId
@@ -108,7 +108,7 @@ str;*/
 		$proxy = $this->webService->getProxy();
 		$arrayParam = array('in0'=>$userName, 'in1'=>$passWord, 'in2'=>$batched);
 		$arryResult = $proxy->returnInfo($arrayParam);
-		return $arryResult;
+		return $arryResult['out'];
 	}
 	
 	/**
@@ -117,8 +117,7 @@ str;*/
 	function syncVipInfo($userName, $passWord , $vipItem = null){
 		$doc = new DOMDocument();
 		$resultXML;
-		$vipItem;
-		if($vipItem){
+		if(empty($vipItem)){
 			$resultXML = $this->SynchroByVipInfo($userName, $passWord);
 			if($resultXML==1){//用户名、密码不正确
 				return;
@@ -135,6 +134,7 @@ str;*/
 				return;
 			}
 		}
+		//var_dump( $resultXML);
 		$doc->loadXML($resultXML);
 		$node_lists = $doc->getElementsByTagName('vipInfos');
  		$node  = $node_lists->item(0);
@@ -144,7 +144,7 @@ str;*/
 		$var_data= array();//封装data 数据格式 feilds=>values
 
 		foreach($vipItemArray as $k=>$v){
- 			$data = $this->getData($v);
+ 			$data = $this->getData($v, $vipItem);
 			$var_data[$k] = $data;
 		}
 		foreach($var_data as $k=>$v){ //循环insert数据
@@ -189,7 +189,7 @@ str;*/
 	 * 同步时候调用
 	 * @param unknown_type $node
 	 */
-	function getData($vipItemArrItem){ 
+	function getData($vipItemArrItem, $vipItem){ 
  		$data = array();
  		foreach ($vipItemArrItem as $k=>$v) {
 			foreach ($v as $ks=>$vs){
@@ -206,6 +206,9 @@ str;*/
 					$data['status'] = $vs['#text'];
 				}
 			}
+			$data['pwd'] = substr($data['tel'], -6);
+			$data['dtsstate'] = $vipItem;
+			$data['processtime'] = date("Y-m-d H:i:s");
  		}
 		return $data;
 	}

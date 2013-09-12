@@ -69,15 +69,15 @@ class LoginController extends  Controller{
 			 	   $_SESSION['loginuser'] = $user;  
 			 	   $vipid = $user->cardid;
 			 	   //这里，如果连不上接口，程序等待。。。所以，先注掉，能连接口时开启
-			 	   //require_once DRIVER.DS.'WebServiceInit.class.php';
-			 	 //  $webServiceInit = new WebServiceInit();
-			 	 //  $client = $webServiceInit->getProxy();
-			 	//   require_once SERVICE.DS.'InterfaceService.class.php';
-			 //	   $interfaceService = new InterfaceService($client);
-			 //	   global $CONFIG;
-			 //	   $vipInfoArr = $interfaceService->getVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipid);
+			 	   require_once DRIVER.DS.'WebServiceInit.class.php';
+			 	   $webServiceInit = new WebServiceInit();
+			 	   $client = $webServiceInit->getProxy();
+			 	   require_once SERVICE.DS.'InterfaceService.class.php';
+			 	   $interfaceService = new InterfaceService($client);
+			       global $CONFIG;
+			       $vipInfoArr = $interfaceService->getVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipid);
                    //模拟数据开始
-                   $vipInfoArr =array("vip_no"=>"00001032","name"=>"赵莹","sex"=>"女","birthday"=>"1987-08-24","IDCard"=>"210102198708243029","mobilePhones"=>NULL,"eMail"=>"63666862@qq.com","brand"=>"MiuMiu;MARC JACOBS;","vocation"=>NULL,"ysr"=>NULL,"myxfe"=>NULL,"smsAllow"=>"是");
+                 //  $vipInfoArr =array("vip_no"=>"00001032","name"=>"赵莹","sex"=>"女","birthday"=>"1987-08-24","IDCard"=>"210102198708243029","mobilePhones"=>NULL,"eMail"=>"63666862@qq.com","brand"=>"MiuMiu;MARC JACOBS;","vocation"=>NULL,"ysr"=>NULL,"myxfe"=>NULL,"smsAllow"=>"是");
 			 	   $_SESSION['vipInfoArr'] = $vipInfoArr;  
 			 	   $userSerivce->recoredLoginLog($user);
 			       //正常登录这里还要判断 这个用户是否是第一次登录 
@@ -204,18 +204,15 @@ class LoginController extends  Controller{
 		     }else{
 		     	
 		     	   $vipid = $user->cardid;
-		     	   
-		     	// require_once DRIVER.DS.'WebServiceInit.class.php';
-			 	//   $webServiceInit = new WebServiceInit();
-			 	//   $client = $webServiceInit->getProxy();
-			 	//   require_once SERVICE.DS.'InterfaceService.class.php';
-			 //	   $interfaceService = new InterfaceService($client);
-			 //	   global $CONFIG;
-			// 	   $vipInfoArr = $interfaceService->getVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipid);
-			 	   
-			 	   $vipInfoArr =array("vip_no"=>"00001032","name"=>"赵莹莹","sex"=>"女","birthday"=>"1987-08-24","IDCard"=>"210102198708243029","mobilePhones"=>"18623178345","eMail"=>"63666862@qq.com","brand"=>"MiuMiu;MARC JACOBS;","vocation"=>NULL,"ysr"=>NULL,"myxfe"=>NULL,"smsAllow"=>"是");
+		     	   require_once DRIVER.DS.'WebServiceInit.class.php';
+		     	   $webServiceInit = new WebServiceInit();
+		     	   $client = $webServiceInit->getProxy();
+		     	   require_once SERVICE.DS.'InterfaceService.class.php';
+		     	   $interfaceService = new InterfaceService($client);
+		     	   global $CONFIG;
+		     	   $vipInfoArr = $interfaceService->getVipInfo($CONFIG['WEBSERVICE']['userName'], $CONFIG['WEBSERVICE']['passWord'], $vipid);
 
-			 	  
+			 	 //  $vipInfoArr =array("vip_no"=>"00001032","name"=>"赵莹莹","sex"=>"女","birthday"=>"1987-08-24","IDCard"=>"210102198708243029","mobilePhones"=>"18623178345","eMail"=>"63666862@qq.com","brand"=>"MiuMiu;MARC JACOBS;","vocation"=>NULL,"ysr"=>NULL,"myxfe"=>NULL,"smsAllow"=>"是");
 		     	   if(empty($vipInfoArr['eMail'])){
 		     	   	  $arr = array ('result'=>1);
    	    	          echo json_encode($arr);
