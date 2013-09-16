@@ -21,17 +21,17 @@ class SendMailUtil{
 		$mail->IsSMTP();
 		
 		//邮件服务器
-		$mail->Host       = "smtp.126.com";
+		$mail->Host       = "mail.trendy-global.com";
 		$mail->SMTPDebug  = 0;
 		
 		//使用SMPT验证
 		$mail->SMTPAuth   = true;
 		
 		//SMTP验证的用户名称
-		$mail->Username   = "search4gigs@126.com";
+		$mail->Username   = "p.vipresetpassword@trendy-global.com";
 		
 		//SMTP验证的秘密
-		$mail->Password   = "superyuyue";
+		$mail->Password   = "abcd.1234";
 		
 		//设置编码格式
 		$mail->CharSet  = "utf-8";
@@ -42,13 +42,13 @@ class SendMailUtil{
 		//$mail->AltBody    = "register success"";
 		
 		//设置发送者
-		$mail->SetFrom('search4gigs@126.com', 'search4gigs');
+		$mail->SetFrom('p.vipresetpassword@trendy-global.com', 'p.vipresetpassword');
 		
 		//采用html格式发送邮件
 		$mail->MsgHTML($body);
 		
 		//接受者邮件名称
-		$mail->AddAddress($adress, "search4gigs");//发送邮件
+		$mail->AddAddress($adress, "p.vipresetpasswords");//发送邮件
 		if(!$mail->Send()) {
 		  return "Mailer Error: " . $mail->ErrorInfo;
 		} else {
