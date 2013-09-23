@@ -24,8 +24,12 @@ class LoginController extends  Controller{
 				if ($user_info) { 
 					//可以处理其他用户登录以后的事情
 					//可以处理用户登录日志 
-						$_SESSION['aduser']=$user_info;
-					CommonBase::jumpUrl ( 'admin/index' );
+					$_SESSION['aduser']=$user_info; 
+					$url = WEBSITE_URL."admin/index";  
+	     	        	 	$redirect = "<script language='javascript' type='text/javascript'>";  
+							$redirect .= "window.location.href='$url'";  
+							$redirect .= "</script>";  
+					echo $redirect;
 				}else{
 					$alert_html = HtmlWrap::alert("error",ErrorMessage::USER_OR_PWD_WRONG); 
 					$this->smarty->assign("osadmin_action_alert",$alert_html);   
