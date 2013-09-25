@@ -176,16 +176,18 @@ class UsermanagerController extends  Controller{
 		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),
 		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),
 		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629")));*/
-		$inDate =  $checkInfoArr['cardInfo']['inDate'];
-		$endDate = $checkInfoArr['cardInfo']['endDate'];
-
-		$count = $checkInfoArr['Page']['totalResult'];
-		$_SESSION['checkInfoArr'] = $checkInfoArr;
-		$_SESSION['count'] = $count;  //总记录数
-			
-		$dateHtml = $this->returnDateHtml($inDate, $endDate);
-
-		$this->smarty->assign("dateHtml", $dateHtml);
+		if(!empty($checkInfoArr)){ 
+			$inDate =  $checkInfoArr['cardInfo']['inDate'];
+			$endDate = $checkInfoArr['cardInfo']['endDate'];
+	
+			$count = $checkInfoArr['Page']['totalResult'];
+			$_SESSION['checkInfoArr'] = $checkInfoArr;
+			$_SESSION['count'] = $count;  //总记录数
+				
+			$dateHtml = $this->returnDateHtml($inDate, $endDate);
+	
+			$this->smarty->assign("dateHtml", $dateHtml);
+		}
 
 		//如果不是post方式的提交，直接转向
 		if(!CommonBase::isPost()){
