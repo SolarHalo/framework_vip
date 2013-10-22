@@ -176,7 +176,8 @@ class UsermanagerController extends  Controller{
 		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),
 		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629"),
 		array("checkDate"=>"2011-12-18","checkId"=>"K836007504","cs"=>"上海-上海","customer_na"=>"OCHIRLY上海又一城淞沪店","CheckAmount"=>"629")));*/
-		if(!empty($checkInfoArr)){ 
+
+		if (!empty($checkInfoArr)){
 			$inDate =  $checkInfoArr['cardInfo']['inDate'];
 			$endDate = $checkInfoArr['cardInfo']['endDate'];
 	
@@ -188,7 +189,6 @@ class UsermanagerController extends  Controller{
 	
 			$this->smarty->assign("dateHtml", $dateHtml);
 		}
-
 		//如果不是post方式的提交，直接转向
 		if(!CommonBase::isPost()){
 			$this->smarty->display("checkinfos.tpl");
@@ -275,7 +275,7 @@ class UsermanagerController extends  Controller{
 		$date_M_html = "<a class=\"xiaoguo4\">".$date_M."</a>";//当前被选中月
 		$end_mm_html;
 		for($e_mm=1;$e_mm<$end_mm+1;$e_mm++){
-			if ($e_mm<9){
+			if ($e_mm<=9){
 				$end_mm_html .= "<li class=\"nshow4\">0".$e_mm."</li>";//下拉月
 			}else {
 				$end_mm_html .= "<li class=\"nshow4\">".$e_mm."</li>";//下拉月
@@ -397,7 +397,7 @@ class UsermanagerController extends  Controller{
 				$start_M_html = "01";//当前被选中月
 				$start_mm_html;
 				for($s_mm=1;$s_mm<(int)$end_mm+1;$s_mm++){
-					if ($s_mm<9){
+					if ($s_mm<=9){
 						$start_mm_html .= "<li class=\"nshow2\">0".$s_mm."</li>";//2年前下拉月
 					}else {
 						$start_mm_html .= "<li class=\"nshow2\">".$s_mm."</li>";//2年前下拉月
@@ -414,7 +414,7 @@ class UsermanagerController extends  Controller{
 				$end_M_html = $end_mm;//当前被选中月
 				$end_mm_html;
 				for($e_mm=1;$e_mm<$end_mm+1;$e_mm++){
-					if ($e_mm<9){
+					if ($e_mm<=9){
 						$end_mm_html .= "<li class=\"nshow4\">0".$e_mm."</li>";//下拉月
 					}else {
 						$end_mm_html .= "<li class=\"nshow4\">".$e_mm."</li>";//下拉月
@@ -433,7 +433,7 @@ class UsermanagerController extends  Controller{
 				$end_M_html = $start_M_val;
 				$end_mm_html;
 				for($e_mm=(int)$start_M_val;$e_mm<12+1;$e_mm++){
-					if ($e_mm<9){
+					if ($e_mm<=9){
 						$end_mm_html .= "<li class=\"nshow4\">0".$e_mm."</li>";//下拉月
 					}else {
 						$end_mm_html .= "<li class=\"nshow4\">".$e_mm."</li>";//下拉月
@@ -448,7 +448,7 @@ class UsermanagerController extends  Controller{
 					$end_M_html = $start_M_val;
 					$end_mm_html;
 					for($e_mm=(int)$start_M_val;$e_mm<$end_mm+1;$e_mm++){
-						if ($e_mm<9){
+						if ($e_mm<=9){
 							$end_mm_html .= "<li class=\"nshow4\">0".$e_mm."</li>";//下拉月
 						}else {
 							$end_mm_html .= "<li class=\"nshow4\">".$e_mm."</li>";//下拉月
@@ -464,7 +464,7 @@ class UsermanagerController extends  Controller{
 					$end_M_html = $start_M_val;
 					$end_mm_html;
 					for($e_mm=(int)$start_M_val;$e_mm<12+1;$e_mm++){
-						if ($e_mm<9){
+						if ($e_mm<=9){
 							$end_mm_html .= "<li class=\"nshow4\">0".$e_mm."</li>";//下拉月
 						}else {
 							$end_mm_html .= "<li class=\"nshow4\">".$e_mm."</li>";//下拉月
