@@ -3,11 +3,13 @@
 <head>
 <meta charset="utf-8">
 <title>会员俱乐部 - 常见问题</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8">
 <meta name="keywords" content="会员俱乐部">
 <meta name="description" content="会员俱乐部">
+
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/x-icon" href="favicon.ico">
+
 <link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/font/font.css" rel="stylesheet" />
 <link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/base.css" rel="stylesheet" />
 <link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/other.css" rel="stylesheet" />
@@ -280,6 +282,11 @@ $(function(){
                     <span class="xfjl_cx"><input type="button" value="" /></span>
                    <span style="border-bottom:1px solid #BCA14E;"> <a href="#" onclick="javascript:openWin('datedesc');" class="linkstyle01">说明</a></span>
                 </div>
+				  {{if $smarty.session.checkInfoArr eq null}}
+				  <div class="recordtext mb25 mt20">
+               暂无消费记录
+                </div>
+               {{else}}
                 <div class="recordtext mb25 mt20">
                 	卡号：<font>{{$smarty.session.checkInfoArr["cardInfo"]["vip_no"]}}</font>,姓名：<font>{{$smarty.session.checkInfoArr["cardInfo"]["name"]}}</font>,开卡店铺：<font>{{$smarty.session.checkInfoArr["cardInfo"]["customer_na"]}}</font>,<br>
                 	
@@ -305,6 +312,7 @@ $(function(){
                     {{/foreach}}
                    <a href="{{$smarty.const.WEBSITE_URL}}usermanager/morecheckinfos/?firstPage=firstPage" class="linkstyle01 fr" style="display:block; width:100%; margin-top:20px;  text-align:right;">查看更多</a>
                 </div>
+				{{/if}}
 			</div>
         </div>
     </div>

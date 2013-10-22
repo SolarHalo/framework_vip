@@ -397,7 +397,7 @@ class UsermanagerController extends  Controller{
 				$start_M_html = "01";//当前被选中月
 				$start_mm_html;
 				for($s_mm=1;$s_mm<(int)$end_mm+1;$s_mm++){
-					if ($s_mm<9){
+					if ($s_mm<=9){
 						$start_mm_html .= "<li class=\"nshow2\">0".$s_mm."</li>";//2年前下拉月
 					}else {
 						$start_mm_html .= "<li class=\"nshow2\">".$s_mm."</li>";//2年前下拉月
