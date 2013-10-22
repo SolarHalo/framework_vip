@@ -2,7 +2,7 @@
 {{include file ="admin/navibar.tpl"}}
 {{include file ="admin/sidebar.tpl"}}
 <script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/assets/lib/ajaxupload.js"></script>
-<<style>
+<style>
 <!--
 #uploadedName{
 	width:50%;
