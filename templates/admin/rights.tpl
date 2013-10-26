@@ -2,15 +2,27 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>会员俱乐部</title>
+<title>会员俱乐部 - 会员权益</title>
 <meta name="keywords" content="会员俱乐部">
 <meta name="description" content="会员俱乐部">
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/font/font.css" rel="stylesheet" />
 <link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/base.css" rel="stylesheet" />
-<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}/public/js/jquery-1.8.2.min.js"></script>
+<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/other.css" rel="stylesheet" />
+<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/jquery.jscrollpane.css" rel="stylesheet" media="all"> 
+<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery-1.8.2.min.js"></script>
+<style type="text/css" id="page-css">
+.scroll-pane {
+	width: 758px;
+	overflow: auto;
+	outline: none;
+}
+</style>
+<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery.mousewheel.js"></script>
 <script type="text/javascript">
+//code for vetically center
 $(function(){
 	winH = $(window).height();
 	warpH = $("#warp").height();
@@ -28,20 +40,27 @@ $(function(){
 	});  
 })
 </script>
+<script type="text/javascript" id="sourcecode">
+//code for scroll
+$(function(){
+	$('.scroll-pane').jScrollPane();
+});
+</script>
 </head>
 
 <body>
 {{include file='loginbanner.tpl'}}
+
 <div id="warp" class="container">
-    <div class="content home">
-        <h1 class="pagetitle tc"><img src="{{$smarty.const.WEBSITE_URL}}public/img/club.jpg" alt="会员俱乐部" /></h1>
-        <div class="homenav">
+    <div class="content">
+        <div class="nav">
             <ul class="clearfix">
-                <li><a href="{{$smarty.const.WEBSITE_URL}}rights">会员权益</a></li>
-                <li><a href="{{$smarty.const.WEBSITE_URL}}activities">会员专享活动</a></li>
-                <li class="last"><a href="{{$smarty.const.WEBSITE_URL}}faq">常见问题</a></li>
+                <li class="nav1"><a href="{{$smarty.const.WEBSITE_URL}}rights" class="current">会员权益</a></li>
+                <li class="nav2"><a href="{{$smarty.const.WEBSITE_URL}}activities">会员专享活动</a></li>
+                <li class="nav3"><a href="{{$smarty.const.WEBSITE_URL}}faq">常见问题</a></li>
             </ul>
         </div>
+        {{$paramvalue}} 
     </div>
     <div class="sitelinks">
         <ul class="clearfix">
@@ -56,6 +75,5 @@ $(function(){
         <p><span class="en">Copyright @ 20<b>11</b> Trendy International Group All Rights Reserved</span><br>
         <a href="http://www.miibeian.gov.cn/" target="_blank"><span class="zh">备案号：粤</span><span class="en">ICP<b>11</b>0<b>1</b>0295</span></a></p>
 </div>
-{{$googleanylze}}
 </body>
 </html>
