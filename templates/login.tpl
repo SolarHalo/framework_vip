@@ -46,6 +46,7 @@ $(function(){
 	$("#inputcardwin").hide();
 	$("#sendpasswordwin").hide();
 	$("#noemailwin").hide();
+	$("#forpassload").hide();
 });
 function handforgetpassword(){
 	var cardnum = $("input[name='username']").val();
@@ -54,12 +55,13 @@ function handforgetpassword(){
 		console.log(cardnum);
 		return ;
 	} 
+	$("#forpassload").show();
 	var submitData = {"cardnum":cardnum};
 	$.post(
 			'{{$smarty.const.WEBSITE_URL}}login/forgetpassword',
 			submitData,
 			function(obj){ 
-				 
+				$("#forpassload").hide();
 				if(obj.result == 1){
 					$("#noemailwin").show();
 					return;
@@ -106,6 +108,16 @@ function changeCode(){
 	var minute = d.getMinutes();
 	var sec = d.getSeconds();
     $("#verify_code").attr("src","{{$smarty.const.WEBSITE_URL}}/framework/util/verify_code_cn.php?"+hour+minute+sec);
+}
+function checkUsername(){
+	var cardnum = $("input[name='username']").val();
+	if(cardnum == '请输入会员卡号或手机号码任意一项'){
+		$("#inputcardwin").show();
+		console.log(cardnum);
+		return false;
+	}else{
+		document.loginForm.submit();
+	}
 }
 </script>
 </head>
@@ -165,7 +177,7 @@ function changeCode(){
             </ul>
         </div>
          <div class="userlogin">
-            <form  name="loginForm" method="post" action="">
+            <form  name="loginForm" method="post" action="" onsubmit="return checkUsername();">
             <table width="430">
                 <tr>
                     <td width="85"><img src="{{$smarty.const.WEBSITE_URL}}public/img/logintextiocn-id.gif"/></td>
@@ -175,7 +187,7 @@ function changeCode(){
                 </tr>
                 <tr>
                     <td width="85"><img src="{{$smarty.const.WEBSITE_URL}}public/img/logintextiocn-posw.gif" style=" position:relative; top:-16px;"/></td>
-                    <td  colspan="2"><input type="password" name="passwd" value="{{$_POST.passwd}}" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom:1px solid #56280f;"><a href="javascript:handforgetpassword();" class="linkstyle01">忘记密码?</a></span><br/>
+                    <td  colspan="2"><input type="password" name="passwd" value="{{$_POST.passwd}}" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom:1px solid #56280f;"><a href="javascript:handforgetpassword();" class="linkstyle01">忘记密码? </a><span id="forpassload"><img src="{{$smarty.const.WEBSITE_URL}}public/img/loading-plz.gif" /></span><br/>
                     	您在开卡时所填写的手机号码后6位为初始密码
                     </td>
                 </tr>  
@@ -187,7 +199,7 @@ function changeCode(){
                 </tr>
             </table>
             <input type="button" class="input_style_but" style="margin-left:27px;"
-             onclick="javascript:document.loginForm.submit()"> 
+             onclick="javascript:document.loginForm.onsubmit()"> 
             </form>
         </div>
     </div>

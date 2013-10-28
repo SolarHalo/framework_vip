@@ -122,10 +122,10 @@ $(function(){
 	});
 	$('.wrapper6').hide();
 	$('.xiaoguo6').mouseenter(function(){
-		$('.wrapper6').slideDown("slow");
+		$('.wrapper6').stop().slideDown("slow");
 	});
 	$('.head6').mouseleave(function(){
-		$('.wrapper6').slideUp();
+		$('.wrapper6').stop().slideUp();
 	});  
 })
 </script>
@@ -169,11 +169,11 @@ $(function(){
                         </tr>
                         <tr>
                         	<td width="70"></td>
-                            <td><input id="newpwd" type="password" class="input_style2"></td>
+                            <td><input id="newpwd" type="password" class="input_style2"  onpaste="return false" ondragenter="return false" oncontextmenu="return false;" style="ime-mode:disabled" /></td>
                         </tr>
                         <tr>
                         	<td width="70"></td>
-                            <td><input id="renewpwd" type="password" class="input_style2"></td>
+                            <td><input id="renewpwd" type="password" class="input_style2"  onpaste="return false" ondragenter="return false" oncontextmenu="return false;" style="ime-mode:disabled"/></td>
                         </tr>
                         <tr>
                             <td colspan="2"><img src="{{$smarty.const.WEBSITE_URL}}public/img/resetpassword-ts2.gif"></td>

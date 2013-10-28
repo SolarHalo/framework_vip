@@ -226,7 +226,7 @@ class LoginController extends  Controller{
 		     	   	 $userSerivce->updatePasswd($vipid, md5($newpassword));
 		     	   	 
                 //  SendMailUtil::sendmail("获取新密码","$vipid,你新新密码为:$newpassword",$vipInfoArr->eMail);
-                $messageBody = "<h3 style=\"font-size:12px;font-family:Helvetica,'黑体';font-weight: bold\">尊贵的会员：</h3>".
+                 $messageBody = "<h3 style=\"font-size:12px;font-family:Helvetica,'黑体';font-weight: bold\">尊贵的会员：</h3>".
 "<p style=\"font-size:12px;font-family:Helvetica,'黑体';font-weight: bold\"> ".
 "您好！<br/>".
 "欢迎使用赫基国际集团官方会员网站，您的登录密码已重置，新密码为：<font color=\"red\" >$newpassword</font>。".
@@ -236,8 +236,9 @@ class LoginController extends  Controller{
 "为确保您能顺利接收我们的邮件，请将p.vipresetpassword@trendy-global.com添加到您的通讯簿中。</p> ".
  "<p style=\"font-size:12px;font-family:Helvetica,'黑体';font-weight: bold\"> TRENDY INTERNATIONAL GROUP赫基国际集团 客服中心 谨上</p>" ;
                
-               SendMailUtil::sendmail("赫基国际集团官方会员获取新密码",$messageBody,"jinnijin@advancemarketing.com.cn");
-                
+               
+              // SendMailUtil::sendmail("赫基国际集团官方会员获取新密码",$messageBody,"63666862@qq.com");
+                 SendMailUtil::sendmail("赫基国际集团官方会员获取新密码",$messageBody,"superyuyue@126.com");
 		     	   $arr = array ('result'=>3); 
 		     	 
    	    	   echo json_encode($arr);

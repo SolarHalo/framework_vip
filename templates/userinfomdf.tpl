@@ -310,10 +310,10 @@ $(function(){
 	$(function(){
 		$('.wrapper6').hide();
 		$('.xiaoguo6').mouseenter(function(){
-			$('.wrapper6').slideDown("slow");
+			$('.wrapper6').stop().slideDown("slow");
 		});
 		$('.head6').mouseleave(function(){
-			$('.wrapper6').slideUp();
+			$('.wrapper6').stop().slideUp();
 		});
 	});
 </script>
