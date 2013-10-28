@@ -149,7 +149,6 @@ $(function(){
 			   data: getparms(),
 			   error: {},
 			   success: function(json){
-				   console.log(json.trim()=='0');
 				   if(json.trim()=="0"){
 					   window.location.href = "{{$smarty.const.WEBSITE_URL}}usermanager";
 				    }else{
@@ -185,7 +184,6 @@ $(function(){
 		parms.vacations = vacations;
 		parms.ysrs = ysrs;
 		parms.smsAllow = smsAllow;
-//		console.log(parms);
 		return parms;
 	 }
 
@@ -316,6 +314,10 @@ $(function(){
 			$('.wrapper6').stop().slideUp();
 		});
 	});
+	
+	String.prototype.trim = function(){
+		return this.replace(/(^\s*)|(\s*$)/g, "");
+	};
 </script>
 </head>
 

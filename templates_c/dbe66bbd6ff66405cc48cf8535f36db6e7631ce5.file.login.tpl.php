@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-09-02 12:40:49
+<?php /* Smarty version Smarty-3.1.13, created on 2013-10-28 14:59:50
          compiled from "F:\PHP_WorkSapce\framework\templates\login.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:23609520f1bfa5267a3-74362452%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'dbe66bbd6ff66405cc48cf8535f36db6e7631ce5' => 
     array (
       0 => 'F:\\PHP_WorkSapce\\framework\\templates\\login.tpl',
-      1 => 1378125594,
+      1 => 1382969663,
       2 => 'file',
     ),
   ),
@@ -76,6 +76,7 @@ $(function(){
 	$("#inputcardwin").hide();
 	$("#sendpasswordwin").hide();
 	$("#noemailwin").hide();
+	$("#forpassload").hide();
 });
 function handforgetpassword(){
 	var cardnum = $("input[name='username']").val();
@@ -84,13 +85,14 @@ function handforgetpassword(){
 		console.log(cardnum);
 		return ;
 	} 
+	$("#forpassload").show();
 	var submitData = {"cardnum":cardnum};
 	$.post(
 			'<?php echo @constant('WEBSITE_URL');?>
 login/forgetpassword',
 			submitData,
 			function(obj){ 
-				 
+				$("#forpassload").hide();
 				if(obj.result == 1){
 					$("#noemailwin").show();
 					return;
@@ -139,6 +141,16 @@ function changeCode(){
 	var sec = d.getSeconds();
     $("#verify_code").attr("src","<?php echo @constant('WEBSITE_URL');?>
 /framework/util/verify_code_cn.php?"+hour+minute+sec);
+}
+function checkUsername(){
+	var cardnum = $("input[name='username']").val();
+	if(cardnum == '请输入会员卡号或手机号码任意一项'){
+		$("#inputcardwin").show();
+		console.log(cardnum);
+		return false;
+	}else{
+		document.loginForm.submit();
+	}
 }
 </script>
 </head>
@@ -211,7 +223,7 @@ faq">常见问题</a></li>
             </ul>
         </div>
          <div class="userlogin">
-            <form  name="loginForm" method="post" action="">
+            <form  name="loginForm" method="post" action="" onsubmit="return checkUsername();">
             <table width="430">
                 <tr>
                     <td width="85"><img src="<?php echo @constant('WEBSITE_URL');?>
@@ -225,7 +237,8 @@ public/img/logintextiocn-id.gif"/></td>
                     <td width="85"><img src="<?php echo @constant('WEBSITE_URL');?>
 public/img/logintextiocn-posw.gif" style=" position:relative; top:-16px;"/></td>
                     <td  colspan="2"><input type="password" name="passwd" value="<?php echo $_smarty_tpl->tpl_vars['_POST']->value['passwd'];?>
-" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom:1px solid #56280f;"><a href="javascript:handforgetpassword();" class="linkstyle01">忘记密码?</a></span><br/>
+" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom:1px solid #56280f;"><a href="javascript:handforgetpassword();" class="linkstyle01">忘记密码? </a><span id="forpassload"><img src="<?php echo @constant('WEBSITE_URL');?>
+public/img/loading-plz.gif" /></span><br/>
                     	您在开卡时所填写的手机号码后6位为初始密码
                     </td>
                 </tr>  
@@ -240,7 +253,7 @@ public/img/logintextiocn-yzm.gif"/></td>
                 </tr>
             </table>
             <input type="button" class="input_style_but" style="margin-left:27px;"
-             onclick="javascript:document.loginForm.submit()"> 
+             onclick="javascript:document.loginForm.onsubmit()"> 
             </form>
         </div>
     </div>
