@@ -529,7 +529,18 @@ li.w50{
 	letter-spacing:-1.2px;
 	}
 
+/*=================================20131030====================*/
+.loading-ing{
+	padding:65px 0 0 105px;
+	display:block;
+	}
+.loading-ing img{
+	vertical-align: middle;
+	}
 
+/*===    会员登陆密码错误对应windows4-index.html    ===*/
+
+/*===    忘记密码未设置邮箱对应windows019-index.html    ===*/
 
 
 

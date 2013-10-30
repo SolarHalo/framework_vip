@@ -124,8 +124,17 @@ function checkUsername(){
 </head>
 
 <body>
-{{$loginErrorWin}} 
-
+{{$loginErrorWin}}
+<!-- loading box -->
+<div class="windbox" id="forpassload">
+	<div class="wind"> 
+    	<span class="loading-ing zh">
+        	<img src="{{$smarty.const.WEBSITE_URL}}public/img/loading-ing.gif"/>
+            <img src="{{$smarty.const.WEBSITE_URL}}public/img/qsh.png"/>
+        </span>
+  </div>
+	<div class="windbg"></div>
+</div>
 <!-- new password send -->
 <div class="windbox" id="forgetpassword">
 	<div class="wind">
@@ -188,7 +197,7 @@ function checkUsername(){
                 </tr>
                 <tr>
                     <td width="85"><img src="{{$smarty.const.WEBSITE_URL}}public/img/logintextiocn-posw.gif" style=" position:relative; top:-16px;"/></td>
-                    <td  colspan="2"><input type="password" name="passwd" value="{{$_POST.passwd}}" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom:1px solid #56280f;"><a href="javascript:handforgetpassword();" class="linkstyle01">忘记密码? </a><span id="forpassload"><img src="{{$smarty.const.WEBSITE_URL}}public/img/loading-plz.gif" /></span><br/>
+                    <td  colspan="2"><input type="password" name="passwd" value="{{$_POST.passwd}}" class="input_style input-w1">&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom:1px solid #56280f;"><a href="javascript:handforgetpassword();" class="linkstyle01">忘记密码? </a><br/>
                     	您在开卡时所填写的手机号码后6位为初始密码
                     </td>
                 </tr>  

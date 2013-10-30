@@ -150,7 +150,8 @@ $(function(){
 			   error: {},
 			   success: function(json){
 				   if(json.trim()=="0"){
-					   window.location.href = "{{$smarty.const.WEBSITE_URL}}usermanager";
+					   //window.location.href = "{{$smarty.const.WEBSITE_URL}}usermanager";
+					   $("#mdf_success").show();
 				    }else{
 						alert("更新失败");
 				    }
@@ -158,7 +159,9 @@ $(function(){
 		});
 	}
 
-
+	function redirect(){
+		window.location.href = "{{$smarty.const.WEBSITE_URL}}usermanager";
+	}
 	/**
 	 * 获取更改的参数
 	 */
@@ -238,7 +241,7 @@ $(function(){
 		initData();
 		$("#mustfill").hide();
 		$("#vlid").hide();
-		
+		$("#mdf_success").hide();
 		$(".fr img").click(function(){
 			$("#mustfill").hide();
 			$("#vlid").hide();
@@ -411,7 +414,15 @@ $(function(){
 </div>
 
 
-
+<div id="mdf_success" class="windbox">
+	<div class="wind">
+    	<a href="#" class="fr"  onclick="redirect();"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"  onclick="redirect();"/></a>
+    	<span class="validationerror zh">
+        	<img src="{{$smarty.const.WEBSITE_URL}}public/img/xg-y.gif"/>
+        </span>
+  </div>
+	<div class="windbg"></div>
+</div>
 
 <div id='mustfill' class="windbox">
 	<div class="wind">
