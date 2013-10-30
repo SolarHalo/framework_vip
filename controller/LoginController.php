@@ -170,6 +170,13 @@ class LoginController extends  Controller{
 		   $_SESSION['s_date'] = NULL;
 		   $_SESSION['e_date'] = NULL;
 		   $_SESSION['vipInfoArr'] = NULL;
+		   $_SESSION['checkInfoArr'] = NULL;
+		   $_SESSION['count'] = NULL;
+		   $_SESSION['page'] = NULL;
+		   $_SESSION['ladybrands'] = NULL;
+		   $_SESSION['manbrands'] = NULL;
+		   $_SESSION['vacation'] = NULL;
+		   $_SESSION['ysr'] = NULL;
 		   $smaryt = $this->getSmarty();  
 	       $this->smarty->display("index.tpl"); 
 		   
