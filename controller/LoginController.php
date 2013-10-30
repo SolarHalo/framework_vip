@@ -214,10 +214,16 @@ class LoginController extends  Controller{
 
 			 	 //  $vipInfoArr =array("vip_no"=>"00001032","name"=>"赵莹莹","sex"=>"女","birthday"=>"1987-08-24","IDCard"=>"210102198708243029","mobilePhones"=>"18623178345","eMail"=>"63666862@qq.com","brand"=>"MiuMiu;MARC JACOBS;","vocation"=>NULL,"ysr"=>NULL,"myxfe"=>NULL,"smsAllow"=>"是");
 		     	   if(empty($vipInfoArr['eMail'])){
+		     	   	 
 		     	   	  $arr = array ('result'=>1);
    	    	          echo json_encode($arr);
 		 	          return; 
 		     	   }  
+		     	   if(!filter_var($vipInfoArr['eMail'], FILTER_VALIDATE_EMAIL)){
+		     	     	$arr = array ('result'=>1);
+   	    	          echo json_encode($arr);
+		 	          return; 
+		     	   }
 		     	  
 		     	   	 require_once COMMON.DS.'SendMailUtil.class.php'; 
 		     	   	  

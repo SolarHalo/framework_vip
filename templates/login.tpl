@@ -88,6 +88,7 @@ function closeWinF(){
 	$("#forgetpassword").hide();
 }
 function showWinF(){
+ 
 	$("#forgetpassword").show();
 }
 function closeWinJump(url){

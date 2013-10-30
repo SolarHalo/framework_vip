@@ -24,7 +24,7 @@ $font = '../../public/assets/font/tahoma.ttf';
 $gray = ImageColorAllocate($im, 200,200,200); 
 
 // 添加文字 
-imagettftext($im, 15, 0, 1, 23, $fontcolor, $font, $text); 
+imagettftext($im, 15, 0, 20, 23, $fontcolor, $font, $text); 
 
 //加入干扰象素
 $r = rand()%50;

@@ -52,9 +52,9 @@ class UsermanagerController extends  Controller{
 		$hide = "n-iocn.gif";
 		foreach ($Arr as $Temp){
 			if (strpos($str, $Temp)===false){
-				$html .= "<font class=\"en\"><img src=\"".WEBSITE_URL."public/img/".$hide."\"/>".$Temp."</font>".'$nbsp;$nbsp;';
+				$html .= "<font class=\"en\"><img src=\"".WEBSITE_URL."public/img/".$hide."\"/>".$Temp."</font>".'&nbsp;&nbsp;';
 			}else {
-				$html .= "<font class=\"en\"><img src=\"".WEBSITE_URL."public/img/".$show."\"/>".$Temp."</font>".'$nbsp;$nbsp;';
+				$html .= "<font class=\"en\"><img src=\"".WEBSITE_URL."public/img/".$show."\"/>".$Temp."</font>".'&nbsp;&nbsp;';
 			}
 		}
 		return $html;
@@ -66,9 +66,9 @@ class UsermanagerController extends  Controller{
 		$hide = "n-iocn.gif";
 		foreach ($Arr as $Temp){
 			if (strpos($str, $Temp)===false){
-				$html .= "<font class=\"zh\"><img src=\"".WEBSITE_URL."public/img/".$hide."\"/>".$Temp."</font>".'$nbsp;$nbsp;';
+				$html .= "<font class=\"zh\"><img src=\"".WEBSITE_URL."public/img/".$hide."\"/>".$Temp."</font>".'&nbsp;&nbsp;';
 			}else {
-				$html .= "<font class=\"zh\"><img src=\"".WEBSITE_URL."public/img/".$show."\"/>".$Temp."</font>".'$nbsp;$nbsp;';
+				$html .= "<font class=\"zh\"><img src=\"".WEBSITE_URL."public/img/".$show."\"/>".$Temp."</font>".'&nbsp;&nbsp;';
 			}
 		}
 		return $html;

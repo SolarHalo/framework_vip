@@ -58,6 +58,15 @@ $(function(){
 
 		var submitData = {oldpwd:$('#oldpwd').val(),newpwd:$('#newpwd').val(),renewpwd:$('#renewpwd').val()};
 		var renewpwd = $('#renewpwd').val();
+	 
+		var reg = /^[\u4e00-\u9fa5]+$/;
+
+		 
+		if(submitData.newpwd.indexOf(" ") != -1 || reg.test(submitData.newpwd))
+		   {
+		     
+			$("#windbox13illegal").show();
+		   } else{
 
 		//长度验证
 		/*if( submitData.newpwd.length < 6 || submitData.newpwd.length > 16){
@@ -118,7 +127,7 @@ $(function(){
 				"json"
 			);
 		//}
-
+		  }
 	});
 	$('.wrapper6').hide();
 	$('.xiaoguo6').mouseenter(function(){
