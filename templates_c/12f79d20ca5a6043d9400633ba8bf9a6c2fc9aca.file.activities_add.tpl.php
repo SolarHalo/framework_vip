@@ -1,30 +1,30 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-20 07:36:07
+<?php /* Smarty version Smarty-3.1.13, created on 2013-11-03 14:23:52
          compiled from "G:\phpserver\framework\templates\admin\activities_add.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:298505207afb45152c4-69076830%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:433452765c78748e04-45865226%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '12f79d20ca5a6043d9400633ba8bf9a6c2fc9aca' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\admin\\activities_add.tpl',
-      1 => 1376984133,
+      1 => 1383488602,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '298505207afb45152c4-69076830',
+  'nocache_hash' => '433452765c78748e04-45865226',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_5207afb4616537_84309416',
   'variables' => 
   array (
     'admin_action_alert' => 0,
     'admin_quick_note' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_52765c78879aa9_20159366',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5207afb4616537_84309416')) {function content_5207afb4616537_84309416($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("admin/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_52765c78879aa9_20159366')) {function content_52765c78879aa9_20159366($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("admin/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 <?php echo $_smarty_tpl->getSubTemplate ("admin/navibar.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
@@ -142,7 +142,7 @@ admin/user">管理列表</a> <span class="divider">/</span></li>
     <ul class="nav nav-tabs">
       <li class="active"><a href="#home" data-toggle="tab">请填写活动资料</a></li>
     </ul>	
-	
+	   
 	<div id="myTabContent" class="tab-content">
 		  <div class="tab-pane active in" id="home">
 

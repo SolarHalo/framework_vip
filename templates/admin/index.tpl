@@ -1,61 +1,77 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>会员俱乐部</title>
-<meta name="keywords" content="会员俱乐部">
-<meta name="description" content="会员俱乐部">
-<link rel="shortcut icon" href="favicon.ico">
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/font/font.css" rel="stylesheet" />
-<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/base.css" rel="stylesheet" />
-<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}/public/js/jquery-1.8.2.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	winH = $(window).height();
-	warpH = $("#warp").height();
-	paddingT = (winH - warpH-70)/2;
-	if( winH < warpH ){
-		paddingT = 10;
-	}
-	$("body").css({paddingTop:paddingT});
-	$('.wrapper6').hide();
-	$('.xiaoguo6').mouseenter(function(){
-		$('.wrapper6').slideDown("slow");
-	});
-	$('.head6').mouseleave(function(){
-		$('.wrapper6').slideUp();
-	});  
-})
-</script>
-</head>
+{{include file ="admin/header.tpl"}}
+{{include file ="admin/navibar.tpl"}}
+{{include file ="admin/sidebar.tpl"}}
+ <!--- 以上为左侧菜单栏 sidebar --->
+	 
+<div class="content">
+        
+        <div class="header">
+            <div class="stats">
+			<p class="stat"><!--span class="number"></span--></p>
+			</div>
 
-<body>
-{{include file='loginbanner.tpl'}}
-<div id="warp" class="container">
-    <div class="content home">
-        <h1 class="pagetitle tc"><img src="{{$smarty.const.WEBSITE_URL}}public/img/club.jpg" alt="会员俱乐部" /></h1>
-        <div class="homenav">
-            <ul class="clearfix">
-                <li><a href="{{$smarty.const.WEBSITE_URL}}rights">会员权益</a></li>
-                <li><a href="{{$smarty.const.WEBSITE_URL}}activities">会员专享活动</a></li>
-                <li class="last"><a href="{{$smarty.const.WEBSITE_URL}}faq">常见问题</a></li>
-            </ul>
+            <h1 class="page-title">test</h1>
+        </div>
+        
+		<ul class="breadcrumb">
+            <li><a href="<{$smarty.const.ADMIN_URL}><{$content_header.module_url}>">首页 </a> <span class="divider">/</span></li> 
+			<li class="active"><a href="<{$smarty.const.ADMIN_URL}><{$content_header.father_menu_url}>">快捷操作</a> <span class="divider">/</span></li> 
+        </ul>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="bb-alert alert alert-info" style="display: none;">
+			<span>操作成功</span>
+		</div>
+<!--- START 以上内容不需更改，保证该TPL页内的标签匹配即可 --->
+
+{{$admin_action_alert}}
+{{$admin_quick_note}}
+
+	<div class="block">
+        <a href="#page-menu" class="block-heading" data-toggle="collapse">快捷菜单</a>
+        <div id="page-menu" class="block-body collapse in">
+		<h3>
+		 
+			<span>
+				<a href="{{$smarty.const.WEBSITE_URL}}admin/userLog">
+				  查看VIP会没登录日志
+				</a>
+			</span>&nbsp; 
+			 
+		</h3>
+		</div> 
+    </div>
+	
+	<div class="block">
+        <a href="#page-stats" class="block-heading" data-toggle="collapse">当前用户信息</a>
+        <div id="page-stats" class="block-body collapse in">
+			
+               <table class="table table-striped">  
+						     
+							 <tr>
+						        <td>用户名</td>
+						        <td>真实姓名</td>
+						        <td>手机号</td>
+						        <td>Email</td>
+						        <td>登录时间</td>
+						        <td>登录IP</td>
+					          </tr>
+						      <tr>
+						        <td>{{$user_info.user_name}}</td>
+						        <td>{{$user_info.real_name}}</td>
+						        <td>{{$user_info.mobile}}</td>
+						        <td>{{$user_info.email}}</td>
+						        <td>{{$user_info.login_time}}</td>
+						        <td>{{$user_info.login_ip}}</td>
+					          </tr>
+					        
+					      </table>
+		</div>
+		<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<strong>注意！</strong>请保管好您的个人信息，一点发生密码泄露请紧急联系管理员。</div>
         </div>
     </div>
-    <div class="sitelinks">
-        <ul class="clearfix">
-            <li class="ochirly"><a href="http://ochirly.trendy-global.com" target="_blank">ochirly</a></li>
-            <li class="fiveplus"><a href="http://fiveplus.trendy-global.com" target="_blank">fiveplus</a></li>
-            <li class="loveysabel"><a href="http://loveysabel.trendy-global.com/" target="_blank">loveysabel</a></li>
-            <li class="trendiano"><a href="http://trendiano.trendy-global.com/" target="_blank">trendiano</a></li>
-        </ul>
-    </div>
-</div>
-<div class="foot">
-        <p><span class="en">Copyright @ 20<b>11</b> Trendy International Group All Rights Reserved</span><br>
-        <a href="http://www.miibeian.gov.cn/" target="_blank"><span class="zh">备案号：粤</span><span class="en">ICP<b>11</b>0<b>1</b>0295</span></a></p>
-</div>
-{{$googleanylze}}
-</body>
-</html>
+	
+<!--- END 以下内容不需更改，请保证该TPL页内的标签匹配即可 --->
+{{include file="admin/footer.tpl" }}

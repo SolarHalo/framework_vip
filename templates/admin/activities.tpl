@@ -1,212 +1,75 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>会员俱乐部 - 会员专享活动</title>
-<meta name="keywords" content="会员俱乐部">
-<meta name="description" content="会员俱乐部">
-<link rel="shortcut icon" href="favicon.ico">
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/font/font.css" rel="stylesheet" />
-<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/base.css" rel="stylesheet" />
-<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/other.css" rel="stylesheet" />
-<link type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/css/jquery.jscrollpane.css" rel="stylesheet" media="all"> 
-<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/js/jquery.slides.js"></script>
+{{include file ="admin/header.tpl"}}
+{{include file ="admin/navibar.tpl"}}
+{{include file ="admin/sidebar.tpl"}} 
+<div class="content">
+        
+        <div class="header">
+            <div class="stats">
+			<p class="stat"><!--span class="number"></span--></p>
+			</div>
 
-<!-- Add mousewheel plugin (this is optional) -->
-<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/assets/lib/jquery.mousewheel-3.0.6.pack.js"></script>
-<!-- Add fancyBox main JS and CSS files -->
-<script type="text/javascript" src="{{$smarty.const.WEBSITE_URL}}public/assets/source/jquery.fancybox.js?v=2.1.5"></script>
-<link rel="stylesheet" type="text/css" href="{{$smarty.const.WEBSITE_URL}}public/assets/source/jquery.fancybox.css?v=2.1.5" media="screen" />
- 
-<script type="text/javascript">
-//code for vetically center
-$(function(){
-	winH = $(window).height();
-	warpH = $("#warp").height();
-	paddingT = (winH - warpH-70)/2;
-	if( winH < warpH ){
-		paddingT = 10;
-	}
-	$("body").css({paddingTop:paddingT});
-	$('.wrapper6').hide();
-	$('.xiaoguo6').mouseenter(function(){
-		$('.wrapper6').slideDown("slow");
-	});
-	$('.head6').mouseleave(function(){
-		$('.wrapper6').slideUp();
-	});
-	
-})
-//code for gallery and video
-$(function(){
-
-	
-	$(".fancybox-manual-b").click(function() { 
-		console.log('activities/media/?id='+$(this).attr("idvalue"));
-		$.fancybox.open({
-			href : '{{$smarty.const.WEBSITE_URL}}activities/media/?id='+$(this).attr("idvalue"),
-			type : 'iframe',
-			maxWidth	: 536,
-			maxHeight	: 600,
-			fitToView	: false,
-			width		: '70%',
-			height		: '70%',
-			padding : 5
-		});
-	});
-
-	
-	$(".photo div.fl,.photo a.abtn").click(function(){
-		$("#warp").append("<div id='mask'></div><div id='alertbox'><div id='gallery-head'><a href='javascript:;'></a></div><div id='gallery-body'><div id='gallery-photos' class='gallery'></div></div></div>");
-		if($(this).hasClass("abtn")){
-			$("#gallery-photos").append($(this).parent().siblings("div").html());
-		}
-		else { 
-			$("#gallery-photos").append($(this).html());
-		}
-		$("#gallery-head a").click(function(){
-			$("#mask").hide(function(){$("#mask").remove();});
-			$("#alertbox").hide(function(){$("#alertbox").remove();});
-		});
-		$('#gallery-photos').slidesjs({
-        width: 536,
-        height: 360,
-        play: {
-          auto: false
-        }
-      });
-		return false;
-	});
-	
-})
-</script>
-</head>
-
-<body>
-{{include file='loginbanner.tpl'}}
-
-<div id="warp" class="container" style="position:relative;">
-    <div class="content">
-        <div class="nav">
-            <ul class="clearfix">
-                <li class="nav1"><a href="{{$smarty.const.WEBSITE_URL}}rights">会员权益</a></li>
-                <li class="nav2"><a href="{{$smarty.const.WEBSITE_URL}}activities" class="current">会员专享活动</a></li>
-                <li class="nav3"><a href="{{$smarty.const.WEBSITE_URL}}faq">常见问题</a></li>
-            </ul>
+            <h1 class="page-title">后台管理员管理</h1>
         </div>
-        <div id="slides"> <span id="btn-prev"></span> <span id="btn-next"></span>
-            <div id="sliderlistbox">
-                <ul id="sliderlist" class="clearfix">
-                    <li class="photo">
-                        <div class="fl"> 
-                        <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/1/1.jpg"> 
-                        <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/1/2.jpg"> 
-                        <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/1/3.jpg"> 
-                        <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/1/4.jpg"> 
-                        <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/1/5.jpg">
-                         <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/1/6.jpg"> 
-                         <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/1/7.jpg"> <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/1/8.jpg">
-                          <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/1/9.jpg"> <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/1/10.jpg"> 
-                          <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/1/11.jpg"> </div>
-                        <div class="title">
-                            <h3><span class="en">Five Plus</span><span class="zh">正佳广场时尚派对</span></h3>
-                            <h3><span class="en">Music Check in Mini Party</span></h3>
-                        </div>
-                        <p><span class="en">Five Plus</span><span class="zh">为广州地区尊贵的</span><span class="en">50</span><span class="zh">名</span><span class="en">VIP</span><span class="zh">举办了一场别出心裁的“乐探之旅”时尚派对。获邀会员抢先体验秋冬新款服饰；</span><span class="en">SO’O</span><span class="zh">特邀专业造型师分享交流最新潮流趋势、现场打造时尚造型；专业模特与</span><span class="en">VIP</span><span class="zh">街拍互动专区以及星级酒店提供的英伦风格茶点等丰富内容，让</span><span class="en">VIP</span><span class="zh">会员感受到品牌带来的乐趣！</span></p>
-                        <p class="mt10"><a href="#" class="abtn"><span class="zh">观看更多</span></a></p>
-                    </li>
-                    <li class="photo">
-                        <div class="fl"> <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/2/1.jpg">
-                         <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/2/2.jpg">
-                          <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/2/3.jpg"> 
-                          <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/2/4.jpg"> 
-                          <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/2/5.jpg">
-                           <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/2/6.jpg"> 
-                           <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/2/7.jpg">
-                            <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/2/8.jpg">
-                             <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/2/9.jpg"> </div>
-                        <div class="title">
-                            <h3><span class="zh">广州太古汇开业</span><span class="en">Mini Party</span></h3>
-                        </div>
-                        <p><span class="en">ochirly、Five Plus、TRENDIANO</span><span class="zh">太古汇全新形象店举办的一场“</span><span class="en">Enjoy Your Fashion Style</span><span class="zh">”时尚</span><span class="en">Mini Party</span><span class="zh">。伴随着来自欧美的</span><span class="en">Live Band</span><span class="zh">充满热情的音乐风格演绎，</span><span class="en">ochirly</span><span class="zh">引领现场嘉宾们一同领略全新门店艺术，徜徉于音乐与艺术的时空。</span></p>
-                        <p><a href="#" class="abtn"><span class="zh">观看更多</span></a></p>
-                    </li>
-                     <li class="photo">
-                        <div class="fl"> <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/2/1.jpg">
-                         <img src="{{$smarty.const.WEBSITE_URL}}public/gallery/2/2.jpg">
-                        </div>
-                        <div class="title">
-                            <h3><span class="zh">测试播放视频</span><span class="en">Mini Party</span></h3>
-                        </div>
-                        <p><span class="en">ochirly、Five Plus、TRENDIANO</span><span class="zh">太古汇全新形象店举办的一场“</span><span class="en">Enjoy Your Fashion Style</span><span class="zh">”时尚</span><span class="en">Mini Party</span><span class="zh">。伴随着来自欧美的</span><span class="en">Live Band</span><span class="zh">充满热情的音乐风格演绎，</span><span class="en">ochirly</span><span class="zh">引领现场嘉宾们一同领略全新门店艺术，徜徉于音乐与艺术的时空。</span></p>
-                        <p><a  class="abtn fancybox-manual-b"   href="javascript:;" idvalue="-1"><span class="zh">观看视频</span></a></p>
-                    </li>
-                  
-                    {{$activitishtml}}
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="sitelinks">
-        <ul class="clearfix">
-            <li class="ochirly"><a href="http://ochirly.trendy-global.com" target="_blank">ochirly</a></li>
-            <li class="fiveplus"><a href="http://fiveplus.trendy-global.com" target="_blank">fiveplus</a></li>
-            <li class="loveysabel"><a href="http://loveysabel.trendy-global.com/" target="_blank">loveysabel</a></li>
-            <li class="trendiano"><a href="http://trendiano.trendy-global.com/" target="_blank">trendiano</a></li>
+        
+		<ul class="breadcrumb">
+            <li><a href="{{$smarty.const.WEBSITE_URL}}admin/user">管理列表</a> <span class="divider">/</span></li>  
+			 <a title= "移除快捷菜单" href="#"><li class="active"><i class="icon-minus" method="del" url="#"></i></li></a>
+	         <a title= "加入快捷菜单" href="#"><li class="active"><i class="icon-plus" method="add" url="#"></i></li></a>
+			 
+			
         </ul>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="bb-alert alert alert-info" style="display: none;">
+			<span>操作成功</span>
+		</div>
+ 
+		{{$admin_action_alert}}
+		{{$admin_quick_note}}
+     <div class="block">
+        <a href="#page-stats" class="block-heading" data-toggle="collapse">会员专享活动</a>
+        <div id="page-stats" class="block-body collapse in">
+        <h1> <button type="button" class="btn btn-primary"  onclick="javascript:window.location='{{$smarty.const.WEBSITE_URL}}admin/activities/add'">添加活动</button></h1>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+					<th style="width:20px">#</th>
+					<th style="width:80px">活动名称</th>  
+					<th style="width:100px">活动类型</th>
+					<th style="width:100px">更新时间</th> 
+					<th style="width:80px">操作</th>
+                </tr>
+              </thead>
+              <tbody>							  
+               
+                {{foreach $activitis as $key=>$activity}}
+					<tr>
+					<td>{{$activity->id}}</td>
+					<td>{{$activity->acti_name}}</td> 
+					
+				    <td> 
+				    {{if $activity->acti_type == 1}}
+				        图片信息
+ 					{{else}}
+	 	 		       视频信息
+				    {{/if}}
+				    </td>
+				    <td>{{$activity->uptime}}</td> 
+					<td>
+					<a href="{{$smarty.const.WEBSITE_URL}}admin/activities/updateactivity/?activi={{$activity->id}}" title= "修改" ><i class="icon-pencil"></i></a> 
+					<a href="{{$smarty.const.WEBSITE_URL}}admin/activities/delactivity/?activi={{$activity->id}}" title= "删除" ><i class="icon-remove"></i></a> 
+					</td>
+					</tr>
+				{{/foreach}}
+              </tbody>
+            </table> 
+				<!--- START 分页模板 --->
+				
+               {{$page_html}}
+					
+			   <!--- END --->
+        </div>
     </div>
-</div>
-<div class="foot">
-        <p><span class="en">Copyright @ 20<b>11</b> Trendy International Group All Rights Reserved</span><br>
-        <a href="http://www.miibeian.gov.cn/" target="_blank"><span class="zh">备案号：粤</span><span class="en">ICP<b>11</b>0<b>1</b>0295</span></a></p>
-</div>
-<script type="text/javascript">
-var Vip = {
-            frame: $('#sliderlist'),
-            left: $('#btn-prev'),
-            right: $('#btn-next'),
-            image: $('#sliderlist>li'),
-			tag:true,
-            init: function () {
-                Vip.frame.width(Vip.image.length * 780);
-                Vip.autoLeft();
-                Vip.left.click(Vip.slideLeft).hover(Vip.slideStop, function(){Vip.autoRight();Vip.tag=false;});
-                Vip.right.click(Vip.slideRight).hover(Vip.slideStop, function(){Vip.autoLeft();Vip.tag=true;});
-                Vip.frame.hover(Vip.slideStop,function(){ if(Vip.tag)Vip.autoLeft();else Vip.autoRight();});
-            },
-            slideLeft: function () {
-                Vip.left.unbind('click', Vip.slideLeft);
-                Vip.frame.find('li:last').prependTo(Vip.frame);
-                Vip.frame.css('marginLeft', -780);
-                Vip.frame.animate({'marginLeft': 0 }, 350, function () {
-                    Vip.left.bind('click', Vip.slideLeft);
-                });
-                return false;
-            },
-            slideRight: function () {
-                Vip.right.unbind('click', Vip.slideRight);
-                Vip.frame.animate({'marginLeft': -780 }, 350, function () {
-                    Vip.frame.css('marginLeft', '0');
-                    Vip.frame.find('li:first').appendTo(Vip.frame);
-                    Vip.right.bind('click', Vip.slideRight);
-                });
-                return false;
-            },
-            autoLeft: function () {
-                Vip.intervalId = window.setInterval(Vip.slideRight, 5000);
-            },
-			autoRight: function () {
-                Vip.intervalId1 = window.setInterval(Vip.slideLeft, 5000);
-            },
-            slideStop: function () {
-                window.clearInterval(Vip.intervalId);window.clearInterval(Vip.intervalId1);
-            }
-}
-$(function() {
-	Vip.init();
-})
-</script>
-</body>
-</html>
+	   
+<!-- END 以下内容不需更改，请保证该TPL页内的标签匹配即可 -->
+{{include file="admin/footer.tpl" }}

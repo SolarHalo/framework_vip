@@ -1,30 +1,30 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-22 14:25:05
+<?php /* Smarty version Smarty-3.1.13, created on 2013-11-03 14:23:45
          compiled from "G:\phpserver\framework\templates\admin\userlog.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:17275205fe09561226-16992095%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:2362152765c71eb75e2-35664441%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'f366e54f81db8685e939a31353dd2dac996fe755' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\admin\\userlog.tpl',
-      1 => 1376985420,
+      1 => 1383488602,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '17275205fe09561226-16992095',
+  'nocache_hash' => '2362152765c71eb75e2-35664441',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_5205fe09692929_51886739',
   'variables' => 
   array (
     'admin_action_alert' => 0,
     'admin_quick_note' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_52765c720b2483_90011227',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5205fe09692929_51886739')) {function content_5205fe09692929_51886739($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("admin/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_52765c720b2483_90011227')) {function content_52765c720b2483_90011227($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("admin/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 <?php echo $_smarty_tpl->getSubTemplate ("admin/navibar.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
@@ -54,6 +54,8 @@ admin/userLog/getUserLog',
    		{name:'cardno',index:'cardno', width:150},
    		{name:'login_time',index:'login_time', width:250, align:"left"}
    	],
+   	height: '100%',
+	width:'100%',
    	rowNum:30, 
    	pager: '#pager2',
     viewrecords: true,

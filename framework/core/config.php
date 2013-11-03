@@ -7,7 +7,7 @@ ini_set("display_errors", 0);
 //  
 define('ADMIN_TITLE', "后台管理中心");
 define('PROJECT_NAME', "通用封装框架");
-define('WEBSITE_URL','http://framework.com/');
+define('WEBSITE_URL','http://localhost/');
                 
  
 //for include smarty 
@@ -17,8 +17,8 @@ ini_set('include_path', ini_get('include_path').PATH_SEPARATOR.SMARTY_DIR);
 $CONFIG['DB']= array(
     'db_host'           =>      '127.0.0.1',
     'db_user'           =>      'root',
-    'db_password'       =>      '',
-    'db_database'       =>      'test1',
+    'db_password'       =>      'root',
+    'db_database'       =>      'test',
     'db_table_prefix'   =>      'app_',
     'db_charset'        =>      'urf8'   
 );
