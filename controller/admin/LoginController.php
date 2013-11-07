@@ -40,5 +40,11 @@ class LoginController extends  Controller{
 		  
 		 $this->smarty->display("admin/login.tpl"); 
 	}
-	 
+ public function loginout(){ 
+		   	$_SESSION['aduser']= NULL;
+		   
+		   $smaryt = $this->getSmarty();  
+	        $this->smarty->display("admin/login.tpl"); 
+		   
+	}
 }

@@ -19,7 +19,7 @@
         <div class="block">
             <p class="block-heading">登入</p>
             <div class="block-body">
-                <form name="loginForm" method="post" action="">
+                <form name="loginForm" method="post" action="{{$smarty.const.WEBSITE_URL}}admin/login">
                     <label>账号</label>
                     <input type="text" class="span12" name="user_name" value="{{$_POST.user_name}}" required="true" autofocus="true">
                     <label>密码</label>

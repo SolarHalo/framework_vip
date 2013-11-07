@@ -105,11 +105,7 @@ $(function(){
 						return;
 					}else{
 						$("#windbox3success").show();
-
-						setTimeout(function(){
-							$("#windbox3success").hide();
-							window.location.href = "{{$smarty.const.WEBSITE_URL}}usermanager/index";
-						},2000);
+ 
 						return ;
 					}
 
@@ -136,7 +132,10 @@ $(function(){
 	$('.head6').mouseleave(function(){
 		$('.wrapper6').stop().slideUp();
 	});  
-})
+});
+function redirect(){
+	window.location.href = "{{$smarty.const.WEBSITE_URL}}usermanager";
+}
 </script>
 <script type="text/javascript" id="sourcecode">
 //code for scroll
@@ -215,7 +214,7 @@ $(function(){
 <!-- 弹出窗口 -->
 <div id='windbox3success' class="windbox">
 	<div class="wind">
-    	<a href="#" class="fr"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"/></a>
+    	<a href="#" class="fr"  onclick="redirect();"><img src="{{$smarty.const.WEBSITE_URL}}public/img/Close-ioc.gif"/></a>
     	<span class="alterpassword-y">
         	<img src="{{$smarty.const.WEBSITE_URL}}public/img/alterpassword-y.gif" border="0" usemap="#Map03"/>
             <map name="Map03">

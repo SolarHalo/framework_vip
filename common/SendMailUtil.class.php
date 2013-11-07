@@ -13,25 +13,43 @@ class SendMailUtil{
 	 * @param string $messagebody  发送邮件body,支持html
 	 * @param string $adress       收件人
 	 */
-	public static function sendmail($messagetitle,$messagebody,$adress){
-		$mail= new PHPMailer(); 
+	public static function sendmail($messagetitle,$messagebody,$adress,$vipno){
+		$mail= new PHPMailer();  
 		$body= $messagebody;
-		
+    	 global  $CONFIG;  
+        $dbutil = new DbUtil($CONFIG['DB']['db_host'], $CONFIG['DB']['db_user'], $CONFIG['DB']['db_password'], $CONFIG['DB']['db_database']); 
+         $today = date("Y-m-d");   
+		 $selectSql = "select * from emailcount where senddate = '$today' and vipno='$vipno'";
+		 $results =  $dbutil->get_results($selectSql);
+		 $sql;
+		 if(!empty($results)){ 
+		 	$sql = "update emailcount  set sendcount=sendcount+1 where senddate='$today' and vipno='$vipno'";
+		 }else{ 
+		 	$sql=  "insert  emailcount (sendcount,senddate,vipno) values(1,'$today','$vipno')";
+		 }
+		 $dbutil->query($sql);
+		 
+		$sql = "select * from email_set";
+		$emailinfo = $dbutil->get_results($sql); 
+		 
 		//采用SMTP发送邮件
 		$mail->IsSMTP();
 		
 		//邮件服务器
-		$mail->Host       = "smtp.bnet.cn";
+		//$mail->Host       = "smtp.bnet.cn";
+		$mail->Host       = $emailinfo[0]->smtp;
 		$mail->SMTPDebug  = 0;
 		
 		//使用SMPT验证
 		$mail->SMTPAuth   = true;
 		
 		//SMTP验证的用户名称
-		$mail->Username   = "resetpassword@vip.trendy-global.com";
+//		$mail->Username   = "resetpassword@vip.trendy-global.com";
+		$mail->Username   =  $emailinfo[0]->username;
 		
 		//SMTP验证的秘密
-		$mail->Password   = "-pl,)OKM";
+//		$mail->Password   = "-pl,)OKM";
+		$mail->Password   = $emailinfo[0]->pwd;
 		
 		//设置编码格式
 		$mail->CharSet  = "utf-8";

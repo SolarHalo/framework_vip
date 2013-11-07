@@ -8,6 +8,8 @@
 					<li><a href="{{$smarty.const.WEBSITE_URL}}admin/param/load/paramtype=google">GOOGLE统计更新</a></li>
 					<li><a href="{{$smarty.const.WEBSITE_URL}}admin/activities">会员专享活动管理</a></li>
 					<li><a href="{{$smarty.const.WEBSITE_URL}}admin/userLog">用户日志</a></li>
+					<li><a href="{{$smarty.const.WEBSITE_URL}}admin/email">邮箱设置</a></li>
+					<li><a href="{{$smarty.const.WEBSITE_URL}}admin/email/emailcount">邮件日志</a></li>
 				</ul> 
 		 <a href="#sidebar_menu_1" class="nav-header collapsed" data-toggle="collapse"><i class="icon-th"></i>系统管理 <i class="icon-chevron-up"></i></a>
 		 

@@ -10,7 +10,7 @@
 			<p class="stat"><!--span class="number"></span--></p>
 			</div>
 
-            <h1 class="page-title">test</h1>
+            <h1 class="page-title">操作首页</h1>
         </div>
         
 		<ul class="breadcrumb">
@@ -34,7 +34,7 @@
 		 
 			<span>
 				<a href="{{$smarty.const.WEBSITE_URL}}admin/userLog">
-				  查看VIP会没登录日志
+				  查看VIP会员登录日志
 				</a>
 			</span>&nbsp; 
 			 

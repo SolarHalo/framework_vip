@@ -251,7 +251,7 @@ class LoginController extends  Controller{
                
                
               // SendMailUtil::sendmail("赫基国际集团官方会员获取新密码",$messageBody,"63666862@qq.com");
-                 SendMailUtil::sendmail("赫基国际集团官方会员获取新密码",$messageBody,"superyuyue@126.com");
+                 SendMailUtil::sendmail("赫基国际集团官方会员获取新密码",$messageBody,"superyuyue@126.com",$vipid);
 		     	   $arr = array ('result'=>3); 
 		     	 
    	    	   echo json_encode($arr);

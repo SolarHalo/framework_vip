@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-11-03 14:23:42
+<?php /* Smarty version Smarty-3.1.13, created on 2013-11-04 03:17:23
          compiled from "G:\phpserver\framework\templates\admin\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19618527659e24af921-19159482%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '36e0a65dd6e30625d51d056bf5fb5f335a7fa7d0' => 
     array (
       0 => 'G:\\phpserver\\framework\\templates\\admin\\index.tpl',
-      1 => 1383488602,
+      1 => 1383535041,
       2 => 'file',
     ),
   ),
@@ -40,7 +40,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<p class="stat"><!--span class="number"></span--></p>
 			</div>
 
-            <h1 class="page-title">test</h1>
+            <h1 class="page-title">操作首页</h1>
         </div>
         
 		<ul class="breadcrumb">
@@ -67,7 +67,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<span>
 				<a href="<?php echo @constant('WEBSITE_URL');?>
 admin/userLog">
-				  查看VIP会没登录日志
+				  查看VIP会员登录日志
 				</a>
 			</span>&nbsp; 
 			 
